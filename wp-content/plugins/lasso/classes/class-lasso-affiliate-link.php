@@ -743,342 +743,70 @@ class Lasso_Affiliate_Link
 		$amazon_search_title = Lasso_Amazon_Api::get_search_page_title($get_final_url);
 
 		$parse_url = wp_parse_url($get_final_url);
-		$is_keyword = false;
-		$apiCheckSearch = 'https://serpapi.com/account?api_key=';
-		$primaryKeySearch = '';
+		$result = array();
+		$searchString = $url;
+		$apiKey = '79ca0ed080bb4109af9f504fe3bfca5b';
+		$apiUrl = "https://api.rawg.io/api/games?key={$apiKey}&search={$searchString}";
 
-		$arrKey = [
-			'f15db785c3495c2f77ab53a7ecfa45e2d23406642a2a7631342f1134425901cc',
-			'2e012c4331346280042ad2946814f792ff852975d49043c5e70fbe89ae6b9922',
-			'bfb476bc8440f060661a2ed7121d9868dd008f6e809d2be38e6051a6201baf65',
-			'39c82642d685e32f50722334c08147bf9c4a5449e38234e31423d6c360a409c2',
-			'b438bb4ba7fb8e292e79fae8a5f56777786cc2bddf92eafb650ea1d8aad16f4a',
-			'9ce009863ee89b61d77e7ec47b47881de1c019e5b305b9eb908e0bfa7f1bc471'
-		];
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_URL => $apiUrl . $searString,
+			CURLOPT_SSL_VERIFYPEER => false
+		));
 
-		foreach ($arrKey as $keySearch) {
-			$curl = curl_init();
-			curl_setopt_array($curl, array(
-				CURLOPT_RETURNTRANSFER => true,
-				CURLOPT_URL => $apiCheckSearch . $keySearch,
-				CURLOPT_SSL_VERIFYPEER => false
-			));
+		$respCheckSearch = curl_exec($curl);
+		$respCheckSearch = json_decode($respCheckSearch, true);
+		curl_close($curl);
 
-			$respCheckSearch = curl_exec($curl);
-			$respCheckSearch = json_decode($respCheckSearch, true);
-			if ($respCheckSearch['plan_searches_left'] == 0) {
-				continue;
-			} else {
-				$primaryKeySearch = $respCheckSearch['api_key'];
-				break;
-			}
+		if (!is_null($respCheckSearch) and is_array($respCheckSearch)) {
+			$result = $respCheckSearch['results'][0];
+			$background_url = $result['background_image'];
+			$attachment_id = download_image_to_media($background_url);
 
-			curl_close($curl);
-		}
+			$data = [
+				'name' => $result['name'],
+				'released' => $result['released'],
+				'background_image' => $attachment_id,
+				'rating' => $result['rating'],
+				'metacritic' => $result['metacritic'],
+				'esrb_rating_name' => $result['esrb_rating']['name'],
+				'esrb_rating_slug' => $result['esrb_rating']['slug']
+			];
 
-		if ($primaryKeySearch == '') {
-			$error_message = "All keys run out of searches.";
-			if ($is_ajax_request) {
-				wp_send_json_error($error_message);
-			} else {
-				return $error_message;
-			}
-		}
-
-		$apiKeySerp = $primaryKeySearch;
-		if (!array_key_exists('host', $parse_url)) {
-			$is_keyword = true;
-			$apiSearchGoogle = 'https://serpapi.com/search.json?engine=google_play&q=';
-			$keySearchGoogle = $parse_url['path'];
-			$curlUrl = $apiSearchGoogle . urlencode($keySearchGoogle) . '&api_key=' . $apiKeySerp;
-			$curl = curl_init();
-			curl_setopt_array($curl, array(
-				CURLOPT_RETURNTRANSFER => true,
-				CURLOPT_URL => $curlUrl,
-				CURLOPT_SSL_VERIFYPEER => false
-			));
-
-			$respGoogle = curl_exec($curl);
-			curl_close($curl);
-			$respGoogle = json_decode($respGoogle);
-			$idAppPlay = '';
-
-			if (isset($respGoogle->app_highlight)) {
-				if (strpos($respGoogle->app_highlight->title, $parse_url['path']) !== false) {
-					$idAppPlay = $respGoogle->app_highlight->product_id;
-				}
-			} else {
-				foreach ($respGoogle->organic_results as $resultSearchAppPlay) {
-					if (strpos($resultSearchAppPlay->items[0]->title, $parse_url['path']) !== false) {
-						$idAppPlay = $resultSearchAppPlay->items[0]->product_id;
-
-						break;
-					}
-				}
-			}
-
-			$apiSearchApple = 'https://serpapi.com/search.json?country=us&engine=apple_app_store&term=';
-			$keySearchApple = $parse_url['path'];
-			$curlUrl = $apiSearchApple . urlencode($keySearchApple) . '&api_key=' . $apiKeySerp;
-			$curl = curl_init();
-			curl_setopt_array($curl, array(
-				CURLOPT_RETURNTRANSFER => true,
-				CURLOPT_URL => $curlUrl,
-				CURLOPT_SSL_VERIFYPEER => false
-			));
-
-			$respApple = curl_exec($curl);
-			curl_close($curl);
-			$respApple = json_decode($respApple);
-			$idAppStore = '';
-
-			if (isset($respApple->app_highlight)) {
-				if (strpos($respApple->app_highlight->title, $parse_url['path']) !== false) {
-					$idAppStore = $respApple->app_highlight->id;
-				}
-			} else {
-				foreach ($respApple->organic_results as $resultSearchAppStore) {
-					if (strpos($resultSearchAppStore->title, $parse_url['path']) !== false) {
-						$idAppStore = $resultSearchAppStore->id;
-
-						break;
-					}
-				}
-			}
-		}
-
-		if (!$is_keyword) {
-			if ($parse_url['host'] == 'play.google.com') {
-				$query_url = $parse_url['query'];
-				$idAppPlay = '';
-				$hlAppPlay = '';
-				$glAppPlay = '';
-				$explodeQuery = explode('&', $query_url);
-				foreach ($explodeQuery as $explode) {
-					$explodeInExplode = explode('=', $explode);
-					if ($explodeInExplode[0] == 'id') {
-						$idAppPlay = $explodeInExplode[1];
-					}
-
-					if ($explodeInExplode[0] == 'hl') {
-						$hlAppPlay = $explodeInExplode[1];
-					}
-
-					if ($explodeInExplode[0] == 'gl') {
-						$glAppPlay = $explodeInExplode[1];
-					}
-				}
-
-				if ($idAppPlay == '') {
-					$productAppGoogle = [
-						'title' => '',
-						'rating' => '',
-						'price' => '',
-						'developer' => '',
-						'categories' => '',
-						'thumbnail' => '',
-						'screen_shots' => '',
-					];
-				} else {
-					$apiGooglePlay = 'https://serpapi.com/search?engine=google_play_product&store=apps&gl=GB&hl=en&product_id=';
-					$curlUrl = $apiGooglePlay . $idAppPlay . '&api_key=' . $apiKeySerp;
-
-					if ($hlAppPlay != '') {
-						$curlUrl .= '&hl=' . $hlAppPlay;
-					}
-
-					if ($glAppPlay != '') {
-						$curlUrl .= '&gl=' . $glAppPlay;
-					}
-
-					$curl = curl_init();
-					curl_setopt_array($curl, array(
-						CURLOPT_RETURNTRANSFER => true,
-						CURLOPT_URL => $curlUrl,
-						CURLOPT_SSL_VERIFYPEER => false
-					));
-
-					$resp = curl_exec($curl);
-					curl_close($curl);
-
-					$dump = json_decode($resp, true);
-
-					if (array_key_exists('error', $dump)) {
-						$error_message = $dump['error'];
-						if ($is_ajax_request) {
-							wp_send_json_error($error_message);
-						} else {
-							return $error_message;
-						}
-					}
-
-					if ($resp) {
-						$resp = json_decode($resp);
-						$productInfo = $resp->product_info;
-
-						$productAppGoogle['title'] = $productInfo->title;
-						$productAppGoogle['rating'] = $productInfo->rating;
-						$productAppGoogle['price'] = $productInfo->offers[0]->price;
-						$productAppGoogle['developer'] = $productInfo->authors[0]->name;
-						$productAppGoogle['categories'] = $resp->categories[0]->name;
-
-						if ($resp->media->video != null) {
-							$productAppGoogle['thumbnail'] = $resp->media->video->thumbnail;
-						} else {
-							$productAppGoogle['thumbnail'] = $productInfo->thumbnail;
-						}
-
-						$productAppGoogle['screen_shots'] = json_encode($resp->media->images);
-					}
-				}
-			}
-
-			if ($parse_url['host'] == 'apps.apple.com') {
-				$path = $parse_url['path'];
-				$idAppStore = '';
-				$explodePath = explode('/', $path);
-				$regex = '/[i][d][0-9]/';
-				foreach ($explodePath as $itemPath) {
-					if (preg_match($regex, $itemPath)) {
-						$explodePreg = explode('id', $itemPath);
-						$idAppStore = $explodePreg[1];
-					}
-				}
-
-				if ($idAppStore == '') {
-					$productAppStore = [
-						'title' => '',
-						'rating' => '',
-						'price' => '',
-						'developer' => '',
-						'categories' => '',
-						'thumbnail' => '',
-						'size' => '',
-						'version' => '',
-						'screen_shots' => '',
-					];
-				} else {
-					$apiAppStore = 'https://serpapi.com/search.json?engine=apple_product&product_id=';
-					$curlUrl = $apiAppStore . $idAppStore . '&api_key=' . $apiKeySerp;
-					$curl = curl_init();
-					curl_setopt_array($curl, array(
-						CURLOPT_RETURNTRANSFER => true,
-						CURLOPT_URL => $curlUrl,
-						CURLOPT_SSL_VERIFYPEER => false
-					));
-
-					$resp = curl_exec($curl);
-					curl_close($curl);
-
-					if ($resp) {
-						$productAppStore = [];
-						$resp = json_decode($resp);
-						$productAppStore['title'] = $resp->title;
-						$productAppStore['rating'] = $resp->rating;
-						$productAppStore['price'] = $resp->price;
-						$productAppStore['developer'] = $resp->developer->name;
-						$productAppStore['categories'] = $resp->information->categories[0];
-						$productAppStore['thumbnail'] = $resp->logo;
-						$productAppStore['size'] = $resp->information->size;
-						$productAppStore['version'] = $resp->version_history[0]->release_version;
-						if (isset($resp->iphone_screenshots)) {
-							$productAppStore['screen_shots'] = json_encode($resp->iphone_screenshots);
-						}
-
-						if (isset($resp->ipad_screenshots)) {
-							$productAppStore['screen_shots'] = json_encode($resp->ipad_screenshots);
-						}
-					}
-				}
-			}
-		} else {
-			if ($idAppPlay == '') {
-				$productAppGoogle = [
-					'title' => '',
-					'rating' => '',
-					'price' => '',
-					'developer' => '',
-					'categories' => '',
-					'thumbnail' => '',
-					'screen_shots' => '',
-					'base_url' => '',
+			foreach ($result['platform'] as $platform) {
+				$data['platform'][] = [
+					'name' => $platform['platform']['name'],
+					'slug' => $platform['platform']['slug']
 				];
-			} else {
-				$apiGooglePlay = 'https://serpapi.com/search.json?engine=google_play_product&product_id=';
-				$curlUrl = $apiGooglePlay . $idAppPlay . '&store=apps&api_key=' . $apiKeySerp;
-				$curl = curl_init();
-				curl_setopt_array($curl, array(
-					CURLOPT_RETURNTRANSFER => true,
-					CURLOPT_URL => $curlUrl,
-					CURLOPT_SSL_VERIFYPEER => false
-				));
-
-				$resp = curl_exec($curl);
-				curl_close($curl);
-
-				if ($resp) {
-					$productAppGoogle = [];
-					$resp = json_decode($resp);
-					$productInfo = $resp->product_info;
-					$productAppGoogle['title'] = $productInfo->title;
-					$productAppGoogle['rating'] = $productInfo->rating;
-					$productAppGoogle['price'] = $productInfo->offers[0]->price;
-					$productAppGoogle['developer'] = $productInfo->authors[0]->name;
-					$productAppGoogle['categories'] = $resp->categories[0]->name;
-					$productAppGoogle['thumbnail'] = $resp->media->video->thumbnail;
-					$productAppGoogle['screen_shots'] = json_encode($resp->media->images);
-					$productAppGoogle['base_url'] = $resp->search_metadata->google_play_product_url;
-				}
 			}
 
-			if ($idAppStore == '') {
-				$productAppStore = [
-					'title' => '',
-					'rating' => '',
-					'price' => '',
-					'developer' => '',
-					'categories' => '',
-					'thumbnail' => '',
-					'size' => '',
-					'version' => '',
-					'screen_shots' => '',
-					'base_url' => '',
+			foreach ($result['tags'] as $tag) {
+				$data['tags'][] = [
+					'name' => $tag['name'],
+					'slug' => $tag['slug']
 				];
-			} else {
-				$apiAppStore = 'https://serpapi.com/search.json?engine=apple_product&product_id=';
-				$curlUrl = $apiAppStore . $idAppStore . '&api_key=' . $apiKeySerp;
-				$curl = curl_init();
-				curl_setopt_array($curl, array(
-					CURLOPT_RETURNTRANSFER => true,
-					CURLOPT_URL => $curlUrl,
-					CURLOPT_SSL_VERIFYPEER => false
-				));
+			}
 
-				$resp = curl_exec($curl);
-				curl_close($curl);
+			foreach ($result['genres'] as $genres) {
+				$data['genres'][] = [
+					'name' => $genres['name'],
+					'slug' => $genres['slug']
+				];
+			}
 
-				if ($resp) {
-					$productAppStore = [];
-					$resp = json_decode($resp);
-					$productAppStore['title'] = $resp->title;
-					$productAppStore['rating'] = $resp->rating;
-					$productAppStore['price'] = $resp->price;
-					$productAppStore['developer'] = $resp->developer->name;
-					$productAppStore['categories'] = $resp->information->categories[0];
-					$productAppStore['thumbnail'] = $resp->logo;
-					$productAppStore['size'] = $resp->information->size;
-					$productAppStore['version'] = $resp->version_history[0]->release_version;
-					$productAppStore['base_url'] = $resp->search_metadata->apple_product_url;
-					if (isset($resp->iphone_screenshots)) {
-						$productAppStore['screen_shots'] = json_encode($resp->iphone_screenshots);
-					}
-
-					if (isset($resp->ipad_screenshots)) {
-						$productAppStore['screen_shots'] = json_encode($resp->ipad_screenshots);
-					}
-				}
+			foreach ($short_screenshots as $shot) {
+				$image_url = $shot['image'];
+				$attachment_id = download_image_to_media($image_url);
+				$data['screen_shots'][] = $attachment_id;
 			}
 		}
+
+		echo '<pre>';
+		var_dump($data);
+		echo '</pre>';
+
+		die;
 
 		if ($lasso_post_id > 0) {
 			$post_title    = get_the_title($lasso_post_id);
@@ -3060,5 +2788,38 @@ class Lasso_Affiliate_Link
 		$string = preg_replace('/(-)+/', '-', $string);
 		$string = strtolower($string);
 		return $string;
+	}
+
+	function download_image_to_media($image_url, $post_id = 0)
+	{
+		if (!$image_url || !filter_var($image_url, FILTER_VALIDATE_URL)) {
+			return false;
+		}
+
+		$image_data = file_get_contents($image_url);
+		if (!$image_data) {
+			return false;
+		}
+
+		$filename = basename($image_url);
+		$upload_dir = wp_upload_dir();
+		$file_path = $upload_dir['path'] . '/' . $filename;
+
+		file_put_contents($file_path, $image_data);
+
+		$filetype = wp_check_filetype($filename, null);
+		$attachment = array(
+			'post_mime_type' => $filetype['type'],
+			'post_title'     => sanitize_file_name($filename),
+			'post_content'   => '',
+			'post_status'    => 'inherit'
+		);
+
+		$attach_id = wp_insert_attachment($attachment, $file_path, $post_id);
+		require_once(ABSPATH . 'wp-admin/includes/image.php');
+		$attach_data = wp_generate_attachment_metadata($attach_id, $file_path);
+		wp_update_attachment_metadata($attach_id, $attach_data);
+
+		return $attach_id;
 	}
 }
