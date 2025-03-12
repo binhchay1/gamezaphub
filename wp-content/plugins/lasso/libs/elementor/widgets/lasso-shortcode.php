@@ -42,6 +42,7 @@ class Widget_Lasso_Shortcode extends Widget_Base {
 			Lasso_Helper::enqueue_style( 'bootstrap-grid-css', 'bootstrap-grid.min.css' );
 			Lasso_Helper::enqueue_style( 'simple-panigation-css', 'simplePagination.css' );
 			Lasso_Helper::enqueue_style( 'lasso-display-modal', 'lasso-display-modal.css' );
+			Lasso_Helper::enqueue_style( 'layout-6-box', 'layout-6-box.css' );
 			Lasso_Helper::enqueue_style( 'lasso-quill', 'quill.snow.css' );
 			Lasso_Helper::enqueue_style( 'lasso-table-frontend', 'lasso-table-frontend.min.css' );
 			Lasso_Helper::enqueue_style( 'lasso-elementor', 'lasso-elementor.css' );

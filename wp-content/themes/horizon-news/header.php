@@ -116,7 +116,7 @@
 						<div class="bottom-header-wrapper">
 							<div class="navigation-part">
 								<nav id="site-navigation" class="main-navigation">
-									<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+									<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Expand Menu">
 										<span class="hamburger">
 											<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
 												<circle cx="50" cy="50" r="30"></circle>

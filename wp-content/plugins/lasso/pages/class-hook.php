@@ -664,6 +664,7 @@ class Hook {
 		if ( $setting->is_wordpress_post() || $setting->is_custom_post() ) {
 			Lasso_Helper::enqueue_style( 'bootstrap-grid-css', 'bootstrap-grid.min.css' );
 			Lasso_Helper::enqueue_style( 'lasso-display-modal', 'lasso-display-modal.css' );
+			Lasso_Helper::enqueue_style( 'layout-6-box', 'layout-6-box.css' );
 			Lasso_Helper::enqueue_style( 'simple-pagination', 'simplePagination.css' );
 			Lasso_Helper::enqueue_style( 'lasso-quill', 'quill.snow.css' );
 			Lasso_Helper::enqueue_style( 'lasso-table-frontend', 'lasso-table-frontend.min.css' );

@@ -365,6 +365,7 @@ class Setting
 		'ct_admin_css',
 		'wp-color-picker',
 		'wp-mail-smtp-admin-bar',
+		'layout-6-box',
 	);
 
 	/**

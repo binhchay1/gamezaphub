@@ -165,151 +165,35 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 						</div>
 
 						<div class="row">
-							<div class="col-lg-8">
-								<div class="form-group mb-4">
-									<label data-tooltip="A app store URL you want people to go to when they click an optional second button in displays">
-										<strong>App Store URL</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="apple_btn_url" value="<?php echo esc_html($lasso_url->apple_btn_url); ?>" placeholder="https://apps.apple.com/us/app/netflix/id363590051?platform=iphone">
-								</div>
-							</div>
-
-							<div class="col-lg-4">
-								<div class="form-group mb-4">
-									<label data-tooltip="This text will appear in the optional secondary button"><strong>Button Text</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="apple_btn_text" value="<?php echo esc_html($lasso_url->display->apple_btn_text); ?>" placeholder="<?php echo esc_html($lasso_url->display->secondary_button_text_default); ?>">
-								</div>
-							</div>
-
-							<div class="col-lg-6 mb-4">
-								<label class="toggle m-0 mr-1">
-									<input id="url-open-link-apple" name="open_new_tab_apple" type="checkbox" <?php echo esc_html($lasso_url->url_detail_checkbox->open_new_tab_apple); ?>>
-									<span class="slider"></span>
-								</label>
-								<label data-tooltip="When enabled, users who click this link will have it loaded in a new tab.">New Window / Tab <i class="far fa-info-circle light-purple"></i></label>
-							</div>
-
-							<div class="col-lg-6 text-right">
-								<label class="toggle m-0 mr-1">
-									<input name="enable_nofollow_apple" id="url-en-nofollow-apple" type="checkbox" <?php echo esc_html($lasso_url->url_detail_checkbox->enable_nofollow_apple); ?>>
-									<span class="slider"></span>
-								</label>
-								<label data-tooltip="When enabled, this link will be set to nofollow. This indicates to Google that it's an affiliate link.">NoFollow / NoIndex <i class="far fa-info-circle light-purple"></i></label>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-lg-8">
-								<div class="form-group mb-4">
-									<label data-tooltip="A google app URL you want people to go to when they click an optional second button in displays">
-										<strong>Google App URL</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="google_btn_url" value="<?php echo esc_html($lasso_url->google_btn_url); ?>" placeholder="https://play.google.com/store/apps/details?id=net.kairosoft.android.piratedx">
-								</div>
-							</div>
-
-							<div class="col-lg-4">
-								<div class="form-group mb-4">
-									<label data-tooltip="This text will appear in the optional secondary button"><strong>Button Text</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="google_btn_text" value="<?php echo esc_html($lasso_url->display->google_btn_text); ?>" placeholder="<?php echo esc_html($lasso_url->display->secondary_button_text_default); ?>">
-								</div>
-							</div>
-
-							<div class="col-lg-6 mb-4">
-								<label class="toggle m-0 mr-1">
-									<input id="url-open-link-google" name="open_new_tab_google" type="checkbox" <?php echo esc_html($lasso_url->url_detail_checkbox->open_new_tab_google); ?>>
-									<span class="slider"></span>
-								</label>
-								<label data-tooltip="When enabled, users who click this link will have it loaded in a new tab.">New Window / Tab <i class="far fa-info-circle light-purple"></i></label>
-							</div>
-
-							<div class="col-lg-6 text-right">
-								<label class="toggle m-0 mr-1">
-									<input name="enable_nofollow_google" id="url-en-nofollow-google" type="checkbox" <?php echo esc_html($lasso_url->url_detail_checkbox->enable_nofollow_google); ?>>
-									<span class="slider"></span>
-								</label>
-								<label data-tooltip="When enabled, this link will be set to nofollow. This indicates to Google that it's an affiliate link.">NoFollow / NoIndex <i class="far fa-info-circle light-purple"></i></label>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-lg-8">
-								<div class="form-group mb-4">
-									<label data-tooltip="A third URL you want people to go to when they click an optional second button in displays">
-										<strong>Third Destination URL</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="third_btn_url" value="<?php echo esc_html($lasso_url->display->third_url); ?>" placeholder="https://www.example.com/affiliate-id2">
-								</div>
-							</div>
-
-							<div class="col-lg-4">
-								<div class="form-group mb-4">
-									<label data-tooltip="This text will appear in the optional secondary button"><strong>Button Text</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="third_btn_text" value="<?php echo esc_html($lasso_url->display->third_btn_text); ?>" placeholder="<?php echo esc_html($lasso_url->display->secondary_button_text_default); ?>">
-								</div>
-							</div>
-
-							<div class="col-lg-6 mb-4">
-								<label class="toggle m-0 mr-1">
-									<input id="url-open-link3" name="open_new_tab3" type="checkbox" <?php echo esc_html($lasso_url->url_detail_checkbox->open_new_tab3); ?>>
-									<span class="slider"></span>
-								</label>
-								<label data-tooltip="When enabled, users who click this link will have it loaded in a new tab.">New Window / Tab <i class="far fa-info-circle light-purple"></i></label>
-							</div>
-
-							<div class="col-lg-6 text-right">
-								<label class="toggle m-0 mr-1">
-									<input name="enable_nofollow3" id="url-en-nofollow3" type="checkbox" <?php echo esc_html($lasso_url->url_detail_checkbox->enable_nofollow3); ?>>
-									<span class="slider"></span>
-								</label>
-								<label data-tooltip="When enabled, this link will be set to nofollow. This indicates to Google that it's an affiliate link.">NoFollow / NoIndex <i class="far fa-info-circle light-purple"></i></label>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-lg-8">
-								<div class="form-group mb-4">
-									<label data-tooltip="A fourth URL you want people to go to when they click an optional second button in displays">
-										<strong>Fourth Destination URL</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="fourth_btn_url" value="<?php echo esc_html($lasso_url->display->fourth_url); ?>" placeholder="https://www.example.com/affiliate-id2">
-								</div>
-							</div>
-
-							<div class="col-lg-4">
-								<div class="form-group mb-4">
-									<label data-tooltip="This text will appear in the optional secondary button"><strong>Button Text</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="fourth_btn_text" value="<?php echo esc_html($lasso_url->display->fourth_btn_text); ?>" placeholder="<?php echo esc_html($lasso_url->display->secondary_button_text_default); ?>">
-								</div>
-							</div>
-
-							<div class="col-lg-6 mb-4">
-								<label class="toggle m-0 mr-1">
-									<input id="url-open-link4" name="open_new_tab4" type="checkbox" <?php echo esc_html($lasso_url->url_detail_checkbox->open_new_tab4); ?>>
-									<span class="slider"></span>
-								</label>
-								<label data-tooltip="When enabled, users who click this link will have it loaded in a new tab.">New Window / Tab <i class="far fa-info-circle light-purple"></i></label>
-							</div>
-
-							<div class="col-lg-6 text-right">
-								<label class="toggle m-0 mr-1">
-									<input name="enable_nofollow4" id="url-en-nofollow4" type="checkbox" <?php echo esc_html($lasso_url->url_detail_checkbox->enable_nofollow4); ?>>
-									<span class="slider"></span>
-								</label>
-								<label data-tooltip="When enabled, this link will be set to nofollow. This indicates to Google that it's an affiliate link.">NoFollow / NoIndex <i class="far fa-info-circle light-purple"></i></label>
-							</div>
-						</div>
-
-						<div class="row">
 							<div class="col-lg-6">
 								<div class="form-group mb-4">
-									<label data-tooltip="Price of app in store">
-										<strong>Price</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="price_app" value="<?php echo $lasso_url->price ?>" placeholder="Price app">
+									<label data-tooltip="Released of app in store">
+										<strong>Released</strong> <i class="far fa-info-circle light-purple"></i></label>
+									<input type="text" class="form-control" id="released" value="<?php echo $lasso_url->released ?>" placeholder="Released app">
 								</div>
 							</div>
 
 							<div class="col-lg-6">
 								<div class="form-group mb-4">
-									<label data-tooltip="Developer of app in store">
-										<strong>Developer</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="developer_app" value="<?php echo $lasso_url->developer ?>" placeholder="Developer app">
+									<label data-tooltip="Developers of app in store">
+										<strong>Developers</strong> <i class="far fa-info-circle light-purple"></i></label>
+									<input type="text" class="form-control" id="developers" value="<?php echo $lasso_url->developers ?>" placeholder="Developers app">
+								</div>
+							</div>
+
+							<div class="col-lg-6">
+								<div class="form-group mb-4">
+									<label data-tooltip="Tags of app in store">
+										<strong>Tags</strong> <i class="far fa-info-circle light-purple"></i></label>
+									<input type="text" class="form-control" id="tags" value="<?php echo $lasso_url->tags ?>" placeholder="Tags app">
+								</div>
+							</div>
+
+							<div class="col-lg-6">
+								<div class="form-group mb-4">
+									<label data-tooltip="Genres of app in store">
+										<strong>Genres</strong> <i class="far fa-info-circle light-purple"></i></label>
+									<input type="text" class="form-control" id="genres" value="<?php echo $lasso_url->genres ?>" placeholder="Genres app">
 								</div>
 							</div>
 
@@ -321,58 +205,19 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 								</div>
 							</div>
 
-							<div class="col-lg-6">
-								<div class="form-group mb-4">
-									<label data-tooltip="Category of app in store">
-										<strong>Categories</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="categories_app" value="<?php echo $lasso_url->categories ?>" placeholder="Categories app">
-								</div>
-							</div>
-
-							<div class="col-lg-6">
-								<div class="form-group mb-4">
-									<label data-tooltip="Size off app in store">
-										<strong>Size</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="size_app" value="<?php echo $lasso_url->size ?>" placeholder="Size app">
-								</div>
-							</div>
-
-							<div class="col-lg-6">
-								<div class="form-group mb-4">
-									<label data-tooltip="Version of app in store">
-										<strong>Version</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="version_app" value="<?php echo $lasso_url->version ?>" placeholder="Version app">
-								</div>
-							</div>
-
-							<div class="col-lg-6">
-								<div class="form-group mb-4">
-									<label data-tooltip="Update date of app in post">
-										<strong>Updated on</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="updated_on_app" value="<?php echo $lasso_url->updated_on ?>" placeholder="Updated on">
-								</div>
-							</div>
-
 							<div class="col-lg-12">
 								<div class="form-group mb-4">
 									<label data-tooltip="Screen shot of app in store">
 										<strong>Screen shots</strong> <i class="far fa-info-circle light-purple"></i></label>
+
 									<?php if (isset($lasso_url->screen_shots)) { ?>
-										<?php if (!is_array($lasso_url->screen_shots)) { ?>
-											<?php $array_screenshot = json_decode($lasso_url->screen_shots, true); ?>
-											<div class="owl-carousel owl-theme">
-												<?php foreach ($array_screenshot as $shot) { ?>
-													<img class="item" src="<?php echo $shot ?>" width="106" height="66"/>
-												<?php } ?>
-											</div>
-										<?php } else { ?>
-											<div class="owl-carousel owl-theme">
-												<?php $array_screenshot = explode(PHP_EOL, $lasso_url->screen_shots); ?>
-												<?php foreach ($array_screenshot as $shot) { ?>
-													<img class="item" src="<?php echo $shot ?>" width="100" height="100"/>
-												<?php } ?>
-											</div>
-										<?php } ?>
+										<div class="owl-carousel owl-theme">
+											<?php foreach ($lasso_url->screen_shots as $screen_shot) { ?>
+												<div class="item">
+													<img src="<?php echo $screen_shot ?>" alt="screen shot">
+												</div>
+											<?php } ?>
+										</div>
 									<?php } ?>
 								</div>
 							</div>
@@ -1378,17 +1223,18 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 			var thumbnail_id = jQuery("#thumbnail_id").val();
 			var permalink = jQuery('#permalink').val();
 			var disclosure = jQuery("#disclosure").val();
-			var apple_btn_url = jQuery("#apple_btn_url").val();
-			var google_btn_url = jQuery("#google_btn_url").val();
-			var third_btn_url = jQuery("#third_btn_url").val();
-			var fourth_btn_url = jQuery("#fourth_btn_url").val();
-			var price_app = jQuery("#price_app").val();
-			var developer_app = jQuery("#developer_app").val();
-			var rating_app = jQuery("#rating_app").val();
-			var categories_app = jQuery("#categories_app").val();
-			var size_app = jQuery("#size_app").val();
-			var version_app = jQuery("#version_app").val();
-			var updated_on_app = jQuery("#updated_on_app").val();
+
+			var name = jQuery("#name").val();
+			var released = jQuery("#released").val();
+			var rating = jQuery("#rating").val();
+			var developers = jQuery("#developers").val();
+			var esrb_rating_name = jQuery("#esrb_rating_name").val();
+			var platform = jQuery("#platform").val();
+			var tags = jQuery("#tags").val();
+			var genres = jQuery("#genres").val();
+			var screen_shots = jQuery("#screen_shots").val();
+			var ratings = jQuery("#ratings").val();
+
 			var affiliate_desc = quill.root.innerHTML;
 			affiliate_desc = affiliate_desc == '<p><br></p>' ? '' : affiliate_desc;
 
@@ -1401,34 +1247,22 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 				thumbnail: jQuery("#render_thumbnail").attr('src'),
 				permalink: jQuery("#permalink").val(),
 				price: price,
-				apple_btn_url: apple_btn_url,
-				google_btn_url: google_btn_url,
-				third_btn_url: third_btn_url,
-				fourth_btn_url: fourth_btn_url,
-				price_app: price_app,
-				developer: developer_app,
-				rating: rating_app,
-				categories_app: categories_app,
-				size: size_app,
-				version: version_app,
-				updated_on: updated_on_app,
+
+				name: name,
+				released: released,
+				rating: rating,
+				developers: developers,
+				esrb_rating_name: esrb_rating_name,
+				platform: platform,
+				tags: tags,
+				genres: genres,
+				screen_shots: screen_shots,
+				ratings: ratings,
 
 				enable_nofollow: jQuery("#url-en-nofollow").prop("checked") ? 1 : 0,
 				open_new_tab: jQuery("#url-open-link").prop("checked") ? 1 : 0,
 				enable_nofollow2: jQuery("#url-en-nofollow2").prop("checked") ? 1 : 0,
 				open_new_tab2: jQuery("#url-open-link2").prop("checked") ? 1 : 0,
-
-				enable_nofollow3: jQuery("#url-en-nofollow3").prop("checked") ? 1 : 0,
-				open_new_tab3: jQuery("#url-open-link3").prop("checked") ? 1 : 0,
-
-				enable_nofollow4: jQuery("#url-en-nofollow4").prop("checked") ? 1 : 0,
-				open_new_tab4: jQuery("#url-open-link4").prop("checked") ? 1 : 0,
-
-				enable_nofollow_google: jQuery("#url-en-nofollow-google").prop("checked") ? 1 : 0,
-				open_new_tab_google: jQuery("#url-open-link-google").prop("checked") ? 1 : 0,
-
-				enable_nofollow_apple: jQuery("#url-en-nofollow-apple").prop("checked") ? 1 : 0,
-				open_new_tab_apple: jQuery("#url-open-link-apple").prop("checked") ? 1 : 0,
 
 				link_cloaking: jQuery("#url-en-link-cloaking").prop("checked") ? 1 : 0,
 				is_opportunity: jQuery("#is_opportunity").prop("checked") ? 1 : 0,
@@ -1446,15 +1280,6 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 				buy_btn_text: jQuery("#buy_btn_text").val(),
 				second_btn_url: jQuery("#second_btn_url").val(),
 				second_btn_text: jQuery("#second_btn_text").val(),
-
-				third_btn_url: jQuery("#third_btn_url").val(),
-				third_btn_text: jQuery("#third_btn_text").val(),
-
-				fourth_btn_url: jQuery("#fourth_btn_url").val(),
-				fourth_btn_text: jQuery("#fourth_btn_text").val(),
-
-				google_btn_text: jQuery("#google_btn_text").val(),
-				apple_btn_text: jQuery("#apple_btn_text").val(),
 			};
 
 			if (amazon_product_id != '') {

@@ -111,18 +111,6 @@ class Lasso_Affiliate_Link
 		$display_secondary_button_text_default = $settings['secondary_button_text'];
 		$display_secondary_button_text         = $display_secondary_button_text_default;
 
-		$display_third_button_text_default = $settings['secondary_button_text'];
-		$display_third_button_text         = $display_third_button_text_default;
-
-		$display_fourth_button_text_default = $settings['secondary_button_text'];
-		$display_fourth_button_text         = $display_fourth_button_text_default;
-
-		$display_apple_button_text_default = 'Get on App Store';
-		$display_apple_button_text         = $display_apple_button_text_default;
-
-		$display_google_button_text_default = 'Get on CH Play';
-		$display_google_button_text         = $display_google_button_text_default;
-
 		$display_secondary_url                 = '';
 		$display_disclosure_text               = $settings['disclosure_text'];
 		$display_disclosure_text_default       = $settings['disclosure_text'];
@@ -162,16 +150,16 @@ class Lasso_Affiliate_Link
 		$released = get_post_meta($post_id, 'released', true);
 		$background_image = get_post_meta($post_id, 'background_image', true);
 		$rating = get_post_meta($post_id, 'rating', true);
-		$metacritic = get_post_meta($post_id, 'metacritic', true);
+		$developers = get_post_meta($post_id, 'developers', true);
 		$esrb_rating_name = get_post_meta($post_id, 'esrb_rating_name', true);
 		$esrb_rating_slug = get_post_meta($post_id, 'esrb_rating_slug', true);
-		$platform = get_post_meta($post_id, 'platform', true);
+		$platforms = get_post_meta($post_id, 'platforms', true);
 		$tags = get_post_meta($post_id, 'tags', true);
 		$genres = get_post_meta($post_id, 'genres', true);
 		$screen_shots = get_post_meta($post_id, 'screen_shots', true);
-
-		$display_third_url = trim(get_post_meta($post_id, 'third_btn_url', true));
-		$display_fourth_url = trim(get_post_meta($post_id, 'fourth_btn_url', true));
+		$ratings = get_post_meta($post_id, 'ratings', true);
+		$description = get_post_meta($post_id, 'description', true);
+		$publishers = get_post_meta($post_id, 'publishers', true);
 
 		if ($post_id > 0 && LASSO_POST_TYPE === $post_type && 'publish' === $post_status && $lasso_post) {
 			$lasso_post_details = $lasso_db->get_url_details($post_id);
@@ -191,21 +179,7 @@ class Lasso_Affiliate_Link
 			$display_secondary_button_text = get_post_meta($post_id, 'second_btn_text', true);
 			$display_secondary_button_text = '' === $display_secondary_button_text ? $display_secondary_button_text_default : $display_secondary_button_text;
 
-			$display_third_button_text = get_post_meta($post_id, 'third_btn_text', true);
-			$display_third_button_text = '' === $display_third_button_text ? $display_third_button_text_default : $display_third_button_text;
-
-			$display_fourth_button_text = get_post_meta($post_id, 'fourth_btn_text', true);
-			$display_fourth_button_text = '' === $display_fourth_button_text ? $display_fourth_button_text_default : $display_fourth_button_text;
-
-			$display_google_button_text = get_post_meta($post_id, 'google_btn_text', true);
-			$display_google_button_text = '' === $display_google_button_text ? $display_google_button_text_default : $display_google_button_text;
-
-			$display_apple_button_text = get_post_meta($post_id, 'apple_btn_text', true);
-			$display_apple_button_text = '' === $display_apple_button_text ? $display_apple_button_text_default : $display_apple_button_text;
-
 			$display_secondary_url = trim(get_post_meta($post_id, 'second_btn_url', true));
-			$display_third_url = trim(get_post_meta($post_id, 'third_btn_url', true));
-			$display_fourth_url = trim(get_post_meta($post_id, 'fourth_btn_url', true));
 
 			$display_disclosure_text = get_post_meta($post_id, 'disclosure_text', true);
 			$display_disclosure_text = '' === trim($display_disclosure_text) ? $settings['disclosure_text'] : $display_disclosure_text;
@@ -233,13 +207,16 @@ class Lasso_Affiliate_Link
 			$released = get_post_meta($post_id, 'released', true);
 			$background_image = get_post_meta($post_id, 'background_image', true);
 			$rating = get_post_meta($post_id, 'rating', true);
-			$metacritic = get_post_meta($post_id, 'metacritic', true);
+			$developers = get_post_meta($post_id, 'developers', true);
 			$esrb_rating_name = get_post_meta($post_id, 'esrb_rating_name', true);
 			$esrb_rating_slug = get_post_meta($post_id, 'esrb_rating_slug', true);
-			$platform = get_post_meta($post_id, 'platform', true);
+			$platforms = get_post_meta($post_id, 'platforms', true);
 			$tags = get_post_meta($post_id, 'tags', true);
 			$genres = get_post_meta($post_id, 'genres', true);
 			$screen_shots = get_post_meta($post_id, 'screen_shots', true);
+			$ratings = get_post_meta($post_id, 'ratings', true);
+			$description = get_post_meta($post_id, 'description', true);
+			$publishers = get_post_meta($post_id, 'publishers', true);
 
 			$open_new_tab2 = get_post_meta($post_id, 'open_new_tab2', true);
 			$open_new_tab2 = 1 === intval($open_new_tab2) ? true : false;
@@ -442,19 +419,18 @@ class Lasso_Affiliate_Link
 			'public_link'         => Lasso_Amazon_Api::get_amazon_product_url($public_link),
 			'currency'            => $currency,
 			'rating'              => $rating,
-			'categories'          => $categories,
-			'size'           	  => $size,
-			'updated_on'          => $updated_on,
 			'screen_shots'        => $screen_shots,
 
 			'released'        => $released,
 			'background_image'        => $background_image,
-			'metacritic'        => $metacritic,
+			'developers'        => $developers,
 			'esrb_rating_name'        => $esrb_rating_name,
 			'esrb_rating_slug'        => $esrb_rating_slug,
-			'platform'        => $platform,
+			'platforms'        => $platforms,
 			'tags'        => $tags,
 			'genres'        => $genres,
+			'ratings'        => $ratings,
+			'publishers'        => $publishers,
 
 			'display'             => (object) array(
 				'theme'                         => $custom_theme,
@@ -471,8 +447,6 @@ class Lasso_Affiliate_Link
 				'show_disclosure'               => $display_show_disclosure,
 				'show_description'              => $display_show_description,
 				'last_updated'                  => $display_last_updated,
-				'third_url'                  	=> $display_third_url,
-				'fourth_url'                  => $display_fourth_url,
 			),
 			'amazon'              => (object) array(
 				'amazon_id'             => $amazon_product_id,
@@ -674,60 +648,101 @@ class Lasso_Affiliate_Link
 		$result = array();
 		$searchString = urlencode($url);
 		$apiKey = '79ca0ed080bb4109af9f504fe3bfca5b';
-		$apiUrl = "https://api.rawg.io/api/games?key={$apiKey}&search={$searchString}";
+		$apiUrlGet = "https://api.rawg.io/api/games?key={$apiKey}&search={$searchString}";
 		$data = [];
 
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
 			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_URL => $apiUrl . $searString,
+			CURLOPT_URL => $apiUrlGet,
 			CURLOPT_SSL_VERIFYPEER => false
 		));
 
-		$respCheckSearch = curl_exec($curl);
-		$respCheckSearch = json_decode($respCheckSearch, true);
+		$respGet = curl_exec($curl);
+		$respGet = json_decode($respGet, true);
+
 		curl_close($curl);
 
-		if (!is_null($respCheckSearch) and is_array($respCheckSearch)) {
-			$result = $respCheckSearch['results'][0];
-			$background_url = $result['background_image'];
-			$attachment_url = $this->download_image_to_media($background_url);
+		if (!is_null($respGet) and is_array($respGet)) {
+			$resultGet = $respGet['results'][0];
+			$id = $resultGet['id'];
+			$short_screenshots = $resultGet['short_screenshots'];
+			$apiUrlCheckSearch = "https://api.rawg.io/api/games/{$id}?key={$apiKey}";
 
-			$data = [
-				'name' => $result['name'],
-				'released' => $result['released'],
-				'background_image' => $attachment_url,
-				'rating' => $result['rating'],
-				'metacritic' => $result['metacritic'],
-				'esrb_rating_name' => $result['esrb_rating']['name'],
-				'esrb_rating_slug' => $result['esrb_rating']['slug']
-			];
+			$curl = curl_init();
+			curl_setopt_array($curl, array(
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_URL => $apiUrlCheckSearch,
+				CURLOPT_SSL_VERIFYPEER => false
+			));
 
-			foreach ($result['platform'] as $platform) {
-				$data['platform'][] = [
-					'name' => $platform['platform']['name'],
-					'slug' => $platform['platform']['slug']
+			$respCheckSearch = curl_exec($curl);
+			$respCheckSearch = json_decode($respCheckSearch, true);
+
+			if (!is_null($respCheckSearch) and is_array($respCheckSearch)) {
+				$result = $respCheckSearch;
+				$background_url = $result['background_image'];
+				$attachment_url = $this->download_image_to_media($background_url);
+
+				if (array_key_exists('description', $result)) {
+					$description = $this->extract_summary($result['description']);
+				} else {
+					$description = '';
+				}
+
+				$data = [
+					'name' => $result['name'],
+					'released' => $result['released'],
+					'background_image' => $attachment_url,
+					'rating' => $result['rating'],
+					'description' => $description,
+					'esrb_rating_name' => $result['esrb_rating']['name'],
+					'esrb_rating_slug' => $result['esrb_rating']['slug']
 				];
+
+				foreach ($result['platforms'] as $platform) {
+					$data['platforms'][] = $platform;
+				}
+
+				foreach ($result['ratings'] as $rating) {
+					$data['ratings'][] = $rating;
+				}
+
+				foreach ($result['tags'] as $tag) {
+					if ($tag['language'] != 'eng') {
+						continue;
+					}
+
+					$data['tags'][] = $tag;
+				}
+
+				foreach ($result['developers'] as $developer) {
+					$data['developers'][] = $developer;
+				}
+
+				foreach ($result['publishers'] as $publisher) {
+					$data['publishers'][] = $publisher;
+				}
+
+				foreach ($result['genres'] as $genres) {
+					$data['genres'][] = $genres;
+				}
+
+				foreach ($short_screenshots as $shot) {
+					$image_url = $shot['image'];
+					$attachment_url = $this->download_image_to_media($image_url);
+					$data['screen_shots'][] = $attachment_url;
+				}
 			}
 
-			foreach ($result['tags'] as $tag) {
-				$data['tags'][] = [
-					'name' => $tag['name'],
-					'slug' => $tag['slug']
-				];
-			}
-
-			foreach ($result['genres'] as $genres) {
-				$data['genres'][] = [
-					'name' => $genres['name'],
-					'slug' => $genres['slug']
-				];
-			}
-
-			foreach ($short_screenshots as $shot) {
-				$image_url = $shot['image'];
-				$attachment_url = $this->download_image_to_media($image_url);
-				$data['screen_shots'][] = $attachment_url;
+			curl_close($curl);
+		} else {
+			$res['status_code'] = 404;
+			$res['message'] = 'No data found';
+			if ($is_ajax_request) {
+				wp_send_json_error($res);
+			} else {
+				return $res;
 			}
 		}
 
@@ -761,10 +776,11 @@ class Lasso_Affiliate_Link
 			update_post_meta($lasso_post_id, 'released', $data['released']);
 			update_post_meta($lasso_post_id, 'background_image', $data['background_image']);
 			update_post_meta($lasso_post_id, 'rating', $data['rating']);
-			update_post_meta($lasso_post_id, 'metacritic', $data['metacritic']);
+			update_post_meta($lasso_post_id, 'developers', $data['developers']);
+			update_post_meta($lasso_post_id, 'publishers', $data['publishers']);
 			update_post_meta($lasso_post_id, 'esrb_rating_name', $data['esrb_rating_name']);
 			update_post_meta($lasso_post_id, 'esrb_rating_slug', $data['esrb_rating_slug']);
-			update_post_meta($lasso_post_id, 'platform', $data['platform']);
+			update_post_meta($lasso_post_id, 'platforms', $data['platforms']);
 			update_post_meta($lasso_post_id, 'tags', $data['tags']);
 			update_post_meta($lasso_post_id, 'genres', $data['genres']);
 			update_post_meta($lasso_post_id, 'screen_shots', $data['screen_shots']);
@@ -1142,17 +1158,20 @@ class Lasso_Affiliate_Link
 				'price'                  => $post_data['price'] ?? $lasso_url->price ?? '',
 				'lasso_custom_thumbnail' => $custom_thumbnail,
 
-				'name' => $post_data['name'],
-				'released' => $post_data['released'],
-				'background_image' => $post_data['background_image'],
-				'rating' => $post_data['rating'],
-				'metacritic' => $post_data['metacritic'],
-				'esrb_rating_name' => $post_data['esrb_rating_name'],
-				'esrb_rating_slug' => $post_data['esrb_rating_slug'],
-				'platform' => $post_data['platform'],
-				'tags' => $post_data['tags'],
-				'genres' => $post_data['genres'],
-				'screen_shots' => $post_data['screen_shots'],
+				'name' => $post['name'],
+				'released' => $post['released'],
+				'background_image' => $post['background_image'],
+				'rating' => $post['rating'],
+				'developers' => $post['developers'],
+				'esrb_rating_name' => $post['esrb_rating_name'],
+				'esrb_rating_slug' => $post['esrb_rating_slug'],
+				'platforms' => $post['platforms'],
+				'tags' => $post['tags'],
+				'genres' => $post['genres'],
+				'screen_shots' => $post['screen_shots'],
+				'ratings' => $post['ratings'],
+				'description' => $post['description'],
+				'publishers' => $post['publishers'],
 
 				'enable_nofollow'        => $post_data['enable_nofollow'] ?? $lasso_url->enable_nofollow,
 				'open_new_tab'           => $post_data['open_new_tab'] ?? $lasso_url->open_new_tab,
@@ -1167,11 +1186,6 @@ class Lasso_Affiliate_Link
 				'buy_btn_text'           => $post_data['buy_btn_text'] ?? $lasso_url->display->primary_button_text,
 				'second_btn_url'         => $post_data['second_btn_url'] ?? $lasso_url->display->secondary_url,
 				'second_btn_text'        => $post_data['second_btn_text'] ?? $lasso_url->display->secondary_button_text,
-
-				'third_btn_url'        	 => $post_data['third_btn_url'] ?? '',
-				'third_btn_text'         => $post_data['third_btn_text'] ?? '',
-				'fourth_btn_url'         => $post_data['fourth_btn_url'] ?? '',
-				'fourth_btn_text'        => $post_data['fourth_btn_text'] ?? '',
 
 				'show_price'             => $post_data['show_price'] ?? $lasso_url->display->show_price,
 				'show_disclosure'        => $post_data['show_disclosure'] ?? $lasso_url->display->show_disclosure,
@@ -2580,5 +2594,22 @@ class Lasso_Affiliate_Link
 		}
 
 		return $text;
+	}
+
+	public function extract_summary($text)
+	{
+		$sentences = preg_split('/(?<=[.!?])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
+		$sentence_count = count($sentences);
+
+		if ($sentence_count >= 4) {
+			return implode(' ', array_slice($sentences, 0, 4));
+		}
+
+		if ($sentence_count >= 2) {
+			return implode(' ', array_slice($sentences, 0, 2));
+		}
+
+		$words = explode(' ', $text);
+		return implode(' ', array_slice($words, 0, 100));
 	}
 }
