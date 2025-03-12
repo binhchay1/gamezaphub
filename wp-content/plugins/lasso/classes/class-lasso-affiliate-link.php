@@ -691,7 +691,7 @@ class Lasso_Affiliate_Link
 		if (!is_null($respCheckSearch) and is_array($respCheckSearch)) {
 			$result = $respCheckSearch['results'][0];
 			$background_url = $result['background_image'];
-			$attachment_url = download_image_to_media($background_url);
+			$attachment_url = $this->download_image_to_media($background_url);
 
 			$data = [
 				'name' => $result['name'],
@@ -726,7 +726,7 @@ class Lasso_Affiliate_Link
 
 			foreach ($short_screenshots as $shot) {
 				$image_url = $shot['image'];
-				$attachment_url = download_image_to_media($image_url);
+				$attachment_url = $this->download_image_to_media($image_url);
 				$data['screen_shots'][] = $attachment_url;
 			}
 		}
@@ -863,8 +863,8 @@ class Lasso_Affiliate_Link
 
 		$title = $data['name'];
 		$image = $data['background_image'];
-		$url = $data['platform'][0]['name'];
-		$permalink = $data['name'];
+		$url = 'https://gamezaphub.com/game/' . $this->slugify($data['name']);
+		$permalink = $this->slugify($data['name']);
 		$isGame = true;
 
 		if (!$isGame) {
@@ -2521,7 +2521,7 @@ class Lasso_Affiliate_Link
 		return $string;
 	}
 
-	function download_image_to_media($image_url)
+	public function download_image_to_media($image_url)
 	{
 		if (empty($image_url) || !filter_var($image_url, FILTER_VALIDATE_URL)) {
 			return new WP_Error('invalid_url', 'URL không hợp lệ.');
@@ -2541,6 +2541,8 @@ class Lasso_Affiliate_Link
 		if (empty($image_body)) {
 			return new WP_Error('empty_body', 'Không thể lấy dữ liệu ảnh.');
 		}
+
+
 
 		$upload_dir = wp_upload_dir();
 		$file_path = $upload_dir['path'] . '/' . basename($image_url);
@@ -2562,5 +2564,21 @@ class Lasso_Affiliate_Link
 		wp_update_attachment_metadata($attach_id, $attach_data);
 
 		return wp_get_attachment_url($attach_id);
+	}
+
+	public function slugify($text, string $divider = '-')
+	{
+		$text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+		$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+		$text = preg_replace('~[^-\w]+~', '', $text);
+		$text = trim($text, $divider);
+		$text = preg_replace('~-+~', $divider, $text);
+		$text = strtolower($text);
+
+		if (empty($text)) {
+			return 'n-a';
+		}
+
+		return $text;
 	}
 }
