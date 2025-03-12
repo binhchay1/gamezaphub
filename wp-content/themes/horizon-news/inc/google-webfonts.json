@@ -1,0 +1,70 @@
+[
+    {
+        "family": "Mukta",
+        "variants": [
+            "200",
+            "300",
+            "regular",
+            "500",
+            "600",
+            "700",
+            "800"
+        ],
+        "subsets": [
+            "devanagari",
+            "latin",
+            "latin-ext"
+        ],
+        "version": "v8",
+        "lastModified": "2021-04-01",
+        "files": {
+            "200": "http://fonts.gstatic.com/s/mukta/v8/iJWHBXyXfDDVXbEOjFma-2HW7ZB_.ttf",
+            "300": "http://fonts.gstatic.com/s/mukta/v8/iJWHBXyXfDDVXbFqj1ma-2HW7ZB_.ttf",
+            "regular": "http://fonts.gstatic.com/s/mukta/v8/iJWKBXyXfDDVXYnGp32S0H3f.ttf",
+            "500": "http://fonts.gstatic.com/s/mukta/v8/iJWHBXyXfDDVXbEyjlma-2HW7ZB_.ttf",
+            "600": "http://fonts.gstatic.com/s/mukta/v8/iJWHBXyXfDDVXbEeiVma-2HW7ZB_.ttf",
+            "700": "http://fonts.gstatic.com/s/mukta/v8/iJWHBXyXfDDVXbF6iFma-2HW7ZB_.ttf",
+            "800": "http://fonts.gstatic.com/s/mukta/v8/iJWHBXyXfDDVXbFmi1ma-2HW7ZB_.ttf"
+        },
+        "category": "sans-serif",
+        "kind": "webfonts#webfont"
+    },
+    {
+        "family": "Inter",
+        "variants": [
+            "100",
+            "200",
+            "300",
+            "regular",
+            "500",
+            "600",
+            "700",
+            "800",
+            "900"
+        ],
+        "subsets": [
+            "cyrillic",
+            "cyrillic-ext",
+            "greek",
+            "greek-ext",
+            "latin",
+            "latin-ext",
+            "vietnamese"
+        ],
+        "version": "v3",
+        "lastModified": "2021-01-30",
+        "files": {
+            "100": "http://fonts.gstatic.com/s/inter/v3/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyeMZhrib2Bg-4.ttf",
+            "200": "http://fonts.gstatic.com/s/inter/v3/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuDyfMZhrib2Bg-4.ttf",
+            "300": "http://fonts.gstatic.com/s/inter/v3/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuOKfMZhrib2Bg-4.ttf",
+            "regular": "http://fonts.gstatic.com/s/inter/v3/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZhrib2Bg-4.ttf",
+            "500": "http://fonts.gstatic.com/s/inter/v3/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fMZhrib2Bg-4.ttf",
+            "600": "http://fonts.gstatic.com/s/inter/v3/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYMZhrib2Bg-4.ttf",
+            "700": "http://fonts.gstatic.com/s/inter/v3/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuFuYMZhrib2Bg-4.ttf",
+            "800": "http://fonts.gstatic.com/s/inter/v3/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuDyYMZhrib2Bg-4.ttf",
+            "900": "http://fonts.gstatic.com/s/inter/v3/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuBWYMZhrib2Bg-4.ttf"
+        },
+        "category": "sans-serif",
+        "kind": "webfonts#webfont"
+    }
+]

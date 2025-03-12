@@ -863,7 +863,7 @@ class Lasso_Affiliate_Link
 
 		$title = $data['name'];
 		$image = $data['background_image'];
-		$url = 'https://gamezaphub.com/game/' . $this->slugify($data['name']);
+		$url = 'https://gamezaphub.com/games/' . $this->slugify($data['name']);
 		$permalink = $this->slugify($data['name']);
 		$isGame = true;
 
