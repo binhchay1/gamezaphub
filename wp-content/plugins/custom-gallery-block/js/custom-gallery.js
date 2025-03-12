@@ -9,11 +9,11 @@
             // Tạo cấu trúc carousel
             gallery.innerHTML = `
                 <div class="custom-gallery-container">
-                    <button class="prev-btn">Previous</button>
+                    <button class="prev-btn">Trước</button>
                     <div class="main-image">
                         <img src="${images[0].querySelector('img').src}" alt="Main Image">
                     </div>
-                    <button class="next-btn">Next</button>
+                    <button class="next-btn">Sau</button>
                     <div class="thumbnail-container">
                         ${Array.from(images)
                             .map(
