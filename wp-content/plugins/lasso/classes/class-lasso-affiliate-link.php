@@ -158,39 +158,17 @@ class Lasso_Affiliate_Link
 		$ext_default_image        = '';
 		$ext_last_updated         = '';
 
+		$name = get_post_meta($post_id, 'name', true);
+		$released = get_post_meta($post_id, 'released', true);
+		$background_image = get_post_meta($post_id, 'background_image', true);
 		$rating = get_post_meta($post_id, 'rating', true);
-		$categories = get_post_meta($post_id, 'categories', true);
-		$developer = get_post_meta($post_id, 'developer', true);
-		$size = get_post_meta($post_id, 'size', true);
-		$version = get_post_meta($post_id, 'version', true);
+		$metacritic = get_post_meta($post_id, 'metacritic', true);
+		$esrb_rating_name = get_post_meta($post_id, 'esrb_rating_name', true);
+		$esrb_rating_slug = get_post_meta($post_id, 'esrb_rating_slug', true);
+		$platform = get_post_meta($post_id, 'platform', true);
+		$tags = get_post_meta($post_id, 'tags', true);
+		$genres = get_post_meta($post_id, 'genres', true);
 		$screen_shots = get_post_meta($post_id, 'screen_shots', true);
-		$apple_btn_url = get_post_meta($post_id, 'apple_btn_url', true);
-		$google_btn_url = get_post_meta($post_id, 'google_btn_url', true);
-		$updated_on = get_post_meta($post_id, 'updated_on', true);
-
-		$open_new_tab3 = get_post_meta($post_id, 'open_new_tab3', true);
-		$open_new_tab3 = 1 === intval($open_new_tab3) ? true : false;
-
-		$enable_nofollow3 = get_post_meta($post_id, 'enable_nofollow3', true);
-		$enable_nofollow3 = 1 === intval($enable_nofollow2) ? true : false;
-
-		$open_new_tab4 = get_post_meta($post_id, 'open_new_tab4', true);
-		$open_new_tab4 = 1 === intval($open_new_tab4) ? true : false;
-
-		$enable_nofollow4 = get_post_meta($post_id, 'enable_nofollow4', true);
-		$enable_nofollow4 = 1 === intval($enable_nofollow2) ? true : false;
-
-		$open_new_tab_google = get_post_meta($post_id, 'open_new_tab_google', true);
-		$open_new_tab_google = 1 === intval($open_new_tab_google) ? true : false;
-
-		$enable_nofollow_google = get_post_meta($post_id, 'enable_nofollow_google', true);
-		$enable_nofollow_google = 1 === intval($enable_nofollow_google) ? true : false;
-
-		$open_new_tab_apple = get_post_meta($post_id, 'open_new_tab_apple', true);
-		$open_new_tab_apple = 1 === intval($open_new_tab_apple) ? true : false;
-
-		$enable_nofollow_apple = get_post_meta($post_id, 'enable_nofollow_apple', true);
-		$enable_nofollow_apple = 1 === intval($enable_nofollow_apple) ? true : false;
 
 		$display_third_url = trim(get_post_meta($post_id, 'third_btn_url', true));
 		$display_fourth_url = trim(get_post_meta($post_id, 'fourth_btn_url', true));
@@ -251,44 +229,23 @@ class Lasso_Affiliate_Link
 			$enable_sponsored = get_post_meta($post_id, 'enable_sponsored', true);
 			$enable_sponsored = 1 === intval($enable_sponsored) ? true : false;
 
+			$name = get_post_meta($post_id, 'name', true);
+			$released = get_post_meta($post_id, 'released', true);
+			$background_image = get_post_meta($post_id, 'background_image', true);
 			$rating = get_post_meta($post_id, 'rating', true);
-			$categories = get_post_meta($post_id, 'categories', true);
-			$developer = get_post_meta($post_id, 'developer', true);
-			$size = get_post_meta($post_id, 'size', true);
-			$version = get_post_meta($post_id, 'version', true);
+			$metacritic = get_post_meta($post_id, 'metacritic', true);
+			$esrb_rating_name = get_post_meta($post_id, 'esrb_rating_name', true);
+			$esrb_rating_slug = get_post_meta($post_id, 'esrb_rating_slug', true);
+			$platform = get_post_meta($post_id, 'platform', true);
+			$tags = get_post_meta($post_id, 'tags', true);
+			$genres = get_post_meta($post_id, 'genres', true);
 			$screen_shots = get_post_meta($post_id, 'screen_shots', true);
-			$apple_btn_url = get_post_meta($post_id, 'apple_btn_url', true);
-			$google_btn_url = get_post_meta($post_id, 'google_btn_url', true);
 
 			$open_new_tab2 = get_post_meta($post_id, 'open_new_tab2', true);
 			$open_new_tab2 = 1 === intval($open_new_tab2) ? true : false;
 
 			$enable_nofollow2 = get_post_meta($post_id, 'enable_nofollow2', true);
 			$enable_nofollow2 = 1 === intval($enable_nofollow2) ? true : false;
-
-			$open_new_tab3 = get_post_meta($post_id, 'open_new_tab3', true);
-			$open_new_tab3 = 1 === intval($open_new_tab3) ? true : false;
-
-			$enable_nofollow3 = get_post_meta($post_id, 'enable_nofollow3', true);
-			$enable_nofollow3 = 1 === intval($enable_nofollow2) ? true : false;
-
-			$open_new_tab4 = get_post_meta($post_id, 'open_new_tab4', true);
-			$open_new_tab4 = 1 === intval($open_new_tab4) ? true : false;
-
-			$enable_nofollow4 = get_post_meta($post_id, 'enable_nofollow4', true);
-			$enable_nofollow4 = 1 === intval($enable_nofollow2) ? true : false;
-
-			$open_new_tab_google = get_post_meta($post_id, 'open_new_tab_google', true);
-			$open_new_tab_google = 1 === intval($open_new_tab_google) ? true : false;
-
-			$enable_nofollow_google = get_post_meta($post_id, 'enable_nofollow_google', true);
-			$enable_nofollow_google = 1 === intval($enable_nofollow_google) ? true : false;
-
-			$open_new_tab_apple = get_post_meta($post_id, 'open_new_tab_apple', true);
-			$open_new_tab_apple = 1 === intval($open_new_tab_apple) ? true : false;
-
-			$enable_nofollow_apple = get_post_meta($post_id, 'enable_nofollow_apple', true);
-			$enable_nofollow_apple = 1 === intval($enable_nofollow_apple) ? true : false;
 
 			$link_cloaking = get_post_meta($post_id, 'link_cloaking', true);
 			$link_cloaking = 1 === intval($link_cloaking) || '' === $link_cloaking ? true : false;
@@ -400,18 +357,6 @@ class Lasso_Affiliate_Link
 		$url_detail_checkbox_open_new_tab2    = $open_new_tab2 ? 'checked' : '';
 		$url_detail_checkbox_enable_nofollow2 = $enable_nofollow2 ? 'checked' : '';
 
-		$url_detail_checkbox_open_new_tab3    = $open_new_tab3 ? 'checked' : '';
-		$url_detail_checkbox_enable_nofollow3 = $enable_nofollow3 ? 'checked' : '';
-
-		$url_detail_checkbox_open_new_tab4    = $open_new_tab4 ? 'checked' : '';
-		$url_detail_checkbox_enable_nofollow4 = $enable_nofollow4 ? 'checked' : '';
-
-		$url_detail_checkbox_open_new_tab_google    = $open_new_tab_google ? 'checked' : '';
-		$url_detail_checkbox_enable_nofollow_google = $enable_nofollow_google ? 'checked' : '';
-
-		$url_detail_checkbox_open_new_tab_apple    = $open_new_tab_apple ? 'checked' : '';
-		$url_detail_checkbox_enable_nofollow_apple = $enable_nofollow_apple ? 'checked' : '';
-
 		$url_detail_checkbox_is_opportunity   = $is_opportunity ? 'checked' : '';
 		$url_detail_checkbox_link_cloaking    = $link_cloaking ? 'checked' : '';
 		$url_detail_checkbox_enable_sponsored = $enable_sponsored ? 'checked' : '';
@@ -498,13 +443,18 @@ class Lasso_Affiliate_Link
 			'currency'            => $currency,
 			'rating'              => $rating,
 			'categories'          => $categories,
-			'developer'           => $developer,
-			'version'             => $version,
 			'size'           	  => $size,
 			'updated_on'          => $updated_on,
 			'screen_shots'        => $screen_shots,
-			'apple_btn_url'       => $apple_btn_url,
-			'google_btn_url'      => $google_btn_url,
+
+			'released'        => $released,
+			'background_image'        => $background_image,
+			'metacritic'        => $metacritic,
+			'esrb_rating_name'        => $esrb_rating_name,
+			'esrb_rating_slug'        => $esrb_rating_slug,
+			'platform'        => $platform,
+			'tags'        => $tags,
+			'genres'        => $genres,
 
 			'display'             => (object) array(
 				'theme'                         => $custom_theme,
@@ -512,18 +462,6 @@ class Lasso_Affiliate_Link
 				'primary_button_text_default'   => $display_primary_button_text_default,
 				'secondary_button_text'         => $display_secondary_button_text,
 				'secondary_button_text_default' => $display_secondary_button_text_default,
-
-				'third_btn_text'         => $display_third_button_text,
-				'third_btn_text_default' => $display_third_button_text_default,
-
-				'fourth_btn_text'         => $display_fourth_button_text,
-				'fourth_btn_text_default' => $display_fourth_button_text_default,
-
-				'apple_btn_text'         => $display_apple_button_text,
-				'apple_btn_text_default' => $display_apple_button_text_default,
-
-				'google_btn_text'         => $display_google_button_text,
-				'google_btn_text_default' => $display_google_button_text_default,
 
 				'secondary_url'                 => $display_secondary_url,
 				'disclosure_text'               => $display_disclosure_text,
@@ -573,15 +511,6 @@ class Lasso_Affiliate_Link
 				'enable_nofollow'  => $url_detail_checkbox_enable_nofollow,
 				'open_new_tab2'    => $url_detail_checkbox_open_new_tab2,
 				'enable_nofollow2' => $url_detail_checkbox_enable_nofollow2,
-
-				'open_new_tab3'    => $url_detail_checkbox_open_new_tab3,
-				'enable_nofollow3' => $url_detail_checkbox_enable_nofollow3,
-				'open_new_tab4'    => $url_detail_checkbox_open_new_tab4,
-				'enable_nofollow4' => $url_detail_checkbox_enable_nofollow4,
-				'open_new_tab_google'    => $url_detail_checkbox_open_new_tab_google,
-				'enable_nofollow_google' => $url_detail_checkbox_enable_nofollow_google,
-				'open_new_tab_apple'    => $url_detail_checkbox_open_new_tab_apple,
-				'enable_nofollow_apple' => $url_detail_checkbox_enable_nofollow_apple,
 
 				'is_opportunity'   => $url_detail_checkbox_is_opportunity,
 				'link_cloaking'    => $url_detail_checkbox_link_cloaking,
@@ -742,11 +671,11 @@ class Lasso_Affiliate_Link
 		}
 		$amazon_search_title = Lasso_Amazon_Api::get_search_page_title($get_final_url);
 
-		$parse_url = wp_parse_url($get_final_url);
 		$result = array();
-		$searchString = $url;
+		$searchString = urlencode($url);
 		$apiKey = '79ca0ed080bb4109af9f504fe3bfca5b';
 		$apiUrl = "https://api.rawg.io/api/games?key={$apiKey}&search={$searchString}";
+		$data = [];
 
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
@@ -762,12 +691,12 @@ class Lasso_Affiliate_Link
 		if (!is_null($respCheckSearch) and is_array($respCheckSearch)) {
 			$result = $respCheckSearch['results'][0];
 			$background_url = $result['background_image'];
-			$attachment_id = download_image_to_media($background_url);
+			$attachment_url = download_image_to_media($background_url);
 
 			$data = [
 				'name' => $result['name'],
 				'released' => $result['released'],
-				'background_image' => $attachment_id,
+				'background_image' => $attachment_url,
 				'rating' => $result['rating'],
 				'metacritic' => $result['metacritic'],
 				'esrb_rating_name' => $result['esrb_rating']['name'],
@@ -797,16 +726,20 @@ class Lasso_Affiliate_Link
 
 			foreach ($short_screenshots as $shot) {
 				$image_url = $shot['image'];
-				$attachment_id = download_image_to_media($image_url);
-				$data['screen_shots'][] = $attachment_id;
+				$attachment_url = download_image_to_media($image_url);
+				$data['screen_shots'][] = $attachment_url;
 			}
 		}
 
-		echo '<pre>';
-		var_dump($data);
-		echo '</pre>';
-
-		die;
+		if (empty($data)) {
+			$res['status_code'] = 404;
+			$res['message'] = 'No data found';
+			if ($is_ajax_request) {
+				wp_send_json_error($res);
+			} else {
+				return $res;
+			}
+		}
 
 		if ($lasso_post_id > 0) {
 			$post_title    = get_the_title($lasso_post_id);
@@ -824,15 +757,17 @@ class Lasso_Affiliate_Link
 				)
 			);
 
-			update_post_meta($lasso_post_id, 'rating', $productAppGoogle['rating']);
-			update_post_meta($lasso_post_id, 'price', $productAppGoogle['price']);
-			update_post_meta($lasso_post_id, 'size', $productAppGoogle['size']);
-			update_post_meta($lasso_post_id, 'developer', $productAppGoogle['developer']);
-			update_post_meta($lasso_post_id, 'categories', $productAppGoogle['categories']);
-			update_post_meta($lasso_post_id, 'thumbnail', $productAppGoogle['thumbnail']);
-			update_post_meta($lasso_post_id, 'screen_shots', $productAppGoogle['screen_shots']);
-			update_post_meta($lasso_post_id, 'apple_btn_url', $productAppStore['base_url']);
-			update_post_meta($lasso_post_id, 'google_btn_url', $productAppGoogle['base_url']);
+			update_post_meta($lasso_post_id, 'name', $data['name']);
+			update_post_meta($lasso_post_id, 'released', $data['released']);
+			update_post_meta($lasso_post_id, 'background_image', $data['background_image']);
+			update_post_meta($lasso_post_id, 'rating', $data['rating']);
+			update_post_meta($lasso_post_id, 'metacritic', $data['metacritic']);
+			update_post_meta($lasso_post_id, 'esrb_rating_name', $data['esrb_rating_name']);
+			update_post_meta($lasso_post_id, 'esrb_rating_slug', $data['esrb_rating_slug']);
+			update_post_meta($lasso_post_id, 'platform', $data['platform']);
+			update_post_meta($lasso_post_id, 'tags', $data['tags']);
+			update_post_meta($lasso_post_id, 'genres', $data['genres']);
+			update_post_meta($lasso_post_id, 'screen_shots', $data['screen_shots']);
 			update_post_meta($lasso_post_id, 'updated_on', date('Y-m-d'));
 
 			if ($is_ajax_request) {
@@ -926,30 +861,13 @@ class Lasso_Affiliate_Link
 			$permalink = $title ? sanitize_title($title) : Lasso_Helper::get_title_by_url($url);
 		}
 
-		$google_product = false;
-		$apple_product = false;
+		$title = $data['name'];
+		$image = $data['background_image'];
+		$url = $data['platform'][0]['name'];
+		$permalink = $data['name'];
+		$isGame = true;
 
-		if (isset($productAppGoogle) && !isset($productAppStore)) {
-			$title       = $productAppGoogle['title'];
-			$image       = $productAppGoogle['thumbnail'];
-			$google_product = $productAppGoogle;
-		} elseif (isset($productAppStore) && !isset($productAppGoogle)) {
-			$title       = $productAppStore['title'];
-			$image       = $productAppStore['thumbnail'];
-			$apple_product = $productAppStore;
-		} elseif (isset($productAppStore) && isset($productAppGoogle)) {
-			$title       = !empty($productAppGoogle['title']) ? $productAppGoogle['title'] : $productAppStore['title'];
-			$image       = !empty($productAppGoogle['thumbnail']) ? $productAppGoogle['thumbnail'] : $productAppStore['thumbnail'];
-			$url       = !empty($productAppGoogle['base_url']) ? $productAppGoogle['base_url'] : $productAppStore['base_url'];
-			$google_product = $productAppGoogle;
-			$apple_product = $productAppStore;
-			$permalink = $this->create_slug($parse_url['path']);
-		} else {
-			$title       = $product['default_product_name'];
-			$image       = $product['default_image'];
-		}
-
-		if (!$google_product && !$apple_product) {
+		if (!$isGame) {
 			if (!$is_amazon_link && ('' === $title || $title === $default_title)) {
 				$title = $permalink;
 			} elseif ($is_amazon_link && '' === $title) {
@@ -1224,27 +1142,22 @@ class Lasso_Affiliate_Link
 				'price'                  => $post_data['price'] ?? $lasso_url->price ?? '',
 				'lasso_custom_thumbnail' => $custom_thumbnail,
 
+				'name' => $post_data['name'],
+				'released' => $post_data['released'],
+				'background_image' => $post_data['background_image'],
 				'rating' => $post_data['rating'],
-				'developer' => $post_data['developer'],
-				'categories' => $post_data['categories_app'],
-				'version' => $post_data['version'],
-				'size' => $post_data['size'],
-				'apple_btn_url' => $post_data['apple_btn_url'],
-				'google_btn_url' => $post_data['google_btn_url'],
+				'metacritic' => $post_data['metacritic'],
+				'esrb_rating_name' => $post_data['esrb_rating_name'],
+				'esrb_rating_slug' => $post_data['esrb_rating_slug'],
+				'platform' => $post_data['platform'],
+				'tags' => $post_data['tags'],
+				'genres' => $post_data['genres'],
+				'screen_shots' => $post_data['screen_shots'],
 
 				'enable_nofollow'        => $post_data['enable_nofollow'] ?? $lasso_url->enable_nofollow,
 				'open_new_tab'           => $post_data['open_new_tab'] ?? $lasso_url->open_new_tab,
 				'enable_nofollow2'       => $post_data['enable_nofollow2'] ?? $lasso_url->enable_nofollow2,
 				'open_new_tab2'          => $post_data['open_new_tab2'] ?? $lasso_url->open_new_tab2,
-
-				'enable_nofollow3'       => $post_data['enable_nofollow3'] ?? true,
-				'open_new_tab3'          => $post_data['open_new_tab3'] ?? true,
-				'enable_nofollow4'       => $post_data['enable_nofollow4'] ?? true,
-				'open_new_tab4'          => $post_data['open_new_tab4'] ?? true,
-				'enable_nofollow_google' => $post_data['enable_nofollow_google'] ?? true,
-				'open_new_tab_google'    => $post_data['open_new_tab_google'] ?? true,
-				'enable_nofollow_apple'  => $post_data['enable_nofollow_apple'] ?? true,
-				'open_new_tab_apple'     => $post_data['open_new_tab_apple'] ?? true,
 
 				'link_cloaking'          => $post_data['link_cloaking'] ?? $lasso_url->link_cloaking,
 
@@ -1267,188 +1180,6 @@ class Lasso_Affiliate_Link
 				'updated_on'	=> $post_data['updated_on'] ?? date('Y-m-d')
 			),
 		);
-
-		if ($google_product) {
-			$lasso_post = array(
-				'post_title'   => $google_product['title'],
-				'post_type'    => LASSO_POST_TYPE,
-				'post_name'    => $google_product['title'],
-				'post_content' => '',
-				'post_status'  => 'publish',
-				'meta_input'   => array(
-					'lasso_custom_redirect'  => $url,
-					'lasso_final_url'        => $get_final_url,
-
-					'rating' => $google_product['rating'],
-					'developer' => $google_product['developer'],
-					'categories' => $google_product['categories'],
-					'screen_shots' => $google_product['screen_shots'],
-					'google_btn_url' => $get_final_url,
-
-					'affiliate_desc'         => $description,
-					'price'                  => $google_product['price'],
-					'lasso_custom_thumbnail' => $google_product['thumbnail'],
-
-					'enable_nofollow'        => $post_data['enable_nofollow'] ?? $lasso_url->enable_nofollow,
-					'open_new_tab'           => $post_data['open_new_tab'] ?? $lasso_url->open_new_tab,
-					'enable_nofollow2'       => $post_data['enable_nofollow2'] ?? $lasso_url->enable_nofollow2,
-					'open_new_tab2'          => $post_data['open_new_tab2'] ?? $lasso_url->open_new_tab2,
-
-					'enable_nofollow3'       => $post_data['enable_nofollow3'] ?? true,
-					'open_new_tab3'          => $post_data['open_new_tab3'] ?? true,
-					'enable_nofollow4'       => $post_data['enable_nofollow4'] ?? true,
-					'open_new_tab4'          => $post_data['open_new_tab4'] ?? true,
-					'enable_nofollow_google' => $post_data['enable_nofollow_google'] ?? true,
-					'open_new_tab_google'    => $post_data['open_new_tab_google'] ?? true,
-					'enable_nofollow_apple'  => $post_data['enable_nofollow_apple'] ?? true,
-					'open_new_tab_apple'     => $post_data['open_new_tab_apple'] ?? true,
-
-					'link_cloaking'          => $post_data['link_cloaking'] ?? $lasso_url->link_cloaking,
-
-					'custom_theme'           => $post_data['theme_name'] ?? $lasso_url->display->theme,
-					'disclosure_text'        => trim($post_data['disclosure_text'] ?? $lasso_url->display->disclosure_text),
-					'badge_text'             => $post_data['badge_text'] ?? $lasso_url->display->badge_text,
-					'buy_btn_text'           => $post_data['buy_btn_text'] ?? $lasso_url->display->primary_button_text,
-					'second_btn_url'         => $post_data['second_btn_url'] ?? $lasso_url->display->secondary_url,
-					'second_btn_text'        => $post_data['second_btn_text'] ?? $lasso_url->display->secondary_button_text,
-
-					'third_btn_url'        	 => $post_data['third_btn_url'] ?? '',
-					'third_btn_text'         => $post_data['third_btn_text'] ?? '',
-					'fourth_btn_url'         => $post_data['fourth_btn_url'] ?? '',
-					'fourth_btn_text'        => $post_data['fourth_btn_text'] ?? '',
-
-					'show_price'             => $post_data['show_price'] ?? $lasso_url->display->show_price,
-					'show_disclosure'        => $post_data['show_disclosure'] ?? $lasso_url->display->show_disclosure,
-					'show_description'       => $show_description,
-					'enable_sponsored'       => $post_data['enable_sponsored'] ?? $lasso_url->enable_sponsored,
-
-					'updated_on'	=> $post_data['updated_on'] ?? date('Y-m-d')
-				),
-			);
-		}
-
-		if ($apple_product) {
-			$lasso_post = array(
-				'post_title'   => $apple_product['title'],
-				'post_type'    => LASSO_POST_TYPE,
-				'post_name'    => $apple_product['title'],
-				'post_content' => '',
-				'post_status'  => 'publish',
-				'meta_input'   => array(
-					'lasso_custom_redirect'  => $apple_product['base_url'],
-					'lasso_final_url'        => $apple_product['base_url'],
-
-					'rating' => $apple_product['rating'],
-					'developer' => $apple_product['developer'],
-					'categories' => $apple_product['categories'],
-					'version' => $apple_product['version'],
-					'size' => $apple_product['size'],
-					'screen_shots' => $apple_product['screen_shots'],
-					'apple_btn_url' => $apple_product['base_url'],
-
-					'affiliate_desc'         => $description,
-					'price'                  => $apple_product['price'],
-					'lasso_custom_thumbnail' => $apple_product['thumbnail'],
-
-					'enable_nofollow'        => $post_data['enable_nofollow'] ?? $lasso_url->enable_nofollow,
-					'open_new_tab'           => $post_data['open_new_tab'] ?? $lasso_url->open_new_tab,
-					'enable_nofollow2'       => $post_data['enable_nofollow2'] ?? $lasso_url->enable_nofollow2,
-					'open_new_tab2'          => $post_data['open_new_tab2'] ?? $lasso_url->open_new_tab2,
-
-					'enable_nofollow3'       => $post_data['enable_nofollow3'] ?? true,
-					'open_new_tab3'          => $post_data['open_new_tab3'] ?? true,
-					'enable_nofollow4'       => $post_data['enable_nofollow4'] ?? true,
-					'open_new_tab4'          => $post_data['open_new_tab4'] ?? true,
-					'enable_nofollow_google' => $post_data['enable_nofollow_google'] ?? true,
-					'open_new_tab_google'    => $post_data['open_new_tab_google'] ?? true,
-					'enable_nofollow_apple'  => $post_data['enable_nofollow_apple'] ?? true,
-					'open_new_tab_apple'     => $post_data['open_new_tab_apple'] ?? true,
-
-					'link_cloaking'          => $post_data['link_cloaking'] ?? $lasso_url->link_cloaking,
-
-					'custom_theme'           => $post_data['theme_name'] ?? $lasso_url->display->theme,
-					'disclosure_text'        => trim($post_data['disclosure_text'] ?? $lasso_url->display->disclosure_text),
-					'badge_text'             => $post_data['badge_text'] ?? $lasso_url->display->badge_text,
-					'buy_btn_text'           => $post_data['buy_btn_text'] ?? $lasso_url->display->primary_button_text,
-					'second_btn_url'         => $post_data['second_btn_url'] ?? $lasso_url->display->secondary_url,
-					'second_btn_text'        => $post_data['second_btn_text'] ?? $lasso_url->display->secondary_button_text,
-
-					'third_btn_url'        	 => $post_data['third_btn_url'] ?? '',
-					'third_btn_text'         => $post_data['third_btn_text'] ?? '',
-					'fourth_btn_url'         => $post_data['fourth_btn_url'] ?? '',
-					'fourth_btn_text'        => $post_data['fourth_btn_text'] ?? '',
-
-					'show_price'             => $post_data['show_price'] ?? $lasso_url->display->show_price,
-					'show_disclosure'        => $post_data['show_disclosure'] ?? $lasso_url->display->show_disclosure,
-					'show_description'       => $show_description,
-					'enable_sponsored'       => $post_data['enable_sponsored'] ?? $lasso_url->enable_sponsored,
-
-					'updated_on'	=> $post_data['updated_on'] ?? date('Y-m-d')
-				),
-			);
-		}
-
-		if ($google_product && $apple_product) {
-			$lasso_post = array(
-				'post_title'   => $apple_product['title'],
-				'post_type'    => LASSO_POST_TYPE,
-				'post_name'    => $apple_product['title'],
-				'post_content' => '',
-				'post_status'  => 'publish',
-				'meta_input'   => array(
-					'lasso_custom_redirect'  => $url,
-					'lasso_final_url'        => $get_final_url,
-
-					'rating' => !empty($google_product['rating']) ? $google_product['rating'] : $apple_product['rating'],
-					'developer' => !empty($google_product['developer']) ? $google_product['developer'] : $apple_product['developer'],
-					'categories' => $google_product['categories'],
-					'version' => $apple_product['version'],
-					'size' => $apple_product['size'],
-					'screen_shots' => $google_product['screen_shots'],
-					'apple_btn_url' => $apple_product['base_url'],
-					'google_btn_url' => $get_final_url,
-
-					'affiliate_desc'         => $description,
-					'price'                  => $apple_product['price'],
-					'lasso_custom_thumbnail' => $apple_product['thumbnail'],
-
-					'enable_nofollow'        => $post_data['enable_nofollow'] ?? $lasso_url->enable_nofollow,
-					'open_new_tab'           => $post_data['open_new_tab'] ?? $lasso_url->open_new_tab,
-					'enable_nofollow2'       => $post_data['enable_nofollow2'] ?? $lasso_url->enable_nofollow2,
-					'open_new_tab2'          => $post_data['open_new_tab2'] ?? $lasso_url->open_new_tab2,
-
-					'enable_nofollow3'       => $post_data['enable_nofollow3'] ?? true,
-					'open_new_tab3'          => $post_data['open_new_tab3'] ?? true,
-					'enable_nofollow4'       => $post_data['enable_nofollow4'] ?? true,
-					'open_new_tab4'          => $post_data['open_new_tab4'] ?? true,
-					'enable_nofollow_google' => $post_data['enable_nofollow_google'] ?? true,
-					'open_new_tab_google'    => $post_data['open_new_tab_google'] ?? true,
-					'enable_nofollow_apple'  => $post_data['enable_nofollow_apple'] ?? true,
-					'open_new_tab_apple'     => $post_data['open_new_tab_apple'] ?? true,
-
-					'link_cloaking'          => $post_data['link_cloaking'] ?? $lasso_url->link_cloaking,
-
-					'custom_theme'           => $post_data['theme_name'] ?? $lasso_url->display->theme,
-					'disclosure_text'        => trim($post_data['disclosure_text'] ?? $lasso_url->display->disclosure_text),
-					'badge_text'             => $post_data['badge_text'] ?? $lasso_url->display->badge_text,
-					'buy_btn_text'           => $post_data['buy_btn_text'] ?? $lasso_url->display->primary_button_text,
-					'second_btn_url'         => $post_data['second_btn_url'] ?? $lasso_url->display->secondary_url,
-					'second_btn_text'        => $post_data['second_btn_text'] ?? $lasso_url->display->secondary_button_text,
-
-					'third_btn_url'        	 => $post_data['third_btn_url'] ?? '',
-					'third_btn_text'         => $post_data['third_btn_text'] ?? '',
-					'fourth_btn_url'         => $post_data['fourth_btn_url'] ?? '',
-					'fourth_btn_text'        => $post_data['fourth_btn_text'] ?? '',
-
-					'show_price'             => $post_data['show_price'] ?? $lasso_url->display->show_price,
-					'show_disclosure'        => $post_data['show_disclosure'] ?? $lasso_url->display->show_disclosure,
-					'show_description'       => $show_description,
-					'enable_sponsored'       => $post_data['enable_sponsored'] ?? $lasso_url->enable_sponsored,
-
-					'updated_on'	=> $post_data['updated_on'] ?? date('Y-m-d')
-				),
-			);
-		}
 
 		if ($lasso_url->lasso_id > 0 && strpos($lasso_url->guid, site_url()) === false) {
 			$query = "update {$wpdb->posts} set guid = '' where ID = {$lasso_url->lasso_id}";
@@ -2790,36 +2521,46 @@ class Lasso_Affiliate_Link
 		return $string;
 	}
 
-	function download_image_to_media($image_url, $post_id = 0)
+	function download_image_to_media($image_url)
 	{
-		if (!$image_url || !filter_var($image_url, FILTER_VALIDATE_URL)) {
-			return false;
+		if (empty($image_url) || !filter_var($image_url, FILTER_VALIDATE_URL)) {
+			return new WP_Error('invalid_url', 'URL không hợp lệ.');
 		}
 
-		$image_data = file_get_contents($image_url);
-		if (!$image_data) {
-			return false;
+		$image_data = wp_remote_get($image_url);
+		if (is_wp_error($image_data)) {
+			return $image_data;
 		}
 
-		$filename = basename($image_url);
+		$response_code = wp_remote_retrieve_response_code($image_data);
+		if ($response_code != 200) {
+			return new WP_Error('http_error', 'Lỗi HTTP ' . $response_code);
+		}
+
+		$image_body = wp_remote_retrieve_body($image_data);
+		if (empty($image_body)) {
+			return new WP_Error('empty_body', 'Không thể lấy dữ liệu ảnh.');
+		}
+
 		$upload_dir = wp_upload_dir();
-		$file_path = $upload_dir['path'] . '/' . $filename;
+		$file_path = $upload_dir['path'] . '/' . basename($image_url);
 
-		file_put_contents($file_path, $image_data);
+		file_put_contents($file_path, $image_body);
 
-		$filetype = wp_check_filetype($filename, null);
+		$file_type = wp_check_filetype($file_path, null);
 		$attachment = array(
-			'post_mime_type' => $filetype['type'],
-			'post_title'     => sanitize_file_name($filename),
+			'guid'           => $upload_dir['url'] . '/' . basename($file_path),
+			'post_mime_type' => $file_type['type'],
+			'post_title'     => sanitize_file_name(basename($file_path)),
 			'post_content'   => '',
-			'post_status'    => 'inherit'
+			'post_status'    => 'inherit',
 		);
 
-		$attach_id = wp_insert_attachment($attachment, $file_path, $post_id);
-		require_once(ABSPATH . 'wp-admin/includes/image.php');
+		$attach_id = wp_insert_attachment($attachment, $file_path);
+		require_once ABSPATH . 'wp-admin/includes/image.php';
 		$attach_data = wp_generate_attachment_metadata($attach_id, $file_path);
 		wp_update_attachment_metadata($attach_id, $attach_data);
 
-		return $attach_id;
+		return wp_get_attachment_url($attach_id);
 	}
 }
