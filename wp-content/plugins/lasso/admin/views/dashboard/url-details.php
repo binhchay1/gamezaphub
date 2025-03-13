@@ -17,61 +17,50 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 <style>
 	.input-container {
-		margin: 20px;
-		display: flex;
-		flex-direction: column;
-		gap: 10px;
-	}
-
-	.word-input-wrapper {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 10px;
-	}
-
-	.word-input {
-		position: relative;
-		display: inline-flex;
-		align-items: center;
-		background-color: #f0f0f0;
-		/* Màu nền giống trong hình */
-		padding: 5px;
-		border-radius: 5px;
-	}
-
-	.word-input input {
-		border: none;
-		background: transparent;
-		padding: 5px;
-		font-size: 14px;
-		width: auto;
-		min-width: 100px;
-	}
-
-	.word-input input:focus {
-		outline: none;
-	}
-
-	.delete-btn {
-		background-color: red;
-		color: white;
-		border: none;
-		border-radius: 50%;
-		width: 20px;
-		height: 20px;
-		margin-left: 5px;
-		cursor: pointer;
-		font-size: 12px;
-		line-height: 20px;
-		text-align: center;
-	}
-
-	#main-input {
-		padding: 5px;
-		border: 1px solid #ccc;
-		border-radius: 5px;
-		width: 200px;
-	}
+            margin: 20px;
+        }
+        .main-input-wrapper {
+            position: relative;
+            display: inline-block;
+            padding: 5px;
+            min-height: 30px;
+            width: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 5px;
+        }
+        .tag {
+            background-color: #f0f0f0;
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        .tag span {
+            margin-right: 5px;
+        }
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            line-height: 20px;
+            text-align: center;
+        }
+        #main-input {
+            border: none;
+            outline: none;
+            flex: 1;
+            min-width: 100px;
+            padding: 5px;
+            font-size: 14px;
+        }
 </style>
 <section class="py-5">
 	<div class="container">
@@ -236,7 +225,7 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 									<label data-tooltip="Developers of app in store">
 										<strong>Developers</strong> <i class="far fa-info-circle light-purple"></i></label>
 									<input type="text" class="form-control" id="developers" placeholder="Developers app">
-									<div class="word-input-wrapper" id="word-container">
+									<div class="main-input-wrapper" id="main-input-wrapper">
 										<?php
 										foreach ($lasso_url->developers as $developer) {
 											if (!empty($developer)) { ?>
@@ -255,7 +244,7 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 									<label data-tooltip="Tags of app in store">
 										<strong>Tags</strong> <i class="far fa-info-circle light-purple"></i></label>
 									<input type="text" class="form-control" id="tags" placeholder="Tags app">
-									<div class="word-input-wrapper" id="word-container">
+									<div class="main-input-wrapper" id="main-input-wrapper">
 										<?php
 										foreach ($lasso_url->tags as $tag) {
 											if (!empty($tag)) { ?>
@@ -274,7 +263,7 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 									<label data-tooltip="Genres of app in store">
 										<strong>Genres</strong> <i class="far fa-info-circle light-purple"></i></label>
 									<input type="text" class="form-control" id="genres" placeholder="Genres app">
-									<div class="word-input-wrapper" id="word-container">
+									<div class="main-input-wrapper" id="main-input-wrapper">
 										<?php
 										foreach ($lasso_url->genres as $genre) {
 											if (!empty($genre)) { ?>

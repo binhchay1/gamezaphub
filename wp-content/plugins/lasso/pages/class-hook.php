@@ -600,6 +600,7 @@ class Hook {
 	public function add_scripts_frontend() {
 		Lasso_Helper::enqueue_style( 'lasso-live', 'lasso-live.min.css' );
 		Lasso_Helper::enqueue_style( 'lasso-table-frontend', 'lasso-table-frontend.min.css' );
+		Lasso_Helper::enqueue_style( 'layout-6-box', 'layout-6-box.css' );
 	}
 
 	/**
@@ -650,6 +651,7 @@ class Hook {
 		$page = Lasso_Helper::get_page_name();
 		// @codingStandardsIgnoreStart
 		Lasso_Helper::enqueue_style( 'lasso-live', 'lasso-live.min.css' );
+		Lasso_Helper::enqueue_style( 'layout-6-box', 'layout-6-box.css' );
 
 		// ? Everywhere in the Lasso post-type (add/edit/reports/settings/wizard)
 		if ( $setting->is_lasso_page() || $setting->is_lasso_configured_page() ) {
@@ -675,6 +677,7 @@ class Hook {
 			Lasso_Helper::enqueue_style( 'lasso-dashboard-grid', 'lasso-dashboard-grid.css' );
 			Lasso_Helper::enqueue_style( 'lasso-live', 'lasso-live.min.css' );
 			Lasso_Helper::enqueue_style( 'lasso-quill', 'quill.snow.css' );
+			Lasso_Helper::enqueue_style( 'layout-6-box', 'layout-6-box.css' );
 		}
 		
 		if ( $setting->is_lasso_configured_page() || $setting->is_lasso_setting_page() ) {

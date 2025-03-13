@@ -65,30 +65,40 @@ $isXbox = false;
 			<p class="game-description">
 				<?php echo $lasso_url->description ?>
 			</p>
-			<div class="open-critic">
-				<p><span>Đánh giá cộng động</span></p>
-				<div class="d-flex justify-content-between">
-					<div class="open-critic-item">
-						<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/recommended.png' ?>" alt="Recommended">
-						<span class="text-center text-green"><?php echo $lasso_url->ratings[0]['percent'] ?></span>
-					</div>
+			<?php if (is_array($lasso_url->ratings)) { ?>
+				<div class="open-critic">
+					<p><span>Đánh giá cộng động</span></p>
+					<div class="d-flex justify-content-between">
+						<?php if (array_key_exists(0, $lasso_url->ratings) and array_key_exists('percent', $lasso_url->ratings[0])) { ?>
+							<div class="open-critic-item">
+								<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/recommended.png' ?>" alt="Recommended">
+								<span class="text-center text-green"><?php echo $lasso_url->ratings[0]['percent'] ?></span>
+							</div>
+						<?php } ?>
 
-					<div class="open-critic-item">
-						<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/exceptional.png' ?>" alt="Exceptional">
-						<span class="text-center text-yellow"><?php echo $lasso_url->ratings[1]['percent'] ?></span>
-					</div>
+						<?php if (array_key_exists(1, $lasso_url->ratings) and array_key_exists('percent', $lasso_url->ratings[1])) { ?>
+							<div class="open-critic-item">
+								<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/exceptional.png' ?>" alt="Exceptional">
+								<span class="text-center text-yellow"><?php echo $lasso_url->ratings[1]['percent'] ?></span>
+							</div>
+						<?php } ?>
 
-					<div class="open-critic-item">
-						<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/meh.png' ?>" alt="Meh">
-						<span class="text-center text-grey"><?php echo $lasso_url->ratings[2]['percent'] ?></span>
-					</div>
+						<?php if (array_key_exists(2, $lasso_url->ratings) and array_key_exists('percent', $lasso_url->ratings[2])) { ?>
+							<div class="open-critic-item">
+								<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/meh.png' ?>" alt="Meh">
+								<span class="text-center text-grey"><?php echo $lasso_url->ratings[2]['percent'] ?></span>
+							</div>
+						<?php } ?>
 
-					<div class="open-critic-item">
-						<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/skip.png' ?>" alt="Skip">
-						<span class="text-center text-red"><?php echo $lasso_url->ratings[3]['percent'] ?></span>
+						<?php if (array_key_exists(3, $lasso_url->ratings) and array_key_exists('percent', $lasso_url->ratings[3])) { ?>
+							<div class="open-critic-item">
+								<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/skip.png' ?>" alt="Skip">
+								<span class="text-center text-red"><?php echo $lasso_url->ratings[3]['percent'] ?></span>
+							</div>
+						<?php } ?>
 					</div>
 				</div>
-			</div>
+			<?php } ?>
 			<div class="d-flex justify-content-between mt-3">
 				<dl>
 					<div>
@@ -119,10 +129,15 @@ $isXbox = false;
 							<strong>Nhà phát triển</strong>
 						</dt>
 						<dd>
+							<?php $countDeveloper = 0; ?>
 							<?php foreach ($lasso_url->developers as $developer) { ?>
+								<?php if ($countDeveloper >= 1) { ?>
+									<?php break; ?>
+								<?php } ?>
 								<span>
 									<a href="/tag/<?php echo $developer['name'] ?>/" target="_blank"><?php echo $developer['name'] ?></a>
 								</span>
+								<?php $countDeveloper++; ?>
 							<?php } ?>
 						</dd>
 					</div>
@@ -131,10 +146,15 @@ $isXbox = false;
 							<strong>Nhà phát hành</strong>
 						</dt>
 						<dd>
+							<?php $countPublish = 0; ?>
 							<?php foreach ($lasso_url->publishers as $publisher) { ?>
+								<?php if ($countPublish >= 1) { ?>
+									<?php break; ?>
+								<?php } ?>
 								<span>
 									<a href="/tag/<?php echo $publisher['name'] ?>/" target="_blank"><?php echo $publisher['name'] ?></a>
 								</span>
+								<?php $countPublish++; ?>
 							<?php } ?>
 						</dd>
 					</div>
