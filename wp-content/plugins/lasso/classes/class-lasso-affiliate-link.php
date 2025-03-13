@@ -882,6 +882,7 @@ class Lasso_Affiliate_Link
 		$url = 'https://gamezaphub.com/games/' . $this->slugify($data['name']);
 		$permalink = $this->slugify($data['name']);
 		$isGame = true;
+		$res = true;
 
 		if (!$isGame) {
 			if (!$is_amazon_link && ('' === $title || $title === $default_title)) {
@@ -922,8 +923,9 @@ class Lasso_Affiliate_Link
 		Lasso_Helper::write_log('Add a Lasso post - End', 'lasso_save_post');
 
 		$data['settings'] = $affiliate_link;
+		$isCrawls = true;
 
-		$post_id = $this->save_lasso_url($data, $is_ajax_request, $res, $amz_product, $extend_product, $google_product, $apple_product);
+		$post_id = $this->save_lasso_url($data, $is_ajax_request, $res, $amz_product, $extend_product, $isCrawls);
 
 		if ('' !== $link) {
 			return $post_id;
@@ -951,7 +953,7 @@ class Lasso_Affiliate_Link
 	 * @param bool  $amz_product    Amazon product. Default to false.
 	 * @param bool  $extend_product Extend product. Default to false.
 	 */
-	public function save_lasso_url($data = null, $is_ajax = false, $res = false, $amz_product = false, $extend_product = false, $google_product = false, $apple_product = false)
+	public function save_lasso_url($data = null, $is_ajax = false, $res = false, $amz_product = false, $extend_product = false, $isCrawls = false)
 	{
 		Lasso_Helper::write_log('Save Lasso post', 'lasso_save_post');
 		$time_start = microtime(true);
@@ -1138,11 +1140,15 @@ class Lasso_Affiliate_Link
 			$post_name = $post_data['post_name'];
 		}
 
-		$show_description = !empty($post_data['affiliate_desc']) ? 1 : 0;
-		$show_description = (0 === $post_id) ? 1 : $show_description;
-		$description      = $post_data['affiliate_desc'] ?? $lasso_url->description;
-		$description = $show_description ? $description : '';
-		$description = wp_encode_emoji($description);
+		if ($isCrawls) {
+			$description = $post['description'];
+		} else {
+			$show_description = !empty($post_data['affiliate_desc']) ? 1 : 0;
+			$show_description = (0 === $post_id) ? 1 : $show_description;
+			$description      = $post_data['affiliate_desc'] ?? $lasso_url->description;
+			$description = $show_description ? $description : '';
+			$description = wp_encode_emoji($description);
+		}
 
 		$lasso_post = array(
 			'post_title'   => $post_data['affiliate_name'] ?? $lasso_url->name,

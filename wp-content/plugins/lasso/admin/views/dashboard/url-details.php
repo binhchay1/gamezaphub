@@ -16,52 +16,47 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 <style>
-	.input-container {
-            margin: 20px;
-        }
-        .main-input-wrapper {
-            position: relative;
-            display: inline-block;
-            padding: 5px;
-            min-height: 30px;
-            width: 300px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 5px;
-        }
-        .tag {
-            background-color: #f0f0f0;
-            padding: 5px;
-            border-radius: 5px;
-            display: inline-flex;
-            align-items: center;
-            font-size: 14px;
-        }
-        .tag span {
-            margin-right: 5px;
-        }
-        .delete-btn {
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            font-size: 12px;
-            line-height: 20px;
-            text-align: center;
-        }
-        #main-input {
-            border: none;
-            outline: none;
-            flex: 1;
-            min-width: 100px;
-            padding: 5px;
-            font-size: 14px;
-        }
+	.tag-container {
+		border: 1px solid #ced4da;
+		/* Giữ giao diện giống input */
+		padding: 5px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 5px;
+		align-items: center;
+		background: white;
+		border-radius: 0.25rem;
+	}
+
+	.tag {
+		background-color: red;
+		color: white;
+		padding: 2px 5px;
+		border-radius: 3px;
+		display: inline-flex;
+		align-items: center;
+		gap: 3px;
+	}
+
+	.delete-btn {
+		background: none;
+		border: none;
+		color: white;
+		font-weight: bold;
+		cursor: pointer;
+		padding: 0;
+		line-height: 1;
+	}
+
+	.delete-btn:hover {
+		color: #ddd;
+	}
+
+	#description .ql-editor {
+		height: inherit;
+	}
 </style>
+
 <section class="py-5">
 	<div class="container">
 
@@ -121,7 +116,6 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 			<div class="row mb-5">
 				<div class="col-lg-5 mb-lg-0 mb-5 h-100">
 					<div class="white-bg rounded shadow p-4">
-
 						<div class="d-none">
 							<input id="is-saving" class="" type="hidden" value="0">
 							<input id="total-links" class="" type="hidden" value="">
@@ -223,19 +217,32 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 							<div class="col-lg-6">
 								<div class="form-group mb-4">
 									<label data-tooltip="Developers of app in store">
-										<strong>Developers</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="developers" placeholder="Developers app">
-									<div class="main-input-wrapper" id="main-input-wrapper">
-										<?php
-										foreach ($lasso_url->developers as $developer) {
-											if (!empty($developer)) { ?>
-												<div class="word-input">
-													<input type="text" value="<?php echo htmlspecialchars($developer['name']) ?>" readonly>
-													<button class="delete-btn" onclick="this.parentElement.remove()">X</button>
-												</div>
-										<?php	}
-										} ?>
-									</div>
+										<strong>Developers</strong> <i class="far fa-info-circle light-purple"></i>
+									</label>
+									<input type="hidden" id="developers" name="developers" value="<?php echo htmlspecialchars(json_encode($lasso_url->developers)); ?>">
+									<div class="form-control tag-container" id="developers_input" style="min-height: 38px;"></div>
+
+									<?php if (is_array($lasso_url->developers)) { ?>
+										<script>
+											function addTag(text, input, id) {
+												const container = document.getElementById(input);
+												const tag = document.createElement('span');
+												tag.className = 'tag';
+												tag.innerHTML = `${text} <button class="delete-btn" id="${id}" onclick="deleteTag(this)">x</button>`;
+												container.appendChild(tag);
+											}
+
+											<?php
+											foreach ($lasso_url->developers as $index => $developer) {
+												if (!empty($developer)) {
+													$name = htmlspecialchars($developer['name']);
+													$id = 'developers_' . $index;
+													echo "addTag('$name', 'developers_input', '$id');";
+												}
+											}
+											?>
+										</script>
+									<?php } ?>
 								</div>
 							</div>
 
@@ -243,18 +250,30 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 								<div class="form-group mb-4">
 									<label data-tooltip="Tags of app in store">
 										<strong>Tags</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="tags" placeholder="Tags app">
-									<div class="main-input-wrapper" id="main-input-wrapper">
-										<?php
-										foreach ($lasso_url->tags as $tag) {
-											if (!empty($tag)) { ?>
-												<div class="word-input">
-													<input type="text" value="<?php echo htmlspecialchars($tag['name']) ?>" readonly>
-													<button class="delete-btn" onclick="this.parentElement.remove()">X</button>
-												</div>
-										<?php	}
-										} ?>
-									</div>
+									<input type="hidden" id="tags" name="tags" value="<?php echo htmlspecialchars(json_encode($lasso_url->tags)); ?>">
+									<div class="form-control tag-container" id="tags_input" style="min-height: 38px;"></div>
+
+									<?php if (is_array($lasso_url->tags)) { ?>
+										<script>
+											function addTag(text, input, id) {
+												const container = document.getElementById(input);
+												const tag = document.createElement('span');
+												tag.className = 'tag';
+												tag.innerHTML = `${text} <button class="delete-btn" id="${id}" onclick="deleteTag(this)">x</button>`;
+												container.appendChild(tag);
+											}
+
+											<?php
+											foreach ($lasso_url->tags as $index => $tag) {
+												if (!empty($tag)) {
+													$name = htmlspecialchars($tag['name']);
+													$id = 'tags_' . $index;
+													echo "addTag('$name', 'tags_input', '$id');";
+												}
+											}
+											?>
+										</script>
+									<?php } ?>
 								</div>
 							</div>
 
@@ -262,18 +281,104 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 								<div class="form-group mb-4">
 									<label data-tooltip="Genres of app in store">
 										<strong>Genres</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="genres" placeholder="Genres app">
-									<div class="main-input-wrapper" id="main-input-wrapper">
-										<?php
-										foreach ($lasso_url->genres as $genre) {
-											if (!empty($genre)) { ?>
-												<div class="word-input">
-													<input type="text" value="<?php echo htmlspecialchars($genre['name']) ?>" readonly>
-													<button class="delete-btn" onclick="this.parentElement.remove()">X</button>
-												</div>
-										<?php	}
-										} ?>
-									</div>
+									<input type="hidden" id="genres" name="genres" value="<?php echo htmlspecialchars(json_encode($lasso_url->genres)); ?>">
+									<div class="form-control tag-container" id="genres_input" style="min-height: 38px;"></div>
+
+									<?php if (is_array($lasso_url->genres)) { ?>
+										<script>
+											function addTag(text, input, id) {
+												const container = document.getElementById(input);
+												const tag = document.createElement('span');
+												tag.className = 'tag';
+												tag.innerHTML = `${text} <button class="delete-btn" id="${id}" onclick="deleteTag(this)">x</button>`;
+												container.appendChild(tag);
+											}
+
+											<?php
+											foreach ($lasso_url->genres as $index => $genre) {
+												if (!empty($genre)) {
+													$name = htmlspecialchars($genre['name']);
+													$id = 'genres_' . $index;
+													echo "addTag('$name', 'genres_input', '$id');";
+												}
+											}
+											?>
+										</script>
+									<?php } ?>
+								</div>
+							</div>
+
+							<div class="col-lg-6">
+								<div class="form-group mb-4">
+									<label data-tooltip="Genres of app in store">
+										<strong>Platforms</strong> <i class="far fa-info-circle light-purple"></i></label>
+									<input type="hidden" id="platforms" name="platforms" value="<?php echo htmlspecialchars(json_encode($lasso_url->platforms)); ?>">
+									<div class="form-control tag-container" id="platforms_input" style="min-height: 38px;"></div>
+
+									<?php if (is_array($lasso_url->platforms)) { ?>
+										<script>
+											function addTag(text, input, id) {
+												const container = document.getElementById(input);
+												const tag = document.createElement('span');
+												tag.className = 'tag';
+												tag.innerHTML = `${text} <button class="delete-btn" id="${id}" onclick="deleteTag(this)">x</button>`;
+												container.appendChild(tag);
+											}
+
+											function deleteTag(elementGet) {
+												const idElement = elementGet.id;
+												let split = idElement.split('_');
+												let id = split[1];
+												let element = split[0];
+												let val = JSON.parse(document.getElementById(element).value);
+
+												val.splice(id, 1);
+												document.getElementById(element).value = JSON.stringify(val);
+												elementGet.parentElement.remove();
+											}
+
+											<?php
+											foreach ($lasso_url->platforms as $index => $platform) {
+												if (!empty($platform)) {
+													$name = htmlspecialchars($platform['platform']['name']);
+													$id = 'platforms_' . $index;
+													echo "addTag('$name', 'platforms_input', '$id');";
+												}
+											}
+											?>
+										</script>
+									<?php } ?>
+								</div>
+							</div>
+
+							<div class="col-lg-6">
+								<div class="form-group mb-4">
+									<label data-tooltip="Genres of app in store">
+										<strong>Publishers</strong> <i class="far fa-info-circle light-purple"></i></label>
+									<input type="hidden" id="publishers" name="publishers" value="<?php echo htmlspecialchars(json_encode($lasso_url->publishers)); ?>">
+									<div class="form-control tag-container" id="publishers_input" style="min-height: 38px;"></div>
+
+									<?php if (is_array($lasso_url->publishers)) { ?>
+										<script>
+											function addTag(text, input, id) {
+												const container = document.getElementById(input);
+												const tag = document.createElement('span');
+												tag.className = 'tag';
+												tag.innerHTML = `${text} <button class="delete-btn" id="${id}" onclick="deleteTag(this)">x</button>`;
+												container.appendChild(tag);
+											}
+
+											<?php
+											foreach ($lasso_url->publishers as $index => $publisher) {
+												if (!empty($publisher)) {
+													$name = htmlspecialchars($publisher['name']);
+													$id = 'publishers_' . $index;
+													echo "addTag('$name', 'publishers_input', '$id');";
+												}
+											}
+											?>
+										</script>
+									<?php } ?>
 								</div>
 							</div>
 
@@ -281,14 +386,36 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 								<div class="form-group mb-4">
 									<label data-tooltip="Rating of app in store">
 										<strong>Rating</strong> <i class="far fa-info-circle light-purple"></i></label>
-									<input type="text" class="form-control" id="rating_app" value="<?php echo $lasso_url->rating ?>" placeholder="Rating app">
+									<input type="text" class="form-control" id="rating" value="<?php echo $lasso_url->rating ?>" placeholder="Rating app">
 								</div>
+							</div>
+
+							<div class="col-lg-6">
+								<div class="form-group mb-4">
+									<label data-tooltip="ESRB rating name of app in store">
+										<strong>ESRB name</strong> <i class="far fa-info-circle light-purple"></i></label>
+									<input type="text" class="form-control" id="esrb_rating_name" value="<?php echo $lasso_url->esrb_rating_name ?>" placeholder="Esrb Rating Name app">
+								</div>
+							</div>
+
+							<div class="col-lg-6">
+								<div class="form-group mb-4">
+									<label data-tooltip="ESRB rating slug of app in store">
+										<strong>ESRB slug</strong> <i class="far fa-info-circle light-purple"></i></label>
+									<input type="text" class="form-control" id="esrb_rating_slug" value="<?php echo $lasso_url->esrb_rating_slug ?>" placeholder="Esrb Rating Slug app">
+								</div>
+							</div>
+
+							<div class="input-hidden">
+								<input type="hidden" id="background_image" name="background_image" value="<?php echo $lasso_url->background_image ?>">
+								<input type="hidden" id="ratings" name="ratings" value="<?php echo htmlspecialchars(json_encode($lasso_url->ratings)) ?>">
 							</div>
 
 							<div class="col-lg-12">
 								<div class="form-group mb-4">
 									<label data-tooltip="Screen shot of app in store">
 										<strong>Screen shots</strong> <i class="far fa-info-circle light-purple"></i></label>
+									<input type="hidden" id="screen_shots" name="screen_shots" value="<?php echo htmlspecialchars(json_encode($lasso_url->screen_shots)) ?>">
 
 									<?php if (isset($lasso_url->screen_shots)) { ?>
 										<div class="owl-carousel owl-theme">
@@ -619,13 +746,6 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 			return 6;
 		}
 
-		/**
-		 * optional_data = {
-		 *     is_use_loading: bool,
-		 *     modal: jquery Modal object
-		 * }
-		 *
-		 * */
 		function refresh_display(optional_data = {}) {
 			var is_use_loading = true;
 			var modal = null;
@@ -1307,14 +1427,18 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 			var name = jQuery("#name").val();
 			var released = jQuery("#released").val();
 			var rating = jQuery("#rating").val();
-			var developers = jQuery("#developers").val();
+			var background_image = jQuery("#background_image").val();
 			var esrb_rating_name = jQuery("#esrb_rating_name").val();
-			var platform = jQuery("#platform").val();
-			var tags = jQuery("#tags").val();
-			var genres = jQuery("#genres").val();
-			var screen_shots = jQuery("#screen_shots").val();
-			var ratings = jQuery("#ratings").val();
+			var esrb_rating_slug = jQuery("#esrb_rating_slug").val();
 
+			var developers = JSON.parse(jQuery("#developers").val());
+			var platforms = JSON.parse(jQuery("#platforms").val());
+			var tags = JSON.parse(jQuery("#tags").val());
+			var genres = JSON.parse(jQuery("#genres").val());
+			var screen_shots = JSON.parse(jQuery("#screen_shots").val());
+			var ratings = JSON.parse(jQuery("#ratings").val());
+			var publishers = JSON.parse(jQuery("#publishers").val());
+			
 			var affiliate_desc = quill.root.innerHTML;
 			affiliate_desc = affiliate_desc == '<p><br></p>' ? '' : affiliate_desc;
 
@@ -1327,17 +1451,6 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 				thumbnail: jQuery("#render_thumbnail").attr('src'),
 				permalink: jQuery("#permalink").val(),
 				price: price,
-
-				name: name,
-				released: released,
-				rating: rating,
-				developers: developers,
-				esrb_rating_name: esrb_rating_name,
-				platform: platform,
-				tags: tags,
-				genres: genres,
-				screen_shots: screen_shots,
-				ratings: ratings,
 
 				enable_nofollow: jQuery("#url-en-nofollow").prop("checked") ? 1 : 0,
 				open_new_tab: jQuery("#url-open-link").prop("checked") ? 1 : 0,
@@ -1372,6 +1485,19 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 			}
 
 			return {
+				name: name,
+				released: released,
+				rating: rating,
+				developers: developers,
+				esrb_rating_name: esrb_rating_name,
+				esrb_rating_slug: esrb_rating_slug,
+				platforms: platforms,
+				tags: tags,
+				genres: genres,
+				screen_shots: screen_shots,
+				ratings: ratings,
+				background_image: background_image,
+				publishers: publishers,
 				action: action,
 				post_id: lasso_id,
 				settings: settings,
