@@ -51,57 +51,57 @@ class Lasso_License {
 	 * @param boolean $update_db  Whether licens status is updated in DB. Default to true.
 	 */
 	public static function check_license( $license_id, $update_db = true ) {
-		$headers     = Lasso_Helper::get_lasso_headers( $license_id );
-		$request_url = LASSO_LINK . '/license/status';
+		// $headers     = Lasso_Helper::get_lasso_headers( $license_id );
+		// $request_url = LASSO_LINK . '/license/status';
 
-		$res = Lasso_Helper::send_request( 'get', $request_url, array(), $headers );
+		// $res = Lasso_Helper::send_request( 'get', $request_url, array(), $headers );
 
-		$status_code = $res['status_code'];
-		$response    = $res['response'];
+		// $status_code = $res['status_code'];
+		// $response    = $res['response'];
 
-		$error_code    = 'other';
-		$error_message = 'Error!';
-		$status        = false;
+		// $error_code    = 'other';
+		// $error_message = 'Error!';
+		// $status        = false;
 
-		if ( 200 === $status_code ) {
-			// ? store user email
-			if ( isset( $response->email ) && '' !== $response->email ) {
-				update_option( 'lasso_license_email', $response->email );
-			}
-			if ( isset( $response->end_date ) && $response->end_date > 0 ) {
-				update_option( 'lasso_end_date', $response->end_date );
-			}
-			if ( isset( $response->install_count ) ) {
-				update_option( Enum::LASSO_INSTALL_COUNT, $response->install_count );
-			}
+		// if ( 200 === $status_code ) {
+		// 	// ? store user email
+		// 	if ( isset( $response->email ) && '' !== $response->email ) {
+		// 		update_option( 'lasso_license_email', $response->email );
+		// 	}
+		// 	if ( isset( $response->end_date ) && $response->end_date > 0 ) {
+		// 		update_option( 'lasso_end_date', $response->end_date );
+		// 	}
+		// 	if ( isset( $response->install_count ) ) {
+		// 		update_option( Enum::LASSO_INSTALL_COUNT, $response->install_count );
+		// 	}
 
-			if ( isset( $response->is_startup_plan ) ) {
-				update_option( Enum::LASSO_IS_STARTUP_PLAN, $response->is_startup_plan );
-			}
+		// 	if ( isset( $response->is_startup_plan ) ) {
+		// 		update_option( Enum::LASSO_IS_STARTUP_PLAN, $response->is_startup_plan );
+		// 	}
 
-			$status = true;
-		} elseif ( 401 === $status_code ) {
-			$error_code    = $response->error_code ?? $error_code;
-			$error_message = $response->message ?? $error_message;
-			$status        = false;
-		} else {
-			$update_db     = false; // ? Don't update DB if the status is not 200, 401
-			$error_message = $res['message'] ?? $error_message;
-		}
+		// 	$status = true;
+		// } elseif ( 401 === $status_code ) {
+		// 	$error_code    = $response->error_code ?? $error_code;
+		// 	$error_message = $response->message ?? $error_message;
+		// 	$status        = false;
+		// } else {
+		// 	$update_db     = false; // ? Don't update DB if the status is not 200, 401
+		// 	$error_message = $res['message'] ?? $error_message;
+		// }
 
-		// ? store user hash
-		if ( isset( $response->hash ) && '' !== $response->hash ) {
-			update_option( 'lasso_license_hash', $response->hash );
-		}
+		// // ? store user hash
+		// if ( isset( $response->hash ) && '' !== $response->hash ) {
+		// 	update_option( 'lasso_license_hash', $response->hash );
+		// }
 
-		// ? update license status in DB
-		if ( $update_db ) {
-			$status = $status ? 1 : 0;
-			$status = 1;
-			update_option( 'lasso_license_status', $status, true );
-		}
+		// // ? update license status in DB
+		// if ( $update_db ) {
+		// 	$status = $status ? 1 : 0;
+		// 	$status = 1;
+		// 	update_option( 'lasso_license_status', $status, true );
+		// }
 
-		return array( Lasso_Helper::cast_to_boolean( $status ), $error_code, $error_message );
+		return array( true, '', '' );
 	}
 
 	/**

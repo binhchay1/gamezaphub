@@ -103,43 +103,43 @@ class Lasso_Data_Sync_Authors extends Lasso_Data_Sync {
 	 * @param array $schema Data schema.
 	 */
 	public function send_data( $page = 0, $schema = array() ) {
-		$start_time = microtime( true );
-		$headers    = $this->headers;
-		$api_link   = LASSO_LINK . '/data-sync';
+		// $start_time = microtime( true );
+		// $headers    = $this->headers;
+		// $api_link   = LASSO_LINK . '/data-sync';
 
-		list($rows, $submission_date) = $this->get_data( $page, $schema );
-		if ( 0 === count( $rows ) ) {
-			return false;
-		}
+		// list($rows, $submission_date) = $this->get_data( $page, $schema );
+		// if ( 0 === count( $rows ) ) {
+		// 	return false;
+		// }
 
-		$get_submission_type = $this->get_submission_type();
-		$total               = $this->get_total_records();
-		$batch_total_count   = intval( floor( $total / $this->limit ) + 1 );
-		$data                = array(
-			'plugin_version'     => $this->version,
-			'batch_number'       => 0 === $page ? 1 : $page,
-			'batch_total_count'  => $batch_total_count,
-			'submission_type'    => $get_submission_type,
-			'submission_date'    => $submission_date,
-			'submission_content' => $this->submission_content,
-			'records'            => $rows,
-			'license'            => $headers['license'],
-			'site_id'            => $headers['site_id'],
-		);
-		$data                = Encrypt::encrypt_aes( $data );
+		// $get_submission_type = $this->get_submission_type();
+		// $total               = $this->get_total_records();
+		// $batch_total_count   = intval( floor( $total / $this->limit ) + 1 );
+		// $data                = array(
+		// 	'plugin_version'     => $this->version,
+		// 	'batch_number'       => 0 === $page ? 1 : $page,
+		// 	'batch_total_count'  => $batch_total_count,
+		// 	'submission_type'    => $get_submission_type,
+		// 	'submission_date'    => $submission_date,
+		// 	'submission_content' => $this->submission_content,
+		// 	'records'            => $rows,
+		// 	'license'            => $headers['license'],
+		// 	'site_id'            => $headers['site_id'],
+		// );
+		// $data                = Encrypt::encrypt_aes( $data );
 
-		$res     = Lasso_Helper::send_request( 'post', $api_link, $data, $headers );
-		$status  = $res['response']->status ?? false;
-		$message = $res['response']->message ?? '';
+		// $res     = Lasso_Helper::send_request( 'post', $api_link, $data, $headers );
+		// $status  = $res['response']->status ?? false;
+		// $message = $res['response']->message ?? '';
 
-		if ( true === $status ) {
-			$recent_date = $message;
-			update_option( 'lasso_submission_date_' . self::DWH_TABLE_NAME, $recent_date );
-		}
+		// if ( true === $status ) {
+		// 	$recent_date = $message;
+		// 	update_option( 'lasso_submission_date_' . self::DWH_TABLE_NAME, $recent_date );
+		// }
 
-		Lasso_Helper::write_log( 'Data sync author takes (seconds): ' . ( microtime( true ) - $start_time ), 'data_sync' );
+		// Lasso_Helper::write_log( 'Data sync author takes (seconds): ' . ( microtime( true ) - $start_time ), 'data_sync' );
 
-		return $res;
+		return true;
 	}
 
 	/**
