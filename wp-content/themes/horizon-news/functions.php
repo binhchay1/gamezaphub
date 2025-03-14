@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Horizon News functions and definitions
  *
@@ -7,12 +8,12 @@
  * @package Horizon News
  */
 
-if ( ! defined( 'HORIZON_NEWS_VERSION' ) ) {
+if (! defined('HORIZON_NEWS_VERSION')) {
 	// Replace the version number of the theme on each release.
-	define( 'HORIZON_NEWS_VERSION', '1.0.0' );
+	define('HORIZON_NEWS_VERSION', '1.0.0');
 }
 
-if ( ! function_exists( 'horizon_news_setup' ) ) :
+if (! function_exists('horizon_news_setup')) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -20,17 +21,18 @@ if ( ! function_exists( 'horizon_news_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function horizon_news_setup() {
+	function horizon_news_setup()
+	{
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 * If you're building a theme based on Horizon News, use a find and replace
 		 * to change 'horizon-news' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'horizon-news', get_template_directory() . '/languages' );
+		load_theme_textdomain('horizon-news', get_template_directory() . '/languages');
 
 		// Add default posts and comments RSS feed links to head.
-		add_theme_support( 'automatic-feed-links' );
+		add_theme_support('automatic-feed-links');
 
 		/*
 		 * Let WordPress manage the document title.
@@ -38,24 +40,24 @@ if ( ! function_exists( 'horizon_news_setup' ) ) :
 		 * hard-coded <title> tag in the document head, and expect WordPress to
 		 * provide it for us.
 		 */
-		add_theme_support( 'title-tag' );
+		add_theme_support('title-tag');
 
-		add_theme_support( 'register_block_pattern' );
+		add_theme_support('register_block_pattern');
 
-		add_theme_support( 'register_block_style' );
+		add_theme_support('register_block_style');
 
 		/*
 		 * Enable support for Post Thumbnails on posts and pages.
 		 *
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
-		add_theme_support( 'post-thumbnails' );
+		add_theme_support('post-thumbnails');
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
-				'primary'   => esc_html__( 'Primary', 'horizon-news' ),
-				'social'    => esc_html__( 'Social', 'horizon-news' ),
+				'primary'   => esc_html__('Primary', 'horizon-news'),
+				'social'    => esc_html__('Social', 'horizon-news'),
 			)
 		);
 
@@ -89,7 +91,7 @@ if ( ! function_exists( 'horizon_news_setup' ) ) :
 		);
 
 		// Add theme support for selective refresh for widgets.
-		add_theme_support( 'customize-selective-refresh-widgets' );
+		add_theme_support('customize-selective-refresh-widgets');
 
 		/**
 		 * Add support for core custom logo.
@@ -109,11 +111,11 @@ if ( ! function_exists( 'horizon_news_setup' ) ) :
 		/**
 		 * Add theme support for gutenberg block.
 		 */
-		add_theme_support( 'align-wide' );
-		add_theme_support( 'responsive-embeds' );
+		add_theme_support('align-wide');
+		add_theme_support('responsive-embeds');
 	}
 endif;
-add_action( 'after_setup_theme', 'horizon_news_setup' );
+add_action('after_setup_theme', 'horizon_news_setup');
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -122,22 +124,24 @@ add_action( 'after_setup_theme', 'horizon_news_setup' );
  *
  * @global int $content_width
  */
-function horizon_news_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'horizon_news_content_width', 640 );
+function horizon_news_content_width()
+{
+	$GLOBALS['content_width'] = apply_filters('horizon_news_content_width', 640);
 }
-add_action( 'after_setup_theme', 'horizon_news_content_width', 0 );
+add_action('after_setup_theme', 'horizon_news_content_width', 0);
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function horizon_news_widgets_init() {
+function horizon_news_widgets_init()
+{
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'horizon-news' ),
+			'name'          => esc_html__('Sidebar', 'horizon-news'),
 			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'horizon-news' ),
+			'description'   => esc_html__('Add widgets here.', 'horizon-news'),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h3 class="widget-title"><span>',
@@ -147,9 +151,9 @@ function horizon_news_widgets_init() {
 
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Primary Widgets Section', 'horizon-news' ),
+			'name'          => esc_html__('Primary Widgets Section', 'horizon-news'),
 			'id'            => 'primary-widgets-section',
-			'description'   => esc_html__( 'Add primary widgets here.', 'horizon-news' ),
+			'description'   => esc_html__('Add primary widgets here.', 'horizon-news'),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h3 class="section-title"><span>',
@@ -159,9 +163,9 @@ function horizon_news_widgets_init() {
 
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Secondary Widgets Section', 'horizon-news' ),
+			'name'          => esc_html__('Secondary Widgets Section', 'horizon-news'),
 			'id'            => 'secondary-widgets-section',
-			'description'   => esc_html__( 'Add secondary widgets here.', 'horizon-news' ),
+			'description'   => esc_html__('Add secondary widgets here.', 'horizon-news'),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h3 class="section-title"><span>',
@@ -171,9 +175,9 @@ function horizon_news_widgets_init() {
 
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Above Footer Widgets Section', 'horizon-news' ),
+			'name'          => esc_html__('Above Footer Widgets Section', 'horizon-news'),
 			'id'            => 'above-footer-widgets-section',
-			'description'   => esc_html__( 'Add above footer widgets here.', 'horizon-news' ),
+			'description'   => esc_html__('Add above footer widgets here.', 'horizon-news'),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h3 class="section-title"><span>',
@@ -186,9 +190,9 @@ function horizon_news_widgets_init() {
 		3,
 		array(
 			/* translators: %d: Footer Widget count. */
-			'name'          => esc_html__( 'Footer Widget %d', 'horizon-news' ),
+			'name'          => esc_html__('Footer Widget %d', 'horizon-news'),
 			'id'            => 'footer-widget',
-			'description'   => esc_html__( 'Add widgets here.', 'horizon-news' ),
+			'description'   => esc_html__('Add widgets here.', 'horizon-news'),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h6 class="widget-title"><span>',
@@ -196,49 +200,52 @@ function horizon_news_widgets_init() {
 		)
 	);
 }
-add_action( 'widgets_init', 'horizon_news_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
-function horizon_news_scripts() {
+function horizon_news_scripts()
+{
 
 	// Append .min if SCRIPT_DEBUG is false.
-	$min = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+	$min = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
 
 	// Slick style.
-	wp_enqueue_style( 'horizon-news-slick-style', get_template_directory_uri() . '/assets/css/slick' . $min . '.css', array(), '1.8.1' );
+	wp_enqueue_style('horizon-news-slick-style', get_template_directory_uri() . '/assets/css/slick' . $min . '.css', array(), '1.8.1');
 
 	// Fontawesome style.
-	wp_enqueue_style( 'horizon-news-fontawesome-style', get_template_directory_uri() . '/assets/css/fontawesome' . $min . '.css', array(), '6.4.2' );
+	wp_enqueue_style('horizon-news-fontawesome-style', get_template_directory_uri() . '/assets/css/fontawesome' . $min . '.css', array(), '6.4.2');
 
 	// Google fonts.
-	wp_enqueue_style( 'horizon-news-google-fonts', wptt_get_webfont_url( horizon_news_get_fonts_url() ), array(), null );
+	wp_enqueue_style('horizon-news-google-fonts', wptt_get_webfont_url(horizon_news_get_fonts_url()), array(), null);
 
 	// Main style.
-	wp_enqueue_style( 'horizon-news-style', get_template_directory_uri() . '/style.css', array(), HORIZON_NEWS_VERSION );
+	wp_enqueue_style('horizon-news-style', get_template_directory_uri() . '/style.css', array(), HORIZON_NEWS_VERSION);
+
+	// Custom style.
+	wp_enqueue_style('custom-style', get_template_directory_uri() . '/assets/css/custom.css', array(), '1.0.0');
 
 	// Navigation script.
-	wp_enqueue_script( 'horizon-news-navigation-script', get_template_directory_uri() . '/assets/js/navigation' . $min . '.js', array(), HORIZON_NEWS_VERSION, true );
+	wp_enqueue_script('horizon-news-navigation-script', get_template_directory_uri() . '/assets/js/navigation' . $min . '.js', array(), HORIZON_NEWS_VERSION, true);
 
 	// Slick script.
-	wp_enqueue_script( 'horizon-news-slick-script', get_template_directory_uri() . '/assets/js/slick' . $min . '.js', array( 'jquery' ), '1.8.1', true );
+	wp_enqueue_script('horizon-news-slick-script', get_template_directory_uri() . '/assets/js/slick' . $min . '.js', array('jquery'), '1.8.1', true);
 
 	// jQuery marquee script.
-	wp_enqueue_script( 'horizon-news-marquee-script', get_template_directory_uri() . '/assets/js/jquery.marquee' . $min . '.js', array( 'jquery' ), '1.6.0', true );
+	wp_enqueue_script('horizon-news-marquee-script', get_template_directory_uri() . '/assets/js/jquery.marquee' . $min . '.js', array('jquery'), '1.6.0', true);
 
 	// Custom script.
-	wp_enqueue_script( 'horizon-news-custom-script', get_template_directory_uri() . '/assets/js/custom' . $min . '.js', array( 'jquery' ), HORIZON_NEWS_VERSION, true );
+	wp_enqueue_script('horizon-news-custom-script', get_template_directory_uri() . '/assets/js/custom' . $min . '.js', array('jquery'), HORIZON_NEWS_VERSION, true);
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
+	if (is_singular() && comments_open() && get_option('thread_comments')) {
+		wp_enqueue_script('comment-reply');
 	}
 }
-add_action( 'wp_enqueue_scripts', 'horizon_news_scripts' );
+add_action('wp_enqueue_scripts', 'horizon_news_scripts');
 
 /**
-* Webfont Loader.
-*/
+ * Webfont Loader.
+ */
 require get_template_directory() . '/inc/wptt-webfont-loader.php';
 
 /**
@@ -295,13 +302,86 @@ require get_template_directory() . '/inc/custom-category-color.php';
  * One Click Demo Import after import setup.
  */
 
-if ( class_exists( 'OCDI_Plugin' ) ) {
+if (class_exists('OCDI_Plugin')) {
 	require get_template_directory() . '/inc/ocdi.php';
 }
 
 /**
  * Load Jetpack compatibility file.
  */
-if ( defined( 'JETPACK__VERSION' ) ) {
+if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+function custom_table_block_styles()
+{
+	wp_enqueue_style(
+		'custom-table-styles',
+		get_template_directory_uri() . '/assets/css/custom-table.css',
+		array(),
+		'1.0'
+	);
+}
+add_action('enqueue_block_assets', 'custom_table_block_styles');
+
+function custom_table_block_render($block_content, $block)
+{
+	if ($block['blockName'] === 'core/table') {
+		$block_content = '<div class="custom-table-wrapper">' .
+			str_replace(
+				'<table>',
+				'<table class="custom-table wp-block-table">',
+				$block_content
+			) .
+			'</div>';
+	}
+	return $block_content;
+}
+add_filter('render_block', 'custom_table_block_render', 10, 2);
+
+function add_owl_css_to_all_editors()
+{
+	$owl_js = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js';
+	$owl_css = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css';
+
+	wp_enqueue_style('owl-editor-css', $owl_css, array(), '2.3.4');
+	wp_enqueue_script('owl-editor-css', $owl_js, array(), '2.3.4');
+}
+add_action('enqueue_block_editor_assets', 'add_owl_css_to_all_editors');
+
+function add_custom_games_rewrite_rule()
+{
+	add_rewrite_rule(
+		'^games/([^/]+)/?$',
+		'index.php?custom_games=1&game_slug=$matches[1]',
+		'top'
+	);
+}
+add_action('init', 'add_custom_games_rewrite_rule');
+
+function add_custom_query_vars($vars)
+{
+	$vars[] = 'custom_games';
+	$vars[] = 'game_slug';
+	return $vars;
+}
+add_filter('query_vars', 'add_custom_query_vars');
+
+function flush_rewrite_rules_on_activation()
+{
+	add_custom_games_rewrite_rule();
+	flush_rewrite_rules();
+}
+register_activation_hook(__FILE__, 'flush_rewrite_rules_on_activation');
+
+function custom_games_template($template)
+{
+	if (get_query_var('custom_games') == 1) {
+		$new_template = locate_template(array('single-games.php'));
+		if (!empty($new_template)) {
+			return $new_template;
+		}
+	}
+	return $template;
+}
+add_filter('template_include', 'custom_games_template');
