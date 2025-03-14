@@ -625,7 +625,9 @@ if ( !class_exists('Lasso_Puc_v4p4_UpdateChecker', false) ):
 				$url = add_query_arg($queryArgs, $url);
 			}
 
-			$result = wp_remote_get($url, $options);
+			// $result = wp_remote_get($url, $options);
+
+			$result = true;
 
 			$result = apply_filters($this->getUniqueName('request_metadata_http_result'), $result, $url, $options);
                         
