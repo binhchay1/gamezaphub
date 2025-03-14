@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Declare class Lasso_Data_Sync_Authors
  *
@@ -13,16 +14,18 @@ use Lasso\Models\Model;
 /**
  * Lasso_Data_Sync_Authors
  */
-class Lasso_Data_Sync_Authors extends Lasso_Data_Sync {
+class Lasso_Data_Sync_Authors extends Lasso_Data_Sync
+{
 	const DWH_TABLE_NAME = 'lasso_authors';
 
 	/**
 	 * Construction of Lasso_Data_Sync_Authors
 	 */
-	public function __construct() {
-		$this->table = Model::get_wp_table_name( 'users' );
+	public function __construct()
+	{
+		$this->table = Model::get_wp_table_name('users');
 
-		parent::__construct( $this->table, LASSO_VERSION );
+		parent::__construct($this->table, LASSO_VERSION);
 
 		$this->submission_content  = self::DWH_TABLE_NAME;
 		$this->modified_date_field = 'user_registered';
@@ -34,13 +37,14 @@ class Lasso_Data_Sync_Authors extends Lasso_Data_Sync {
 	 *
 	 * @param array $schema Data schema.
 	 */
-	public function get_data_query( $schema = array() ) {
-		$lasso_submission_date = get_option( 'lasso_submission_date_' . self::DWH_TABLE_NAME, '' );
+	public function get_data_query($schema = array())
+	{
+		$lasso_submission_date = get_option('lasso_submission_date_' . self::DWH_TABLE_NAME, '');
 		$query                 = '
             SELECT ID as author_id, display_name as author_name, user_registered
             FROM ' . $this->table;
 
-		if ( '' !== $lasso_submission_date && 'diff' === $this->submission_type ) {
+		if ('' !== $lasso_submission_date && 'diff' === $this->submission_type) {
 			$query .= '
 				WHERE ' . $this->modified_date_field . ' > \'' . $lasso_submission_date . '\'
 			';
@@ -59,31 +63,32 @@ class Lasso_Data_Sync_Authors extends Lasso_Data_Sync {
 	 * @param int   $page Page number.
 	 * @param array $schema Data schema.
 	 */
-	public function get_data( $page = 0, $schema = array() ) {
+	public function get_data($page = 0, $schema = array())
+	{
 		$site_id         = $this->site_id;
 		$submission_date = '';
 		$updated_dt      = Lasso_Helper::get_gmt_datetime();
 
-		$query = 0 === $page ? $this->get_data_query( $schema ) : $this->get_data_query_limit( $page, $schema );
-		$rows  = Model::get_results( $query, ARRAY_A );
-		$time  = ( new DateTime() )->format( 'Y-m-d H:i:s' );
+		$query = 0 === $page ? $this->get_data_query($schema) : $this->get_data_query_limit($page, $schema);
+		$rows  = Model::get_results($query, ARRAY_A);
+		$time  = (new DateTime())->format('Y-m-d H:i:s');
 		$rows  = array_map(
-			function ( $row ) use ( $site_id, &$submission_date, $schema, $updated_dt, $time ) {
-				if ( false !== strpos( $row[ $this->modified_date_field ], '0000' ) ) {
-					$row[ $this->modified_date_field ] = $time;
+			function ($row) use ($site_id, &$submission_date, $schema, $updated_dt, $time) {
+				if (false !== strpos($row[$this->modified_date_field], '0000')) {
+					$row[$this->modified_date_field] = $time;
 				}
 				$row['site_id']       = $site_id;
-				$row['last_modified'] = $row[ $this->modified_date_field ];
+				$row['last_modified'] = $row[$this->modified_date_field];
 				$row['updated_dt']    = $updated_dt;
-				if ( '' === $submission_date ) {
-					$submission_date = $row[ $this->modified_date_field ];
+				if ('' === $submission_date) {
+					$submission_date = $row[$this->modified_date_field];
 				}
 
-				$last_modified   = new DateTime( $row[ $this->modified_date_field ] );
-				$target          = new DateTime( $submission_date );
-				$interval        = $last_modified->diff( $target );
-				$submission_date = '+' === $interval->format( '%R' ) ? $submission_date : $row[ $this->modified_date_field ];
-				unset( $row[ $this->modified_date_field ] );
+				$last_modified   = new DateTime($row[$this->modified_date_field]);
+				$target          = new DateTime($submission_date);
+				$interval        = $last_modified->diff($target);
+				$submission_date = '+' === $interval->format('%R') ? $submission_date : $row[$this->modified_date_field];
+				unset($row[$this->modified_date_field]);
 
 				return $row;
 			},
@@ -91,9 +96,9 @@ class Lasso_Data_Sync_Authors extends Lasso_Data_Sync {
 		);
 
 		// ? Remove empty item from $rows
-		$rows = array_filter( $rows );
+		$rows = array_filter($rows);
 
-		return array( $rows, $submission_date );
+		return array($rows, $submission_date);
 	}
 
 	/**
@@ -102,7 +107,8 @@ class Lasso_Data_Sync_Authors extends Lasso_Data_Sync {
 	 * @param int   $page Page number.
 	 * @param array $schema Data schema.
 	 */
-	public function send_data( $page = 0, $schema = array() ) {
+	public function send_data($page = 0, $schema = array())
+	{
 		// $start_time = microtime( true );
 		// $headers    = $this->headers;
 		// $api_link   = LASSO_LINK . '/data-sync';
@@ -145,18 +151,20 @@ class Lasso_Data_Sync_Authors extends Lasso_Data_Sync {
 	/**
 	 * Get all ids so we can delete unused ids on Lambda DB
 	 */
-	public function get_all_ids() {
+	public function get_all_ids()
+	{
 		$query = '
 			SELECT ID as id
 			FROM ' . $this->table;
 
-		return Model::get_col( $query );
+		return Model::get_col($query);
 	}
 
 	/**
 	 * Sync existing authors in WP
 	 */
-	public function sync_existing_authors() {
+	public function sync_existing_authors()
+	{
 		$headers  = $this->headers;
 		$api_link = LASSO_LINK . '/data-sync/data';
 		$ids      = $this->get_all_ids();
@@ -168,8 +176,8 @@ class Lasso_Data_Sync_Authors extends Lasso_Data_Sync {
 			'site_id'            => \Lasso_License::get_site_id(),
 		);
 
-		$data = Encrypt::encrypt_aes( $data );
-		$res  = Lasso_Helper::send_request( 'put', $api_link, $data, $headers );
+		$data = Encrypt::encrypt_aes($data);
+		$res  = array('response' => array('status' => false));
 
 		return $res;
 	}
@@ -177,7 +185,8 @@ class Lasso_Data_Sync_Authors extends Lasso_Data_Sync {
 	/**
 	 * Reset submission date
 	 */
-	public function reset_submission_date() {
-		update_option( 'lasso_submission_date_' . self::DWH_TABLE_NAME, '' );
+	public function reset_submission_date()
+	{
+		update_option('lasso_submission_date_' . self::DWH_TABLE_NAME, '');
 	}
 }

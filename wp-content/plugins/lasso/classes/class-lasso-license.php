@@ -170,7 +170,7 @@ class Lasso_License {
 		);
 
 		$body     = Encrypt::encrypt_aes( $data );
-		$response = Lasso_Helper::send_request( 'post', LASSO_LINK . '/server/getinfo', $body );
+		$response = true;
 
 		$site_id = $response['response']->site_id ?? '';
 

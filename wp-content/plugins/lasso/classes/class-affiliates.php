@@ -185,40 +185,40 @@ class Affiliates {
 	 * @return void
 	 */
 	public function track_click( $url, $lasso_url ) {
-		try {
-			$request_uri = Lasso_Helper::get_server_param( 'REQUEST_URI' );
-			$payload     = array(
-				'd' => Lasso_Helper::get_base_domain( site_url() ),
-				'h' => 0,
-				'n' => 'click',
-				'r' => Lasso_Helper::get_server_param( 'HTTP_REFERER' ),
-				'u' => $request_uri ? $request_uri : Lasso_Helper::get_server_param( 'REDIRECT_URL' ),
-				'w' => 0,
-				'p' => array(
-					'lasso_href'  => $url,
-					'class'       => null,
-					'd'           => Lasso_Helper::get_base_domain( site_url() ),
-					'hierarchy'   => '',
-					'ipa'         => '',
-					'lasso_lid'   => $lasso_url->lasso_id,
-					'lasso_text'  => '',
-					'lasso_title' => $lasso_url->name,
-					'lsid'        => Lasso_Helper::build_lsid(),
-					'lssid'       => Lasso_License::get_site_id(),
-					'pid'         => 2, // ? 2 = Default WordPress Page ID
-					'pt'          => $lasso_url->name,
-					'tag'         => 'a',
-					'type'        => 'External Click',
-				),
-			);
+		// try {
+		// 	$request_uri = Lasso_Helper::get_server_param( 'REQUEST_URI' );
+		// 	$payload     = array(
+		// 		'd' => Lasso_Helper::get_base_domain( site_url() ),
+		// 		'h' => 0,
+		// 		'n' => 'click',
+		// 		'r' => Lasso_Helper::get_server_param( 'HTTP_REFERER' ),
+		// 		'u' => $request_uri ? $request_uri : Lasso_Helper::get_server_param( 'REDIRECT_URL' ),
+		// 		'w' => 0,
+		// 		'p' => array(
+		// 			'lasso_href'  => $url,
+		// 			'class'       => null,
+		// 			'd'           => Lasso_Helper::get_base_domain( site_url() ),
+		// 			'hierarchy'   => '',
+		// 			'ipa'         => '',
+		// 			'lasso_lid'   => $lasso_url->lasso_id,
+		// 			'lasso_text'  => '',
+		// 			'lasso_title' => $lasso_url->name,
+		// 			'lsid'        => Lasso_Helper::build_lsid(),
+		// 			'lssid'       => Lasso_License::get_site_id(),
+		// 			'pid'         => 2, // ? 2 = Default WordPress Page ID
+		// 			'pt'          => $lasso_url->name,
+		// 			'tag'         => 'a',
+		// 			'type'        => 'External Click',
+		// 		),
+		// 	);
 
-			$api_link = LASSO_LINK . '/events/tracking';
-			$res      = Lasso_Helper::send_request( 'post', $api_link, $payload );
+		// 	$api_link = LASSO_LINK . '/events/tracking';
+			// $res      = Lasso_Helper::send_request( 'post', $api_link, $payload );
 
-			return;
-		} catch ( \Exception $e ) {
-			return;
-		}
+		// 	return;
+		// } catch ( \Exception $e ) {
+		// 	return;
+		// }
 	}
 
 	/**
