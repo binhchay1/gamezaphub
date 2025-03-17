@@ -2562,8 +2562,6 @@ class Lasso_Affiliate_Link
 			return new WP_Error('empty_body', 'Không thể lấy dữ liệu ảnh.');
 		}
 
-
-
 		$upload_dir = wp_upload_dir();
 		$file_path = $upload_dir['path'] . '/' . basename($image_url);
 

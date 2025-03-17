@@ -3526,7 +3526,7 @@ class Lasso_Cron {
 		$data    = Encrypt::encrypt_aes( $data );
 		$headers = Lasso_Helper::get_lasso_headers();
 
-		Lasso_Helper::send_request( 'post', LASSO_LINK . '/server/update-plugins', $data, $headers );
+		// Lasso_Helper::send_request( 'post', LASSO_LINK . '/server/update-plugins', $data, $headers );
 
 		return true;
 	}

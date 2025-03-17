@@ -35,33 +35,39 @@ $query = $wpdb->prepare(
 
 $results = $wpdb->get_results($query);
 
-$posts = array();
+$post = array();
 foreach ($results as $row) {
     $post_id = $row->ID;
-    if (!isset($posts[$post_id])) {
-        $posts[$post_id] = array(
+    if (!isset($post[$post_id])) {
+        $post = array(
             'ID' => $post_id,
             'post_title' => $row->post_title,
             'meta' => array()
         );
     }
+
     if ($row->meta_key) {
-        $posts[$post_id]['meta'][$row->meta_key] = $row->meta_value;
+        $post['meta'][] = [$row->meta_key => $row->meta_value];
     }
 }
+
+echo '<pre>';
+var_dump($post);
+echo '</pre>';
 
 ?>
 
 <main id="primary" class="site-main">
-    <header class="page-header">
-        <h1 class="page-title"><?php echo $posts['post_title'] ?></h1>
+    <header class="page-header d-flex justify-content-between">
+        <h1 class="page-title"><?php echo $post['post_title'] ?></h1>
+        <div class="rating-title">GR ★ 4.47/5</div>
     </header>
-    <div class="magazine-archive-layout grid-layout <?php echo esc_attr($grid_style); ?>">
+    <div class="<?php echo esc_attr($grid_style); ?>">
         <div>
-
+            <?php echo do_shortcode('[lasso rel="' . $slug . '" id="' . $post_id . '"]'); ?>
         </div>
         <div>
-            
+
         </div>
     </div>
 </main>

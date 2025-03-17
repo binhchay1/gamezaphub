@@ -6,14 +6,12 @@
             const images = gallery.querySelectorAll('figure');
             if (images.length === 0) return;
 
-            // Tạo cấu trúc carousel
             gallery.innerHTML = `
                 <div class="custom-gallery-container">
-                    <button class="prev-btn">Trước</button>
                     <div class="main-image">
                         <img src="${images[0].querySelector('img').src}" alt="Main Image">
+                        <button class="zoom-btn">Zoom</button>
                     </div>
-                    <button class="next-btn">Sau</button>
                     <div class="thumbnail-container">
                         ${Array.from(images)
                             .map(
@@ -22,18 +20,23 @@
                             )
                             .join('')}
                     </div>
+                    <button class="next-btn">Next</button>
                 </div>
             `;
 
             let currentIndex = 0;
+            const itemsPerView = 4;
 
-            // Thêm CSS cơ bản
             const style = document.createElement('style');
             style.textContent = `
                 .custom-gallery-container {
                     position: relative;
                     margin: 0 auto;
                     text-align: center;
+                }
+                .main-image {
+                    position: relative;
+                    width: 100%;
                 }
                 .main-image img {
                     width: 100%;
@@ -42,15 +45,14 @@
                 }
                 .thumbnail-container {
                     display: flex;
-                    justify-content: center;
+                    overflow-x: hidden; /* Ẩn phần thừa để tạo carousel */
+                    white-space: nowrap;
                     gap: 10px;
                     margin-top: 10px;
-                    flex-wrap: wrap;
+                    transition: transform 0.5s ease; /* Hiệu ứng chuyển động mượt */
                 }
                 .thumbnail {
-                    position: relative;
-                    flex: 0 0 auto;
-                    width: 200px;
+                    flex: 0 0 ${100 / itemsPerView}%; /* Chia đều 4 ảnh trong 100% chiều rộng */
                     height: 100px;
                     overflow: hidden;
                 }
@@ -63,15 +65,15 @@
                 }
                 .thumbnail.active img,
                 .thumbnail:hover img {
-                    opacity: 1; /* Ảnh active hoặc hover không mờ */
+                    opacity: 1;
                 }
                 .thumbnail:not(.active) img {
-                    opacity: 0.5; /* Lớp phủ mờ cho ảnh không active */
+                    opacity: 0.5;
                 }
-                .prev-btn, .next-btn {
+                .next-btn {
                     position: absolute;
-                    top: 50%;
-                    transform: translateY(-50%);
+                    bottom: 10px;
+                    right: 10px;
                     background: rgba(0,0,0,0.5);
                     color: white;
                     border: none;
@@ -79,8 +81,17 @@
                     cursor: pointer;
                     z-index: 10;
                 }
-                .prev-btn { left: 0; }
-                .next-btn { right: 0; }
+                .zoom-btn {
+                    position: absolute;
+                    bottom: 10px;
+                    left: 10px;
+                    background: rgba(0,0,0,0.5);
+                    color: white;
+                    border: none;
+                    padding: 10px;
+                    cursor: pointer;
+                    z-index: 10;
+                }
                 .modal {
                     display: none;
                     position: fixed;
@@ -119,8 +130,9 @@
 
             const mainImage = gallery.querySelector('.main-image img');
             const thumbnails = gallery.querySelectorAll('.thumbnail img');
-            const prevBtn = gallery.querySelector('.prev-btn');
+            const thumbnailContainer = gallery.querySelector('.thumbnail-container');
             const nextBtn = gallery.querySelector('.next-btn');
+            const zoomBtn = gallery.querySelector('.zoom-btn');
             const closeModal = modal.querySelector('.close');
             const modalContent = modal.querySelector('.modal-content');
 
@@ -133,14 +145,17 @@
                 });
             }
 
-            prevBtn.addEventListener('click', () => {
-                const newIndex = (currentIndex - 1 + images.length) % images.length;
-                updateMainImage(newIndex);
-            });
+            function slideThumbnails() {
+                const thumbnailWidth = thumbnails[0].closest('.thumbnail').offsetWidth + 10; // Chiều rộng + gap
+                const maxOffset = Math.max(0, thumbnails.length - itemsPerView);
+                const newIndex = Math.min(currentIndex + 1, maxOffset);
+                thumbnailContainer.style.transform = `translateX(-${newIndex * thumbnailWidth}px)`;
+                currentIndex = newIndex;
+                updateMainImage(currentIndex);
+            }
 
             nextBtn.addEventListener('click', () => {
-                const newIndex = (currentIndex + 1) % images.length;
-                updateMainImage(newIndex);
+                slideThumbnails();
             });
 
             thumbnails.forEach((thumb) => {
@@ -148,6 +163,11 @@
                     const index = parseInt(thumb.getAttribute('data-index'));
                     updateMainImage(index);
                 });
+            });
+
+            zoomBtn.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                modalContent.src = mainImage.src;
             });
 
             mainImage.addEventListener('click', () => {

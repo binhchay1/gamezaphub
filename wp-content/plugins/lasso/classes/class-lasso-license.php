@@ -143,8 +143,9 @@ class Lasso_License {
 		);
 
 		$encrypted_base64 = Encrypt::encrypt_aes( $data, true );
+		$lasso_link = '';
 
-		$lasso_link = LASSO_LINK . '/server/update?' . $encrypted_base64;
+		// $lasso_link = LASSO_LINK . '/server/update?' . $encrypted_base64;
 
 		return $lasso_link;
 	}
