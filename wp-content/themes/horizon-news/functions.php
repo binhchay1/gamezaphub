@@ -675,7 +675,7 @@ add_action('template_redirect', function () {
 });
 
 add_filter('get_the_archive_title', function ($title) {
-	if (is_category() and is_tag()) {
+	if (is_category() or is_tag()) {
 		$title = single_cat_title('', false);
 	}
 
@@ -683,7 +683,7 @@ add_filter('get_the_archive_title', function ($title) {
 });
 
 add_filter('get_the_archive_description', function ($description) {
-	if (is_category() and is_tag()) {
+	if (is_category() or is_tag()) {
 		$description = strip_tags(category_description());
 	}
 	return '<div class="archive-description">' . $description . '</div>';
