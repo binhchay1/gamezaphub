@@ -521,14 +521,22 @@ add_action('save_post', function ($post_id) {
 add_action('init', function () {
     global $pagenow;
 
-    if ($pagenow === 'wp-login.php' && !isset($_GET['action'])) {
+    // Chỉ redirect nếu người dùng chưa đăng nhập
+    if ($pagenow === 'wp-login.php' && !isset($_GET['action']) && !is_user_logged_in()) {
         wp_redirect(home_url('/dang-nhap'));
         exit;
     }
 
     if ($pagenow === 'wp-login.php' && isset($_GET['action']) && $_GET['action'] === 'logout') {
         wp_logout();
-        wp_redirect(home_url('/dang-nhap?loggedout=true'));
+        wp_redirect(home_url('/dang-nhap?loggedout=1'));
+        exit;
+    }
+
+    // Nếu đã đăng nhập, không redirect về /dang-nhap
+    if (is_user_logged_in() && (is_page('dang-nhap') || is_page('dang-ky'))) {
+        $redirect_to = wp_get_referer() ? wp_get_referer() : home_url('/');
+        wp_redirect($redirect_to);
         exit;
     }
 });
@@ -641,3 +649,18 @@ function custom_reset_password_handler() {
     reset_password($user, $new_password);
     wp_send_json_success(array('redirect' => home_url('/dang-nhap?password_reset=1')));
 }
+
+// Đảm bảo cookie hoạt động với HTTPS
+add_action('init', function() {
+    if (is_ssl()) {
+        add_filter('secure_auth_cookie', '__return_true');
+        add_filter('secure_signed_cookie', '__return_true');
+    }
+});
+
+// Thiết lập cookie domain
+add_action('init', function() {
+    if (!defined('COOKIE_DOMAIN')) {
+        define('COOKIE_DOMAIN', '.gamezpub.com'); // Đảm bảo cookie hoạt động trên tất cả subdomain
+    }
+});

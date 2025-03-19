@@ -10,7 +10,7 @@ require_once get_template_directory() . '/inc/lostpassword-handler.php';
 
 <div class="auth-container">
     <div class="auth-form">
-        <h2><?php _e('Reset Password', 'your-theme'); ?></h2>
+        <h2><?php _e('Quên mật khẩu', 'horizon-new'); ?></h2>
         <?php if (!empty($lostpassword_error)) : ?>
             <p class="error"><?php echo esc_html($lostpassword_error); ?></p>
         <?php endif; ?>
@@ -20,12 +20,12 @@ require_once get_template_directory() . '/inc/lostpassword-handler.php';
         <form method="post" class="lostpassword-form" id="lostpassword-form">
             <?php wp_nonce_field('lostpassword_action', 'lostpassword_nonce'); ?>
             <div class="form-group">
-                <input type="text" name="user_login" id="user_login" placeholder="<?php _e('Username or Email', 'your-theme'); ?>" required>
+                <input type="text" name="user_login" id="user_login" placeholder="<?php _e('Tên đăng nhập hoặc địa chỉ hòm thư', 'horizon-new'); ?>" required>
             </div>
-            <button type="submit" name="lostpassword"><?php _e('SEND RESET LINK', 'your-theme'); ?></button>
+            <button type="submit" name="lostpassword"><?php _e('GỬI YÊU CẦU', 'horizon-new'); ?></button>
         </form>
         <p class="auth-links">
-            <a href="<?php echo home_url('/login'); ?>"><?php _e('Back to Login', 'your-theme'); ?> →</a>
+            <a href="<?php echo home_url('/dang-ky'); ?>"><?php _e('Quay lại đăng ký', 'horizon-new'); ?> →</a>
         </p>
     </div>
 </div>

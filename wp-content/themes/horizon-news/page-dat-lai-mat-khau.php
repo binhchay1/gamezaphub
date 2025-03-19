@@ -10,7 +10,7 @@ require_once get_template_directory() . '/inc/resetpassword-handler.php';
 
 <div class="auth-container">
     <div class="auth-form">
-        <h2><?php _e('Set New Password', 'your-theme'); ?></h2>
+        <h2><?php _e('Đặt mật khẩu mới', 'your-theme'); ?></h2>
         <?php if (!empty($resetpassword_error)) : ?>
             <p class="error"><?php echo esc_html($resetpassword_error); ?></p>
         <?php endif; ?>
@@ -22,12 +22,12 @@ require_once get_template_directory() . '/inc/resetpassword-handler.php';
             <input type="hidden" name="key" value="<?php echo esc_attr($_GET['key'] ?? ''); ?>">
             <input type="hidden" name="login" value="<?php echo esc_attr($_GET['login'] ?? ''); ?>">
             <div class="form-group">
-                <input type="password" name="new_password" id="new_password" placeholder="<?php _e('New Password', 'your-theme'); ?>" required>
+                <input type="password" name="new_password" id="new_password" placeholder="<?php _e('Mật khẩu mới', 'horizon-new'); ?>" required>
             </div>
-            <button type="submit" name="resetpassword"><?php _e('RESET PASSWORD', 'your-theme'); ?></button>
+            <button type="submit" name="resetpassword"><?php _e('ĐẶT LẠI MẬT KHẨU', 'horizon-new'); ?></button>
         </form>
         <p class="auth-links">
-            <a href="<?php echo home_url('/login'); ?>"><?php _e('Back to Login', 'your-theme'); ?> →</a>
+            <a href="<?php echo home_url('/dang-ky'); ?>"><?php _e('Quay lại đăng ký', 'horizon-new'); ?> →</a>
         </p>
     </div>
 </div>

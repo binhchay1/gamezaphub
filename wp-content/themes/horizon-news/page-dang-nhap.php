@@ -10,7 +10,7 @@ require_once get_template_directory() . '/inc/login-handler.php';
 
 <div class="auth-container">
     <div class="auth-form">
-        <h2><?php _e('Member Login', 'your-theme'); ?></h2>
+        <h2><?php _e('Đăng nhập', 'your-theme'); ?></h2>
         <?php if (!empty($login_error)) : ?>
             <p class="error"><?php echo esc_html($login_error); ?></p>
         <?php endif; ?>
@@ -20,18 +20,18 @@ require_once get_template_directory() . '/inc/login-handler.php';
         <form method="post" class="login-form" id="login-form">
             <?php wp_nonce_field('login_action', 'login_nonce'); ?>
             <div class="form-group">
-                <input type="text" name="username" id="username" placeholder="<?php _e('Email', 'your-theme'); ?>" required>
+                <input type="text" name="username" id="username" placeholder="<?php _e('Tên tài khoản', 'horizon-new'); ?>" required>
             </div>
             <div class="form-group">
-                <input type="password" name="password" id="password" placeholder="<?php _e('Password', 'your-theme'); ?>" required>
+                <input type="password" name="password" id="password" placeholder="<?php _e('Mật khẩu', 'horizon-new'); ?>" required>
             </div>
-            <button type="submit" name="login"><?php _e('LOGIN', 'your-theme'); ?></button>
+            <button type="submit" name="login"><?php _e('ĐĂNG NHẬP', 'your-theme'); ?></button>
         </form>
         <p class="auth-links">
-            <a href="<?php echo home_url('/lostpassword'); ?>"><?php _e('Forget Username/Password?', 'your-theme'); ?></a>
+            <a href="<?php echo home_url('/quen-mat-khau'); ?>"><?php _e('Quên mật khẩu?', 'horizon-new'); ?></a>
         </p>
         <p class="auth-links">
-            <a href="<?php echo home_url('/register'); ?>"><?php _e('Create your Account', 'your-theme'); ?> →</a>
+            <a href="<?php echo home_url('/dang-ky'); ?>"><?php _e('Đăng ký', 'horizon-new'); ?> →</a>
         </p>
     </div>
 </div>
