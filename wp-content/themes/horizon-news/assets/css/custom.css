@@ -12,3 +12,87 @@
 .mt-3 {
     margin-top: 1rem;
 }
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.login-button,
+.register-button {
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.login-button {
+    background: #007bff;
+    color: #fff;
+}
+
+.login-button:hover {
+    background: #0056b3;
+}
+
+.register-button {
+    background: #28a745;
+    color: #fff;
+}
+
+.register-button:hover {
+    background: #218838;
+}
+
+.user-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-info img {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+}
+
+.user-name {
+    color: #fff;
+    font-weight: 500;
+}
+
+.dropdown-menu {
+    display: none; /* Đảm bảo ẩn mặc định */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #333;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+    background: #444;
+}
+
+.user-menu:hover .dropdown-menu {
+    display: block;
+}
