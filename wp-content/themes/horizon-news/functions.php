@@ -519,148 +519,157 @@ add_action('save_post', function ($post_id) {
 
 // Chuyển hướng wp-login.php
 add_action('init', function () {
-    global $pagenow;
+	global $pagenow;
 
-    // Chỉ redirect nếu người dùng chưa đăng nhập
-    if ($pagenow === 'wp-login.php' && !isset($_GET['action']) && !is_user_logged_in()) {
-        wp_redirect(home_url('/dang-nhap'));
-        exit;
-    }
+	// Chỉ redirect nếu người dùng chưa đăng nhập
+	if ($pagenow === 'wp-login.php' && !isset($_GET['action']) && !is_user_logged_in()) {
+		wp_redirect(home_url('/dang-nhap'));
+		exit;
+	}
 
-    if ($pagenow === 'wp-login.php' && isset($_GET['action']) && $_GET['action'] === 'logout') {
-        wp_logout();
-        wp_redirect(home_url('/dang-nhap?loggedout=1'));
-        exit;
-    }
+	if ($pagenow === 'wp-login.php' && isset($_GET['action']) && $_GET['action'] === 'logout') {
+		wp_logout();
+		wp_redirect(home_url('/dang-nhap?loggedout=1'));
+		exit;
+	}
 
-    // Nếu đã đăng nhập, không redirect về /dang-nhap
-    if (is_user_logged_in() && (is_page('dang-nhap') || is_page('dang-ky'))) {
-        $redirect_to = wp_get_referer() ? wp_get_referer() : home_url('/');
-        wp_redirect($redirect_to);
-        exit;
-    }
+	// Nếu đã đăng nhập, không redirect về /dang-nhap
+	if (is_user_logged_in() && (is_page('dang-nhap') || is_page('dang-ky'))) {
+		$redirect_to = wp_get_referer() ? wp_get_referer() : home_url('/');
+		wp_redirect($redirect_to);
+		exit;
+	}
 });
 
 // Xử lý đăng nhập qua AJAX
 add_action('wp_ajax_custom_login', 'custom_login_handler');
 add_action('wp_ajax_nopriv_custom_login', 'custom_login_handler');
-function custom_login_handler() {
-    check_ajax_referer('login_action', 'login_nonce');
+function custom_login_handler()
+{
+	check_ajax_referer('login_action', 'login_nonce');
 
-    $creds = array(
-        'user_login'    => sanitize_text_field($_POST['username']),
-        'user_password' => $_POST['password'],
-        'remember'      => true,
-    );
-    $user = wp_signon($creds, false);
+	$creds = array(
+		'user_login'    => sanitize_text_field($_POST['username']),
+		'user_password' => $_POST['password'],
+		'remember'      => true,
+	);
+	$user = wp_signon($creds, false);
 
-    if (is_wp_error($user)) {
-        wp_send_json_error(array('message' => $user->get_error_message()));
-    } else {
-        $user_data = get_userdata($user->ID);
-        $user_roles = $user_data->roles;
-        $redirect = in_array('administrator', $user_roles) ? admin_url() : (wp_get_referer() ? wp_get_referer() : home_url('/'));
-        wp_send_json_success(array('redirect' => $redirect));
-    }
+	if (is_wp_error($user)) {
+		wp_send_json_error(array('message' => $user->get_error_message()));
+	} else {
+		$user_data = get_userdata($user->ID);
+		$user_roles = $user_data->roles;
+		$redirect = in_array('administrator', $user_roles) ? admin_url() : (wp_get_referer() ? wp_get_referer() : home_url('/'));
+		wp_send_json_success(array('redirect' => $redirect));
+	}
 }
 
 // Xử lý đăng ký qua AJAX
 add_action('wp_ajax_custom_register', 'custom_register_handler');
 add_action('wp_ajax_nopriv_custom_register', 'custom_register_handler');
-function custom_register_handler() {
-    check_ajax_referer('register_action', 'register_nonce');
+function custom_register_handler()
+{
+	check_ajax_referer('register_action', 'register_nonce');
 
-    $user_data = array(
-        'user_login' => sanitize_text_field($_POST['username']),
-        'user_email' => sanitize_email($_POST['email']),
-        'user_pass'  => $_POST['password'],
-        'first_name' => sanitize_text_field($_POST['first_name']),
-        'last_name'  => sanitize_text_field($_POST['last_name']),
-        'role'       => 'subscriber',
-    );
-    $user_id = wp_insert_user($user_data);
+	$user_data = array(
+		'user_login' => sanitize_text_field($_POST['username']),
+		'user_email' => sanitize_email($_POST['email']),
+		'user_pass'  => $_POST['password'],
+		'first_name' => sanitize_text_field($_POST['first_name']),
+		'last_name'  => sanitize_text_field($_POST['last_name']),
+		'role'       => 'subscriber',
+	);
+	$user_id = wp_insert_user($user_data);
 
-    if (is_wp_error($user_id)) {
-        wp_send_json_error(array('message' => $user_id->get_error_message()));
-    } else {
-        wp_new_user_notification($user_id, null, 'both');
-        wp_send_json_success(array('redirect' => home_url('/dang-nhap?registered=1')));
-    }
+	if (is_wp_error($user_id)) {
+		wp_send_json_error(array('message' => $user_id->get_error_message()));
+	} else {
+		wp_new_user_notification($user_id, null, 'both');
+		wp_send_json_success(array('redirect' => home_url('/dang-nhap?registered=1')));
+	}
 }
 
 // Xử lý khôi phục mật khẩu qua AJAX
 add_action('wp_ajax_custom_lostpassword', 'custom_lostpassword_handler');
 add_action('wp_ajax_nopriv_custom_lostpassword', 'custom_lostpassword_handler');
-function custom_lostpassword_handler() {
-    check_ajax_referer('lostpassword_action', 'lostpassword_nonce');
+function custom_lostpassword_handler()
+{
+	check_ajax_referer('lostpassword_action', 'lostpassword_nonce');
 
-    $user_login = sanitize_text_field($_POST['user_login']);
-    $user = get_user_by('login', $user_login);
-    if (!$user) {
-        $user = get_user_by('email', $user_login);
-    }
+	$user_login = sanitize_text_field($_POST['user_login']);
+	$user = get_user_by('login', $user_login);
+	if (!$user) {
+		$user = get_user_by('email', $user_login);
+	}
 
-    if (!$user) {
-        wp_send_json_error(array('message' => __('Tên đăng nhập hoặc email không tồn tại.', 'your-theme')));
-    }
+	if (!$user) {
+		wp_send_json_error(array('message' => __('Tên đăng nhập hoặc email không tồn tại.', 'your-theme')));
+	}
 
-    $reset_key = get_password_reset_key($user);
-    if (is_wp_error($reset_key)) {
-        wp_send_json_error(array('message' => __('Không thể tạo liên kết khôi phục. Vui lòng thử lại.', 'your-theme')));
-    }
+	$reset_key = get_password_reset_key($user);
+	if (is_wp_error($reset_key)) {
+		wp_send_json_error(array('message' => __('Không thể tạo liên kết khôi phục. Vui lòng thử lại.', 'your-theme')));
+	}
 
-    $reset_url = add_query_arg(
-        array(
-            'key' => $reset_key,
-            'login' => rawurlencode($user->user_login),
-        ),
-        home_url('/dat-lai-mat-khau')
-    );
+	$reset_url = add_query_arg(
+		array(
+			'key' => $reset_key,
+			'login' => rawurlencode($user->user_login),
+		),
+		home_url('/dat-lai-mat-khau')
+	);
 
-    $message = __('Ai đó đã yêu cầu đặt lại mật khẩu cho tài khoản của bạn:', 'your-theme') . "\r\n\r\n";
-    $message .= sprintf(__('Tên đăng nhập: %s', 'your-theme'), $user->user_login) . "\r\n\r\n";
-    $message .= __('Để đặt lại mật khẩu, hãy nhấp vào liên kết sau:', 'your-theme') . "\r\n\r\n";
-    $message .= $reset_url . "\r\n\r\n";
-    $message .= __('Nếu bạn không yêu cầu điều này, vui lòng bỏ qua email này.', 'your-theme');
+	$message = __('Ai đó đã yêu cầu đặt lại mật khẩu cho tài khoản của bạn:', 'your-theme') . "\r\n\r\n";
+	$message .= sprintf(__('Tên đăng nhập: %s', 'your-theme'), $user->user_login) . "\r\n\r\n";
+	$message .= __('Để đặt lại mật khẩu, hãy nhấp vào liên kết sau:', 'your-theme') . "\r\n\r\n";
+	$message .= $reset_url . "\r\n\r\n";
+	$message .= __('Nếu bạn không yêu cầu điều này, vui lòng bỏ qua email này.', 'your-theme');
 
-    $subject = sprintf(__('[%s] Đặt lại mật khẩu', 'your-theme'), get_bloginfo('name'));
-    if (wp_mail($user->user_email, $subject, $message)) {
-        wp_send_json_success(array('message' => __('Liên kết khôi phục đã được gửi đến email của bạn.', 'your-theme')));
-    } else {
-        wp_send_json_error(array('message' => __('Không thể gửi email. Vui lòng thử lại.', 'your-theme')));
-    }
+	$subject = sprintf(__('[%s] Đặt lại mật khẩu', 'your-theme'), get_bloginfo('name'));
+	if (wp_mail($user->user_email, $subject, $message)) {
+		wp_send_json_success(array('message' => __('Liên kết khôi phục đã được gửi đến email của bạn.', 'your-theme')));
+	} else {
+		wp_send_json_error(array('message' => __('Không thể gửi email. Vui lòng thử lại.', 'your-theme')));
+	}
 }
 
 // Xử lý đặt lại mật khẩu qua AJAX
 add_action('wp_ajax_custom_reset_password', 'custom_reset_password_handler');
 add_action('wp_ajax_nopriv_custom_reset_password', 'custom_reset_password_handler');
-function custom_reset_password_handler() {
-    check_ajax_referer('resetpassword_action', 'resetpassword_nonce');
+function custom_reset_password_handler()
+{
+	check_ajax_referer('resetpassword_action', 'resetpassword_nonce');
 
-    $key = sanitize_text_field($_POST['key']);
-    $login = sanitize_text_field($_POST['login']);
-    $new_password = $_POST['new_password'];
+	$key = sanitize_text_field($_POST['key']);
+	$login = sanitize_text_field($_POST['login']);
+	$new_password = $_POST['new_password'];
 
-    $user = check_password_reset_key($key, $login);
-    if (is_wp_error($user)) {
-        wp_send_json_error(array('message' => $user->get_error_message()));
-    }
+	$user = check_password_reset_key($key, $login);
+	if (is_wp_error($user)) {
+		wp_send_json_error(array('message' => $user->get_error_message()));
+	}
 
-    reset_password($user, $new_password);
-    wp_send_json_success(array('redirect' => home_url('/dang-nhap?password_reset=1')));
+	reset_password($user, $new_password);
+	wp_send_json_success(array('redirect' => home_url('/dang-nhap?password_reset=1')));
 }
 
-// Đảm bảo cookie hoạt động với HTTPS
-add_action('init', function() {
-    if (is_ssl()) {
-        add_filter('secure_auth_cookie', '__return_true');
-        add_filter('secure_signed_cookie', '__return_true');
-    }
+add_action('init', function () {
+	if (is_ssl()) {
+		add_filter('secure_auth_cookie', '__return_true');
+		add_filter('secure_signed_cookie', '__return_true');
+	}
 });
 
-// Thiết lập cookie domain
-add_action('init', function() {
-    if (!defined('COOKIE_DOMAIN')) {
-        define('COOKIE_DOMAIN', '.gamezpub.com'); // Đảm bảo cookie hoạt động trên tất cả subdomain
-    }
+add_action('init', function () {
+	if (!defined('COOKIE_DOMAIN')) {
+		define('COOKIE_DOMAIN', '.gamezpub.com');
+	}
+});
+
+add_action('template_redirect', function () {
+	if (is_404()) {
+		status_header(200);
+		nocache_headers();
+	}
 });

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying 404 pages (not found)
  *
@@ -9,23 +10,23 @@
 
 get_header();
 ?>
+<main id="primary" class="site-main">
+	<div id="notfound">
+		<div class="notfound">
+			<div class="notfound-404">
+				<h1>4<span></span>4</h1>
+			</div>
+			<h2>Xin lỗi! Trang web không tìm thấy</h2>
+			<p>Xin lỗi nhưng trang bạn đang tìm kiếm không tồn tại, đã bị xóa, tên đã thay đổi hoặc tạm thời không khả dụng</p>
+			<a href="<?php home_url('/') ?>">Quay lại trang chủ</a>
+		</div>
 
-	<main id="primary" class="site-main">
-
-		<section class="error-404 not-found">
-			<header class="page-header">
-				<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'horizon-news' ); ?></h1>
-			</header><!-- .page-header -->
-
-			<div class="page-content">
-				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try a search?', 'horizon-news' ); ?></p>
-
-				<?php get_search_form(); ?>
-
-			</div><!-- .page-content -->
-		</section><!-- .error-404 -->
-
-	</main><!-- #main -->
+		<?php get_search_form(); ?>
+	</div>
+</main>
 
 <?php
+if (horizon_news_is_sidebar_enabled()) {
+	get_sidebar();
+}
 get_footer();
