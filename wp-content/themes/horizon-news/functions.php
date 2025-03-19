@@ -367,7 +367,6 @@ function add_owl_assets_to_frontend()
 }
 add_action('wp_enqueue_scripts', 'add_owl_assets_to_frontend');
 
-// Thêm rewrite rules cho các path
 function add_custom_rewrite_rules()
 {
 	add_rewrite_rule(
@@ -517,11 +516,9 @@ add_action('save_post', function ($post_id) {
 	}
 });
 
-// Chuyển hướng wp-login.php
 add_action('init', function () {
 	global $pagenow;
 
-	// Chỉ redirect nếu người dùng chưa đăng nhập
 	if ($pagenow === 'wp-login.php' && !isset($_GET['action']) && !is_user_logged_in()) {
 		wp_redirect(home_url('/dang-nhap'));
 		exit;
@@ -533,7 +530,6 @@ add_action('init', function () {
 		exit;
 	}
 
-	// Nếu đã đăng nhập, không redirect về /dang-nhap
 	if (is_user_logged_in() && (is_page('dang-nhap') || is_page('dang-ky'))) {
 		$redirect_to = wp_get_referer() ? wp_get_referer() : home_url('/');
 		wp_redirect($redirect_to);
@@ -541,7 +537,6 @@ add_action('init', function () {
 	}
 });
 
-// Xử lý đăng nhập qua AJAX
 add_action('wp_ajax_custom_login', 'custom_login_handler');
 add_action('wp_ajax_nopriv_custom_login', 'custom_login_handler');
 function custom_login_handler()
@@ -565,7 +560,6 @@ function custom_login_handler()
 	}
 }
 
-// Xử lý đăng ký qua AJAX
 add_action('wp_ajax_custom_register', 'custom_register_handler');
 add_action('wp_ajax_nopriv_custom_register', 'custom_register_handler');
 function custom_register_handler()
@@ -590,7 +584,6 @@ function custom_register_handler()
 	}
 }
 
-// Xử lý khôi phục mật khẩu qua AJAX
 add_action('wp_ajax_custom_lostpassword', 'custom_lostpassword_handler');
 add_action('wp_ajax_nopriv_custom_lostpassword', 'custom_lostpassword_handler');
 function custom_lostpassword_handler()
@@ -634,7 +627,6 @@ function custom_lostpassword_handler()
 	}
 }
 
-// Xử lý đặt lại mật khẩu qua AJAX
 add_action('wp_ajax_custom_reset_password', 'custom_reset_password_handler');
 add_action('wp_ajax_nopriv_custom_reset_password', 'custom_reset_password_handler');
 function custom_reset_password_handler()
