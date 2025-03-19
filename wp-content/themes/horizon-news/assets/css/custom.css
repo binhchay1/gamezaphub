@@ -1,188 +1,231 @@
+body {
+  font-family: Roboto sans-serif !important;
+}
+
 .game-detail-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
 .ml-3 {
-    margin-left: 1rem;
+  margin-left: 1rem;
 }
 
 .mt-3 {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .auth-buttons {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .login-button,
 .register-button {
-    padding: 8px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background 0.3s;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s;
 }
 
 .login-button {
-    background: #007bff;
-    color: #fff;
+  background: #007bff;
+  color: #fff;
 }
 
 .login-button:hover {
-    background: #0056b3;
+  background: #0056b3;
 }
 
 .register-button {
-    background: #28a745;
-    color: #fff;
+  background: #28a745;
+  color: #fff;
 }
 
 .register-button:hover {
-    background: #218838;
+  background: #218838;
 }
 
 .user-menu {
-    position: relative;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .user-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .user-info img {
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
 }
 
 .user-name {
-    color: #fff;
-    font-weight: 500;
+  color: #fff;
+  font-weight: 500;
 }
 
 .dropdown-menu {
-    display: none; /* Đảm bảo ẩn mặc định */
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: #333;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+  display: none;
+  /* Đảm bảo ẩn mặc định */
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #333;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
 
 .dropdown-menu a {
-    display: block;
-    padding: 10px 15px;
-    color: #fff;
-    text-decoration: none;
-    white-space: nowrap;
+  display: block;
+  padding: 10px 15px;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .dropdown-menu a:hover {
-    background: #444;
+  background: #444;
 }
 
 .user-menu:hover .dropdown-menu {
-    display: block;
+  display: block;
 }
 
 #notfound {
-    position: relative;
-    height: 100vh;
-  }
-  
-  #notfound .notfound {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-  }
-  
-  .notfound {
-    max-width: 520px;
-    width: 100%;
-    text-align: center;
-    line-height: 1.4;
-  }
-  
+  position: relative;
+  height: 100vh;
+}
+
+#notfound .notfound {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.notfound {
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.notfound .notfound-404 {
+  height: 190px;
+}
+
+.notfound .notfound-404 h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 146px;
+  font-weight: 700;
+  margin: 0px;
+  color: #232323;
+}
+
+.notfound .notfound-404 h1>span {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  background-image: url('../img/emoji.png');
+  background-size: cover;
+  -webkit-transform: scale(1.4);
+  -ms-transform: scale(1.4);
+  transform: scale(1.4);
+  z-index: -1;
+}
+
+.notfound h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+  color: #232323;
+}
+
+.notfound p {
+  font-family: 'Montserrat', sans-serif;
+  color: #787878;
+  font-weight: 300;
+}
+
+.notfound a {
+  font-family: 'Montserrat', sans-serif;
+  display: inline-block;
+  padding: 12px 30px;
+  font-weight: 700;
+  background-color: #f99827;
+  color: #fff;
+  border-radius: 40px;
+  text-decoration: none;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.notfound a:hover {
+  opacity: 0.8;
+}
+
+.wp-caption-text,
+.wp-block-image figcaption {
+  display: none !important;
+}
+
+.custom-gallery-container {
+  width: 100% !important;
+}
+
+dd {
+  margin-inline: inherit !important;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+iframe {
+  width: 100%;
+  height: 81vh;
+  border: none;
+  overflow: hidden;
+}
+
+body.single .site-main>article .mag-post-single {
+  padding: 25px !important;
+}
+
+@media only screen and (max-width: 767px) {
   .notfound .notfound-404 {
-    height: 190px;
+    height: 115px;
   }
-  
+
   .notfound .notfound-404 h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 146px;
-    font-weight: 700;
-    margin: 0px;
-    color: #232323;
+    font-size: 86px;
   }
-  
+
   .notfound .notfound-404 h1>span {
-    display: inline-block;
-    width: 120px;
-    height: 120px;
-    background-image: url('../img/emoji.png');
-    background-size: cover;
-    -webkit-transform: scale(1.4);
-        -ms-transform: scale(1.4);
-            transform: scale(1.4);
-    z-index: -1;
+    width: 86px;
+    height: 86px;
   }
-  
-  .notfound h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    margin: 0;
-    text-transform: uppercase;
-    color: #232323;
-  }
-  
-  .notfound p {
-    font-family: 'Montserrat', sans-serif;
-    color: #787878;
-    font-weight: 300;
-  }
-  
-  .notfound a {
-    font-family: 'Montserrat', sans-serif;
-    display: inline-block;
-    padding: 12px 30px;
-    font-weight: 700;
-    background-color: #f99827;
-    color: #fff;
-    border-radius: 40px;
-    text-decoration: none;
-    -webkit-transition: 0.2s all;
-    transition: 0.2s all;
-  }
-  
-  .notfound a:hover {
-    opacity: 0.8;
-  }
-  
-  @media only screen and (max-width: 767px) {
-    .notfound .notfound-404 {
-      height: 115px;
-    }
-    .notfound .notfound-404 h1 {
-      font-size: 86px;
-    }
-    .notfound .notfound-404 h1>span {
-      width: 86px;
-      height: 86px;
-    }
-  }
+}

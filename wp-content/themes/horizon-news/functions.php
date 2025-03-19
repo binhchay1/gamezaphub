@@ -597,12 +597,12 @@ function custom_lostpassword_handler()
 	}
 
 	if (!$user) {
-		wp_send_json_error(array('message' => __('Tên đăng nhập hoặc email không tồn tại.', 'your-theme')));
+		wp_send_json_error(array('message' => __('Tên đăng nhập hoặc email không tồn tại.', 'horizon-new')));
 	}
 
 	$reset_key = get_password_reset_key($user);
 	if (is_wp_error($reset_key)) {
-		wp_send_json_error(array('message' => __('Không thể tạo liên kết khôi phục. Vui lòng thử lại.', 'your-theme')));
+		wp_send_json_error(array('message' => __('Không thể tạo liên kết khôi phục. Vui lòng thử lại.', 'horizon-new')));
 	}
 
 	$reset_url = add_query_arg(
@@ -613,17 +613,17 @@ function custom_lostpassword_handler()
 		home_url('/dat-lai-mat-khau')
 	);
 
-	$message = __('Ai đó đã yêu cầu đặt lại mật khẩu cho tài khoản của bạn:', 'your-theme') . "\r\n\r\n";
-	$message .= sprintf(__('Tên đăng nhập: %s', 'your-theme'), $user->user_login) . "\r\n\r\n";
-	$message .= __('Để đặt lại mật khẩu, hãy nhấp vào liên kết sau:', 'your-theme') . "\r\n\r\n";
+	$message = __('Ai đó đã yêu cầu đặt lại mật khẩu cho tài khoản của bạn:', 'horizon-new') . "\r\n\r\n";
+	$message .= sprintf(__('Tên đăng nhập: %s', 'horizon-new'), $user->user_login) . "\r\n\r\n";
+	$message .= __('Để đặt lại mật khẩu, hãy nhấp vào liên kết sau:', 'horizon-new') . "\r\n\r\n";
 	$message .= $reset_url . "\r\n\r\n";
-	$message .= __('Nếu bạn không yêu cầu điều này, vui lòng bỏ qua email này.', 'your-theme');
+	$message .= __('Nếu bạn không yêu cầu điều này, vui lòng bỏ qua email này.', 'horizon-new');
 
-	$subject = sprintf(__('[%s] Đặt lại mật khẩu', 'your-theme'), get_bloginfo('name'));
+	$subject = sprintf(__('[%s] Đặt lại mật khẩu', 'horizon-new'), get_bloginfo('name'));
 	if (wp_mail($user->user_email, $subject, $message)) {
-		wp_send_json_success(array('message' => __('Liên kết khôi phục đã được gửi đến email của bạn.', 'your-theme')));
+		wp_send_json_success(array('message' => __('Liên kết khôi phục đã được gửi đến email của bạn.', 'horizon-new')));
 	} else {
-		wp_send_json_error(array('message' => __('Không thể gửi email. Vui lòng thử lại.', 'your-theme')));
+		wp_send_json_error(array('message' => __('Không thể gửi email. Vui lòng thử lại.', 'horizon-new')));
 	}
 }
 

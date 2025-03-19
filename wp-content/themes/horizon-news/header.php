@@ -32,7 +32,7 @@
 					<div class="dot"></div>
 				</div>
 			</div>
-		</div><!-- #loader -->
+		</div>
 		<header id="masthead" class="site-header logo-size-small">
 			<?php if (get_theme_mod('horizon_news_enable_topbar', false) === true) : ?>
 				<div class="top-header-part">
@@ -48,7 +48,7 @@
 									<?php if (is_user_logged_in()) : ?>
 										<?php
 										$current_user = wp_get_current_user();
-										$avatar = get_avatar($current_user->ID, 32); // Kích thước avatar 32px
+										$avatar = get_avatar($current_user->ID, 32);
 										?>
 										<div class="user-menu">
 											<div class="user-info">
@@ -100,12 +100,12 @@
 									?>
 										<p class="site-description">
 											<?php
-											echo esc_html($horizon_news_description); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+											echo esc_html($horizon_news_description);
 											?>
 										</p>
 									<?php endif; ?>
 								</div>
-							</div><!-- .site-branding -->
+							</div>
 							<?php
 							$advertisement     = get_theme_mod('horizon_news_header_advertisement', '');
 							$advertisement_url = get_theme_mod('horizon_news_header_advertisement_url', '');
@@ -148,7 +148,7 @@
 										}
 										?>
 									</div>
-								</nav><!-- #site-navigation -->
+								</nav>
 							</div>
 							<div class="bottom-header-right-part">
 								<div class="header-search">
@@ -166,7 +166,7 @@
 					</div>
 				</div>
 			</div>
-		</header><!-- #masthead -->
+		</header>
 
 		<?php
 
