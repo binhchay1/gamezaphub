@@ -673,3 +673,18 @@ add_action('template_redirect', function () {
 		nocache_headers();
 	}
 });
+
+add_filter('get_the_archive_title', function ($title) {
+	if (is_category() and is_tag()) {
+		$title = single_cat_title('', false);
+	}
+
+	return '<h1 class="page-title">' . $title . '</h1>';
+});
+
+add_filter('get_the_archive_description', function ($description) {
+	if (is_category() and is_tag()) {
+		$description = strip_tags(category_description());
+	}
+	return '<div class="archive-description">' . $description . '</div>';
+});
