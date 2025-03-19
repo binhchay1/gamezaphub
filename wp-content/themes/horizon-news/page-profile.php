@@ -84,7 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile']) && 
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        background: linear-gradient(135deg, #6e48aa, #9d50bb);
         padding: 20px;
     }
 
@@ -164,6 +163,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile']) && 
     .success {
         background: #d4edda;
         color: #155724;
+    }
+
+    .right-sidebar .ascendoor-wrapper .ascendoor-page {
+        display: inherit;
     }
 </style>
 

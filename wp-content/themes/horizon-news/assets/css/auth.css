@@ -24,6 +24,10 @@
     color: #333;
 }
 
+.auth-buttons a {
+    color: #fff;
+}
+
 .form-group {
     position: relative;
     margin-bottom: 20px;
