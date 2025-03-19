@@ -135,7 +135,7 @@ $isXbox = false;
 									<?php break; ?>
 								<?php } ?>
 								<span>
-									<a href="/tag/<?php echo $developer['name'] ?>/" target="_blank"><?php echo $developer['name'] ?></a>
+									<a href="/developer/<?php echo $developer['name'] ?>/" target="_blank"><?php echo $developer['name'] ?></a>
 								</span>
 								<?php $countDeveloper++; ?>
 							<?php } ?>
@@ -152,7 +152,7 @@ $isXbox = false;
 									<?php break; ?>
 								<?php } ?>
 								<span>
-									<a href="/tag/<?php echo $publisher['name'] ?>/" target="_blank"><?php echo $publisher['name'] ?></a>
+									<a href="/publisher/<?php echo $publisher['name'] ?>/" target="_blank"><?php echo $publisher['name'] ?></a>
 								</span>
 								<?php $countPublish++; ?>
 							<?php } ?>

@@ -27,99 +27,6 @@
             let currentIndex = 0;
             const itemsPerView = 4;
 
-            const style = document.createElement('style');
-            style.textContent = `
-                .custom-gallery-container {
-                    position: relative;
-                    margin: 0 auto;
-                    text-align: center;
-                }
-                .main-image {
-                    position: relative;
-                    width: 100%;
-                }
-                .main-image img {
-                    width: 100%;
-                    height: auto;
-                    cursor: pointer;
-                }
-                .thumbnail-container {
-                    display: flex;
-                    overflow-x: hidden; /* Ẩn phần thừa để tạo carousel */
-                    white-space: nowrap;
-                    gap: 10px;
-                    margin-top: 10px;
-                    transition: transform 0.5s ease; /* Hiệu ứng chuyển động mượt */
-                }
-                .thumbnail {
-                    flex: 0 0 ${100 / itemsPerView}%; /* Chia đều 4 ảnh trong 100% chiều rộng */
-                    height: 100px;
-                    overflow: hidden;
-                }
-                .thumbnail img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    cursor: pointer;
-                    transition: opacity 0.3s;
-                }
-                .thumbnail.active img,
-                .thumbnail:hover img {
-                    opacity: 1;
-                }
-                .thumbnail:not(.active) img {
-                    opacity: 0.5;
-                }
-                .next-btn {
-                    position: absolute;
-                    bottom: 10px;
-                    right: 10px;
-                    background: rgba(0,0,0,0.5);
-                    color: white;
-                    border: none;
-                    padding: 10px;
-                    cursor: pointer;
-                    z-index: 10;
-                }
-                .zoom-btn {
-                    position: absolute;
-                    bottom: 10px;
-                    left: 10px;
-                    background: rgba(0,0,0,0.5);
-                    color: white;
-                    border: none;
-                    padding: 10px;
-                    cursor: pointer;
-                    z-index: 10;
-                }
-                .modal {
-                    display: none;
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0,0,0,0.9);
-                    justify-content: center;
-                    align-items: center;
-                    z-index: 1000;
-                }
-                .modal-content {
-                    max-width: 90%;
-                    max-height: 90%;
-                }
-                .close {
-                    position: absolute;
-                    top: 10px;
-                    right: 20px;
-                    color: white;
-                    font-size: 30px;
-                    cursor: pointer;
-                }
-            `;
-            document.head.appendChild(style);
-
-            // Thêm modal phóng to
             const modal = document.createElement('div');
             modal.className = 'modal';
             modal.innerHTML = `
@@ -146,7 +53,7 @@
             }
 
             function slideThumbnails() {
-                const thumbnailWidth = thumbnails[0].closest('.thumbnail').offsetWidth + 10; // Chiều rộng + gap
+                const thumbnailWidth = thumbnails[0].closest('.thumbnail').offsetWidth + 10;
                 const maxOffset = Math.max(0, thumbnails.length - itemsPerView);
                 const newIndex = Math.min(currentIndex + 1, maxOffset);
                 thumbnailContainer.style.transform = `translateX(-${newIndex * thumbnailWidth}px)`;
@@ -183,7 +90,6 @@
                 if (e.target === modal) modal.style.display = 'none';
             });
 
-            // Khởi tạo
             updateMainImage(0);
         });
     });

@@ -137,6 +137,7 @@ class Ajax
 					break;
 			}
 		} elseif ('url-links' === $link_type) {
+			// die;
 			$order_by   = $post['order_by'] ?? 'post_modified';
 			$order_type = $post['order_type'] ?? 'desc';
 
@@ -145,6 +146,7 @@ class Ajax
 			$posts_sql          = $lasso_db->set_order($sql, $order_by, $order_type);
 			$posts_sql          = Lasso_Helper::paginate($posts_sql, $page);
 			$posts              = Model::get_results($posts_sql);
+
 			$total['total']     = Model::get_count($sql);
 		} elseif (in_array($link_type, array(Lasso_Setting_Enum::PAGE_URL_DETAILS, Lasso_Setting_Enum::PAGE_TABLE_DETAILS), true) && '' === $filter) {
 			$order_by     = $post['order_by'] ?? '';

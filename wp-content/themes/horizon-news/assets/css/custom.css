@@ -4,3 +4,11 @@
     padding: 20px;
     font-family: Arial, sans-serif;
 }
+
+.ml-3 {
+    margin-left: 1rem;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}

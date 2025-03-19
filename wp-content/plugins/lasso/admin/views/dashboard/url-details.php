@@ -612,7 +612,6 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 				<a href="#" id="btn-confirm-delete" class="red hover-red-text"><i class="far fa-trash-alt"></i> Delete This Link</a>
 			</div>
 		</div>
-
 	</div>
 </section>
 
