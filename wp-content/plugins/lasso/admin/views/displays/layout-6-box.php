@@ -27,7 +27,7 @@ $isXbox = false;
 				<img src="<?php echo $lasso_url->background_image ?>" alt="Game Image" class="game-image">
 				<div class="game-info">
 					<div class="game-title-area">
-						<span class="game-title"><?php echo $lasso_url->name ?></span>
+						<a href="<?php echo $lasso_url->target_url ?>"><span class="game-title"><?php echo $lasso_url->name ?></span></a>
 						<div class="rating-title">GR ★ <?php echo $lasso_url->rating ?>/5</div>
 					</div>
 

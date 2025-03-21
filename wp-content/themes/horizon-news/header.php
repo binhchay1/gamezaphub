@@ -122,14 +122,12 @@
 					</div>
 				</div>
 			</div>
-		</header><!-- #masthead -->
+		</header>
 
 		<?php
 
 		if (! is_front_page() || is_home()) {
-
 			if (is_front_page()) {
-
 				require get_template_directory() . '/sections/sections.php';
 			}
 

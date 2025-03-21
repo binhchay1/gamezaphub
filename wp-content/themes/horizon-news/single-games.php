@@ -28,6 +28,7 @@ if ($game_data) {
     get_footer();
     exit;
 }
+
 ?>
 
 <main id="primary" class="site-main" style="padding-left: 10px; padding-right: 10px;">
@@ -35,7 +36,7 @@ if ($game_data) {
         <h1 class="page-title"><?php echo esc_html($post['post_title']); ?></h1>
         <div class="rating-title">GR ★ 4.47/5</div>
     </header>
-    <div class="<?php echo esc_attr($grid_style); ?> d-flex">
+    <div class="<?php echo esc_attr($grid_style); ?> d-flex main-information">
         <div class="custom-gallery-container">
             <div class="main-image">
                 <img src="<?php echo esc_url($screen_shots[0]); ?>" alt="Main Image">
@@ -104,7 +105,9 @@ if ($game_data) {
     <div class="description-area mt-3">
         <h2 class="description-title">Mô tả</h2>
         <div class="description-content">
-            <?php echo wp_kses_post($post['meta']['description']); ?>
+            <?php if (!empty($post['meta']['affiliate_desc'])) {
+                echo wp_kses_post($post['meta']['affiliate_desc']);
+            } ?>
         </div>
     </div>
 

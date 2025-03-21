@@ -367,7 +367,6 @@ function add_owl_assets_to_frontend()
 }
 add_action('wp_enqueue_scripts', 'add_owl_assets_to_frontend');
 
-// Thêm rewrite rules cho các path
 function add_custom_rewrite_rules()
 {
 	add_rewrite_rule(
@@ -433,6 +432,29 @@ function custom_games_template($template)
 	return $template;
 }
 add_filter('template_include', 'custom_games_template');
+
+function adjust_main_query($query)
+{
+	if ($query->is_main_query() && !is_admin()) {
+		if (get_query_var('custom_games') == 1) {
+			$query->is_front_page = false;
+			$query->is_singular = true;
+			$query->is_page = false;
+			$query->is_home = false;
+		} elseif (get_query_var('custom_developers') == 1) {
+			$query->is_front_page = false;
+			$query->is_singular = true;
+			$query->is_page = false;
+			$query->is_home = false;
+		} elseif (get_query_var('custom_publishers') == 1) {
+			$query->is_front_page = false;
+			$query->is_singular = true;
+			$query->is_page = false;
+			$query->is_home = false;
+		}
+	}
+}
+add_action('pre_get_posts', 'adjust_main_query');
 
 function get_game_data($slug)
 {

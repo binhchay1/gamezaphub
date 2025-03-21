@@ -163,6 +163,18 @@
     cursor: pointer;
 }
 
-.description-content p,h2 {
+.description-content p,
+h2 {
     margin: 0;
+}
+
+@media (max-width: 768px) {
+    .main-information {
+        flex-direction: column;
+    }
+
+    .information-area {
+        margin-left: 0;
+        margin-top: 1.5rem;
+    }
 }
