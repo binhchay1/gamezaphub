@@ -517,29 +517,29 @@ add_action('save_post', function ($post_id) {
 	}
 });
 
-// Chuyển hướng wp-login.php
-add_action('init', function () {
-	global $pagenow;
+// // Chuyển hướng wp-login.php
+// add_action('init', function () {
+// 	global $pagenow;
 
-	// Chỉ redirect nếu người dùng chưa đăng nhập
-	if ($pagenow === 'wp-login.php' && !isset($_GET['action']) && !is_user_logged_in()) {
-		wp_redirect(home_url('/dang-nhap'));
-		exit;
-	}
+// 	// Chỉ redirect nếu người dùng chưa đăng nhập
+// 	if ($pagenow === 'wp-login.php' && !isset($_GET['action']) && !is_user_logged_in()) {
+// 		wp_redirect(home_url('/dang-nhap'));
+// 		exit;
+// 	}
 
-	if ($pagenow === 'wp-login.php' && isset($_GET['action']) && $_GET['action'] === 'logout') {
-		wp_logout();
-		wp_redirect(home_url('/dang-nhap?loggedout=1'));
-		exit;
-	}
+// 	if ($pagenow === 'wp-login.php' && isset($_GET['action']) && $_GET['action'] === 'logout') {
+// 		wp_logout();
+// 		wp_redirect(home_url('/dang-nhap?loggedout=1'));
+// 		exit;
+// 	}
 
-	// Nếu đã đăng nhập, không redirect về /dang-nhap
-	if (is_user_logged_in() && (is_page('dang-nhap') || is_page('dang-ky'))) {
-		$redirect_to = wp_get_referer() ? wp_get_referer() : home_url('/');
-		wp_redirect($redirect_to);
-		exit;
-	}
-});
+// 	// Nếu đã đăng nhập, không redirect về /dang-nhap
+// 	if (is_user_logged_in() && (is_page('dang-nhap') || is_page('dang-ky'))) {
+// 		$redirect_to = wp_get_referer() ? wp_get_referer() : home_url('/');
+// 		wp_redirect($redirect_to);
+// 		exit;
+// 	}
+// });
 
 // Xử lý đăng nhập qua AJAX
 add_action('wp_ajax_custom_login', 'custom_login_handler');

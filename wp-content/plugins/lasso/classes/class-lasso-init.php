@@ -269,9 +269,9 @@ class Lasso_Init {
 
 		if ( 'affiliate-plugin' === $plugin_name || 'lasso' === $plugin_name ) {
 			$lasso_folder_name = 'lasso';
-			$lasso_link        = Lasso_License::get_plugin_update_url();
-			$lasso_update      = new Lasso_Puc_v4p4_Plugin_UpdateChecker( $lasso_link, LASSO_PLUGIN_MAIN_FILE, $lasso_folder_name );
-			$api               = $lasso_update->requestInfo( array( 'checking_for_updates' => '1' ) );
+			// $lasso_link        = Lasso_License::get_plugin_update_url();
+			// $lasso_update      = new Lasso_Puc_v4p4_Plugin_UpdateChecker( $lasso_link, LASSO_PLUGIN_MAIN_FILE, $lasso_folder_name );
+			$api               = true;
 		} else {
 			$api = plugins_api(
 				'plugin_information',

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 6.7.x - Development - Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-03-01 13:09:30+0000\n"
+"PO-Revision-Date: 2025-03-14 03:58:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -155,7 +155,7 @@ msgstr "WordPress 6.7 cung cấp các bản cập nhật hiệu suất quan tr�
 
 #: wp-admin/about.php:184
 msgid "Create, edit, remove, and apply font size presets with the next addition to the Styles interface. Override theme defaults or create your own custom font size, complete with fluid typography for responsive font scaling. Get into the details!"
-msgstr "Tạo, chỉnh sửa, xóa và áp dụng cài đặt trước kích thước phông chữ với phần bổ sung tiếp theo vào giao diện Styles. Ghi đè mặc định của chủ đề hoặc tạo kích thước phông chữ tùy chỉnh của riêng bạn, hoàn chỉnh với kiểu chữ linh hoạt để thay đổi kích thước phông chữ phản hồi. Đi vào chi tiết!"
+msgstr "Tạo, chỉnh sửa, xóa và áp dụng cài đặt trước kích thước phông chữ với phần bổ sung tiếp theo vào giao diện Styles. Ghi đè mặc định của giao diện hoặc tạo kích thước phông chữ tùy chỉnh của riêng bạn, hoàn chỉnh với kiểu chữ linh hoạt để thay đổi kích thước phông chữ phản hồi. Đi vào chi tiết!"
 
 #: wp-admin/about.php:183
 msgid "New style section, new possibilities"
@@ -191,7 +191,7 @@ msgstr "Nắm bắt toàn cảnh với tính năng Thu nhỏ"
 
 #: wp-admin/about.php:134
 msgid "Twenty Twenty-Five offers a flexible, design-focused theme that lets you build stunning sites with ease. Tailor your aesthetic with an array of style options, block patterns, and color palettes. Pared down to the essentials, this is a theme that can truly grow with you."
-msgstr "Twenty Twenty-Five cung cấp một chủ đề linh hoạt, tập trung vào thiết kế cho phép bạn dễ dàng xây dựng các trang web tuyệt đẹp. Điều chỉnh thẩm mỹ của bạn với một loạt các tùy chọn kiểu dáng, mẫu khối và bảng màu. Được tinh giản đến mức cần thiết, đây là một chủ đề thực sự có thể phát triển cùng bạn."
+msgstr "Twenty Twenty-Five cung cấp một giao diện linh hoạt, tập trung vào thiết kế cho phép bạn dễ dàng xây dựng các trang web tuyệt đẹp. Điều chỉnh thẩm mỹ của bạn với một loạt các tùy chọn kiểu dáng, mẫu khối và bảng màu. Được tinh giản đến mức cần thiết, đây là một chủ đề thực sự có thể phát triển cùng bạn."
 
 #: wp-admin/about.php:133
 msgid "Endless possibility without complexity"
@@ -303,7 +303,7 @@ msgstr "Tùy chọn tự động tải được chấp nhận"
 
 #: wp-admin/includes/class-wp-site-health.php:2622
 msgid "Autoloaded options are configuration settings for plugins and themes that are automatically loaded with every page load in WordPress. Having too many autoloaded options can slow down your site."
-msgstr "Tùy chọn tự động tải là cài đặt cấu hình cho plugin và chủ đề được tải tự động với mỗi lần tải trang trong WordPress. Có quá nhiều tùy chọn tải tự động có thể làm chậm trang web của bạn."
+msgstr "Tùy chọn tự động tải là cài đặt cấu hình cho plugin và giao diện được tải tự động với mỗi lần tải trang trong WordPress. Có quá nhiều tùy chọn tải tự động có thể làm chậm trang web của bạn."
 
 #. translators: Localized Support reference.
 #: wp-admin/includes/class-wp-site-health.php:2510
@@ -475,13 +475,13 @@ msgstr "ID trang"
 #. theme version.
 #: wp-admin/includes/class-theme-upgrader.php:465
 msgid "The PHP version on your server is %1$s, however the new theme version requires %2$s."
-msgstr "Phiên bản PHP trên máy chủ của bạn là %1$s, tuy nhiên phiên bản mới của chủ đề yêu cầu %2$s."
+msgstr "Phiên bản PHP trên máy chủ của bạn là %1$s, tuy nhiên phiên bản mới của giao diện yêu cầu %2$s."
 
 #. translators: 1: Current WordPress version, 2: WordPress version required by
 #. the new theme version.
 #: wp-admin/includes/class-theme-upgrader.php:451
 msgid "Your WordPress version is %1$s, however the new theme version requires %2$s."
-msgstr "Phiên bản WordPress của bạn là %1$s, tuy nhiên phiên bản mới của chủ đề yêu cầu %2$s."
+msgstr "Phiên bản WordPress của bạn là %1$s, tuy nhiên phiên bản mới của giao diện yêu cầu %2$s."
 
 #: wp-admin/includes/class-plugin-installer-skin.php:130
 #: wp-admin/includes/class-wp-plugins-list-table.php:611
@@ -629,11 +629,11 @@ msgstr "Khôi phục Plugin hoặc Giao diện"
 
 #: wp-admin/update-core.php:1038
 msgid "On systems with fewer resources, this may lead to server timeouts or resource limits being reached. If you encounter an issue during the update process, please create a support forum topic and reference <strong>Rollback</strong> in the issue title."
-msgstr "Trên hệ thống còn ít tài nguyên, điều này có thể dẫn đến thời gian chờ của máy chủ hết hạn hoặc đạt đến giới hạn tài nguyên. Nếu bạn gặp vấn đề trong quá trình cập nhật, vui lòng tạo một chủ đề hỗ trợ trên diễn đàn và tham khảo <strong>Quay lại phiên bản trước</strong> trong tiêu đề vấn đề."
+msgstr "Trên hệ thống còn ít tài nguyên, điều này có thể dẫn đến thời gian chờ của máy chủ hết hạn hoặc đạt đến giới hạn tài nguyên. Nếu bạn gặp vấn đề trong quá trình cập nhật, vui lòng tạo một giao diện hỗ trợ trên diễn đàn và tham khảo <strong>Quay lại phiên bản trước</strong> trong tiêu đề vấn đề."
 
 #: wp-admin/update-core.php:1036
 msgid "This feature will create a temporary backup of a plugin or theme before it is upgraded. This backup is used to restore the plugin or theme back to its previous state if there is an error during the update process."
-msgstr "Tính năng này sẽ tạo một bản sao lưu tạm thời của một plugin hoặc chủ đề trước khi nó được nâng cấp. Bản sao lưu này được sử dụng để khôi phục plugin hoặc chủ đề về trạng thái trước đó nếu xảy ra lỗi trong quá trình cập nhật."
+msgstr "Tính năng này sẽ tạo một bản sao lưu tạm thời của một plugin hoặc giao diện trước khi nó được nâng cấp. Bản sao lưu này được sử dụng để khôi phục plugin hoặc giao diện về trạng thái trước đó nếu xảy ra lỗi trong quá trình cập nhật."
 
 #: wp-admin/site-editor.php:196
 msgid "The site editor requires JavaScript. Please enable JavaScript in your browser settings."
@@ -759,12 +759,12 @@ msgstr "Dung lượng đĩa sẵn có"
 
 #: wp-admin/includes/class-wp-site-health.php:2767
 msgid "Plugin and theme temporary backup directory access"
-msgstr "Truy cập thư mục sao lưu tạm thời của plugin và chủ đề"
+msgstr "Truy cập thư mục sao lưu tạm thời của plugin và giao diện"
 
 #. translators: 1: wp-content/upgrade, 2: wp-content.
 #: wp-admin/includes/class-wp-site-health.php:1987
 msgid "The %1$s directory does not exist, and the server does not have write permissions in %2$s to create it. This directory is used for plugin and theme updates. Please make sure the server has write permissions in %2$s."
-msgstr "Thư mục %1$s không tồn tại, và máy chủ không có quyền ghi vào %2$s để tạo nó. Thư mục này được sử dụng cho cập nhật plugin và chủ đề. Vui lòng đảm bảo máy chủ có quyền ghi vào %2$s."
+msgstr "Thư mục %1$s không tồn tại, và máy chủ không có quyền ghi vào %2$s để tạo nó. Thư mục này được sử dụng cho cập nhật plugin và giao diện. Vui lòng đảm bảo máy chủ có quyền ghi vào %2$s."
 
 #: wp-admin/includes/class-wp-site-health.php:1984
 msgid "The upgrade directory cannot be created"
@@ -773,7 +773,7 @@ msgstr "Không thể tạo thư mục nâng cấp."
 #. translators: %s: wp-content/upgrade
 #: wp-admin/includes/class-wp-site-health.php:1976
 msgid "The %s directory exists but is not writable. This directory is used for plugin and theme updates. Please make sure the server has write permissions to this directory."
-msgstr "Thư mục %s đã tồn tại nhưng không thể ghi dữ liệu vào đó. Thư mục này được sử dụng cho việc cập nhật plugin và chủ đề. Vui lòng đảm bảo máy chủ có quyền ghi vào thư mục này."
+msgstr "Thư mục %s đã tồn tại nhưng không thể ghi dữ liệu vào đó. Thư mục này được sử dụng cho việc cập nhật plugin và giao diện. Vui lòng đảm bảo máy chủ có quyền ghi vào thư mục này."
 
 #: wp-admin/includes/class-wp-site-health.php:1973
 msgid "The upgrade directory exists but is not writable"
@@ -782,7 +782,7 @@ msgstr "Thư mục nâng cấp tồn tại nhưng không thể ghi dữ liệu v
 #. translators: %s: wp-content/upgrade-temp-backup
 #: wp-admin/includes/class-wp-site-health.php:1965
 msgid "The %s directory exists but is not writable. This directory is used to improve the stability of plugin and theme updates. Please make sure the server has write permissions to this directory."
-msgstr "Thư mục %s tồn tại nhưng không thể ghi. Thư mục này được sử dụng để cải thiện tính ổn định của các bản cập nhật plugin và chủ đề. Vui lòng đảm bảo rằng máy chủ có quyền ghi vào thư mục này."
+msgstr "Thư mục %s tồn tại nhưng không thể ghi. Thư mục này được sử dụng để cải thiện tính ổn định của các bản cập nhật plugin và giao diện. Vui lòng đảm bảo rằng máy chủ có quyền ghi vào thư mục này."
 
 #: wp-admin/includes/class-wp-site-health.php:1962
 msgid "The temporary backup directory exists but is not writable"
@@ -795,7 +795,7 @@ msgstr "Thư mục %s tồn tại nhưng không thể ghi. Thư mục này đư�
 
 #: wp-admin/includes/class-wp-site-health.php:1951
 msgid "Theme temporary backup directory exists but is not writable"
-msgstr "Thư mục sao lưu tạm thời của chủ đề tồn tại nhưng không thể ghi"
+msgstr "Thư mục sao lưu tạm thời của giao diện tồn tại nhưng không thể ghi"
 
 #. translators: %s: wp-content/upgrade-temp-backup/plugins
 #: wp-admin/includes/class-wp-site-health.php:1943
@@ -814,7 +814,7 @@ msgstr "Cả hai thư mục %1$s và %2$s tồn tại nhưng không thể ghi. C
 
 #: wp-admin/includes/class-wp-site-health.php:1928
 msgid "Plugin and theme temporary backup directories exist but are not writable"
-msgstr "Thư mục sao lưu tạm thời của plugin và chủ đề đã tồn tại nhưng không thể ghi dữ liệu vào được."
+msgstr "Thư mục sao lưu tạm thời của plugin và giao diện đã tồn tại nhưng không thể ghi dữ liệu vào được."
 
 #. translators: %s: wp-content
 #: wp-admin/includes/class-wp-site-health.php:1910
@@ -824,11 +824,11 @@ msgstr "Không thể định vị thư mục %s."
 #. translators: %s: wp-content/upgrade-temp-backup
 #: wp-admin/includes/class-wp-site-health.php:1881
 msgid "The %s directory used to improve the stability of plugin and theme updates is writable."
-msgstr "Thư mục %s được sử dụng để cải thiện tính ổn định của việc cập nhật plugin và chủ đề và có thể ghi dữ liệu vào được."
+msgstr "Thư mục %s được sử dụng để cải thiện tính ổn định của việc cập nhật plugin và giao diện và có thể ghi dữ liệu vào được."
 
 #: wp-admin/includes/class-wp-site-health.php:1873
 msgid "Plugin and theme temporary backup directory is writable"
-msgstr "Thư mục sao lưu tạm thời của plugin và chủ đề có thể ghi dữ liệu vào được."
+msgstr "Thư mục sao lưu tạm thời của plugin và giao diện có thể ghi dữ liệu vào được."
 
 #: wp-admin/includes/class-wp-site-health.php:1839
 msgid "Could not determine available disk space for updates."
@@ -1080,7 +1080,7 @@ msgstr "Hãy là tương lai của WordPress"
 #. translators: 1: Learn WordPress link, 2: Workshops link.
 #: wp-admin/about.php:255
 msgid "<a href=\"%1$s\">Learn WordPress</a> is a free resource for new and experienced WordPress users. Learn is stocked with how-to videos on using various features in WordPress, <a href=\"%2$s\">interactive workshops</a> for exploring topics in-depth, and lesson plans for diving deep into specific areas of WordPress."
-msgstr "<a href=\"%1$s\">Học WordPress</a> là một nguồn tài nguyên miễn phí dành cho người dùng WordPress mới và có kinh nghiệm. Learn cung cấp các video hướng dẫn về cách sử dụng các tính năng khác nhau trong WordPress, <a href=\"%2$s\">các workshop tương tác</a> để khám phá các chủ đề chi tiết, và kế hoạch học tập để tìm hiểu sâu vào các lĩnh vực cụ thể của WordPress."
+msgstr "<a href=\"%1$s\">Học WordPress</a> là một nguồn tài nguyên miễn phí dành cho người dùng WordPress mới và có kinh nghiệm. Learn cung cấp các video hướng dẫn về cách sử dụng các tính năng khác nhau trong WordPress, <a href=\"%2$s\">các workshop tương tác</a> để khám phá các giao diện chi tiết, và kế hoạch học tập để tìm hiểu sâu vào các lĩnh vực cụ thể của WordPress."
 
 #: wp-admin/comment.php:73 wp-admin/edit-comments.php:232
 #: wp-admin/edit-form-advanced.php:320 wp-admin/edit-form-advanced.php:338
@@ -1283,7 +1283,7 @@ msgstr "Với một giao diện khối, bạn có thể đặt và chỉnh sửa
 
 #: wp-admin/theme-install.php:142
 msgid "A block theme is a theme that uses blocks for all parts of a site including navigation menus, header, content, and site footer. These themes are built for the features that allow you to edit and customize all parts of your site."
-msgstr "Một giao diện khối là một giao diện sử dụng các khối cho tất cả các phần của một trang web bao gồm menu điều hướng, tiêu đề, nội dung và chân trang trang web. Những chủ đề này được xây dựng cho các tính năng cho phép bạn chỉnh sửa và tùy chỉnh tất cả các phần của trang web của bạn."
+msgstr "Một giao diện khối là một giao diện sử dụng các khối cho tất cả các phần của một trang web bao gồm menu điều hướng, tiêu đề, nội dung và chân trang trang web. Những giao diện này được xây dựng cho các tính năng cho phép bạn chỉnh sửa và tùy chỉnh tất cả các phần của trang web của bạn."
 
 #: wp-admin/site-health.php:277
 msgid "Recommended items are considered beneficial to your site, although not as important to prioritize as a critical issue, they may include improvements to things such as; Performance, user experience, and more."
@@ -1510,7 +1510,7 @@ msgstr "PHP là một trong những ngôn ngữ lập trình được sử dụn
 
 #: wp-admin/includes/class-wp-site-health.php:609
 msgid "Your site does not have any installed themes."
-msgstr "Trang web của bạn không có bất kỳ chủ đề đã cài đặt."
+msgstr "Trang web của bạn không có bất kỳ giao diện đã cài đặt."
 
 #: wp-admin/includes/class-wp-site-health.php:441
 msgid "Your site does not have any active plugins."
@@ -1791,7 +1791,7 @@ msgstr "Thiết kế tất cả mọi thứ trên trang web của bạn - từ �
 
 #: wp-admin/includes/dashboard.php:2097
 msgid "Customize your entire site with block themes"
-msgstr "Tùy chỉnh toàn bộ trang với chủ đề khối"
+msgstr "Tùy chỉnh toàn bộ trang với giao diện khối"
 
 #: wp-admin/includes/dashboard.php:2087
 msgid "Add a new page"
@@ -2496,7 +2496,7 @@ msgstr "Tới Công cụ nhập"
 
 #: wp-admin/includes/class-theme-installer-skin.php:164
 msgid "Go to Theme Installer"
-msgstr "Tới Cài đặt theme"
+msgstr "Đến cài đặt giao diện"
 
 #: wp-admin/includes/privacy-tools.php:294
 msgid "Go to top"
@@ -5816,7 +5816,7 @@ msgstr "Không có trang nào cả."
 #. Accessibility text.
 #: wp-admin/options-privacy.php:239
 msgid "Need help putting together your new Privacy Policy page? <a href=\"%1$s\" %2$s>Check out our privacy policy guide%3$s</a> for recommendations on what content to include, along with policies suggested by your plugins and theme."
-msgstr "Cần trợ giúp để tập hợp trang Chính sách quyền riêng tư mới của bạn? <a href=\"%1$s\" %2$s>Xem hướng dẫn chính sách bảo mật của chúng tôi%3$s</a> để biết các đề xuất về nội dung nên đưa vào, cùng với các chính sách do plugin và chủ đề của bạn đề xuất."
+msgstr "Cần trợ giúp để tập hợp trang Chính sách quyền riêng tư mới của bạn? <a href=\"%1$s\" %2$s>Xem hướng dẫn chính sách bảo mật của chúng tôi%3$s</a> để biết các đề xuất về nội dung nên đưa vào, cùng với các chính sách do plugin và giao diện của bạn đề xuất."
 
 #: wp-admin/privacy-policy-guide.php:21 wp-admin/privacy-policy-guide.php:74
 #: wp-admin/privacy-policy-guide.php:83
@@ -5854,7 +5854,7 @@ msgstr "Văn bản được đề xuất:"
 
 #: wp-admin/privacy-policy-guide.php:77
 msgid "The template contains a suggestion of sections you most likely will need. Under each section heading, you will find a short summary of what information you should provide, which will help you to get started. Some sections include suggested policy content, others will have to be completed with information from your theme and plugins."
-msgstr "Mẫu chứa gợi ý về các phần mà bạn có thể sẽ cần. Dưới mỗi tiêu đề của phần, bạn sẽ tìm thấy một bản tóm tắt ngắn gọn về những thông tin bạn nên cung cấp, thông tin này sẽ giúp bạn bắt đầu. Một số phần bao gồm nội dung chính sách được đề xuất, những phần khác sẽ phải được hoàn thành với thông tin từ chủ đề và plugin của bạn."
+msgstr "Mẫu chứa gợi ý về các phần mà bạn có thể sẽ cần. Dưới mỗi tiêu đề của phần, bạn sẽ tìm thấy một bản tóm tắt ngắn gọn về những thông tin bạn nên cung cấp, thông tin này sẽ giúp bạn bắt đầu. Một số phần bao gồm nội dung chính sách được đề xuất, những phần khác sẽ phải được hoàn thành với thông tin từ giao diện và plugin của bạn."
 
 #. translators: %s: Date of privacy policy text update.
 #: wp-admin/includes/class-wp-privacy-policy-content.php:408
@@ -9412,7 +9412,7 @@ msgstr "Nhấn hoặc di chuột vào bất kỳ giao diện nào, sau đó nh�
 
 #: wp-admin/themes.php:137
 msgid "The active theme is displayed highlighted as the first theme."
-msgstr "Chủ đề đang hoạt động được hiển thị nổi bật là chủ đề đầu tiên."
+msgstr "Giao diện đang hoạt động được hiển thị nổi bật là giao diện đầu tiên."
 
 #: wp-admin/themes.php:136
 msgid "Click Customize for the active theme or Live Preview for any other theme to see a live preview"
@@ -12309,7 +12309,7 @@ msgstr "Email hoặc Tên người dùng"
 #: wp-admin/themes.php:235 wp-admin/network/site-themes.php:240
 #: wp-admin/network/themes.php:463
 msgid "Search installed themes"
-msgstr "Tìm kiếm các chủ đề đã cài đặt"
+msgstr "Tìm kiếm giao diện đã cài đặt"
 
 #. translators: %s: Link to documentation on child themes.
 #: wp-admin/update-core.php:665
@@ -12828,7 +12828,7 @@ msgstr "<strong>Thảo Luận</strong> - Bạn có thể cho phép bình luận 
 #. translators: %s: Featured image.
 #: wp-admin/edit-form-advanced.php:386
 msgid "<strong>%s</strong> &mdash; This allows you to associate an image with your post without inserting it. This is usually useful only if your theme makes use of the image as a post thumbnail on the home page, a custom header, etc."
-msgstr "<strong>%s</strong> - Cho phép bạn kết hợp một hình ảnh với bài viết mà không cần chèn nó. Cách này chỉ hữu dụng nếu chủ đề của bạn hỗ trợ sử dụng ảnh nhấn mạnh như ảnh đại diện của bài viết trên trang chủ, phần đầu tùy chỉnh, v.v."
+msgstr "<strong>%s</strong> - Cho phép bạn kết hợp một hình ảnh với bài viết mà không cần chèn nó. Cách này chỉ hữu dụng nếu giao diện của bạn hỗ trợ sử dụng ảnh nhấn mạnh như ảnh đại diện của bài viết trên trang chủ, phần đầu tùy chỉnh, v.v."
 
 #: wp-admin/edit-form-advanced.php:292
 msgid "<strong>Title</strong> &mdash; Enter a title for your post. After you enter a title, you&#8217;ll see the permalink below, which you can edit."
@@ -13104,7 +13104,7 @@ msgstr "Điều này sẽ loại bỏ hình nền. Bạn sẽ không thể khôi
 #. translators: %s: Network title.
 #: wp-admin/includes/class-wp-themes-list-table.php:131
 msgid "Only the active theme is available to you. Contact the %s administrator for information about accessing additional themes."
-msgstr "Chỉ có chủ đề đang hoạt động mới có sẵn cho bạn. Liên hệ với quản trị viên %s để biết thông tin về cách truy cập các chủ đề bổ sung."
+msgstr "Chỉ có chủ đề đang hoạt động mới có sẵn cho bạn. Liên hệ với quản trị viên %s để biết thông tin về cách truy cập các giao diện bổ sung."
 
 #: wp-admin/includes/file.php:31
 msgid "Tag Template"
@@ -15562,7 +15562,7 @@ msgstr "Chọn một tập tin"
 
 #: wp-admin/includes/class-file-upload-upgrader.php:89
 msgid "Return to the Theme Installer"
-msgstr "Quay lại Trình cài đặt chủ đề"
+msgstr "Quay lại cài đặt giao diện"
 
 #. translators: %s: Post title.
 #. translators: %s: Theme name.
@@ -15604,7 +15604,7 @@ msgstr "Cài đặt giao diện thành công."
 
 #: wp-admin/includes/class-theme-upgrader.php:77
 msgid "Installing the theme&#8230;"
-msgstr "Đang cài đặt chủ đề&#8230;"
+msgstr "Đang cài đặt giao diện&#8230;"
 
 #: wp-admin/includes/class-theme-upgrader.php:62
 #: wp-admin/includes/class-theme-upgrader.php:79

@@ -105,12 +105,4 @@ function lasso_load_final() {
 	}
 }
 
-// ? check update
-$lasso_update_checker = Lasso_Puc_v4_Factory::buildUpdateChecker(
-	Lasso_License::get_plugin_update_url(),
-	LASSO_PLUGIN_MAIN_FILE, // ? Full path to the main plugin file or functions.php.
-	'affiliate-plugin',
-	24 // phpcs:ignore hour(s)
-);
-
 do_action( 'lasso_loaded' );

@@ -194,8 +194,8 @@ class Lasso_License {
 		$plugin_slug          = $args->slug ?? '';
 		if ( $lasso_main_file_name === $plugin_slug || $lasso_folder_name === $plugin_slug ) {
 			$start_time = microtime( true );
-			$lasso_link = self::get_plugin_update_url();
-			new Lasso_Puc_v4p4_Plugin_UpdateChecker( $lasso_link, LASSO_PLUGIN_MAIN_FILE, $lasso_folder_name );
+			// $lasso_link = self::get_plugin_update_url();
+			// new Lasso_Puc_v4p4_Plugin_UpdateChecker( $lasso_link, LASSO_PLUGIN_MAIN_FILE, $lasso_folder_name );
 
 			$time = microtime( true ) - $start_time;
 			Lasso_Helper::write_log( 'Time for checking plugin update data (seconds): ' . $time, 'lasso_update_checker' );
