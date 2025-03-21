@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'key' => $reset_key,
                         'login' => rawurlencode($user->user_login),
                     ),
-                    home_url('/dat-lai-mat-khau')
+                    home_url('/resetpassword')
                 );
 
                 $message = __('Ai đó đã yêu cầu đặt lại mật khẩu cho tài khoản của bạn:', 'your-theme') . "\r\n\r\n";

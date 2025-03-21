@@ -213,7 +213,7 @@ class Affiliates {
 		// 	);
 
 		// 	$api_link = LASSO_LINK . '/events/tracking';
-			// $res      = Lasso_Helper::send_request( 'post', $api_link, $payload );
+		// 	// $res      = Lasso_Helper::send_request( 'post', $api_link, $payload );
 
 		// 	return;
 		// } catch ( \Exception $e ) {

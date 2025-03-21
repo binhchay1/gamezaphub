@@ -1,0 +1,54 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Gaming Mag\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-13 10:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#. If there are characters in your language that are not supported
+#. by Amiri Condensed, translate this to 'off'. Do not translate into your own language.
+#: functions.php:60
+msgctxt "Amiri font: on or off"
+msgid "on"
+msgstr ""
+
+#. Author of the theme
+msgid "CodeVibrant"
+msgstr ""
+
+#: inc/widgets/cv-slider.php:22
+msgid "CV: Slider"
+msgstr ""
+
+#: inc/widgets/cv-slider.php:20
+msgid "Displays posts from selected categories in the slider section."
+msgstr ""
+
+#. Name of the theme
+msgid "Gaming Mag"
+msgstr ""
+
+#. Description of the theme
+msgid ""
+msgstr ""
+
+#. Author URI of the theme
+msgid "https://codevibrant.com"
+msgstr ""
+
+#. URI of the theme
+msgid "https://codevibrant.com/wpthemes/gaming-mag"
+msgstr ""
+
+#: inc/widgets/cv-slider.php:36
+msgid "Slider Categories"
+msgstr ""

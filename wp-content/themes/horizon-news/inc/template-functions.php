@@ -299,9 +299,9 @@ function horizon_news_output_footer_copyright_content() {
 	$copyright_default = sprintf( esc_html_x( 'Copyright &copy; %1$s %2$s', '1: Year, 2: Site Title with home URL', 'horizon-news' ), '[the-year]', '[site-link]' );
 	$copyright_text    = get_theme_mod( 'horizon_news_footer_copyright_text', $copyright_default );
 	$copyright_text    = str_replace( $search, $replace, $copyright_text );
-	$copyright_text   .= esc_html( ' | ' . $theme_data->get( 'Name' ) ) . '&nbsp;' . esc_html__( 'by', 'horizon-news' ) . '&nbsp;<a target="_blank" href="' . esc_url( $theme_data->get( 'AuthorURI' ) ) . '">' . esc_html( ucwords( $theme_data->get( 'Author' ) ) ) . '</a>';
+
 	/* translators: %s: WordPress.org URL */
-	$copyright_text .= sprintf( esc_html__( ' | Powered by %s', 'horizon-news' ), '<a href="' . esc_url( __( 'https://wordpress.org/', 'horizon-news' ) ) . '" target="_blank">WordPress</a>. ' );
+	
 	?>
 	<span><?php echo wp_kses_post( $copyright_text ); ?></span>
 	<?php

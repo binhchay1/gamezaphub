@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             reset_password($user, $new_password);
             $resetpassword_success = __('Mật khẩu của bạn đã được đặt lại. Vui lòng đăng nhập.', 'your-theme');
-            wp_redirect(home_url('/dang-nhap?password_reset=1'));
+            wp_redirect(home_url('/login?password_reset=1'));
             exit;
         }
     }

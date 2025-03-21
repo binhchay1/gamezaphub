@@ -1,0 +1,79 @@
+/* ==========================================================================
+Custom by table
+========================================================================== */
+/* Tăng specificity bằng wrapper */
+.custom-table-wrapper .custom-table.wp-block-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 16px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.custom-table-wrapper .custom-table.wp-block-table thead tr {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%) !important;
+    color: #ffffff !important;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.custom-table-wrapper .custom-table.wp-block-table th,
+.custom-table-wrapper .custom-table.wp-block-table td {
+    padding: 15px 20px;
+    border: 1px solid #e0e0e0 !important;
+    transition: all 0.3s ease;
+}
+
+.custom-table-wrapper .custom-table.wp-block-table th {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Stripe effect */
+.custom-table-wrapper .custom-table.wp-block-table tbody tr:nth-child(odd) {
+    background-color: #f9fbfc !important;
+}
+
+.custom-table-wrapper .custom-table.wp-block-table tbody tr:nth-child(even) {
+    background-color: #ffffff !important;
+}
+
+/* Hover effect */
+.custom-table-wrapper .custom-table.wp-block-table tbody tr:hover {
+    background-color: #eef4ff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.custom-table-wrapper .custom-table.wp-block-table tbody td:hover {
+    color: #2c3e50 !important;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .custom-table-wrapper .custom-table.wp-block-table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .custom-table-wrapper .custom-table.wp-block-table th,
+    .custom-table-wrapper .custom-table.wp-block-table td {
+        min-width: 200px;
+    }
+}
+
+/* Caption */
+.custom-table-wrapper .custom-table.wp-block-table figcaption {
+    font-style: italic;
+    padding: 10px;
+    text-align: center;
+    color: #666 !important;
+    background-color: #f8f8f8 !important;
+    border-bottom: 1px solid #ddd !important;
+}

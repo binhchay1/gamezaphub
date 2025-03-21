@@ -62,7 +62,7 @@ get_header();
 												</div>
 												<div class="mag-post-excerpt">
 													<?php the_excerpt(); ?>
-												</div>
+												</div><!-- .entry-content -->
 											</div>
 										</div>
 									</article>
@@ -77,13 +77,15 @@ get_header();
 				endif;
 			}
 
+			// If comments are open or we have at least one comment, load up the comment template.
 			if ( comments_open() || get_comments_number() ) :
 				comments_template();
 			endif;
 
-		endwhile;
+		endwhile; // End of the loop.
 		?>
-	</main>
+
+	</main><!-- #main -->
 <?php
 if ( horizon_news_is_sidebar_enabled() ) {
 	get_sidebar();

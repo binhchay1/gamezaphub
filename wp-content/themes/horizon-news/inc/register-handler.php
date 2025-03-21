@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $register_error = $user_id->get_error_message();
         } else {
             wp_new_user_notification($user_id, null, 'both');
-            wp_redirect(home_url('/dang-nhap?registered=1'));
+            wp_redirect(home_url('/login?registered=1'));
             exit;
         }
     }

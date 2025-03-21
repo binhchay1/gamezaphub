@@ -1,0 +1,314 @@
+/*
+Theme Name:     Gaming Mag
+Theme URI:      https://codevibrant.com/wpthemes/gaming-mag
+Author:         CodeVibrant
+Author URI:     https://codevibrant.com
+Description:    Gaming Mag is a child theme of News Vibrant modern magazine WordPress theme, with creative design and powerful features that lets you write articles and blog posts with ease. It uses the best clean SEO practices, responsive HTML5, and on top of that, it’s fast, simple, and easy to use.  Use the Customizer to add your own background, page layout, site width and more.
+Version:            1.0.2
+Requires at least:  4.7
+Tested up to:       5.8.2
+Requires PHP:       5.2.4
+License:        GNU General Public License v3 or later
+License URI:    http://www.gnu.org/licenses/gpl-3.0.html
+Template:       news-vibrant
+Text Domain:    gaming-mag
+Tags:           news, blog, grid-layout, custom-colors, one-column, two-columns, three-columns, left-sidebar, right-sidebar, custom-logo, footer-widgets, full-width-template, translation-ready
+*/
+
+body,
+.nv-post-title.large-size a,
+.nv-post-title.small-size a,
+.nv-block-title a,
+h1.entry-title,
+.nv-block-title,
+.widget-title,
+.page-header .page-title,
+.nv-related-title,
+.nv-featured-posts-wrapper .nv-single-post-wrap .nv-post-content .nv-post-title a {
+  color: #fff;
+}
+
+#page {
+  background: #222;
+}
+
+.boxed_layout #page {
+  width: 1240px;
+  background: #222222;
+}
+
+.cv-container {
+  width: 1170px;
+}
+
+.nv-top-header-wrap {
+  background: #333333;
+  background: -moz-linear-gradient(top, #333333 1%, #262626 100%);
+  background: -webkit-linear-gradient(top, #333333 1%, #262626 100%);
+  background: linear-gradient(to bottom, #333333 1%, #262626 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#262626', GradientType=0);
+  padding: 12px 0;
+}
+
+.nv-header-menu-wrapper {
+  background: #333333;
+  background: -moz-linear-gradient(top, #333333 1%, #262626 100%);
+  background: -webkit-linear-gradient(top, #333333 1%, #262626 100%);
+  background: linear-gradient(to bottom, #333333 1%, #262626 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#262626', GradientType=0);
+  border-bottom: 1px solid #202020;
+  border-top: none;
+}
+
+#site-navigation ul.sub-menu,
+#site-navigation ul.children {
+  background: #333;
+}
+
+.home #nv-menu-wrap-sticky-wrapper {
+  margin-bottom: 40px;
+}
+
+#site-navigation ul li,
+.nv-home-icon a,
+.search-main {
+  line-height: 60px;
+}
+
+#site-navigation ul li a,
+.search-main {
+  color: #fff;
+}
+
+.middle-left-aside {
+  display: none !important;
+}
+
+.nv-home-middle-section .middle-primary {
+  margin-left: 0;
+  width: 68%;
+}
+
+.comments-link a {
+  background: #f44336;
+}
+
+.news_vibrant_block_posts .nv-post-title.small-size a {
+  font-size: 17px;
+  margin-bottom: 10px;
+  line-height: 26px;
+}
+
+.nv-post-title.large-size a {
+  font-size: 20px;
+}
+
+.nv-home-middle-section .middle-right-aside {
+  width: 28%;
+}
+
+.gaming_mag_slider .cv-single-slide-wrap {
+  position: relative;
+}
+
+.gaming_mag_slider .cv-slide-content-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 30px 30px;
+  background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)) repeat scroll 0 0;
+  width: 100%;
+}
+
+.gaming_mag_slider .post-title a {
+  color: #fff;
+  font-size: 24px;
+  display: block;
+  margin: 10px 0 -10px;
+  text-transform: capitalize;
+}
+
+.gaming_mag_slider .cv-post-meta span {
+  margin-right: 15px;
+}
+
+.gaming_mag_slider .cv-post-meta span,
+.gaming_mag_slider .cv-post-meta span a {
+  color: #cccccc;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.gaming_mag_slider .cv-post-meta .byline:after {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  content: "";
+  background: #c6c6c6;
+  height: 1px;
+  width: 10px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.gaming_mag_slider .cv-post-meta .byline {
+  text-transform: capitalize;
+  margin-right: 8px !important;
+  position: relative;
+  padding-right: 2px;
+}
+
+.gaming_mag_slider .lSAction>a {
+  background-image: none;
+  background-color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  line-height: 46px;
+  color: #fff;
+  font-size: 28px;
+}
+
+.gaming_mag_slider .lSAction>.lSNext {
+  right: 0px;
+}
+
+.gaming_mag_slider .lSAction>.lSPrev {
+  left: 0px;
+}
+
+#colophon {
+  background: #0A0A0A;
+}
+
+.nv-archive-post-content-wrapper {
+  background: none;
+  width: auto;
+  top: 0;
+  margin: 0;
+  padding: 20px 0 0;
+}
+
+.nv-archive-post-content-wrapper .entry-title a {
+  color: #fff;
+}
+
+.widget_archive a,
+.widget_categories a,
+.widget_recent_entries a,
+.widget_meta a,
+.widget_recent_comments li,
+.widget_rss li,
+.widget_pages li a,
+.widget_nav_menu li a {
+  color: #cfcfcf;
+}
+
+.news-ticker-title>a,
+.nv-ticker-block .lSAction>a,
+.search-main a {
+  color: #fff;
+}
+
+.comments-link a {
+  padding: 7px 10px;
+  font-size: 12px;
+}
+
+.comments-link a::after {
+  border-color: #F44336 transparent transparent transparent;
+}
+
+.entry-meta span a,
+.entry-meta span {
+  color: #A6A6A6;
+}
+
+#site-navigation ul.sub-menu li,
+#site-navigation ul.children li {
+  border-bottom: none;
+}
+
+.nv-home-icon a {
+  color: #fff !important;
+}
+
+.navigation.post-navigation::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+article.hentry h1.entry-title {
+  line-height: 1.5;
+}
+
+.wp-block-search .wp-block-search__button {
+  background: #333;
+  border: none;
+  margin: 0;
+  height: 36px;
+}
+
+.comment-list .comment-body,
+pre,
+#respond {
+  background: #2F2F2F;
+}
+
+.comment-author .fn .url,
+#comments h3,
+#commentform label,
+#comments h2.comments-title {
+  color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #fff;
+}
+
+@media (max-width: 1200px) {
+  .boxed_layout #page {
+    width: 100%;
+  }
+
+  .cv-container {
+    padding: 0 2%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 979px) {
+
+  .nv-home-middle-section .middle-left-aside,
+  .nv-home-middle-section .middle-right-aside,
+  .nv-home-middle-section .middle-primary {
+    width: 100%;
+    float: none;
+    margin: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    color: #fff !important;
+    line-height: 60px;
+  }
+
+  .gaming_mag_slider .lSAction>a {
+    display: none;
+  }
+
+  #site-navigation {
+    background: #333;
+  }
+}

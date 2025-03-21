@@ -367,6 +367,7 @@ function add_owl_assets_to_frontend()
 }
 add_action('wp_enqueue_scripts', 'add_owl_assets_to_frontend');
 
+// Thêm rewrite rules cho các path
 function add_custom_rewrite_rules()
 {
 	add_rewrite_rule(
@@ -516,9 +517,11 @@ add_action('save_post', function ($post_id) {
 	}
 });
 
+// Chuyển hướng wp-login.php
 add_action('init', function () {
 	global $pagenow;
 
+	// Chỉ redirect nếu người dùng chưa đăng nhập
 	if ($pagenow === 'wp-login.php' && !isset($_GET['action']) && !is_user_logged_in()) {
 		wp_redirect(home_url('/dang-nhap'));
 		exit;
@@ -530,6 +533,7 @@ add_action('init', function () {
 		exit;
 	}
 
+	// Nếu đã đăng nhập, không redirect về /dang-nhap
 	if (is_user_logged_in() && (is_page('dang-nhap') || is_page('dang-ky'))) {
 		$redirect_to = wp_get_referer() ? wp_get_referer() : home_url('/');
 		wp_redirect($redirect_to);
@@ -537,6 +541,7 @@ add_action('init', function () {
 	}
 });
 
+// Xử lý đăng nhập qua AJAX
 add_action('wp_ajax_custom_login', 'custom_login_handler');
 add_action('wp_ajax_nopriv_custom_login', 'custom_login_handler');
 function custom_login_handler()
@@ -560,6 +565,7 @@ function custom_login_handler()
 	}
 }
 
+// Xử lý đăng ký qua AJAX
 add_action('wp_ajax_custom_register', 'custom_register_handler');
 add_action('wp_ajax_nopriv_custom_register', 'custom_register_handler');
 function custom_register_handler()
@@ -584,6 +590,7 @@ function custom_register_handler()
 	}
 }
 
+// Xử lý khôi phục mật khẩu qua AJAX
 add_action('wp_ajax_custom_lostpassword', 'custom_lostpassword_handler');
 add_action('wp_ajax_nopriv_custom_lostpassword', 'custom_lostpassword_handler');
 function custom_lostpassword_handler()
@@ -597,12 +604,12 @@ function custom_lostpassword_handler()
 	}
 
 	if (!$user) {
-		wp_send_json_error(array('message' => __('Tên đăng nhập hoặc email không tồn tại.', 'horizon-new')));
+		wp_send_json_error(array('message' => __('Tên đăng nhập hoặc email không tồn tại.', 'your-theme')));
 	}
 
 	$reset_key = get_password_reset_key($user);
 	if (is_wp_error($reset_key)) {
-		wp_send_json_error(array('message' => __('Không thể tạo liên kết khôi phục. Vui lòng thử lại.', 'horizon-new')));
+		wp_send_json_error(array('message' => __('Không thể tạo liên kết khôi phục. Vui lòng thử lại.', 'your-theme')));
 	}
 
 	$reset_url = add_query_arg(
@@ -613,20 +620,21 @@ function custom_lostpassword_handler()
 		home_url('/dat-lai-mat-khau')
 	);
 
-	$message = __('Ai đó đã yêu cầu đặt lại mật khẩu cho tài khoản của bạn:', 'horizon-new') . "\r\n\r\n";
-	$message .= sprintf(__('Tên đăng nhập: %s', 'horizon-new'), $user->user_login) . "\r\n\r\n";
-	$message .= __('Để đặt lại mật khẩu, hãy nhấp vào liên kết sau:', 'horizon-new') . "\r\n\r\n";
+	$message = __('Ai đó đã yêu cầu đặt lại mật khẩu cho tài khoản của bạn:', 'your-theme') . "\r\n\r\n";
+	$message .= sprintf(__('Tên đăng nhập: %s', 'your-theme'), $user->user_login) . "\r\n\r\n";
+	$message .= __('Để đặt lại mật khẩu, hãy nhấp vào liên kết sau:', 'your-theme') . "\r\n\r\n";
 	$message .= $reset_url . "\r\n\r\n";
-	$message .= __('Nếu bạn không yêu cầu điều này, vui lòng bỏ qua email này.', 'horizon-new');
+	$message .= __('Nếu bạn không yêu cầu điều này, vui lòng bỏ qua email này.', 'your-theme');
 
-	$subject = sprintf(__('[%s] Đặt lại mật khẩu', 'horizon-new'), get_bloginfo('name'));
+	$subject = sprintf(__('[%s] Đặt lại mật khẩu', 'your-theme'), get_bloginfo('name'));
 	if (wp_mail($user->user_email, $subject, $message)) {
-		wp_send_json_success(array('message' => __('Liên kết khôi phục đã được gửi đến email của bạn.', 'horizon-new')));
+		wp_send_json_success(array('message' => __('Liên kết khôi phục đã được gửi đến email của bạn.', 'your-theme')));
 	} else {
-		wp_send_json_error(array('message' => __('Không thể gửi email. Vui lòng thử lại.', 'horizon-new')));
+		wp_send_json_error(array('message' => __('Không thể gửi email. Vui lòng thử lại.', 'your-theme')));
 	}
 }
 
+// Xử lý đặt lại mật khẩu qua AJAX
 add_action('wp_ajax_custom_reset_password', 'custom_reset_password_handler');
 add_action('wp_ajax_nopriv_custom_reset_password', 'custom_reset_password_handler');
 function custom_reset_password_handler()

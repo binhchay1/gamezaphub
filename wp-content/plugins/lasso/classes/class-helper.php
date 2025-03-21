@@ -261,12 +261,7 @@ class Helper
 		);
 
 		$encrypted_base64 = Encrypt::encrypt_aes($data, true);
-		// $res              = self::send_request('get', LASSO_LINK . '/link/status/?' . $encrypted_base64, array(), $headers);
-		$res = [
-			'response' => [
-				'status' => 200,
-			],
-		];
+		$res              = self::send_request('get', LASSO_LINK . '/link/status/?' . $encrypted_base64, array(), $headers);
 		self::write_log('BLS RESPONSE: ' . wp_json_encode($res), $log_name);
 		$status_temp = intval($res['response']->status ?? $status);
 
