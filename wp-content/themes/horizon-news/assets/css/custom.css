@@ -1,5 +1,5 @@
 body {
-  font-family: Roboto sans-serif !important;
+  font-family: "Roboto Condensed", "Roboto Condensed-fallback" !important;
 }
 
 .game-detail-page {
@@ -17,66 +17,8 @@ body {
   margin-top: 1rem;
 }
 
-.auth-buttons {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.login-button,
-.register-button {
-  padding: 8px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background 0.3s;
-}
-
-.login-button {
-  background: #007bff;
-  color: #fff;
-}
-
-.login-button:hover {
-  background: #0056b3;
-}
-
-.register-button {
-  background: #28a745;
-  color: #fff;
-}
-
-.register-button:hover {
-  background: #218838;
-}
-
-.user-menu {
-  position: relative;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.user-info img {
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-}
-
-.user-name {
-  color: #fff;
-  font-weight: 500;
-}
-
 .dropdown-menu {
   display: none;
-  /* Đảm bảo ẩn mặc định */
   position: absolute;
   top: 100%;
   right: 0;
@@ -213,6 +155,175 @@ iframe {
 
 body.single .site-main>article .mag-post-single {
   padding: 25px !important;
+}
+
+.signin-btn {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 5px 10px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  justify-content: center;
+}
+
+.signin-btn::after {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg>');
+  margin-left: 8px;
+  margin-top: 8px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #aaa;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.modal-subtitle {
+  color: #28a745;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.checkmark {
+  color: #28a745;
+  font-size: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.powered-by {
+  text-align: right;
+  font-size: 12px;
+  color: #666;
+}
+
+.openpass {
+  color: #007bff;
+}
+
+.continue-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.terms {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.terms a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.divider {
+  text-align: center;
+  margin: 20px 0;
+  color: #666;
+  font-size: 14px;
+  position: relative;
+}
+
+.button-signin-social {
+  width: 100%;
+  padding: 10px;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.google-icon {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.facebook-icon {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.divider::after,
+.divider::before {
+  content: " ";
+  position: absolute;
+  display: block;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background-color: #d3d3d3;
+}
+
+.divider::before {
+  left: 0.5rem;
+}
+
+.divider::after {
+  right: 0.5rem;
 }
 
 @media only screen and (max-width: 767px) {

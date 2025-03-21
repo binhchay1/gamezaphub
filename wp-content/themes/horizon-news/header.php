@@ -63,12 +63,13 @@
 											</div>
 											<div class="dropdown-menu">
 												<a href="<?php echo home_url('/profile'); ?>">Xem Profile</a>
-												<a href="<?php echo wp_logout_url(home_url('/dang-nhap')); ?>">Đăng Xuất</a>
+												<a href="<?php echo wp_logout_url(home_url('/')); ?>">Đăng Xuất</a>
 											</div>
 										</div>
 									<?php else : ?>
-										<a href="<?php echo home_url('/dang-nhap'); ?>" class="login-button">Đăng Nhập</a>
-										<a href="<?php echo home_url('/dang-ky'); ?>" class="register-button">Đăng Ký</a>
+										<a href="#" id="signin-button" class="signin-btn">Đăng nhập ngay</a>
+
+										<?php require get_template_directory() . '/sections/modal-auth.php'; ?>
 									<?php endif; ?>
 								</div>
 							</div>

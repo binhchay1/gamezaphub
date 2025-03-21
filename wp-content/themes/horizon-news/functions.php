@@ -229,6 +229,8 @@ function horizon_news_scripts()
 	// Navigation script.
 	wp_enqueue_script('horizon-news-navigation-script', get_template_directory_uri() . '/assets/js/navigation' . $min . '.js', array(), HORIZON_NEWS_VERSION, true);
 
+	wp_enqueue_script('custom-by-binh-js', get_template_directory_uri() . '/assets/js/auth.js', array(), HORIZON_NEWS_VERSION, true);
+
 	// Slick script.
 	wp_enqueue_script('horizon-news-slick-script', get_template_directory_uri() . '/assets/js/slick' . $min . '.js', array('jquery'), '1.8.1', true);
 
@@ -241,6 +243,11 @@ function horizon_news_scripts()
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
 	}
+
+	wp_localize_script('custom-by-binh-js', 'ajax_url_admin', array(
+		'ajax_url' => admin_url('admin-ajax.php'),
+		'nonce' => wp_create_nonce('custom_login_nonce') // Thêm nonce để bảo mật (tùy chọn)
+	));
 }
 add_action('wp_enqueue_scripts', 'horizon_news_scripts');
 
@@ -573,3 +580,64 @@ add_filter('get_the_archive_description', function ($description) {
 	}
 	return '<div class="archive-description">' . $description . '</div>';
 });
+
+function check_email()
+{
+	global $wpdb;
+	$email = sanitize_email($_POST['email']);
+	$table_name = $wpdb->prefix . 'custom_users';
+	$response = [
+		'status' => '',
+		'code' => 200
+	];
+
+	$exists = $wpdb->get_var($wpdb->prepare(
+		"SELECT COUNT(*) FROM $table_name WHERE email = %s",
+		$email
+	));
+
+	if ($exists == 0) {
+		$response['status'] = 'exists';
+	} else {
+		$response['status'] = 'none';
+	}
+
+	wp_send_json_success($response);
+
+	// echo '<pre>';
+	// var_dump($exists);
+	// echo '</pre>';
+	// die;
+}
+add_action('wp_ajax_check_email', 'check_email');
+add_action('wp_ajax_nopriv_check_email', 'check_email');
+
+function create_custom_users_table()
+{
+	global $wpdb;
+
+	$table_name = $wpdb->prefix . 'custom_users';
+
+	if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+		$sql = "CREATE TABLE $table_name (
+            id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+            email VARCHAR(255) NOT NULL UNIQUE,
+            password VARCHAR(255) NOT NULL,
+            first_name VARCHAR(100),
+            last_name VARCHAR(100),
+            verification_token VARCHAR(255),
+            is_verified TINYINT(1) DEFAULT 0,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY (id)
+        ) {$wpdb->get_charset_collate()};";
+
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+		dbDelta($sql);
+
+		if ($wpdb->last_error) {
+			error_log('Error creating wp_custom_users table: ' . $wpdb->last_error);
+		}
+	}
+}
+
+add_action('after_switch_theme', 'create_custom_users_table');
