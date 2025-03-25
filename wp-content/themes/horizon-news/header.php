@@ -51,24 +51,35 @@
 							</div>
 							<div class="top-header-right">
 								<div class="auth-buttons">
-									<?php if (is_user_logged_in()) : ?>
+									<?php if (is_user_logged_in() || is_custom_user_logged_in()) : ?>
 										<?php
-										$current_user = wp_get_current_user();
-										$avatar = get_avatar($current_user->ID, 32);
+										if (is_user_logged_in()) {
+											$current_user = wp_get_current_user();
+											$avatar = get_avatar($current_user->ID, 32);
+											$display_name = esc_html($current_user->display_name);
+											$logout_url = wp_logout_url(home_url('/'));
+										} else {
+											$custom_user = get_custom_user();
+											$avatar = get_avatar($custom_user['email'], 32);
+											$display_name = esc_html($custom_user['username']);
+											$logout_url = home_url('?custom_logout=1');
+										}
 										?>
 										<div class="user-menu">
-											<div class="user-info">
-												<?php echo $avatar; ?>
-												<span class="user-name"><?php echo esc_html($current_user->display_name); ?></span>
-											</div>
+											<a id="signin-button" class="profile-btn">
+												<div class="user-info">
+													<?php echo $avatar; ?>
+													<span class="user-name"><?php echo $display_name; ?></span>
+												</div>
+											</a>
+
 											<div class="dropdown-menu">
 												<a href="<?php echo home_url('/profile'); ?>">Xem Profile</a>
-												<a href="<?php echo wp_logout_url(home_url('/')); ?>">Đăng Xuất</a>
+												<a href="<?php echo esc_url($logout_url); ?>">Đăng Xuất</a>
 											</div>
 										</div>
 									<?php else : ?>
-										<a href="#" id="signin-button" class="signin-btn">Đăng nhập ngay</a>
-
+										<a id="signin-button" class="signin-btn">Đăng nhập ngay</a>
 										<?php require get_template_directory() . '/sections/modal-auth.php'; ?>
 									<?php endif; ?>
 								</div>
@@ -127,13 +138,10 @@
 
 		<?php
 
-		if (! is_front_page() || is_home()) {
-			if (is_front_page()) {
-				require get_template_directory() . '/sections/sections.php';
-			}
-
+		if (is_true_homepage()) {
+			require get_template_directory() . '/sections/sections.php';
+		}
 		?>
-			<div id="content" class="site-content">
-				<div class="ascendoor-wrapper">
-					<div class="ascendoor-page">
-					<?php } ?>
+		<div id="content" class="site-content">
+			<div class="ascendoor-wrapper">
+				<div class="ascendoor-page">

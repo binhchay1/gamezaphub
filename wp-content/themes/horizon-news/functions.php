@@ -223,7 +223,10 @@ function horizon_news_scripts()
 	wp_enqueue_style('horizon-news-style', get_template_directory_uri() . '/style.css', array(), HORIZON_NEWS_VERSION);
 
 	// Custom style
-	wp_enqueue_style('custom-by-binh', get_template_directory_uri() . '/assets/css/custom.css', array(), '1.0.0');
+	wp_enqueue_style('custom-by-binh', get_template_directory_uri() . '/assets/css/custom.css', array(), HORIZON_NEWS_VERSION);
+
+	// Custom mobile style
+	wp_enqueue_style('custom-by-binh', get_template_directory_uri() . '/assets/css/custom-mobile.css', array(), HORIZON_NEWS_VERSION);
 
 	// Navigation script.
 	wp_enqueue_script('horizon-news-navigation-script', get_template_directory_uri() . '/assets/js/navigation' . $min . '.js', array(), HORIZON_NEWS_VERSION, true);
@@ -339,6 +342,11 @@ require get_template_directory() . '/inc/custom-block.php';
  * Config custom
  */
 require get_template_directory() . '/inc/custom-config.php';
+
+/**
+ * Helper function
+ */
+require get_template_directory() . '/inc/helper-func.php';
 
 /**
  * One Click Demo Import after import setup.

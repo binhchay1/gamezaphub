@@ -81,13 +81,11 @@ add_action('wp_ajax_nopriv_custom_user_login', 'custom_user_ajax_login');
 
 function is_custom_user_logged_in()
 {
-    session_start();
     return isset($_SESSION['custom_user']) && $_SESSION['custom_user']['logged_in'] === true;
 }
 
 function get_custom_user()
 {
-    session_start();
     return isset($_SESSION['custom_user']) ? $_SESSION['custom_user'] : null;
 }
 
@@ -103,7 +101,6 @@ add_action('admin_init', 'restrict_admin_for_custom_users');
 function custom_user_logout()
 {
     if (isset($_GET['custom_logout'])) {
-        session_start();
         unset($_SESSION['custom_user']);
         wp_redirect(home_url());
         exit;
@@ -117,7 +114,7 @@ function get_google_client()
         $client = new Google_Client();
         $client->setClientId(GOOGLE_CLIENT_ID);
         $client->setClientSecret(GOOGLE_CLIENT_SECRET);
-        $client->setRedirectUri(home_url('/google-callback')); // URL callback
+        $client->setRedirectUri(home_url('/google-callback'));
         $client->addScope('email');
         $client->addScope('profile');
         return $client;
@@ -151,7 +148,7 @@ function handle_google_callback()
             $user_info = $oauth_service->userinfo->get();
 
             $email = $user_info->email;
-            $username = $user_info->givenName ?: explode('@', $email)[0]; // Lấy tên hoặc phần trước @
+            $username = $user_info->givenName ?: explode('@', $email)[0];
 
             $table_name = $wpdb->prefix . 'custom_users';
             $existing_user = $wpdb->get_row(
@@ -159,8 +156,6 @@ function handle_google_callback()
             );
 
             if ($existing_user) {
-                // Email đã tồn tại: Đăng nhập
-                session_start();
                 $_SESSION['custom_user'] = array(
                     'id' => $existing_user->id,
                     'username' => $existing_user->username,
@@ -168,18 +163,16 @@ function handle_google_callback()
                     'logged_in' => true
                 );
             } else {
-                // Email chưa tồn tại: Tạo user mới
                 $wpdb->insert(
                     $table_name,
                     array(
                         'username' => $username,
                         'email' => $email,
-                        'password' => '' // Không cần mật khẩu cho Google login
+                        'password' => ''
                     )
                 );
                 $user_id = $wpdb->insert_id;
 
-                session_start();
                 $_SESSION['custom_user'] = array(
                     'id' => $user_id,
                     'username' => $username,
@@ -188,7 +181,6 @@ function handle_google_callback()
                 );
             }
 
-            // Chuyển hướng sau khi đăng nhập
             wp_redirect(home_url());
             exit;
         }

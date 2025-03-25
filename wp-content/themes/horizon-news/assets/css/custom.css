@@ -170,6 +170,19 @@ body.single .site-main>article .mag-post-single {
   justify-content: center;
 }
 
+.profile-btn {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 5px 10px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  justify-content: center;
+}
+
 .signin-btn::after {
   content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg>');
   margin-left: 8px;
@@ -326,17 +339,72 @@ input[type="email"] {
   right: 0.5rem;
 }
 
-@media only screen and (max-width: 767px) {
-  .notfound .notfound-404 {
-    height: 115px;
-  }
+.load-more-wrapper {
+  text-align: center;
+  margin: 20px 0;
+}
 
-  .notfound .notfound-404 h1 {
-    font-size: 86px;
-  }
+.load-more-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  border: 1px solid var(--primary-color);
+}
 
-  .notfound .notfound-404 h1>span {
-    width: 86px;
-    height: 86px;
-  }
+.load-more-btn:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.pagination-prev,
+.pagination-next,
+.pagination-number {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-prev,
+.pagination-next {
+  background-color: #f5f5f5;
+}
+
+.pagination-number.current {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.pagination-number:hover,
+.pagination-prev:hover,
+.pagination-next:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.pagination-prev.disabled,
+.pagination-next.disabled {
+  color: #ccc;
+  border-color: #ddd;
+  background-color: #f5f5f5;
+  pointer-events: none;
 }

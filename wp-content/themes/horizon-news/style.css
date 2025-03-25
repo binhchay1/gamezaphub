@@ -610,8 +610,8 @@ big {
 --------------------------------------------- */
 :root {
 	--body-bg: #efefef;
-	--primary-color: #3a0ca3;
-	--header-text-color: #3a0ca3;
+	--primary-color: #824cff;
+	--header-text-color: #824cff;
 	--theme-color: var(--primary-color);
 	--cat-color: #b50420;
 	--light-bg-color: #f0f2f7;
