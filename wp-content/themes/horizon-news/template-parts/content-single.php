@@ -10,7 +10,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="mag-post-single">
+	<div class="mag-post-single background-white">
 		<div class="mag-post-detail">
 			<div class="mag-post-category">
 				<?php horizon_news_categories_list(); ?>
@@ -34,7 +34,7 @@
 						?>
 					</div>
 				<?php endif; ?>
-			</header><!-- .entry-header -->
+			</header>
 		</div>
 		<?php horizon_news_post_thumbnail(); ?>
 		<div class="entry-content">
@@ -42,7 +42,6 @@
 			the_content(
 				sprintf(
 					wp_kses(
-						/* translators: %s: Name of current post. Only visible to screen readers */
 						__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'horizon-news' ),
 						array(
 							'span' => array(
@@ -61,11 +60,11 @@
 				)
 			);
 			?>
-		</div><!-- .entry-content -->
+		</div>
 
 		<footer class="entry-footer">
 			<?php horizon_news_entry_footer(); ?>
-		</footer><!-- .entry-footer -->
+		</footer>
 	</div>
 
 </article><!-- #post-<?php the_ID(); ?> -->

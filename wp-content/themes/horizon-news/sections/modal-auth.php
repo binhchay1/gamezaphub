@@ -6,9 +6,9 @@
             <span class="checkmark">✔</span> Tham gia cùng chúng tôi để trải nghiệm nhiều tính năng sẽ được cập nhật trong tương lai
         </p>
         <form id="signin-form">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Địa chỉ hòm thư">
-            <input type="password" id="password" name="password" placeholder="Mật khẩu" class="hidden">
+            <label for="email">Hòm thư</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="Hòm thư">
+            <input type="password" id="password" name="password" autocomplete="password" placeholder="Mật khẩu" class="hidden">
 
             <p id="notification-modal" class="hidden">Một thư kích hoạt đã được gửi đến hòm thư <span></span>. Vui lòng làm theo hướng dẫn trong hòm thư để hoàn tất việc đăng ký</p>
 

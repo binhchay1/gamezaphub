@@ -11,4 +11,10 @@
         width: 86px;
         height: 86px;
     }
+
+    .wp-block-table th,
+    .wp-block-table td {
+        padding: 10px;
+        font-size: 14px;
+    }
 }

@@ -3,8 +3,8 @@ jQuery(function ($) {
     /* -----------------------------------------
     Preloader
     ----------------------------------------- */
-    $('#preloader').delay(1000).fadeOut();
-    $('#loader').delay(1000).fadeOut("slow");
+    $('#preloader').fadeOut();
+    $('#loader').fadeOut("slow");
 
     /* -----------------------------------------
     Navigation
