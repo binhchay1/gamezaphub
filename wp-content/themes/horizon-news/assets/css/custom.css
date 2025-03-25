@@ -497,3 +497,11 @@ input[type="email"] {
 .ez-toc-counter nav ul li a::before {
   content: '' !important;
 }
+
+.background-color-none {
+  background-color: inherit !important;
+}
+
+h2, h3, p, ul, table {
+  margin-bottom: 20px;
+}

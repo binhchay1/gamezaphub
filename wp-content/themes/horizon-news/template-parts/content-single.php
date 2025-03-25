@@ -10,7 +10,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="mag-post-single background-white">
+	<div class="mag-post-single background-color-none">
 		<div class="mag-post-detail">
 			<div class="mag-post-category">
 				<?php horizon_news_categories_list(); ?>
