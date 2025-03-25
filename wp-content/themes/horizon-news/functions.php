@@ -207,7 +207,6 @@ add_action('widgets_init', 'horizon_news_widgets_init');
  */
 function horizon_news_scripts()
 {
-
 	// Append .min if SCRIPT_DEBUG is false.
 	$min = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
 
@@ -246,7 +245,7 @@ function horizon_news_scripts()
 
 	wp_localize_script('custom-by-binh-js', 'ajax_url_admin', array(
 		'ajax_url' => admin_url('admin-ajax.php'),
-		'nonce' => wp_create_nonce('custom_login_nonce') // Thêm nonce để bảo mật (tùy chọn)
+		'nonce' => wp_create_nonce('custom_login_nonce')
 	));
 }
 add_action('wp_enqueue_scripts', 'horizon_news_scripts');
@@ -307,6 +306,41 @@ require get_template_directory() . '/inc/tgmpa/recommended-plugins.php';
 require get_template_directory() . '/inc/custom-category-color.php';
 
 /**
+ * Rewrite rules custom page.
+ */
+require get_template_directory() . '/inc/rewrite-rules-custom-page.php';
+
+/**
+ * Add owl carousel to page
+ */
+require get_template_directory() . '/inc/add-owl-carousel.php';
+
+/**
+ * Handle user authentication
+ */
+require get_template_directory() . '/inc/auth-handle.php';
+
+/**
+ * Handle create db
+ */
+require get_template_directory() . '/inc/db-handle.php';
+
+/**
+ * Handle send mail
+ */
+require get_template_directory() . '/inc/mail-handle.php';
+
+/**
+ * Custom for block in post
+ */
+require get_template_directory() . '/inc/custom-block.php';
+
+/**
+ * Config custom
+ */
+require get_template_directory() . '/inc/custom-config.php';
+
+/**
  * One Click Demo Import after import setup.
  */
 
@@ -320,324 +354,3 @@ if (class_exists('OCDI_Plugin')) {
 if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
-
-function custom_table_block_styles()
-{
-	wp_enqueue_style(
-		'custom-table-styles',
-		get_template_directory_uri() . '/assets/css/custom-table.css',
-		array(),
-		'1.0'
-	);
-}
-add_action('enqueue_block_assets', 'custom_table_block_styles');
-
-function custom_table_block_render($block_content, $block)
-{
-	if ($block['blockName'] === 'core/table') {
-		$block_content = '<div class="custom-table-wrapper">' .
-			str_replace(
-				'<table>',
-				'<table class="custom-table wp-block-table">',
-				$block_content
-			) .
-			'</div>';
-	}
-	return $block_content;
-}
-add_filter('render_block', 'custom_table_block_render', 10, 2);
-
-function add_owl_css_to_all_editors()
-{
-	$owl_js = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js';
-	$owl_css = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css';
-
-	wp_enqueue_script('custom-owl-js', get_template_directory_uri() . '/assets/js/owl-custom.js', array('jquery', 'owl-frontend-js'), '1.0', true);
-	wp_enqueue_style('owl-editor-css', $owl_css, array(), '2.3.4');
-	wp_enqueue_script('owl-editor-css', $owl_js, array('jquery'), '2.3.4');
-}
-add_action('enqueue_block_editor_assets', 'add_owl_css_to_all_editors');
-
-function add_owl_assets_to_frontend()
-{
-	$owl_js = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js';
-	$owl_css = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css';
-
-	wp_enqueue_script('custom-owl-js', get_template_directory_uri() . '/assets/js/owl-custom.js', array('jquery', 'owl-frontend-js'), '1.0', true);
-	wp_enqueue_style('owl-frontend-css', $owl_css, array(), '2.3.4');
-	wp_enqueue_script('owl-frontend-js', $owl_js, array('jquery'), '2.3.4', true);
-
-	if (get_query_var('custom_games') == 1) {
-		wp_enqueue_style('custom-single-games-css', get_template_directory_uri() . '/assets/css/single-games.css', array(), '1.0');
-		wp_enqueue_script('custom-single-games-js', get_template_directory_uri() . '/assets/js/single-games.js', array('jquery'), '1.0');
-	}
-}
-add_action('wp_enqueue_scripts', 'add_owl_assets_to_frontend');
-
-function add_custom_rewrite_rules()
-{
-	add_rewrite_rule(
-		'^games/([^/]+)/?$',
-		'index.php?custom_games=1&game_slug=$matches[1]',
-		'top'
-	);
-
-	add_rewrite_rule(
-		'^developers/([^/]+)/?$',
-		'index.php?custom_developer=1&developer_slug=$matches[1]',
-		'top'
-	);
-
-	add_rewrite_rule(
-		'^publishers/([^/]+)/?$',
-		'index.php?custom_publisher=1&publisher_slug=$matches[1]',
-		'top'
-	);
-}
-add_action('init', 'add_custom_rewrite_rules');
-
-function add_custom_query_vars($vars)
-{
-	$vars[] = 'custom_games';
-	$vars[] = 'game_slug';
-
-	$vars[] = 'custom_developers';
-	$vars[] = 'developer_slug';
-
-	$vars[] = 'custom_publishers';
-	$vars[] = 'publisher_slug';
-
-	return $vars;
-}
-add_filter('query_vars', 'add_custom_query_vars');
-
-function flush_rewrite_rules_on_activation()
-{
-	add_custom_rewrite_rules();
-	flush_rewrite_rules();
-}
-register_activation_hook(__FILE__, 'flush_rewrite_rules_on_activation');
-
-function custom_games_template($template)
-{
-	if (get_query_var('custom_games') == 1) {
-		$new_template = locate_template(array('single-games.php'));
-		if (!empty($new_template)) {
-			return $new_template;
-		}
-	} elseif (get_query_var('custom_developers') == 1) {
-		$new_template = locate_template(array('single-developers.php'));
-		if (!empty($new_template)) {
-			return $new_template;
-		}
-	} elseif (get_query_var('custom_publishers') == 1) {
-		$new_template = locate_template(array('single-publishers.php'));
-		if (!empty($new_template)) {
-			return $new_template;
-		}
-	}
-	return $template;
-}
-add_filter('template_include', 'custom_games_template');
-
-function adjust_main_query($query)
-{
-	if ($query->is_main_query() && !is_admin()) {
-		if (get_query_var('custom_games') == 1) {
-			$query->is_front_page = false;
-			$query->is_singular = true;
-			$query->is_page = false;
-			$query->is_home = false;
-		} elseif (get_query_var('custom_developers') == 1) {
-			$query->is_front_page = false;
-			$query->is_singular = true;
-			$query->is_page = false;
-			$query->is_home = false;
-		} elseif (get_query_var('custom_publishers') == 1) {
-			$query->is_front_page = false;
-			$query->is_singular = true;
-			$query->is_page = false;
-			$query->is_home = false;
-		}
-	}
-}
-add_action('pre_get_posts', 'adjust_main_query');
-
-function get_game_data($slug)
-{
-	$transient_key = 'game_data_' . md5($slug);
-	$cached_data = get_transient($transient_key);
-	if ($cached_data !== false) {
-		return $cached_data;
-	}
-
-	global $wpdb;
-	$post = array();
-	$meta_key = 'lasso_final_url';
-	$query = $wpdb->prepare(
-		"SELECT p.ID, p.post_title
-         FROM {$wpdb->posts} p
-         WHERE p.post_type = 'lasso-urls'
-         AND EXISTS (
-             SELECT 1
-             FROM {$wpdb->postmeta} pm
-             WHERE pm.post_id = p.ID
-             AND pm.meta_key = %s
-             AND pm.meta_value LIKE %s
-         )",
-		$meta_key,
-		'%/games/' . esc_sql($slug) . '%'
-	);
-
-	$results = $wpdb->get_results($query);
-	if ($results) {
-		$post_data = $results[0];
-		$post_id = $post_data->ID;
-		$meta_results = $wpdb->get_results($wpdb->prepare(
-			"SELECT meta_key, meta_value FROM {$wpdb->postmeta} WHERE post_id = %d",
-			$post_id
-		));
-		$post = array('ID' => $post_id, 'post_title' => $post_data->post_title, 'meta' => array());
-		foreach ($meta_results as $meta) {
-			$post['meta'][$meta->meta_key] = $meta->meta_value;
-		}
-
-		$post['meta']['screen_shots'] = unserialize($post['meta']['screen_shots']);
-		$post['meta']['genres'] = unserialize($post['meta']['genres']);
-		$post['meta']['platforms'] = unserialize($post['meta']['platforms']);
-		$post['meta']['developers'] = unserialize($post['meta']['developers']);
-		$post['meta']['publishers'] = unserialize($post['meta']['publishers']);
-
-		$lasso_id = $post['ID'];
-		$post_ids = $wpdb->get_col($wpdb->prepare(
-			"SELECT detection_id FROM wp_lasso_link_locations WHERE post_id = %d AND display_type = 'Single'",
-			$lasso_id
-		));
-
-		$args = array(
-			'post_type' => 'post',
-			'post__in' => $post_ids,
-			'posts_per_page' => 5,
-			'orderby' => 'post__in',
-			'post_status' => 'publish',
-			'no_found_rows' => true,
-		);
-		$related_query = new WP_Query($args);
-		$post['related_posts'] = $related_query;
-
-		set_transient($transient_key, $post, 24 * HOUR_IN_SECONDS);
-		return $post;
-	}
-
-	set_transient($transient_key, false, 24 * HOUR_IN_SECONDS);
-	return false;
-}
-
-function clear_game_data_transient($slug)
-{
-	$transient_key = 'game_data_' . md5($slug);
-	delete_transient($transient_key);
-}
-
-add_action('save_post', function ($post_id) {
-	$slug = get_post_field('post_name', $post_id);
-	if ($slug) {
-		clear_game_data_transient($slug);
-	}
-});
-
-add_action('init', function () {
-	if (is_ssl()) {
-		add_filter('secure_auth_cookie', '__return_true');
-		add_filter('secure_signed_cookie', '__return_true');
-	}
-});
-
-add_action('init', function () {
-	if (!defined('COOKIE_DOMAIN')) {
-		define('COOKIE_DOMAIN', '.gamezpub.com');
-	}
-});
-
-add_action('template_redirect', function () {
-	if (is_404()) {
-		status_header(200);
-		nocache_headers();
-	}
-});
-
-add_filter('get_the_archive_title', function ($title) {
-	if (is_category() or is_tag()) {
-		$title = single_cat_title('', false);
-	}
-
-	return '<h1 class="page-title">' . $title . '</h1>';
-});
-
-add_filter('get_the_archive_description', function ($description) {
-	if (is_category() or is_tag()) {
-		$description = strip_tags(category_description());
-	}
-	return '<div class="archive-description">' . $description . '</div>';
-});
-
-function check_email()
-{
-	global $wpdb;
-	$email = sanitize_email($_POST['email']);
-	$table_name = $wpdb->prefix . 'custom_users';
-	$response = [
-		'status' => '',
-		'code' => 200
-	];
-
-	$exists = $wpdb->get_var($wpdb->prepare(
-		"SELECT COUNT(*) FROM $table_name WHERE email = %s",
-		$email
-	));
-
-	if ($exists == 0) {
-		$response['status'] = 'exists';
-	} else {
-		$response['status'] = 'none';
-	}
-
-	wp_send_json_success($response);
-
-	// echo '<pre>';
-	// var_dump($exists);
-	// echo '</pre>';
-	// die;
-}
-add_action('wp_ajax_check_email', 'check_email');
-add_action('wp_ajax_nopriv_check_email', 'check_email');
-
-function create_custom_users_table()
-{
-	global $wpdb;
-
-	$table_name = $wpdb->prefix . 'custom_users';
-
-	if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
-		$sql = "CREATE TABLE $table_name (
-            id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-            email VARCHAR(255) NOT NULL UNIQUE,
-            password VARCHAR(255) NOT NULL,
-            first_name VARCHAR(100),
-            last_name VARCHAR(100),
-            verification_token VARCHAR(255),
-            is_verified TINYINT(1) DEFAULT 0,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            PRIMARY KEY (id)
-        ) {$wpdb->get_charset_collate()};";
-
-		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-		dbDelta($sql);
-
-		if ($wpdb->last_error) {
-			error_log('Error creating wp_custom_users table: ' . $wpdb->last_error);
-		}
-	}
-}
-
-add_action('after_switch_theme', 'create_custom_users_table');
