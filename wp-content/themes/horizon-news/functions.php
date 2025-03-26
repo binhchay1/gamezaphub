@@ -210,40 +210,20 @@ function horizon_news_scripts()
 	// Append .min if SCRIPT_DEBUG is false.
 	$min = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
 
-	// Slick style.
 	wp_enqueue_style('horizon-news-slick-style', get_template_directory_uri() . '/assets/css/slick' . $min . '.css', array(), '1.8.1');
-
-	// Fontawesome style.
 	wp_enqueue_style('horizon-news-fontawesome-style', get_template_directory_uri() . '/assets/css/fontawesome' . $min . '.css', array(), '6.4.2');
-
-	// Google fonts.
 	wp_enqueue_style('horizon-news-google-fonts', wptt_get_webfont_url(horizon_news_get_fonts_url()), array(), null);
-
-	// Main style.
 	wp_enqueue_style('horizon-news-style', get_template_directory_uri() . '/style.css', array(), HORIZON_NEWS_VERSION);
-
-	// Custom style
 	wp_enqueue_style('custom-by-binh', get_template_directory_uri() . '/assets/css/custom.css', array(), HORIZON_NEWS_VERSION);
-
-	// Custom mobile style
 	wp_enqueue_style('custom-mobile-by-binh', get_template_directory_uri() . '/assets/css/custom-mobile.css', array(), HORIZON_NEWS_VERSION);
-
-	// Custom table style
 	wp_enqueue_style('custom-table-by-binh', get_template_directory_uri() . '/assets/css/custom-table.css', array(), HORIZON_NEWS_VERSION);
 
-	// Navigation script.
 	wp_enqueue_script('horizon-news-navigation-script', get_template_directory_uri() . '/assets/js/navigation' . $min . '.js', array(), HORIZON_NEWS_VERSION, true);
-
 	wp_enqueue_script('custom-by-binh-js', get_template_directory_uri() . '/assets/js/auth.js', array(), HORIZON_NEWS_VERSION, true);
-
-	// Slick script.
 	wp_enqueue_script('horizon-news-slick-script', get_template_directory_uri() . '/assets/js/slick' . $min . '.js', array('jquery'), '1.8.1', true);
-
-	// jQuery marquee script.
 	wp_enqueue_script('horizon-news-marquee-script', get_template_directory_uri() . '/assets/js/jquery.marquee' . $min . '.js', array('jquery'), '1.6.0', true);
-
-	// Custom script.
 	wp_enqueue_script('horizon-news-custom-script', get_template_directory_uri() . '/assets/js/custom' . $min . '.js', array('jquery'), HORIZON_NEWS_VERSION, true);
+	wp_enqueue_script('pre-loader-script', get_template_directory_uri() . '/assets/js/pre-loader.js', array(), HORIZON_NEWS_VERSION, true);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
