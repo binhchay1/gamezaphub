@@ -12,44 +12,45 @@ use Lasso\Classes\Post as Lasso_Post;
 use Lasso\Classes\Setting as Lasso_Setting;
 
 require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
+
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 <style>
 	.tag-container {
-		border: 1px solid #ced4da;
-		/* Giữ giao diện giống input */
-		padding: 5px;
 		display: flex;
 		flex-wrap: wrap;
 		gap: 5px;
-		align-items: center;
-		background: white;
-		border-radius: 0.25rem;
+		border: 1px solid #ced4da;
+		padding: 5px;
+		border-radius: 4px;
+		min-height: 38px;
+		outline: none;
 	}
 
 	.tag {
-		background-color: red;
-		color: white;
-		padding: 2px 5px;
-		border-radius: 3px;
 		display: inline-flex;
 		align-items: center;
-		gap: 3px;
+		background-color: #ff4d4d;
+		color: white;
+		padding: 2px 8px;
+		margin: 2px;
+		border-radius: 4px;
+		font-size: 14px;
 	}
 
 	.delete-btn {
 		background: none;
 		border: none;
 		color: white;
-		font-weight: bold;
 		cursor: pointer;
-		padding: 0;
-		line-height: 1;
+		margin-left: 5px;
+		font-size: 14px;
 	}
 
-	.delete-btn:hover {
-		color: #ddd;
+	.input-span {
+		display: inline-block;
+		min-width: 10px;
 	}
 
 	#description .ql-editor {
@@ -220,29 +221,7 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 										<strong>Developers</strong> <i class="far fa-info-circle light-purple"></i>
 									</label>
 									<input type="hidden" id="developers" name="developers" value="<?php echo htmlspecialchars(json_encode($lasso_url->developers)); ?>">
-									<div class="form-control tag-container" id="developers_input" style="min-height: 38px;"></div>
-
-									<?php if (is_array($lasso_url->developers)) { ?>
-										<script>
-											function addTag(text, input, id) {
-												const container = document.getElementById(input);
-												const tag = document.createElement('span');
-												tag.className = 'tag';
-												tag.innerHTML = `${text} <button class="delete-btn" id="${id}" onclick="deleteTag(this)">x</button>`;
-												container.appendChild(tag);
-											}
-
-											<?php
-											foreach ($lasso_url->developers as $index => $developer) {
-												if (!empty($developer)) {
-													$name = htmlspecialchars($developer['name']);
-													$id = 'developers_' . $index;
-													echo "addTag('$name', 'developers_input', '$id');";
-												}
-											}
-											?>
-										</script>
-									<?php } ?>
+									<div class="form-control tag-container" id="developers_input" tabindex="0"></div>
 								</div>
 							</div>
 
@@ -251,29 +230,7 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 									<label data-tooltip="Tags of app in store">
 										<strong>Tags</strong> <i class="far fa-info-circle light-purple"></i></label>
 									<input type="hidden" id="tags" name="tags" value="<?php echo htmlspecialchars(json_encode($lasso_url->tags)); ?>">
-									<div class="form-control tag-container" id="tags_input" style="min-height: 38px;"></div>
-
-									<?php if (is_array($lasso_url->tags)) { ?>
-										<script>
-											function addTag(text, input, id) {
-												const container = document.getElementById(input);
-												const tag = document.createElement('span');
-												tag.className = 'tag';
-												tag.innerHTML = `${text} <button class="delete-btn" id="${id}" onclick="deleteTag(this)">x</button>`;
-												container.appendChild(tag);
-											}
-
-											<?php
-											foreach ($lasso_url->tags as $index => $tag) {
-												if (!empty($tag)) {
-													$name = htmlspecialchars($tag['name']);
-													$id = 'tags_' . $index;
-													echo "addTag('$name', 'tags_input', '$id');";
-												}
-											}
-											?>
-										</script>
-									<?php } ?>
+									<div class="form-control tag-container" id="tags_input"></div>
 								</div>
 							</div>
 
@@ -282,103 +239,25 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 									<label data-tooltip="Genres of app in store">
 										<strong>Genres</strong> <i class="far fa-info-circle light-purple"></i></label>
 									<input type="hidden" id="genres" name="genres" value="<?php echo htmlspecialchars(json_encode($lasso_url->genres)); ?>">
-									<div class="form-control tag-container" id="genres_input" style="min-height: 38px;"></div>
-
-									<?php if (is_array($lasso_url->genres)) { ?>
-										<script>
-											function addTag(text, input, id) {
-												const container = document.getElementById(input);
-												const tag = document.createElement('span');
-												tag.className = 'tag';
-												tag.innerHTML = `${text} <button class="delete-btn" id="${id}" onclick="deleteTag(this)">x</button>`;
-												container.appendChild(tag);
-											}
-
-											<?php
-											foreach ($lasso_url->genres as $index => $genre) {
-												if (!empty($genre)) {
-													$name = htmlspecialchars($genre['name']);
-													$id = 'genres_' . $index;
-													echo "addTag('$name', 'genres_input', '$id');";
-												}
-											}
-											?>
-										</script>
-									<?php } ?>
+									<div class="form-control tag-container" id="genres_input"></div>
 								</div>
 							</div>
 
 							<div class="col-lg-6">
 								<div class="form-group mb-4">
-									<label data-tooltip="Genres of app in store">
+									<label data-tooltip="Platform of app in store">
 										<strong>Platforms</strong> <i class="far fa-info-circle light-purple"></i></label>
 									<input type="hidden" id="platforms" name="platforms" value="<?php echo htmlspecialchars(json_encode($lasso_url->platforms)); ?>">
-									<div class="form-control tag-container" id="platforms_input" style="min-height: 38px;"></div>
-
-									<?php if (is_array($lasso_url->platforms)) { ?>
-										<script>
-											function addTag(text, input, id) {
-												const container = document.getElementById(input);
-												const tag = document.createElement('span');
-												tag.className = 'tag';
-												tag.innerHTML = `${text} <button class="delete-btn" id="${id}" onclick="deleteTag(this)">x</button>`;
-												container.appendChild(tag);
-											}
-
-											function deleteTag(elementGet) {
-												const idElement = elementGet.id;
-												let split = idElement.split('_');
-												let id = split[1];
-												let element = split[0];
-												let val = JSON.parse(document.getElementById(element).value);
-
-												val.splice(id, 1);
-												document.getElementById(element).value = JSON.stringify(val);
-												elementGet.parentElement.remove();
-											}
-
-											<?php
-											foreach ($lasso_url->platforms as $index => $platform) {
-												if (!empty($platform)) {
-													$name = htmlspecialchars($platform['platform']['name']);
-													$id = 'platforms_' . $index;
-													echo "addTag('$name', 'platforms_input', '$id');";
-												}
-											}
-											?>
-										</script>
-									<?php } ?>
+									<div class="form-control tag-container" id="platforms_input"></div>
 								</div>
 							</div>
 
 							<div class="col-lg-6">
 								<div class="form-group mb-4">
-									<label data-tooltip="Genres of app in store">
+									<label data-tooltip="Publishers of app in store">
 										<strong>Publishers</strong> <i class="far fa-info-circle light-purple"></i></label>
 									<input type="hidden" id="publishers" name="publishers" value="<?php echo htmlspecialchars(json_encode($lasso_url->publishers)); ?>">
-									<div class="form-control tag-container" id="publishers_input" style="min-height: 38px;"></div>
-
-									<?php if (is_array($lasso_url->publishers)) { ?>
-										<script>
-											function addTag(text, input, id) {
-												const container = document.getElementById(input);
-												const tag = document.createElement('span');
-												tag.className = 'tag';
-												tag.innerHTML = `${text} <button class="delete-btn" id="${id}" onclick="deleteTag(this)">x</button>`;
-												container.appendChild(tag);
-											}
-
-											<?php
-											foreach ($lasso_url->publishers as $index => $publisher) {
-												if (!empty($publisher)) {
-													$name = htmlspecialchars($publisher['name']);
-													$id = 'publishers_' . $index;
-													echo "addTag('$name', 'publishers_input', '$id');";
-												}
-											}
-											?>
-										</script>
-									<?php } ?>
+									<div class="form-control tag-container" id="publishers_input"></div>
 								</div>
 							</div>
 
@@ -618,6 +497,161 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script>
+	<?php if (is_array($lasso_url->developers)) { ?>
+		initializeTagInput('developers', <?php echo json_encode($lasso_url->developers); ?>);
+	<?php } ?>
+
+	<?php if (is_array($lasso_url->platforms)) { ?>
+		initializeTagInput('platforms', <?php echo json_encode($lasso_url->platforms); ?>);
+	<?php } ?>
+
+	<?php if (is_array($lasso_url->tags)) { ?>
+		initializeTagInput('tags', <?php echo json_encode($lasso_url->tags); ?>);
+	<?php } ?>
+
+	<?php if (is_array($lasso_url->genres)) { ?>
+		initializeTagInput('genres', <?php echo json_encode($lasso_url->genres); ?>);
+	<?php } ?>
+
+	<?php if (is_array($lasso_url->publishers)) { ?>
+		initializeTagInput('publishers', <?php echo json_encode($lasso_url->publishers); ?>);
+	<?php } ?>
+
+	function addTag(text, input, id, key) {
+		const container = document.getElementById(input);
+		const tag = document.createElement('span');
+		tag.className = 'tag';
+		tag.style.backgroundColor = '#ff4d4d'; // Màu đỏ giống trong hình
+		tag.style.color = 'white';
+		tag.style.padding = '2px 8px';
+		tag.style.margin = '2px';
+		tag.style.borderRadius = '4px';
+
+		// Nếu key là platforms, lưu toàn bộ dữ liệu vào thuộc tính data
+		if (key === 'platforms') {
+			tag.setAttribute('data-platform', JSON.stringify(text)); // Lưu toàn bộ dữ liệu platform
+			tag.innerHTML = `${text.platform.name} <button class="delete-btn" id="${id}" onclick="deleteTag(this, '${key}')">x</button>`;
+		} else {
+			tag.innerHTML = `${text} <button class="delete-btn" id="${id}" onclick="deleteTag(this, '${key}')">x</button>`;
+		}
+
+		// Thêm thẻ vào trước inputSpan (để đảm bảo inputSpan luôn ở cuối)
+		const inputSpan = container.querySelector('.input-span');
+		container.insertBefore(tag, inputSpan);
+	}
+
+	// Hàm xóa thẻ và cập nhật lại mảng giá trị
+	function deleteTag(button, key) {
+		const tag = button.parentElement;
+		tag.remove();
+		updateHiddenInput(key);
+		// Đảm bảo inputSpan vẫn ở cuối sau khi xóa
+		const container = document.getElementById(`${key}_input`);
+		const inputSpan = container.querySelector('.input-span');
+		container.appendChild(inputSpan);
+	}
+
+	// Hàm cập nhật giá trị của ô input ẩn
+	function updateHiddenInput(key) {
+		const container = document.getElementById(`${key}_input`);
+		const tags = container.getElementsByClassName('tag');
+		const values = [];
+		for (let tag of tags) {
+			if (key === 'platforms') {
+				// Nếu là platforms, lấy dữ liệu từ thuộc tính data-platform
+				const platformData = JSON.parse(tag.getAttribute('data-platform'));
+				values.push(platformData);
+			} else {
+				const text = tag.childNodes[0].textContent.trim(); // Lấy text của thẻ
+				values.push({
+					name: text
+				});
+			}
+		}
+		document.getElementById(key).value = JSON.stringify(values);
+	}
+
+	// Hàm khởi tạo cho input
+	function initializeTagInput(key, data) {
+		// Hiển thị các thẻ ban đầu từ dữ liệu PHP
+		if (Array.isArray(data)) {
+			data.forEach((item, index) => {
+				if (item) {
+					const id = `${key}_${index}`;
+					if (key === 'platforms') {
+						// Nếu là platforms, truyền toàn bộ object
+						if (item.platform && item.platform.name) {
+							addTag(item, `${key}_input`, id, key);
+						}
+					} else {
+						// Các input khác (như developers)
+						if (item.name) {
+							addTag(item.name, `${key}_input`, id, key);
+						}
+					}
+				}
+			});
+		}
+
+		// Xử lý nhập liệu trong container
+		const container = document.getElementById(`${key}_input`);
+
+		// Tạo một span ẩn để nhập liệu
+		const inputSpan = document.createElement('span');
+		inputSpan.className = 'input-span';
+		inputSpan.contentEditable = true;
+		inputSpan.style.outline = 'none';
+		inputSpan.style.display = 'inline-block';
+		inputSpan.style.minWidth = '10px'; // Đảm bảo có không gian để nhập
+		container.appendChild(inputSpan);
+
+		// Khi container được focus, focus vào inputSpan
+		container.addEventListener('click', function() {
+			inputSpan.focus();
+		});
+
+		// Xử lý sự kiện nhấn Enter trong inputSpan
+		inputSpan.addEventListener('keypress', function(e) {
+			if (e.key === 'Enter') {
+				e.preventDefault(); // Ngăn xuống dòng
+				const text = inputSpan.innerText.trim();
+				if (text !== '') {
+					const id = `${key}_` + Date.now(); // Tạo ID duy nhất cho thẻ
+					if (key === 'platforms') {
+						// Nếu là platforms, tạo một object platform mặc định
+						const platformData = {
+							platform: {
+								id: Date.now(), // ID tạm thời, có thể cần API để lấy ID thật
+								name: text,
+								slug: text.toLowerCase(),
+								image: null,
+								year_end: null,
+								year_start: null,
+								games_count: 0,
+								image_background: ''
+							},
+							released_at: '2023-09-27', // Giá trị mặc định, có thể cần người dùng nhập
+							requirements: {}
+						};
+						addTag(platformData, `${key}_input`, id, key);
+					} else {
+						addTag(text, `${key}_input`, id, key);
+					}
+					inputSpan.innerText = ''; // Xóa nội dung sau khi thêm thẻ
+					updateHiddenInput(key); // Cập nhật giá trị ô input ẩn
+					inputSpan.focus(); // Đưa con trỏ trở lại inputSpan
+				}
+			}
+		});
+
+		container.addEventListener('input', function(e) {
+			const tags = container.getElementsByClassName('tag');
+			for (let tag of tags) {
+				tag.setAttribute('contenteditable', 'false')
+			}
+		});
+	}
+
 	jQuery('.owl-carousel').owlCarousel({
 		loop: true,
 		margin: 10,
@@ -1438,7 +1472,7 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 			var screen_shots = JSON.parse(jQuery("#screen_shots").val());
 			var ratings = JSON.parse(jQuery("#ratings").val());
 			var publishers = JSON.parse(jQuery("#publishers").val());
-			
+
 			var affiliate_desc = quill.root.innerHTML;
 			affiliate_desc = affiliate_desc == '<p><br></p>' ? '' : affiliate_desc;
 

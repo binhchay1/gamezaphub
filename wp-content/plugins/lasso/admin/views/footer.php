@@ -26,19 +26,12 @@ $report_stats   = $lasso_settings->lasso_get_stats_in_report_page();
 
 // ? import
 $plugin_stats = $lasso_settings->check_plugins_for_import_and_deactivate();
-extract( $plugin_stats ); // phpcs:ignore
+extract( $plugin_stats );
 ?>
-
-<!-- Sentry -->
-<script
-	src="https://browser.sentry-cdn.com/7.21.1/bundle.tracing.min.js"
-	integrity="sha384-1MTgFwp9zb14K+BOaYA9Y4H/I3s3IUNIQRPYEHgR19NS1rl8d5KCjP9NfM7o1Bnz"
-	crossorigin="anonymous"
-></script>
 
 <h6 class="text-center pb-4 <?php echo esc_html( $footer_bg ); ?>" style="margin-bottom: 20px;">
 	<span class="badge rounded purple-bg white font-weight-normal py-2 px-3">
-		<?php print 'Version ' . LASSO_VERSION; // phpcs:ignore ?>
+		<?php print 'Version ' . LASSO_VERSION; ?>
 	</span>
 </h6>
 
@@ -132,81 +125,26 @@ if ( '1' === get_option( Enum::OPTION_ENABLE_SCAN_NOTICE_AFTER_IMPORT, 0 ) ) {
 <script>
 	let lasso_path = '<?php echo LASSO_PLUGIN_URL; // phpcs:ignore ?>';
 	let post_type = 'post_type=<?php echo LASSO_POST_TYPE; // phpcs:ignore ?>';
-	Sentry.init({
-		dsn: '<?php echo SENTRY_DNS; // phpcs:ignore ?>',
-		release: '<?php echo LASSO_VERSION; // phpcs:ignore ?>',
-		ignoreErrors: [
-			'ResizeObserver loop limit exceeded', 
-			'ResizeObserver loop completed with undelivered notifications', 
-			'__ez is not defined',
-			'_ezaq is not defined',
-			'Can\'t find variable: _ezaq',
-			'wpColorPickerL10n is not defined',
-			'jQuery(...).wpColorPicker is not a function',
-		],
-		integrations: [new Sentry.Integrations.BrowserTracing()],
-		tracesSampleRate: 1.0,
-		beforeSend(event, hint) {
-			try {
-				let is_lasso_error = false;
-				let event_id = event.event_id;
-				let frames = event.exception.values[0].stacktrace.frames;
-				for(let i = 0; i < frames.length; i++) {
-					if(frames[i].filename.includes(lasso_path) || frames[i].filename.includes(post_type)) {
-						is_lasso_error = true;
-						break;
-					}
-				}
-
-				if(is_lasso_error) {
-					Sentry.showReportDialog({
-						eventId: event_id
-					});
-
-					return event;
-				}
-			} catch (error) {
-				console.log(error);
-			}
-		}
-	});
 </script>
-
-<!-- PHP errors detection -->
-<?php
-	$sentry_last_event_id = class_exists( '\LassoVendor\Sentry\SentrySdk' )
-		? \LassoVendor\Sentry\SentrySdk::getCurrentHub()->getLastEventId() : false;
-?>
-<?php if ( (float) PHP_VERSION >= 7.2 && 'none' !== SENTRY_LOADED && $sentry_last_event_id ) : ?>
-	<script>
-		Sentry.init({ 
-			dsn: '<?php echo SENTRY_DNS; // phpcs:ignore ?>'
-		});
-		Sentry.showReportDialog({ 
-			eventId: '<?php echo $sentry_last_event_id; // phpcs:ignore ?>' 
-		});
-	</script>
-<?php endif ?>
 
 <?php
 $lasso_db      = new Lasso_DB();
 $keyword_count = $lasso_db->saved_keywords_count();
 
-// ? check amazon setting and save result into options table if lasso_amazon_valid is empty
 if ( '' === get_option( 'lasso_amazon_valid', '' ) ) {
 	$lasso_amazon_api = new Lasso_Amazon_Api();
 	$lasso_amazon_api->validate_amazon_settings();
 }
 
-	$user_email      = get_option( 'admin_email' ); // phpcs:ignore
-	$install_count   = get_option( Enum::LASSO_INSTALL_COUNT, 1 ); // phpcs:ignore
+	$user_email      = get_option( 'admin_email' );
+	$install_count   = get_option( Enum::LASSO_INSTALL_COUNT, 1 );
 	$user            = get_user_by( 'email', $user_email );
 	$user_name       = isset( $user->display_name ) ? $user->display_name : get_bloginfo( 'name' );
 	$user_hash       = get_option( 'lasso_license_hash', '' );
 	$amazon_valid    = get_option( 'lasso_amazon_valid', false ) ? 1 : 0;
 	$import_possible = count( Lasso_Setting::get_import_sources() ) > 0 ? 1 : 0;
 	$sentry_loaded   = SENTRY_LOADED;
-	$user_email      = get_option( 'lasso_license_email', $user_email ); // phpcs:ignore
+	$user_email      = get_option( 'lasso_license_email', $user_email );
 	$classic_editor  = Lasso_Helper::is_classic_editor() ? 1 : 0;
 	$ga_set          = $lasso_options['analytics_enable_click_tracking'] ? 1 : 0;
 	$display_counts  = $lasso_db->get_display_counts_for_intercom();

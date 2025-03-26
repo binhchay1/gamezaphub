@@ -119,12 +119,7 @@ class Lasso_License {
 	 */
 	public static function get_license_status() {
 		$db_status      = get_option( 'lasso_license_status', '' );
-		$active_license = Lasso_Helper::cast_to_boolean( $db_status );
-
-		// ? re-activate again if option `lasso_license_status` is not existing
-		if ( '' === $db_status ) {
-			$active_license = Lasso_Helper::cast_to_boolean( self::check_user_license() );
-		}
+		$active_license = true;
 
 		return $active_license;
 	}
@@ -155,22 +150,7 @@ class Lasso_License {
 	public static function lasso_getinfo() {
 		global $wp_version;
 		global $wpdb;
-
-		// ? Report in
-		$data = array(
-			'installed_version' => LASSO_VERSION,
-			'datetime'          => gmdate( 'Y-m-d H:i:s' ),
-			'site_id'           => self::get_site_id(),
-			'install_url'       => site_url(),
-			'license_key'       => self::get_license(),
-			'wordpress_version' => $wp_version,
-			'php_version'       => phpversion(),
-			'mysql_version'     => $wpdb->db_version(),
-			'is_classic_editor' => Lasso_Helper::is_classic_editor() ? 1 : 0,
-		);
-
-		$body     = Encrypt::encrypt_aes( $data );
-		$response = Lasso_Helper::send_request( 'post', LASSO_LINK . '/server/getinfo', $body );
+		$response = true;
 
 		$site_id = $response['response']->site_id ?? '';
 

@@ -99,4 +99,4 @@ class Lasso_Process_Data_Sync_Content extends Lasso_Process {
 		return true;
 	}
 }
-new Lasso_Process_Data_Sync_Content();
+// new Lasso_Process_Data_Sync_Content();

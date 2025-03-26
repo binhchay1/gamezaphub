@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Lasso
  * Plugin URI: https://getlasso.co
@@ -24,7 +25,7 @@ use Lasso\Classes\Activator as Lasso_Activator;
 
 // ? ==============================================================================================
 // ? WE SHOULD UPDATE THE VERSION NUMBER HERE AS WELL WHEN RELEASING A NEW VERSION
-define( 'LASSO_VERSION', '324' );
+define('LASSO_VERSION', '324');
 // ? ==============================================================================================
 
 
@@ -32,15 +33,15 @@ define( 'LASSO_VERSION', '324' );
 
 
 // ? If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
+if (! defined('WPINC')) {
 	die;
 }
 
 // ? Lasso contants definition
-define( 'LASSO_PLUGIN_MAIN_FILE', __FILE__ );
-define( 'LASSO_PLUGIN_PATH', __DIR__ );
-define( 'LASSO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'LASSO_PLUGIN_BASE_NAME', plugin_basename( __FILE__ ) );
+define('LASSO_PLUGIN_MAIN_FILE', __FILE__);
+define('LASSO_PLUGIN_PATH', __DIR__);
+define('LASSO_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('LASSO_PLUGIN_BASE_NAME', plugin_basename(__FILE__));
 require_once LASSO_PLUGIN_PATH . '/admin/lasso-constant.php';
 require_once LASSO_PLUGIN_PATH . DIRECTORY_SEPARATOR . 'autoload.php';
 
@@ -51,19 +52,22 @@ require_once LASSO_PLUGIN_PATH . DIRECTORY_SEPARATOR . 'autoload.php';
 // require_once LASSO_PLUGIN_PATH . '/admin/views/settings/php-compatibility.php';
 // wp_die();
 // }
-*/
+ */
 
 // ? Polyfill declaration. Make lasso to be compatible with PHP8.
 require_once LASSO_PLUGIN_PATH . '/libs/lasso/lasso-polyfill.php';
 
 // ? Sentry declaration
-require_once LASSO_PLUGIN_PATH . '/libs/lasso/lasso-sentry.php';
+// require_once LASSO_PLUGIN_PATH . '/libs/lasso/lasso-sentry.php';
+
+define('SENTRY_LOADED', 'lasted');
 
 // ? Plugin activate
 /**
  * Do something when activate Lasso
  */
-function activate_lasso_urls() {
+function activate_lasso_urls()
+{
 	$lasso_activator = new Lasso_Activator();
 	$lasso_activator->init();
 }
@@ -72,13 +76,14 @@ function activate_lasso_urls() {
 /**
  * Do something when deactivate Lasso
  */
-function deactivate_lasso_urls() {
+function deactivate_lasso_urls()
+{
 	$lasso_deactivator = new Lasso_Deactivator();
 	$lasso_deactivator->init();
 }
 
-register_activation_hook( __FILE__, 'activate_lasso_urls' );
-register_deactivation_hook( __FILE__, 'deactivate_lasso_urls' );
+register_activation_hook(__FILE__, 'activate_lasso_urls');
+register_deactivation_hook(__FILE__, 'deactivate_lasso_urls');
 
 // ? Add custom post type: Lasso URLs and load other classes
 require_once LASSO_PLUGIN_PATH . '/classes/class-lasso-init.php';
@@ -88,21 +93,22 @@ new Lasso_Init();
 require_once LASSO_PLUGIN_PATH . '/libs/lasso/process-other-plugin.php';
 
 // ? Make this plugin loaded after the other plugins
-add_action( 'activated_plugin', 'lasso_load_final' );
+add_action('activated_plugin', 'lasso_load_final');
 /**
  * Check and change the order of plugins.
  */
-function lasso_load_final() {
+function lasso_load_final()
+{
 	$path    = LASSO_PLUGIN_BASE_NAME;
-	$plugins = get_option( 'active_plugins' );
-	if ( $plugins ) {
-		$key = array_search( $path, $plugins, true );
-		if ( false !== $key ) {
-			array_splice( $plugins, $key, 1 );
-			array_push( $plugins, $path );
-			update_option( 'active_plugins', $plugins );
+	$plugins = get_option('active_plugins');
+	if ($plugins) {
+		$key = array_search($path, $plugins, true);
+		if (false !== $key) {
+			array_splice($plugins, $key, 1);
+			array_push($plugins, $path);
+			update_option('active_plugins', $plugins);
 		}
 	}
 }
 
-do_action( 'lasso_loaded' );
+do_action('lasso_loaded');

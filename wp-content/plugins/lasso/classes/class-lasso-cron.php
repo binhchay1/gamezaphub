@@ -3431,21 +3431,21 @@ class Lasso_Cron {
 		}
 	}
 
-	/**
-	 * Run background process: sync content
-	 */
-	public function lasso_data_sync_content() {
-		$lasso_sync_content = new Lasso_Process_Data_Sync_Content();
-		$lasso_sync_content->sync_content( 'diff' );
-	}
+	// /**
+	//  * Run background process: sync content
+	//  */
+	// public function lasso_data_sync_content() {
+	// 	$lasso_sync_content = new Lasso_Process_Data_Sync_Content();
+	// 	$lasso_sync_content->sync_content( 'diff' );
+	// }
 
-	/**
-	 * Run background process: sync full content
-	 */
-	public function lasso_data_sync_content_full() {
-		$lasso_sync_content = new Lasso_Process_Data_Sync_Content();
-		$lasso_sync_content->sync_content( 'full' );
-	}
+	// /**
+	//  * Run background process: sync full content
+	//  */
+	// public function lasso_data_sync_content_full() {
+	// 	$lasso_sync_content = new Lasso_Process_Data_Sync_Content();
+	// 	$lasso_sync_content->sync_content( 'full' );
+	// }
 
 	/**
 	 * Sync affiliate programs data from DWH

@@ -17,6 +17,7 @@ $isPC = false;
 $isNintendo = false;
 $isPlaystation = false;
 $isXbox = false;
+$isMobile = false;
 
 ?>
 
@@ -56,6 +57,10 @@ $isXbox = false;
 								<?php if (strpos($platform['platform']['name'], 'Xbox') !== false and !$isXbox) { ?>
 									<?php $isXbox = true; ?>
 									<img class="img-system" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/xbox-1.png' ?>" alt="Xbox">
+								<?php } ?>
+								<?php if ((strpos($platform['platform']['name'], 'iOS') !== false or strpos($platform['platform']['name'], 'Android') !== false) and !$isMobile) { ?>
+									<?php $isMobile = true; ?>
+									<img class="img-system" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/mobile-1.png' ?>" alt="Mobile">
 								<?php } ?>
 							<?php } ?>
 						</div>
@@ -103,7 +108,7 @@ $isXbox = false;
 				<dl>
 					<div>
 						<dt>
-							<strong>Released</strong>
+							<strong>Ngày phát hành</strong>
 						</dt>
 						<dd>
 							<span>
