@@ -219,7 +219,7 @@ function horizon_news_scripts()
 	wp_enqueue_style('custom-table-by-binh', get_template_directory_uri() . '/assets/css/custom-table.css', array(), HORIZON_NEWS_VERSION);
 
 	wp_enqueue_script('horizon-news-navigation-script', get_template_directory_uri() . '/assets/js/navigation' . $min . '.js', array(), HORIZON_NEWS_VERSION, true);
-	wp_enqueue_script('custom-by-binh-js', get_template_directory_uri() . '/assets/js/auth.js', array(), HORIZON_NEWS_VERSION, true);
+	wp_enqueue_script('custom-by-binh-js', get_template_directory_uri() . '/assets/js/auth.js', array('jquery'), HORIZON_NEWS_VERSION, true);
 	wp_enqueue_script('horizon-news-slick-script', get_template_directory_uri() . '/assets/js/slick' . $min . '.js', array('jquery'), '1.8.1', true);
 	wp_enqueue_script('horizon-news-marquee-script', get_template_directory_uri() . '/assets/js/jquery.marquee' . $min . '.js', array('jquery'), '1.6.0', true);
 	wp_enqueue_script('horizon-news-custom-script', get_template_directory_uri() . '/assets/js/custom' . $min . '.js', array('jquery'), HORIZON_NEWS_VERSION, true);
@@ -231,7 +231,7 @@ function horizon_news_scripts()
 
 	wp_localize_script('custom-by-binh-js', 'ajax_url_admin', array(
 		'ajax_url' => admin_url('admin-ajax.php'),
-		'nonce' => wp_create_nonce('custom_login_nonce')
+		'nonce' => wp_create_nonce('auth_nonce')
 	));
 }
 add_action('wp_enqueue_scripts', 'horizon_news_scripts');

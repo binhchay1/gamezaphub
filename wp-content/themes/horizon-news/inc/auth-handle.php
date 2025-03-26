@@ -15,6 +15,11 @@ add_action('init', 'initialize_custom_session');
 
 function check_email()
 {
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'auth_nonce')) {
+        wp_send_json_error(['message' => 'Invalid nonce']);
+        wp_die();
+    }
+
     global $wpdb;
     $email = sanitize_email($_POST['email']);
     $table_name = $wpdb->prefix . 'custom_users';
@@ -43,7 +48,7 @@ function custom_user_ajax_login()
 {
     global $wpdb;
 
-    check_ajax_referer('custom_login_nonce', 'nonce');
+    check_ajax_referer('auth_nonce', 'nonce');
 
     $username = isset($_POST['username']) ? sanitize_text_field($_POST['username']) : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';

@@ -10,6 +10,8 @@
             <input type="email" id="email" name="email" autocomplete="email" placeholder="Hòm thư">
             <input type="password" id="password" name="password" autocomplete="password" placeholder="Mật khẩu" class="hidden">
 
+            <div id="error-area"></div>
+
             <p id="notification-modal" class="hidden">Một thư kích hoạt đã được gửi đến hòm thư <span></span>. Vui lòng làm theo hướng dẫn trong hòm thư để hoàn tất việc đăng ký</p>
 
             <button type="button" class="continue-btn">Tiếp tục</button>
