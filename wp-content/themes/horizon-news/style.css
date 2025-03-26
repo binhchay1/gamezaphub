@@ -644,7 +644,6 @@ big {
 	--clr-background: #fff;
 	--clr-sub-background: #fff;
 	--clr-sub-border: #f1f1f1;
-	--logo-size-custom: 250px;
 	--container-width: 1520px;
 	--font-size-xs: clamp(0.7rem, 0.17vw + 0.76rem, 0.79rem);
 	--font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
@@ -4909,7 +4908,7 @@ header.site-header .bottom-header-part .bottom-header-wrapper .bottom-header-rig
 }
 
 header.site-header .site-logo {
-	max-width: var(--logo-size-custom);
+	max-width: 250px;
 }
 
 header.site-header .site-logo a {

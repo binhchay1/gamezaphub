@@ -6,7 +6,6 @@
             const images = gallery.querySelectorAll('figure');
             if (images.length === 0) return;
 
-            // Kiểm tra và lấy src của ảnh
             const getImageSrc = (imgElement) => {
                 const img = imgElement.querySelector('img');
                 return img && img.src ? img.src : 'https://via.placeholder.com/150';
@@ -15,7 +14,7 @@
             gallery.innerHTML = `
                 <div class="custom-gallery-container">
                     <div class="main-image">
-                        <img src="${getImageSrc(images[0])}" alt="Main Image">
+                        <img src="${getImageSrc(images[0])}" alt="Ảnh chính">
                         <button class="zoom-btn">Phóng to</button>
                         <div class="nav-buttons">
                             <button class="prev-btn">←</button>
@@ -72,8 +71,8 @@
                 .thumbnail {
                     flex: 0 0 ${100 / itemsPerView}%;
                     height: 100px;
-                    overflow: visible; /* Đảm bảo ảnh không bị ẩn */
-                    min-width: ${100 / itemsPerView}%; /* Đảm bảo kích thước tối thiểu */
+                    overflow: visible;
+                    min-width: ${100 / itemsPerView}%;
                 }
                 .thumbnail img {
                     width: 100%;
@@ -177,12 +176,10 @@
 
                 let newOffset;
                 if (thumbnails.length <= itemsPerView) {
-                    // Nếu số lượng ảnh ít hơn hoặc bằng itemsPerView, không cần cuộn
                     newOffset = 0;
                 } else if (currentIndex <= Math.floor(itemsPerView / 2)) {
                     newOffset = 0;
                 } else if (currentIndex >= thumbnails.length - 1) {
-                    // Khi ở ảnh cuối, cuộn để ảnh cuối nằm sát cạnh phải
                     newOffset = thumbnails.length - itemsPerView;
                 } else {
                     newOffset = currentIndex - Math.floor(itemsPerView / 2);
@@ -191,10 +188,9 @@
                 newOffset = Math.max(0, Math.min(newOffset, maxOffset));
                 thumbnailContainer.style.transform = `translateX(-${newOffset * thumbnailWidth}px)`;
 
-                // Đảm bảo ảnh cuối hiển thị bằng cách kiểm tra và điều chỉnh
                 thumbnails.forEach((thumb, i) => {
                     if (i === thumbnails.length - 1) {
-                        thumb.style.display = 'block'; // Đảm bảo ảnh cuối hiển thị
+                        thumb.style.display = 'block';
                     }
                 });
             }

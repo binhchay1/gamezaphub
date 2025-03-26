@@ -31,10 +31,10 @@ if ($game_data) {
 
 ?>
 
-<main id="primary" class="site-main" style="padding-left: 10px; padding-right: 10px;">
+<main id="primary" class="site-main">
     <header class="page-header d-flex justify-content-between">
         <h1 class="page-title"><?php echo esc_html($post['post_title']); ?></h1>
-        <div class="rating-title">GR ★ 4.47/5</div>
+        <div class="rating-title">GR ★ <?php echo $post['meta']['rating'] ?>/5</div>
     </header>
     <div class="<?php echo esc_attr($grid_style); ?> d-flex main-information">
         <div class="custom-gallery-container">
