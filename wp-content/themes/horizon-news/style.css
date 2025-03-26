@@ -1284,7 +1284,7 @@ textarea:focus-visible {
 	grid-gap: 30px;
 	grid-template-columns: auto 25%;
 	grid-template-areas: "main sidebar";
-	margin-block: 50px 20px;
+	margin-block: 15px 0;
 }
 
 @media (max-width: 991px) {

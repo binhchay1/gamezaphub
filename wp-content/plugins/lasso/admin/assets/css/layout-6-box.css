@@ -143,3 +143,13 @@
 .text-red {
     color: #e74c3c !important;
 }
+
+@media only screen and (max-width: 767px) {
+    .header-box-lasso {
+        flex-direction: column;
+    }
+
+    .game-image {
+        width: 100%;
+    }
+}

@@ -6,26 +6,37 @@
             const images = gallery.querySelectorAll('figure');
             if (images.length === 0) return;
 
+            // Kiểm tra và lấy src của ảnh
+            const getImageSrc = (imgElement) => {
+                const img = imgElement.querySelector('img');
+                return img && img.src ? img.src : 'https://via.placeholder.com/150';
+            };
+
             gallery.innerHTML = `
                 <div class="custom-gallery-container">
                     <div class="main-image">
-                        <img src="${images[0].querySelector('img').src}" alt="Main Image">
-                        <button class="zoom-btn">Zoom</button>
+                        <img src="${getImageSrc(images[0])}" alt="Main Image">
+                        <button class="zoom-btn">Phóng to</button>
+                        <div class="nav-buttons">
+                            <button class="prev-btn">←</button>
+                            <button class="next-btn">→</button>
+                        </div>
                     </div>
-                    <div class="thumbnail-container">
-                        ${Array.from(images)
-                            .map(
-                                (img, index) =>
-                                    `<div class="thumbnail"><img src="${img.querySelector('img').src}" data-index="${index}" alt="Thumbnail"></div>`
-                            )
-                            .join('')}
+                    <div class="thumbnail-wrapper">
+                        <div class="thumbnail-container">
+                            ${Array.from(images)
+                    .map(
+                        (img, index) =>
+                            `<div class="thumbnail"><img src="${getImageSrc(img)}" data-index="${index}" alt="Thumbnail"></div>`
+                    )
+                    .join('')}
+                        </div>
                     </div>
-                    <button class="next-btn">Next</button>
                 </div>
             `;
 
             let currentIndex = 0;
-            const itemsPerView = 4;
+            const itemsPerView = 5;
 
             const style = document.createElement('style');
             style.textContent = `
@@ -37,24 +48,32 @@
                 .main-image {
                     position: relative;
                     width: 100%;
+                    height: 400px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
                 .main-image img {
                     width: 100%;
-                    height: auto;
+                    height: 400px;
                     cursor: pointer;
+                }
+                .thumbnail-wrapper {
+                    position: relative;
+                    margin-top: 10px;
                 }
                 .thumbnail-container {
                     display: flex;
-                    overflow-x: hidden; /* Ẩn phần thừa để tạo carousel */
                     white-space: nowrap;
                     gap: 10px;
-                    margin-top: 10px;
-                    transition: transform 0.5s ease; /* Hiệu ứng chuyển động mượt */
+                    transition: transform 0.5s ease;
+                    width: 100%;
                 }
                 .thumbnail {
-                    flex: 0 0 ${100 / itemsPerView}%; /* Chia đều 4 ảnh trong 100% chiều rộng */
+                    flex: 0 0 ${100 / itemsPerView}%;
                     height: 100px;
-                    overflow: hidden;
+                    overflow: visible; /* Đảm bảo ảnh không bị ẩn */
+                    min-width: ${100 / itemsPerView}%; /* Đảm bảo kích thước tối thiểu */
                 }
                 .thumbnail img {
                     width: 100%;
@@ -62,6 +81,7 @@
                     object-fit: cover;
                     cursor: pointer;
                     transition: opacity 0.3s;
+                    display: block; /* Đảm bảo ảnh hiển thị */
                 }
                 .thumbnail.active img,
                 .thumbnail:hover img {
@@ -70,10 +90,14 @@
                 .thumbnail:not(.active) img {
                     opacity: 0.5;
                 }
-                .next-btn {
+                .nav-buttons {
                     position: absolute;
                     bottom: 10px;
                     right: 10px;
+                    display: flex;
+                    gap: 5px;
+                }
+                .prev-btn, .next-btn {
                     background: rgba(0,0,0,0.5);
                     color: white;
                     border: none;
@@ -119,7 +143,6 @@
             `;
             document.head.appendChild(style);
 
-            // Thêm modal phóng to
             const modal = document.createElement('div');
             modal.className = 'modal';
             modal.innerHTML = `
@@ -131,32 +154,61 @@
             const mainImage = gallery.querySelector('.main-image img');
             const thumbnails = gallery.querySelectorAll('.thumbnail img');
             const thumbnailContainer = gallery.querySelector('.thumbnail-container');
-            const nextBtn = gallery.querySelector('.next-btn');
             const zoomBtn = gallery.querySelector('.zoom-btn');
+            const prevBtn = gallery.querySelector('.prev-btn');
+            const nextBtn = gallery.querySelector('.next-btn');
             const closeModal = modal.querySelector('.close');
             const modalContent = modal.querySelector('.modal-content');
 
             function updateMainImage(index) {
-                mainImage.src = images[index].querySelector('img').src;
+                const src = getImageSrc(images[index]);
+                mainImage.src = src;
                 currentIndex = index;
                 thumbnails.forEach((thumb, i) => {
                     const thumbnailDiv = thumb.closest('.thumbnail');
                     thumbnailDiv.classList.toggle('active', i === index);
                 });
+                adjustThumbnailPosition();
             }
 
-            function slideThumbnails() {
-                const thumbnailWidth = thumbnails[0].closest('.thumbnail').offsetWidth + 10; // Chiều rộng + gap
+            function adjustThumbnailPosition() {
+                const thumbnailWidth = thumbnails[0].closest('.thumbnail').offsetWidth + 10;
                 const maxOffset = Math.max(0, thumbnails.length - itemsPerView);
-                const newIndex = Math.min(currentIndex + 1, maxOffset);
-                thumbnailContainer.style.transform = `translateX(-${newIndex * thumbnailWidth}px)`;
-                currentIndex = newIndex;
+
+                let newOffset;
+                if (thumbnails.length <= itemsPerView) {
+                    // Nếu số lượng ảnh ít hơn hoặc bằng itemsPerView, không cần cuộn
+                    newOffset = 0;
+                } else if (currentIndex <= Math.floor(itemsPerView / 2)) {
+                    newOffset = 0;
+                } else if (currentIndex >= thumbnails.length - 1) {
+                    // Khi ở ảnh cuối, cuộn để ảnh cuối nằm sát cạnh phải
+                    newOffset = thumbnails.length - itemsPerView;
+                } else {
+                    newOffset = currentIndex - Math.floor(itemsPerView / 2);
+                }
+
+                newOffset = Math.max(0, Math.min(newOffset, maxOffset));
+                thumbnailContainer.style.transform = `translateX(-${newOffset * thumbnailWidth}px)`;
+
+                // Đảm bảo ảnh cuối hiển thị bằng cách kiểm tra và điều chỉnh
+                thumbnails.forEach((thumb, i) => {
+                    if (i === thumbnails.length - 1) {
+                        thumb.style.display = 'block'; // Đảm bảo ảnh cuối hiển thị
+                    }
+                });
+            }
+
+            function slidePrev() {
+                currentIndex = Math.max(currentIndex - 1, 0);
                 updateMainImage(currentIndex);
             }
 
-            nextBtn.addEventListener('click', () => {
-                slideThumbnails();
-            });
+            function slideNext() {
+                const maxIndex = thumbnails.length - 1;
+                currentIndex = Math.min(currentIndex + 1, maxIndex);
+                updateMainImage(currentIndex);
+            }
 
             thumbnails.forEach((thumb) => {
                 thumb.addEventListener('click', () => {
@@ -165,12 +217,10 @@
                 });
             });
 
-            zoomBtn.addEventListener('click', () => {
-                modal.style.display = 'flex';
-                modalContent.src = mainImage.src;
-            });
+            prevBtn.addEventListener('click', slidePrev);
+            nextBtn.addEventListener('click', slideNext);
 
-            mainImage.addEventListener('click', () => {
+            zoomBtn.addEventListener('click', () => {
                 modal.style.display = 'flex';
                 modalContent.src = mainImage.src;
             });
@@ -183,7 +233,13 @@
                 if (e.target === modal) modal.style.display = 'none';
             });
 
-            // Khởi tạo
+            // Kiểm tra lỗi tải ảnh
+            thumbnails.forEach((thumb) => {
+                thumb.addEventListener('error', () => {
+                    thumb.src = 'https://via.placeholder.com/150';
+                });
+            });
+
             updateMainImage(0);
         });
     });
