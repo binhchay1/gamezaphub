@@ -4364,22 +4364,10 @@ header.site-header .top-header-part .top-header-wrapper {
 	justify-content: space-between;
 }
 
-@media (max-width: 600px) {
-	header.site-header .top-header-part .top-header-wrapper {
-		flex-direction: column;
-	}
-}
-
 header.site-header .top-header-part .top-header-wrapper .top-header-left {
 	gap: 10px;
 	display: flex;
 	align-items: center;
-}
-
-@media (max-width: 600px) {
-	header.site-header .top-header-part .top-header-wrapper .top-header-left {
-		display: none;
-	}
 }
 
 header.site-header .top-header-part .top-header-wrapper .top-header-left .date-wrap {
@@ -4916,7 +4904,7 @@ header.site-header .site-logo a {
 }
 
 header.site-header .site-logo a img {
-	width: 100%;
+	width: 150px;
 }
 
 header.site-header .site-branding.site-logo-side {
