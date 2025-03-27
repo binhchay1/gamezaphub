@@ -112,12 +112,65 @@ if ($game_data) {
     </div>
 
     <?php if ($related_query->have_posts()) : ?>
-        <div class="magazine-archive-layout grid-layout <?php echo esc_attr($grid_style); ?> mt-3">
+        <div class="related-posts-section mt-3">
             <?php
-            while ($related_query->have_posts()) :
+
+            $categories = [];
+            $category_counts = [];
+
+            while ($related_query->have_posts()) {
                 $related_query->the_post();
-                get_template_part('template-parts/content', get_post_type());
-            endwhile;
+                $post_categories = get_the_category();
+                foreach ($post_categories as $category) {
+                    $cat_id = $category->term_id;
+                    if (!isset($categories[$cat_id])) {
+                        $categories[$cat_id] = $category;
+                    }
+
+                    $category_counts[$cat_id] = isset($category_counts[$cat_id]) ? $category_counts[$cat_id] + 1 : 1;
+                }
+            }
+            rewind_posts();
+
+            foreach ($categories as $category) :
+                $category_query = new WP_Query([
+                    'post__in' => wp_list_pluck($related_query->posts, 'ID'),
+                    'cat' => $category->term_id,
+                    'posts_per_page' => 4,
+                    'orderby' => 'date',
+                    'order' => 'DESC',
+                ]);
+
+                if ($category_query->have_posts()) :
+            ?>
+                    <div class="category-section mt-3">
+                        <div class="category-header">
+                            <h2 class="category-title"><?php echo esc_html($category->name); ?> (<?php echo esc_html($category_counts[$category->term_id]); ?>)</h2>
+                            <?php if ($category_counts[$category->term_id] > 4) { ?>
+                                <a href="<?php echo esc_url(get_term_link($category->term_id, 'category')); ?>" class="see-all">Xem thêm →</a>
+                            <?php } ?>
+                        </div>
+                        <div class="posts-row">
+                            <?php while ($category_query->have_posts()) : $category_query->the_post(); ?>
+                                <div class="post-item">
+                                    <?php if (has_post_thumbnail()) : ?>
+                                        <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'medium')); ?>" alt="<?php the_title_attribute(); ?>">
+                                    <?php else : ?>
+                                        <img src="https://via.placeholder.com/300x200?text=No+Image" alt="No Image">
+                                    <?php endif; ?>
+                                    <div class="post-content">
+                                        <h3 class="post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                                        <p class="post-description"><?php echo wp_trim_words(get_the_excerpt(), 10, '...'); ?></p>
+                                        <p class="post-author">By <?php the_author(); ?>...</p>
+                                    </div>
+                                </div>
+                            <?php endwhile; ?>
+                        </div>
+                    </div>
+            <?php
+                endif;
+                wp_reset_postdata(); // Reset query cho danh mục tiếp theo
+            endforeach;
             ?>
         </div>
     <?php else : ?>

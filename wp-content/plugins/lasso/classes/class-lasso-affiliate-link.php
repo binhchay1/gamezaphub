@@ -691,12 +691,6 @@ class Lasso_Affiliate_Link
 
 			$respCheckSearch = json_decode(wp_remote_retrieve_body($response), true);
 
-			echo '<pre>';
-			var_dump($respCheckSearch);
-			echo '</pre>';
-
-			die;
-
 			if (!is_array($respCheckSearch)) {
 				$res = ['status_code' => 404, 'message' => 'Game details not found'];
 				return $is_ajax_request ? wp_send_json_error($res) : $res;
