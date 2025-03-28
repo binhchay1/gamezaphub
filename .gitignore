@@ -25,6 +25,8 @@ wp-config.php
 # htaccess
 /.htaccess
 
+/wp-content/temp
+
 # All plugins
 #
 # Note: If you wish to whitelist plugins,

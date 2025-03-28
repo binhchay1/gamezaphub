@@ -8,7 +8,7 @@
 
             const getImageSrc = (imgElement) => {
                 const img = imgElement.querySelector('img');
-                return img && img.src ? img.src : 'https://via.placeholder.com/150';
+                return img && img.src ? img.src : '';
             };
 
             gallery.innerHTML = `
@@ -232,7 +232,7 @@
             // Kiểm tra lỗi tải ảnh
             thumbnails.forEach((thumb) => {
                 thumb.addEventListener('error', () => {
-                    thumb.src = 'https://via.placeholder.com/150';
+                    // thumb.src = 'https://via.placeholder.com/150';
                 });
             });
 

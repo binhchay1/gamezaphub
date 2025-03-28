@@ -108,7 +108,7 @@ if ( ! class_exists( 'Horizon_News_Categories_Widget' ) ) {
 					<input type="url" class="img widefat" name="<?php echo esc_attr( $this->get_field_name( 'category_image_' . $i ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'category_image_' . $i ) ); ?>" value="<?php echo esc_url( $category_image ); ?>" /><br/>
 					<input type="button" class="select-img button" value="<?php esc_attr_e( 'Upload', 'horizon-news' ); ?>" data-uploader_title="<?php esc_attr_e( 'Select Image', 'horizon-news' ); ?>" data-uploader_button_text="<?php esc_attr_e( 'Choose Image', 'horizon-news' ); ?>" style="margin-top:5px;" /><br/>
 				</p>
-				<hr style="border: 1px dotted; #757575;" />
+				<!-- <hr style="border: 1px dotted; #757575;" /> -->
 				<?php
 			}
 		}

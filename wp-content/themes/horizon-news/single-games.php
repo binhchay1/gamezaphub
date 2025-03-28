@@ -156,7 +156,7 @@ if ($game_data) {
                                     <?php if (has_post_thumbnail()) : ?>
                                         <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'medium')); ?>" alt="<?php the_title_attribute(); ?>">
                                     <?php else : ?>
-                                        <img src="https://via.placeholder.com/300x200?text=No+Image" alt="No Image">
+                                        <img alt="No Image">
                                     <?php endif; ?>
                                     <div class="post-content">
                                         <h3 class="post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
