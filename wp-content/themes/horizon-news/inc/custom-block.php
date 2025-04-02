@@ -92,7 +92,7 @@ function custom_blockquote_styles() {
         'custom-blockquote-style',
         get_template_directory_uri() . '/assets/css/custom-blockquote.css',
         array(),
-        '1.0.0',
+        '1.0.2',
         'all'
     );
 }
