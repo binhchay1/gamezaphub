@@ -30,4 +30,9 @@
     .wp-block-list {
         margin-left: 0;
     }
+
+    .current-time,
+    .duration {
+        width: inherit;
+    }
 }

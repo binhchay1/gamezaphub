@@ -47,14 +47,12 @@
                 .main-image {
                     position: relative;
                     width: 100%;
-                    height: 400px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                 }
                 .main-image img {
                     width: 100%;
-                    height: 400px;
                     cursor: pointer;
                 }
                 .thumbnail-wrapper {

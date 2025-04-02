@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         video.addEventListener('loadedmetadata', () => {
             duration.textContent = formatTime(video.duration);
-            progressBar.max = video.duration;
+            progressBar.max = parseInt(video.duration);
         });
 
         playPauseBtn.addEventListener('click', () => {
@@ -47,9 +47,19 @@ document.addEventListener('DOMContentLoaded', () => {
             updateVolumeIcon(video.volume);
         });
 
-        video.addEventListener('timeupdate', () => {
-            progressBar.value = video.currentTime;
-            currentTime.textContent = formatTime(video.currentTime);
+        function updateProgress() {
+            if (!video.paused && !video.ended) {
+                progressBar.value = video.currentTime;
+                currentTime.textContent = formatTime(video.currentTime);
+            }
+            requestAnimationFrame(updateProgress);
+        }
+        requestAnimationFrame(updateProgress);
+
+        video.addEventListener('ended', () => {
+            progressBar.value = progressBar.max;
+            currentTime.textContent = formatTime(video.duration);
+            playPauseBtn.textContent = '⟲';
         });
 
         progressBar.addEventListener('input', () => {
