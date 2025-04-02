@@ -5,14 +5,6 @@
  */
 require_once get_template_directory() . '/vendor/autoload.php';
 
-function initialize_custom_session()
-{
-    if (!session_id()) {
-        session_start();
-    }
-}
-add_action('init', 'initialize_custom_session');
-
 function check_email()
 {
     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'auth_nonce')) {
@@ -86,10 +78,6 @@ add_action('wp_ajax_nopriv_custom_user_login', 'custom_user_ajax_login');
 
 function is_custom_user_logged_in()
 {
-    if (!session_id()) {
-        session_start();
-    }
-    
     return isset($_SESSION['custom_user']) && $_SESSION['custom_user']['logged_in'] === true;
 }
 
@@ -146,10 +134,6 @@ function handle_google_callback()
 {
     global $wpdb;
 
-    if (!session_id()) {
-        session_start();
-    }
-
     if (isset($_GET['code']) && strpos($_SERVER['REQUEST_URI'], '/google-callback') !== false) {
         $client = get_google_client();
 
@@ -161,7 +145,7 @@ function handle_google_callback()
             $user_info = $oauth_service->userinfo->get();
 
             $email = $user_info->email;
-            $username = $user_info->givenName ?: explode('@', $email)[0];
+            $name = $user_info->givenName ?: explode('@', $email)[0];
 
             $table_name = $wpdb->prefix . 'custom_users';
             $existing_user = $wpdb->get_row(
@@ -171,7 +155,7 @@ function handle_google_callback()
             if ($existing_user) {
                 $_SESSION['custom_user'] = array(
                     'id' => $existing_user->id,
-                    'username' => $existing_user->username,
+                    'name' => $existing_user->name,
                     'email' => $existing_user->email,
                     'logged_in' => true
                 );
@@ -179,7 +163,7 @@ function handle_google_callback()
                 $wpdb->insert(
                     $table_name,
                     array(
-                        'name' => $username,
+                        'name' => $name,
                         'email' => $email,
                         'password' => ''
                     )
@@ -188,13 +172,12 @@ function handle_google_callback()
 
                 $_SESSION['custom_user'] = array(
                     'id' => $user_id,
-                    'username' => $username,
+                    'name' => $name,
                     'email' => $email,
                     'logged_in' => true
                 );
             }
 
-            error_log("Session sau khi gán: " . print_r($_SESSION, true));
             session_write_close();
             wp_redirect(home_url());
             exit;

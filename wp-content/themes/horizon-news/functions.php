@@ -13,6 +13,14 @@ if (! defined('HORIZON_NEWS_VERSION')) {
 	define('HORIZON_NEWS_VERSION', '1.0.0');
 }
 
+function initialize_custom_session()
+{
+	if (!session_id()) {
+		session_start();
+	}
+}
+add_action('init', 'initialize_custom_session');
+
 if (! function_exists('horizon_news_setup')) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.

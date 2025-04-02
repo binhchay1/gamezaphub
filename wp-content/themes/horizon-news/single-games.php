@@ -67,8 +67,10 @@ if ($game_data) {
             <div class="information-item">
                 <p>Thể loại:</p>
                 <div class="genre information-subitem">
-                    <?php foreach ($genres as $index => $genre) { ?>
-                        <div class="genre-item"><?php echo esc_html($genre['name']); ?></div>
+                    <?php if (is_array($genres)) { ?>
+                        <?php foreach ($genres as $index => $genre) { ?>
+                            <div class="genre-item"><?php echo esc_html($genre['name']); ?></div>
+                        <?php } ?>
                     <?php } ?>
                 </div>
             </div>
@@ -76,8 +78,10 @@ if ($game_data) {
             <div class="information-item">
                 <p style="white-space: nowrap;">Nền tảng:</p>
                 <div class="systems information-subitem">
-                    <?php foreach ($platforms as $index => $platform) { ?>
-                        <div class="system-item"><?php echo esc_html($platform['platform']['name']); ?></div>
+                    <?php if (is_array($platforms)) { ?>
+                        <?php foreach ($platforms as $index => $platform) { ?>
+                            <div class="system-item"><?php echo esc_html($platform['platform']['name']); ?></div>
+                        <?php } ?>
                     <?php } ?>
                 </div>
             </div>
@@ -92,14 +96,18 @@ if ($game_data) {
             <div class="information-item">
                 <p>Nhà phát triển:</p>
                 <div class="developers information-subitem">
-                    <div class="developers-item"><?php echo esc_html($developers[0]['name']); ?></div>
+                    <?php if (is_array($developers)) { ?>
+                        <div class="developers-item"><?php echo esc_html($developers[0]['name']); ?></div>
+                    <?php } ?>
                 </div>
             </div>
 
             <div class="information-item">
                 <p>Nhà phát hành:</p>
                 <div class="publishers information-subitem">
-                    <div class="publishers-item"><?php echo esc_html($publishers[0]['name']); ?></div>
+                    <?php if (is_array($publishers)) { ?>
+                        <div class="publishers-item"><?php echo esc_html($publishers[0]['name']); ?></div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

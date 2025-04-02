@@ -135,14 +135,16 @@ $isMobile = false;
 						</dt>
 						<dd>
 							<?php $countDeveloper = 0; ?>
-							<?php foreach ($lasso_url->developers as $developer) { ?>
-								<?php if ($countDeveloper >= 1) { ?>
-									<?php break; ?>
+							<?php if (is_array($lasso_url->developers) or is_object($lasso_url->developers)) { ?>
+								<?php foreach ($lasso_url->developers as $developer) { ?>
+									<?php if ($countDeveloper >= 1) { ?>
+										<?php break; ?>
+									<?php } ?>
+									<span>
+										<?php echo $developer['name'] ?>
+									</span>
+									<?php $countDeveloper++; ?>
 								<?php } ?>
-								<span>
-									<?php echo $developer['name'] ?>
-								</span>
-								<?php $countDeveloper++; ?>
 							<?php } ?>
 						</dd>
 					</div>
@@ -152,14 +154,16 @@ $isMobile = false;
 						</dt>
 						<dd>
 							<?php $countPublish = 0; ?>
-							<?php foreach ($lasso_url->publishers as $publisher) { ?>
-								<?php if ($countPublish >= 1) { ?>
-									<?php break; ?>
+							<?php if (is_array($lasso_url->publishers) or is_object($lasso_url->publishers)) { ?>
+								<?php foreach ($lasso_url->publishers as $publisher) { ?>
+									<?php if ($countPublish >= 1) { ?>
+										<?php break; ?>
+									<?php } ?>
+									<span>
+										<?php echo $publisher['name'] ?>
+									</span>
+									<?php $countPublish++; ?>
 								<?php } ?>
-								<span>
-									<?php echo $publisher['name'] ?>
-								</span>
-								<?php $countPublish++; ?>
 							<?php } ?>
 						</dd>
 					</div>

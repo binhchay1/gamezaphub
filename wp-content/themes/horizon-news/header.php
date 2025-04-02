@@ -61,7 +61,7 @@
 										} else {
 											$custom_user = get_custom_user();
 											$avatar = get_avatar($custom_user['email'], 32);
-											$display_name = esc_html($custom_user['username']);
+											$display_name = esc_html($custom_user['name']);
 											$logout_url = home_url('?custom_logout=1');
 											$profile_url = home_url('/profile');
 										}
