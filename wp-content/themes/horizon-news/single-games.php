@@ -51,6 +51,9 @@ if ($game_data) {
             </div>
             <div class="thumbnail-container">
                 <?php foreach ($screen_shots as $index => $shot) { ?>
+                    <?php if ($index == 0) {
+                        continue;
+                    } ?>
                     <div class="thumbnail"><img src="<?php echo esc_url($shot); ?>" data-index="<?php echo esc_attr($index); ?>" alt="Thumbnail"></div>
                 <?php } ?>
             </div>

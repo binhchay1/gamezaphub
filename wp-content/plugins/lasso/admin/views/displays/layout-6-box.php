@@ -168,7 +168,10 @@ $isMobile = false;
 
 			<div class="footer-box-lasso">
 				<div class="owl-carousel owl-theme">
-					<?php foreach ($lasso_url->screen_shots as $screen_shot) { ?>
+					<?php foreach ($lasso_url->screen_shots as $index => $screen_shot) { ?>
+						<?php if ($index == 0) {
+							continue;
+						} ?>
 						<div class="item">
 							<img src="<?php echo $screen_shot ?>" alt="screen shot">
 						</div>
