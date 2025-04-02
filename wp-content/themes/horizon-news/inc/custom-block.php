@@ -41,26 +41,21 @@ function custom_video_player_scripts()
 add_action('wp_enqueue_scripts', 'custom_video_player_scripts');
 
 add_filter('render_block', function ($block_content, $block) {
-    // Chỉ áp dụng cho block core/video
     if ($block['blockName'] !== 'core/video') {
         return $block_content;
     }
 
-    // Lấy nguồn video từ thuộc tính của block
     $video_src = '';
     if (!empty($block['attrs']['src'])) {
         $video_src = esc_url($block['attrs']['src']);
     } elseif (!empty($block['attrs']['id'])) {
-        // Nếu video được upload vào media library, lấy URL từ attachment ID
         $video_src = wp_get_attachment_url($block['attrs']['id']);
     }
 
-    // Nếu không có nguồn video, trả về nội dung gốc
     if (empty($video_src)) {
         return $block_content;
     }
 
-    // Tạo HTML tùy chỉnh cho video player
     ob_start();
 ?>
     <div class="video-player">
@@ -80,3 +75,38 @@ add_filter('render_block', function ($block_content, $block) {
 <?php
     return ob_get_clean();
 }, 10, 2);
+
+function replace_twitter_iframe_with_embed($content)
+{
+    $pattern = '/<iframe.*?src=["\']https?:\/\/(www\.)?twitter\.com\/(.*?)["\'].*?<\/iframe>/i';
+    return preg_replace_callback($pattern, function ($matches) {
+        $tweetUrl = "https://twitter.com/" . $matches[2];
+        return '<blockquote class="twitter-tweet"><a href="' . esc_url($tweetUrl) . '"></a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>';
+    }, $content);
+}
+
+add_filter('the_content', 'replace_twitter_iframe_with_embed');
+
+function custom_blockquote_styles() {
+    wp_enqueue_style(
+        'custom-blockquote-style',
+        get_template_directory_uri() . '/assets/css/custom-blockquote.css',
+        array(),
+        '1.0.0',
+        'all'
+    );
+}
+add_action('wp_enqueue_scripts', 'custom_blockquote_styles');
+
+function custom_render_block_quote($block_content, $block) {
+    if ($block['blockName'] !== 'core/quote') {
+        return $block_content;
+    }
+
+    $block_content = str_replace('wp-block-quote', 'wp-block-quote custom-blockquote-tip', $block_content);
+    $tip_header = '<div class="tip-header">Mẹo</div>';
+    $block_content = $tip_header . $block_content;
+
+    return $block_content;
+}
+add_filter('render_block', 'custom_render_block_quote', 10, 2);

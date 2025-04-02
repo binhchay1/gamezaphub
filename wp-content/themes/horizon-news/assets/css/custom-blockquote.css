@@ -1,0 +1,25 @@
+.custom-blockquote-tip {
+    border-top: 2px solid #d3d3d3;
+    border-bottom: 2px solid #d3d3d3;
+    padding: 10px 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+.tip-header {
+    display: inline-block;
+    background-color: #d3d3d3;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px 8px;
+}
+
+.custom-blockquote-tip p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    padding: 0 20px;
+    margin: 0;
+}
