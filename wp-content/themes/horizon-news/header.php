@@ -63,7 +63,9 @@
 											$avatar = get_avatar($custom_user['email'], 32);
 											$display_name = esc_html($custom_user['username']);
 											$logout_url = home_url('?custom_logout=1');
+											$profile_url = home_url('/profile');
 										}
+
 										?>
 										<div class="user-menu">
 											<a id="signin-button" class="profile-btn">
