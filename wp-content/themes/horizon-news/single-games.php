@@ -39,7 +39,11 @@ if ($game_data) {
     <div class="<?php echo esc_attr($grid_style); ?> d-flex main-information">
         <div class="custom-gallery-container">
             <div class="main-image">
-                <img src="<?php echo esc_url($screen_shots[0]); ?>" alt="Main Image">
+                <?php if (is_array($screen_shots) and array_key_exists(0, $screen_shots)) { ?>
+                    <img src="<?php echo esc_url($screen_shots[0]); ?>" alt="Main Image">
+                <?php } else { ?>
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/no-image.png'); ?>" alt="No Image">
+                <?php } ?>
                 <div>
                     <button class="zoom-btn">
                         <svg fill="white" height="30px" width="30px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 242.133 242.133" xml:space="preserve">
@@ -68,7 +72,7 @@ if ($game_data) {
                 <p>Thể loại:</p>
                 <div class="genre information-subitem">
                     <?php if (is_array($genres)) { ?>
-                        <?php foreach ($genres as $index => $genre) { ?>
+                        <?php foreach ($genres as $genre) { ?>
                             <div class="genre-item"><?php echo esc_html($genre['name']); ?></div>
                         <?php } ?>
                     <?php } ?>
@@ -79,7 +83,7 @@ if ($game_data) {
                 <p style="white-space: nowrap;">Nền tảng:</p>
                 <div class="systems information-subitem">
                     <?php if (is_array($platforms)) { ?>
-                        <?php foreach ($platforms as $index => $platform) { ?>
+                        <?php foreach ($platforms as $platform) { ?>
                             <div class="system-item"><?php echo esc_html($platform['platform']['name']); ?></div>
                         <?php } ?>
                     <?php } ?>
@@ -96,8 +100,10 @@ if ($game_data) {
             <div class="information-item">
                 <p>Nhà phát triển:</p>
                 <div class="developers information-subitem">
-                    <?php if (is_array($developers)) { ?>
+                    <?php if (is_array($developers) and array_key_exists(0, $developers)) { ?>
                         <div class="developers-item"><?php echo esc_html($developers[0]['name']); ?></div>
+                    <?php } else { ?>
+                        <div class="developers-item">N/A</div>
                     <?php } ?>
                 </div>
             </div>
@@ -105,8 +111,10 @@ if ($game_data) {
             <div class="information-item">
                 <p>Nhà phát hành:</p>
                 <div class="publishers information-subitem">
-                    <?php if (is_array($publishers)) { ?>
+                    <?php if (is_array($publishers) and array_key_exists(0, $publishers)) { ?>
                         <div class="publishers-item"><?php echo esc_html($publishers[0]['name']); ?></div>
+                    <?php } else { ?>
+                        <div class="publishers-item">N/A</div>
                     <?php } ?>
                 </div>
             </div>
@@ -180,7 +188,7 @@ if ($game_data) {
                     </div>
             <?php
                 endif;
-                wp_reset_postdata(); // Reset query cho danh mục tiếp theo
+                wp_reset_postdata();
             endforeach;
             ?>
         </div>

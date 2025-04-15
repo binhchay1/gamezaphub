@@ -523,3 +523,7 @@ table {
 .user-name {
   margin-left: 10px;
 }
+
+.mag-post-single {
+  height: 100%;
+}
