@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2686b128879ab42ecb4a42b945440e6c
+class ComposerStaticInit5a3df04b0bbe824cbc9e730aa22de57d
 {
     public static $files = array (
         'da5f6548f070d3d306f90eee42dd5de6' => __DIR__ . '/..' . '/donatj/phpuseragentparser/src/UserAgentParser.php',
@@ -335,7 +335,10 @@ class ComposerStaticInit2686b128879ab42ecb4a42b945440e6c
         'RankMath\\Sitemap\\Stylesheet' => __DIR__ . '/../..' . '/includes/modules/sitemap/class-stylesheet.php',
         'RankMath\\Sitemap\\Timezone' => __DIR__ . '/../..' . '/includes/modules/sitemap/class-timezone.php',
         'RankMath\\Sitemap\\XML' => __DIR__ . '/../..' . '/includes/modules/sitemap/abstract-xml.php',
+        'RankMath\\Status\\Backup' => __DIR__ . '/../..' . '/includes/modules/status/class-backup.php',
         'RankMath\\Status\\Error_Log' => __DIR__ . '/../..' . '/includes/modules/status/class-error-log.php',
+        'RankMath\\Status\\Import_Export_Settings' => __DIR__ . '/../..' . '/includes/modules/status/class-import-export-settings.php',
+        'RankMath\\Status\\Rest' => __DIR__ . '/../..' . '/includes/modules/status/class-rest.php',
         'RankMath\\Status\\Status' => __DIR__ . '/../..' . '/includes/modules/status/class-status.php',
         'RankMath\\Status\\System_Status' => __DIR__ . '/../..' . '/includes/modules/status/class-system-status.php',
         'RankMath\\Term' => __DIR__ . '/../..' . '/includes/class-term.php',
@@ -391,9 +394,9 @@ class ComposerStaticInit2686b128879ab42ecb4a42b945440e6c
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2686b128879ab42ecb4a42b945440e6c::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2686b128879ab42ecb4a42b945440e6c::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit2686b128879ab42ecb4a42b945440e6c::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit5a3df04b0bbe824cbc9e730aa22de57d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit5a3df04b0bbe824cbc9e730aa22de57d::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit5a3df04b0bbe824cbc9e730aa22de57d::$classMap;
 
         }, null, ClassLoader::class);
     }
