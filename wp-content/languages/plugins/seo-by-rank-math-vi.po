@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Rank Math SEO – AI SEO Tools to Dominate SEO Rankings - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-12-13 14:27:30+0000\n"
+"PO-Revision-Date: 2025-04-11 15:42:13+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,348 @@ msgstr ""
 "X-Generator: GlotPress/4.0.1\n"
 "Language: vi_VN\n"
 "Project-Id-Version: Plugins - Rank Math SEO – AI SEO Tools to Dominate SEO Rankings - Stable (latest release)\n"
+
+#: includes/modules/status/class-rest.php:115
+msgid "Invalid action selected."
+msgstr "Hành động không hợp lệ."
+
+#: includes/modules/status/class-rest.php:94
+msgid "Sorry, you are not authorized to Import/Export the settings."
+msgstr "Rất tiếc, bạn không được phép nhập/xuất các thiết lập."
+
+#: includes/rest/class-shared.php:276
+msgid "Redirection URL"
+msgstr "URL chuyển hướng"
+
+#: includes/rest/class-shared.php:271
+msgid "Redirection ID"
+msgstr "ID chuyển hướng"
+
+#: includes/rest/class-shared.php:266
+msgid "Whether the object has a redirect or not"
+msgstr "Cho biết đối tượng có chuyển hướng hay không"
+
+#: includes/rest/class-rest-helper.php:291
+msgid "Sorry, the field contains invalid characters."
+msgstr "Lỗi: Trường chứa các ký tự không hợp lệ."
+
+#: includes/rest/class-post.php:156
+msgid "Selected posts to update the data for."
+msgstr "Các bài đăng đã chọn để cập nhật dữ liệu."
+
+#: includes/rest/class-admin.php:440
+msgid "Mode to set"
+msgstr "Chế độ để đặt"
+
+#: includes/rest/class-admin.php:423
+msgid "Action to perform"
+msgstr "Hành động cần thực hiện"
+
+#: includes/rest/class-admin.php:406
+msgid "Setting value"
+msgstr "Giá trị thiết lập"
+
+#: includes/rest/class-admin.php:397
+msgid "Setting key"
+msgstr "Khóa thiết lập"
+
+#: includes/rest/class-admin.php:380
+msgid "Post scores"
+msgstr "Điểm bài đăng"
+
+#: includes/rest/class-admin.php:353
+msgid "Invalid module"
+msgstr "Mô-đun không hợp lệ"
+
+#: includes/modules/instant-indexing/class-rest.php:94
+msgid "Clear log by type."
+msgstr "Xóa nhật ký theo loại."
+
+#: includes/modules/instant-indexing/class-rest.php:74
+msgid "Filter log by type."
+msgstr "Lọc nhật ký theo loại."
+
+#: includes/modules/instant-indexing/class-rest.php:55
+msgid "The list of urls to submit to the Instant Indexing API."
+msgstr "Danh sách các URL cần gửi đến API lập chỉ mục tức thì."
+
+#: includes/modules/content-ai/class-rest.php:412
+msgid "If true, forces a fresh research request."
+msgstr "Nếu đúng, sẽ buộc yêu cầu tìm kiếm mới."
+
+#: includes/modules/content-ai/class-rest.php:407
+msgid "The ID of the post initiating the keyword research request."
+msgstr "ID của bài đăng bắt đầu yêu cầu nghiên cứu từ khóa."
+
+#: includes/modules/content-ai/class-rest.php:402
+msgid "The country for which the keyword should be researched."
+msgstr "Quốc gia cần nghiên cứu từ khóa."
+
+#: includes/modules/content-ai/class-rest.php:397
+msgid "The keyword to be researched."
+msgstr "Từ khóa cần nghiên cứu."
+
+#: includes/modules/content-ai/class-rest.php:232
+msgid "List of attachment IDs for which to generate alt text."
+msgstr "Danh sách ID tệp đính kèm cần tạo văn bản thay thế."
+
+#: includes/modules/content-ai/class-rest.php:215
+msgid "Content AI reset date to update in the Database"
+msgstr "Ngày đặt lại Content AI để cập nhật trong Cơ sở dữ liệu"
+
+#: includes/modules/content-ai/class-rest.php:210
+msgid "Content AI plan to update in the Database."
+msgstr "Kế hoạch Content AI để cập nhật trong Cơ sở dữ liệu."
+
+#: includes/modules/content-ai/class-rest.php:193
+msgid "A list of prompts received from the API to be saved in the database."
+msgstr "Danh sách các lời nhắc nhận được từ API cần được lưu trong cơ sở dữ liệu."
+
+#: includes/modules/content-ai/class-rest.php:176
+msgid "The prompt data to be saved in the database."
+msgstr "Dữ liệu lời nhắc cần được lưu trong cơ sở dữ liệu."
+
+#: includes/modules/content-ai/class-rest.php:159
+msgid "The selected prompt to be updated in the recent prompts."
+msgstr "Lời nhắc đã chọn cần được cập nhật trong các lời nhắc gần đây."
+
+#: includes/modules/content-ai/class-rest.php:142
+msgid "The output index to delete, applicable only to the Chat endpoint."
+msgstr "Chỉ mục đầu ra cần xóa, chỉ áp dụng cho điểm cuối Chat."
+
+#: includes/modules/content-ai/class-rest.php:137
+msgid "Indicates if the request to delete the output was for the Chat endpoint."
+msgstr "Cho biết liệu yêu cầu xóa đầu ra có dành cho điểm cuối Chat hay không."
+
+#: includes/modules/content-ai/class-rest.php:120
+#: includes/modules/content-ai/class-rest.php:249
+msgid "Credit usage details returned by the API."
+msgstr "Chi tiết sử dụng tín dụng được trả về bởi API."
+
+#: includes/modules/content-ai/class-rest.php:115
+msgid "The parameters used to generate the AI output."
+msgstr "Các tham số được sử dụng để tạo đầu ra AI."
+
+#: includes/modules/content-ai/class-rest.php:110
+msgid "Indicates if the request was for the Chat endpoint."
+msgstr "Cho biết liệu yêu cầu có dành cho điểm cuối Chat hay không."
+
+#: includes/modules/content-ai/class-rest.php:105
+msgid "The API endpoint for which the output was generated."
+msgstr "Điểm cuối API mà đầu ra được tạo ra."
+
+#: includes/modules/content-ai/class-rest.php:100
+msgid "An array of AI-generated and existing outputs to be saved."
+msgstr "Mảng các đầu ra do AI tạo và các đầu ra hiện có cần được lưu."
+
+#: includes/modules/content-ai/class-rest.php:83
+msgid "The title of the new post."
+msgstr "Tiêu đề của bài đăng mới."
+
+#: includes/modules/content-ai/class-rest.php:78
+msgid "The content of the new post."
+msgstr "Nội dung của bài đăng mới."
+
+#: includes/modules/analytics/rest/class-rest.php:165
+msgid "Hide."
+msgstr "Ẩn."
+
+#: includes/modules/analytics/rest/class-rest.php:160
+msgid "Toggle bar."
+msgstr "Thanh chuyển đổi."
+
+#: includes/modules/analytics/rest/class-rest.php:149
+msgid "Filter type."
+msgstr "Loại bộ lọc."
+
+#: includes/modules/analytics/rest/class-rest.php:144
+msgid "Filter."
+msgstr "Bộ lọc."
+
+#: includes/modules/analytics/rest/class-rest.php:109
+msgid "User preferences."
+msgstr "Tùy chọn người dùng."
+
+#: includes/modules/analytics/rest/class-rest.php:98
+#: includes/modules/analytics/rest/class-rest.php:139
+msgid "Search."
+msgstr "Tìm kiếm."
+
+#: includes/modules/analytics/rest/class-rest.php:93
+#: includes/modules/analytics/rest/class-rest.php:134
+msgid "Order."
+msgstr "Thứ tự."
+
+#: includes/modules/analytics/rest/class-rest.php:88
+#: includes/modules/analytics/rest/class-rest.php:129
+msgid "Order by."
+msgstr "Sắp xếp theo."
+
+#: includes/modules/analytics/rest/class-rest.php:83
+#: includes/modules/analytics/rest/class-rest.php:124
+msgid "Results per page."
+msgstr "Kết quả mỗi trang."
+
+#: includes/modules/analytics/rest/class-rest.php:78
+#: includes/modules/analytics/rest/class-rest.php:119
+msgid "Page number."
+msgstr "Số trang."
+
+#: includes/modules/analytics/rest/class-rest.php:69
+msgid "Post Type."
+msgstr "Loại bài đăng."
+
+#: includes/modules/analytics/rest/class-rest.php:56
+msgid "Post ID."
+msgstr "ID bài đăng."
+
+#: includes/admin/class-bulk-actions.php:135 assets/admin/js/post-list.js:1
+#: assets/admin/js/rank-math-app.js:1
+#: includes/modules/content-ai/assets/js/content-ai-media.js:1
+#: includes/modules/content-ai/assets/js/content-ai.js:1
+msgid "Your current plugin version does not support this feature. Please update Rank Math PRO to version 3.0.83 or later to unlock full functionality."
+msgstr "Phiên bản plugin hiện tại của bạn không hỗ trợ tính năng này. Vui lòng cập nhật Rank Math PRO lên phiên bản 3.0.83 trở lên để mở khóa đầy đủ chức năng."
+
+#: includes/admin/class-bulk-actions.php:107
+msgid "Determine Search Intent"
+msgstr "Xác định mục đích tìm kiếm"
+
+#: includes/admin/wizard/views/search-console-ui.php:347
+msgid "Select Account"
+msgstr "Chọn Tài khoản"
+
+#. Translators: placeholders are opening and closing tags for connect analytics
+#. setting and using ga4 property doc.
+#: includes/updates/update-1.0.239.php:35
+msgid "Universal Analytics (UA) is no longer supported. Please connect your Google Analytics GA4 account by navigating to %1$sGeneral Settings → Analytics%2$s. For more details, refer to this guide: %3$sHow to Use Google Analytics 4 (GA4) Property with Rank Math%4$s."
+msgstr "Universal Analytics (UA) không còn được hỗ trợ. Vui lòng kết nối tài khoản Google Analytics GA4 của bạn bằng cách truy cập %1$sCài đặt chung → Phân tích%2$s. Để biết thêm chi tiết, hãy tham khảo hướng dẫn này: %3$sCách sử dụng thuộc tính Google Analytics 4 (GA4) với Rank Math%4$s."
+
+#: includes/modules/sitemap/settings/authors.php:52
+msgid "Enable this option to include authors in the sitemap even if they have not created any posts. This ensures all author archives are listed, regardless of content availability."
+msgstr "Bật tùy chọn này để bao gồm tác giả trong sitemap ngay cả khi họ chưa tạo bất kỳ bài đăng nào. Điều này đảm bảo tất cả lưu trữ tác giả được liệt kê, bất kể tính khả dụng của nội dung."
+
+#: includes/modules/sitemap/settings/authors.php:51
+msgid "Include Authors Without Posts"
+msgstr "Bao gồm Tác giả Không Có Bài Viết"
+
+#. Translators: placeholder is the URL to the robots.txt tester tool.
+#: includes/modules/robots-txt/options.php:96
+msgid "Test and edit your live robots.txt file with our <a href=\"%1$s\" target=\"_blank\">Robots.txt Tester</a>."
+msgstr "Kiểm tra và sửa file robots.txt trực tiếp của bạn với <a href=\"%1$s\" target=\"_blank\">Công cụ Kiểm tra Robots.txt</a>."
+
+#: includes/rest/class-rest-helper.php:67
+msgid "Sorry, you are not allowed to create/update schema."
+msgstr "Rất tiếc, bạn không được phép tạo/cập nhật schema."
+
+#: includes/modules/analytics/class-analytics-common.php:323
+#: includes/modules/analytics/assets/js/stats.js:1
+msgid "Average position of all the keywords ranking within top 100 positions."
+msgstr "Vị trí trung bình của tất cả các từ khóa xếp hạng trong top 100 vị trí."
+
+#: includes/modules/analytics/class-analytics-common.php:317
+#: includes/modules/analytics/assets/js/stats.js:1
+msgid "Total number of keywords your site ranks for within top 100 positions."
+msgstr "Tổng số từ khóa mà trang web của bạn xếp hạng trong top 100 vị trí."
+
+#: includes/modules/schema/blocks/schema/block.json
+msgctxt "block description"
+msgid "Add the Schema generated by Rank Math anywhere on your page using this Block."
+msgstr "Thêm Schema do Rank Math tạo ra ở bất cứ đâu trên trang của bạn bằng Block này."
+
+#: includes/modules/schema/blocks/schema/block.json
+msgctxt "block title"
+msgid "Schema by Rank Math"
+msgstr "Schema bởi Rank Math"
+
+#: includes/modules/schema/blocks/howto/block.json
+msgctxt "block description"
+msgid "Easily add Schema-ready, SEO-friendly, HowTo block to your content."
+msgstr "Dễ dàng thêm block Hướng dẫn thực hiện (HowTo) thân thiện với SEO và sẵn sàng cho Schema vào nội dung của bạn."
+
+#: includes/modules/schema/blocks/howto/block.json
+msgctxt "block title"
+msgid "HowTo by Rank Math"
+msgstr "Hướng dẫn thực hiện (HowTo) bởi Rank Math"
+
+#: includes/modules/schema/blocks/faq/block.json
+#: includes/modules/schema/blocks/howto/block.json
+#: includes/modules/schema/blocks/schema/block.json
+msgctxt "block keyword"
+msgid "Rich Snippet"
+msgstr "Đoạn mã giàu thông tin (Rich Snippet)"
+
+#: includes/modules/schema/blocks/faq/block.json
+#: includes/modules/schema/blocks/howto/block.json
+#: includes/modules/schema/blocks/schema/block.json
+msgctxt "block keyword"
+msgid "Markup"
+msgstr "Đánh dấu (Markup)"
+
+#: includes/modules/schema/blocks/faq/block.json
+#: includes/modules/schema/blocks/howto/block.json
+msgctxt "block keyword"
+msgid "Block"
+msgstr "Block"
+
+#: includes/modules/schema/blocks/faq/block.json
+#: includes/modules/schema/blocks/howto/block.json
+#: includes/modules/schema/blocks/schema/block.json
+msgctxt "block keyword"
+msgid "Rank Math"
+msgstr "Rank Math"
+
+#: includes/modules/schema/blocks/faq/block.json
+#: includes/modules/schema/blocks/howto/block.json
+#: includes/modules/schema/blocks/schema/block.json
+msgctxt "block keyword"
+msgid "Yoast"
+msgstr "Yoast"
+
+#: includes/modules/schema/blocks/faq/block.json
+#: includes/modules/schema/blocks/howto/block.json
+#: includes/modules/schema/blocks/schema/block.json
+msgctxt "block keyword"
+msgid "Structured Data"
+msgstr "Dữ liệu có cấu trúc (Structured Data)"
+
+#: includes/modules/schema/blocks/faq/block.json
+#: includes/modules/schema/blocks/howto/block.json
+#: includes/modules/schema/blocks/schema/block.json
+msgctxt "block keyword"
+msgid "SEO"
+msgstr "SEO"
+
+#: includes/modules/schema/blocks/faq/block.json
+#: includes/modules/schema/blocks/howto/block.json
+#: includes/modules/schema/blocks/schema/block.json
+msgctxt "block keyword"
+msgid "Schema"
+msgstr "Schema"
+
+#: includes/modules/schema/blocks/faq/block.json
+msgctxt "block keyword"
+msgid "Frequently Asked Questions"
+msgstr "Câu hỏi thường gặp (Frequently Asked Questions)"
+
+#: includes/modules/schema/blocks/faq/block.json
+msgctxt "block keyword"
+msgid "FAQ"
+msgstr "FAQ"
+
+#: includes/modules/schema/blocks/faq/block.json
+msgctxt "block title"
+msgid "FAQ by Rank Math"
+msgstr "FAQ bởi Rank Math"
+
+#: includes/modules/schema/blocks/howto/block.json
+msgctxt "block keyword"
+msgid "HowTo"
+msgstr "Hướng dẫn cách"
+
+#: includes/admin/class-option-center.php:365
+#: includes/admin/class-option-center.php:373
+msgid "You do not have permission to edit the .htaccess file."
+msgstr "Bạn không có quyền chỉnh sửa tệp .htaccess."
 
 #: includes/modules/content-ai/views/options.php:161
 msgid "Arabic"
@@ -868,14 +1210,6 @@ msgstr "Chuyển hướng bạn đang cố gắng tạo có thể gây ra vòng 
 msgid "The redirection you are trying to update may cause an infinite loop. Please check the source and destination URLs."
 msgstr "Chuyển hướng bạn đang cố gắng cập nhật có thể gây ra vòng lặp vô hạn. Vui lòng kiểm tra URL nguồn và URL đích."
 
-#: includes/modules/version-control/views/beta-optin-panel.php:21
-msgid "You cannot turn on the Beta Tester feature because site wide plugins auto-update option is disabled on your site."
-msgstr "Bạn không thể bật tính năng Người kiểm tra Beta vì tùy chọn tự động cập nhật plugin trên toàn trang web đã bị tắt trên trang web của bạn."
-
-#: includes/modules/version-control/views/auto-update-panel.php:20
-msgid "You cannot turn on auto-updates to automatically update to stable versions of Rank Math as soon as they are released, because site wide plugins auto-update option is disabled on your site."
-msgstr "Bạn không thể bật tự động cập nhật để tự động cập nhật lên các phiên bản ổn định của Rank Math ngay khi chúng được phát hành, vì tùy chọn tự động cập nhật plugin trên toàn trang web đã bị tắt trên trang web của bạn."
-
 #: includes/modules/seo-analysis/seo-analysis-tests.php:179
 msgid "Site wide plugins auto-update option is disabled on your site."
 msgstr "Tùy chọn tự động cập nhật plugin trên toàn trang web đã bị tắt trên trang web của bạn."
@@ -982,7 +1316,7 @@ msgstr "Xác nhận các từ khóa trọng tâm được đặt cho tất cả 
 msgid "Check your site for SEO-friendly permalink structure"
 msgstr "Kiểm tra trang web của bạn để biết cấu trúc liên kết cố định thân thiện với SEO"
 
-#: includes/modules/database-tools/class-database-tools.php:370
+#: includes/modules/database-tools/class-database-tools.php:330
 msgid "Convert FAQ, HowTo, & Table of Contents Blocks created using Yoast. Use this option to easily move your previous blocks into Rank Math."
 msgstr "Chuyển đổi các khối FAQ, HowTo và Mục lục được tạo bằng Yoast. Sử dụng tùy chọn này để dễ dàng di chuyển các khối trước đó của bạn vào Rank Math."
 
@@ -1058,11 +1392,11 @@ msgstr "Tiêu đề Mục lục"
 msgid "Take control over the default settings available for Rank Math Blocks."
 msgstr "Kiểm soát các cài đặt mặc định có sẵn cho các Khối Rank Math."
 
-#: includes/modules/database-tools/class-database-tools.php:381
+#: includes/modules/database-tools/class-database-tools.php:341
 msgid "Are you sure you want to convert AIOSEO blocks into Rank Math blocks? This action is irreversible."
 msgstr "Bạn có chắc chắn muốn chuyển đổi các khối AIOSEO thành các khối Rank Math không? Hành động này là không thể đảo ngược."
 
-#: includes/modules/database-tools/class-database-tools.php:379
+#: includes/modules/database-tools/class-database-tools.php:339
 msgid "AIOSEO Block Converter"
 msgstr "Trình chuyển đổi khối AIOSEO"
 
@@ -1226,40 +1560,20 @@ msgstr "Xuất danh sách các thuật ngữ từ phân loại chính được l
 msgid "Recalculate SEO Scores"
 msgstr "Tính toán lại điểm SEO"
 
-#: includes/modules/database-tools/class-database-tools.php:406
+#: includes/modules/database-tools/class-database-tools.php:366
 msgid "Update SEO Scores"
 msgstr "Cập nhật điểm SEO"
-
-#: includes/admin/views/import-export/plugins-panel.php:66
-msgid "Calculate SEO Scores"
-msgstr "Tính toán điểm SEO"
 
 #. translators: start, end, total
 #: includes/admin/importers/class-status.php:121
 msgid "Recalculating scores for posts %1$s - %2$s... "
 msgstr "Đang tính toán lại điểm cho các bài viết %1$s - %2$s... "
 
-#: includes/modules/database-tools/class-update-score.php:264
-msgid "The SEO Scores have been recalculated successfully!"
-msgstr "Điểm SEO đã được tính toán lại thành công!"
-
-#: includes/modules/database-tools/class-update-score.php:256
-msgid "Calculated:"
-msgstr "Đã tính toán:"
-
-#: includes/modules/database-tools/class-update-score.php:252
-msgid "This process may take a while. Please keep this window open until the process is complete."
-msgstr "Quá trình này có thể mất một lúc. Vui lòng giữ cửa sổ này mở cho đến khi quá trình hoàn tất."
-
-#: includes/modules/database-tools/class-update-score.php:251
-msgid "Recalculating SEO Scores"
-msgstr "Đang tính toán lại điểm SEO"
-
-#: includes/modules/database-tools/class-database-tools.php:408
+#: includes/modules/database-tools/class-database-tools.php:368
 msgid "Recalculate Scores"
 msgstr "Tính toán lại điểm"
 
-#: includes/modules/database-tools/class-database-tools.php:407
+#: includes/modules/database-tools/class-database-tools.php:367
 msgid "This tool will calculate the SEO score for the posts/pages that have a Focus Keyword set. Note: This process may take some time and the browser tab must be kept open while it is running."
 msgstr "Công cụ này sẽ tính toán điểm SEO cho các bài viết/trang đã đặt từ khóa chính. Lưu ý: Quá trình này có thể mất một chút thời gian và tab trình duyệt phải được giữ mở trong khi nó đang chạy."
 
@@ -1345,10 +1659,6 @@ msgstr "Không thể kết nối Rank Math vì URL trang web của bạn dườn
 msgid "Noindex Subpages"
 msgstr "Không lập chỉ mục các trang con"
 
-#: includes/admin/class-import-export.php:152
-msgid "Select data to import."
-msgstr "Chọn dữ liệu để nhập."
-
 #: includes/admin/class-admin-helper.php:172
 msgid "Click here to reconnect."
 msgstr "Nhấp vào đây để kết nối lại."
@@ -1360,16 +1670,6 @@ msgstr "Có vẻ như URL trang web của bạn đã thay đổi kể từ khi b
 #: includes/settings/titles/misc.php:141
 msgid "Noindex Paginated Single Pages"
 msgstr "Không lập chỉ mục các trang đơn lẻ được phân trang"
-
-#. Translators: %s is the plugin name.
-#: includes/admin/class-import-export.php:157
-msgid "Are you sure you want erase all traces of %s?"
-msgstr "Bạn có chắc chắn muốn xóa tất cả dấu vết của %s không?"
-
-#. Translators: %s is the plugin name.
-#: includes/admin/class-import-export.php:151
-msgid "Are you sure you want to import data from %s?"
-msgstr "Bạn có chắc chắn muốn nhập dữ liệu từ %s không?"
 
 #: includes/settings/titles/misc.php:142
 msgid "Prevent paginated pages of single pages and posts to show up in the search results. This also applies for the Blog page."
@@ -1427,7 +1727,7 @@ msgstr "Nếu sự cố vẫn tiếp diễn, vui lòng thử giải pháp đư�
 msgid "Default rich snippet selected when creating a new post of this type. If %s is selected, it will be applied for all existing posts with no Schema selected."
 msgstr "Đoạn trích phong phú mặc định được chọn khi tạo bài viết mới thuộc loại này. Nếu %s được chọn, nó sẽ được áp dụng cho tất cả các bài viết hiện có mà không có Schema nào được chọn."
 
-#: includes/modules/database-tools/class-database-tools.php:361
+#: includes/modules/database-tools/class-database-tools.php:321
 msgid "In some cases, the Analytics database tables or columns don't match with each other, which can cause database errors. This tool can fix that issue."
 msgstr "Trong một số trường hợp, các bảng hoặc cột cơ sở dữ liệu Analytics không khớp với nhau, điều này có thể gây ra lỗi cơ sở dữ liệu. Công cụ này có thể khắc phục sự cố đó."
 
@@ -1458,11 +1758,11 @@ msgstr "Bạn có thể dễ dàng chuyển đổi giữa các chế độ bất
 msgid "Note"
 msgstr "Lưu ý"
 
-#: includes/modules/database-tools/class-database-tools.php:362
+#: includes/modules/database-tools/class-database-tools.php:322
 msgid "Fix Collations"
 msgstr "Sửa đổi đối chiếu"
 
-#: includes/modules/database-tools/class-database-tools.php:360
+#: includes/modules/database-tools/class-database-tools.php:320
 msgid "Fix Analytics table collations"
 msgstr "Sửa đổi đối chiếu bảng Analytics"
 
@@ -1488,7 +1788,7 @@ msgstr "Thanh thống kê Frontend"
 msgid "Enable this option to show Analytics Stats on the front just after the admin bar."
 msgstr "Bật tùy chọn này để hiển thị Thống kê phân tích ở mặt trước ngay sau thanh quản trị."
 
-#: includes/modules/status/class-system-status.php:188
+#: includes/modules/status/class-system-status.php:96
 msgid "Database Table: Inspections"
 msgstr "Bảng cơ sở dữ liệu: Kiểm tra"
 
@@ -2140,7 +2440,7 @@ msgstr "Có vẻ như hiện tại không có số liệu thống kê nào để
 msgid "Uh-oh"
 msgstr "Ôi trời"
 
-#: includes/admin/class-import-export.php:353
+#: includes/modules/status/class-import-export-settings.php:54
 msgid "Uploaded file could not be read."
 msgstr "Không thể đọc tệp đã tải lên."
 
@@ -2214,11 +2514,11 @@ msgstr "Có, tôi muốn tìm hiểu thêm"
 msgid "Know more about the PRO version"
 msgstr "Tìm hiểu thêm về phiên bản PRO"
 
-#: rank-math.php:468
+#: rank-math.php:467
 msgid "CAUTION:"
 msgstr "THẬN TRỌNG:"
 
-#: rank-math.php:469
+#: rank-math.php:468
 msgid "This action is IRREVERSIBLE."
 msgstr "Hành động này KHÔNG THỂ ĐẢO NGƯỢC."
 
@@ -2351,11 +2651,11 @@ msgstr "Bạn có chắc chắn muốn ngắt kết nối các dịch vụ của
 msgid "Are you sure you want to do this?"
 msgstr "Bạn có chắc chắn muốn làm điều này?"
 
-#: includes/modules/database-tools/class-database-tools.php:163
+#: includes/modules/database-tools/class-database-tools.php:141
 msgid "No 404 log data found."
 msgstr "Không tìm thấy dữ liệu nhật ký 404."
 
-#: includes/modules/database-tools/class-database-tools.php:182
+#: includes/modules/database-tools/class-database-tools.php:160
 msgid "No Redirections found."
 msgstr "Không tìm thấy Chuyển hướng."
 
@@ -2384,15 +2684,15 @@ msgstr "Schema nâng cao, Phân tích và nhiều hơn nữa..."
 msgid "Upgrade to PRO"
 msgstr "Nâng cấp lên PRO"
 
-#: includes/modules/database-tools/class-database-tools.php:143
+#: includes/modules/database-tools/class-database-tools.php:121
 msgid "No Internal Links data found."
 msgstr "Không tìm thấy dữ liệu Liên kết nội bộ."
 
-#: includes/modules/database-tools/class-database-tools.php:123
+#: includes/modules/database-tools/class-database-tools.php:101
 msgid "SEO Analyzer data has already been cleared."
 msgstr "Dữ liệu Trình phân tích SEO đã được xóa."
 
-#: includes/modules/database-tools/class-database-tools.php:101
+#: includes/modules/database-tools/class-database-tools.php:79
 msgid "No Rank Math transients found."
 msgstr "Không tìm thấy transient Rank Math."
 
@@ -2409,7 +2709,7 @@ msgstr "Sơ đồ trang web địa điểm %1$s %2$s"
 msgid "Focus Keywords of the current post"
 msgstr "Từ khoá chính của bài viết hiện tại"
 
-#: includes/modules/status/class-system-status.php:145
+#: includes/modules/status/class-system-status.php:53
 msgid "(none)"
 msgstr "(không có)"
 
@@ -2421,7 +2721,7 @@ msgstr "Tệp JS Phân tích tự lưu trữ"
 msgid "If nothing similar is found, this behavior will be applied. <strong>Note</strong>: If the requested URL ends with <code>/login</code>, <code>/admin</code>, or <code>/dashboard</code>, WordPress will automatically redirect to respective locations within the WordPress admin area."
 msgstr "Nếu không tìm thấy gì tương tự, hành vi này sẽ được áp dụng. <strong>Lưu ý</strong>: Nếu URL được yêu cầu kết thúc bằng <code>/login</code>, <code>/admin</code> hoặc <code>/dashboard</code>, WordPress sẽ tự động chuyển hướng đến các vị trí tương ứng trong khu vực quản trị WordPress."
 
-#: includes/modules/status/class-system-status.php:144
+#: includes/modules/status/class-system-status.php:52
 msgid "Active modules"
 msgstr "Module hoạt động"
 
@@ -2510,14 +2810,6 @@ msgstr "Bạn có thể giúp chúng tôi một việc LỚN và đánh giá nó
 msgid "Hey, we noticed you've been using %s for more than a week now – that's awesome!"
 msgstr "Này, chúng tôi nhận thấy bạn đã sử dụng %s được hơn một tuần rồi - thật tuyệt vời!"
 
-#: includes/modules/version-control/views/auto-update-panel.php:53
-msgid "Update Notification Email"
-msgstr "Email thông báo cập nhật"
-
-#: includes/modules/version-control/views/auto-update-panel.php:48
-msgid "When auto-updates are turned off, you can enable update notifications, to send an email to the site administrator when an update is available for Rank Math."
-msgstr "Khi cập nhật tự động bị tắt, bạn có thể bật thông báo cập nhật, để gửi email cho quản trị viên trang web khi có bản cập nhật cho Rank Math."
-
 #: includes/admin/class-dashboard-widget.php:120
 msgid "NEW"
 msgstr "MỚI"
@@ -2526,7 +2818,7 @@ msgstr "MỚI"
 msgid "Warning:"
 msgstr "Cảnh báo:"
 
-#: includes/modules/status/class-system-status.php:152
+#: includes/modules/status/class-system-status.php:60
 msgid "Google Permission"
 msgstr "Quyền của Google"
 
@@ -2541,7 +2833,7 @@ msgstr "Lập chỉ mục tức thì"
 msgid "Submit URLs"
 msgstr "Gửi URL"
 
-#: includes/modules/database-tools/class-database-tools.php:213
+#: includes/modules/database-tools/class-database-tools.php:191
 msgid "Table re-creation started. It might take a couple of minutes."
 msgstr "Việc tạo lại bảng đã bắt đầu. Có thể mất vài phút."
 
@@ -2588,11 +2880,11 @@ msgstr "URL tổ chức được thêm trong Cài đặt SEO địa phương."
 msgid "It seems like the connection with your Google account & Rank Math needs to be made again. <a href=\"%s\" class=\"rank-math-reconnect-google\">Please click here.</a>"
 msgstr "Có vẻ như kết nối với tài khoản Google của bạn & Rank Math cần được thực hiện lại. <a href=\"%s\" class=\"rank-math-reconnect-google\">Vui lòng nhấp vào đây.</a>"
 
-#: includes/modules/database-tools/class-database-tools.php:354
+#: includes/modules/database-tools/class-database-tools.php:314
 msgid "Check if required tables exist and create them if not."
 msgstr "Kiểm tra xem các bảng bắt buộc có tồn tại hay không và tạo chúng nếu không."
 
-#: includes/modules/database-tools/class-database-tools.php:353
+#: includes/modules/database-tools/class-database-tools.php:313
 msgid "Re-create Missing Database Tables"
 msgstr "Tạo lại Bảng cơ sở dữ liệu bị thiếu"
 
@@ -2606,76 +2898,76 @@ msgid "There is a problem with the Google auth token. Please <a href=\"%1$s\" cl
 msgstr "Có sự cố với mã thông báo xác thực Google. Vui lòng <a href=\"%1$s\" class=\"button button-link rank-math-reconnect-google\">kết nối lại ứng dụng của bạn</a>"
 
 #: includes/module/class-manager.php:412
-#: includes/modules/status/class-system-status.php:141
+#: includes/modules/status/class-system-status.php:49
 #: includes/modules/content-ai/assets/js/content-ai.js:1
 msgid "Free"
 msgstr "Miễn phí"
 
-#: includes/modules/status/class-system-status.php:132
+#: includes/modules/status/class-system-status.php:40
 msgid "Version"
 msgstr "Phiên bản"
 
-#: includes/modules/status/class-system-status.php:178
+#: includes/modules/status/class-system-status.php:86
 msgid "Database Table: 404 Log"
 msgstr "Bảng cơ sở dữ liệu: Nhật ký 404"
 
-#: includes/modules/status/class-system-status.php:186
+#: includes/modules/status/class-system-status.php:94
 msgid "Database Table: Google AdSense"
 msgstr "Bảng cơ sở dữ liệu: Google AdSense"
 
-#: includes/modules/status/class-system-status.php:185
+#: includes/modules/status/class-system-status.php:93
 msgid "Database Table: Google Analytics"
 msgstr "Bảng cơ sở dữ liệu: Google Analytics"
 
-#: includes/modules/status/class-system-status.php:183
+#: includes/modules/status/class-system-status.php:91
 msgid "Database Table: Google Search Console"
 msgstr "Bảng cơ sở dữ liệu: Google Search Console"
 
-#: includes/modules/status/class-system-status.php:181
+#: includes/modules/status/class-system-status.php:89
 msgid "Database Table: Internal Link"
 msgstr "Bảng cơ sở dữ liệu: Liên kết nội bộ"
 
-#: includes/modules/status/class-system-status.php:187
+#: includes/modules/status/class-system-status.php:95
 msgid "Database Table: Keyword Manager"
 msgstr "Bảng cơ sở dữ liệu: Trình quản lý từ khóa"
 
-#: includes/modules/status/class-system-status.php:179
+#: includes/modules/status/class-system-status.php:87
 msgid "Database Table: Redirection"
 msgstr "Bảng cơ sở dữ liệu: Chuyển hướng"
 
-#: includes/modules/status/class-system-status.php:136
+#: includes/modules/status/class-system-status.php:44
 msgid "Database version"
 msgstr "Phiên bản cơ sở dữ liệu"
 
-#: includes/modules/status/class-system-status.php:140
+#: includes/modules/status/class-system-status.php:48
 msgid "Plugin subscription plan"
 msgstr "Gói đăng ký plugin"
 
-#: includes/modules/database-tools/class-database-tools.php:355
+#: includes/modules/database-tools/class-database-tools.php:315
 msgid "Re-create Tables"
 msgstr "Tạo lại bảng"
 
-#: includes/modules/status/class-system-status.php:149
+#: includes/modules/status/class-system-status.php:57
 msgid "Token exists"
 msgstr "Mã thông báo tồn tại"
 
-#: includes/modules/status/class-system-status.php:149
+#: includes/modules/status/class-system-status.php:57
 msgid "No token"
 msgstr "Không có mã thông báo"
 
-#: includes/modules/status/class-system-status.php:148
+#: includes/modules/status/class-system-status.php:56
 msgid "Google Refresh token"
 msgstr "Mã thông báo làm mới của Google"
 
-#: includes/modules/status/class-system-status.php:182
+#: includes/modules/status/class-system-status.php:90
 msgid "Database Table: Internal Link Meta"
 msgstr "Bảng cơ sở dữ liệu: Siêu dữ liệu liên kết nội bộ"
 
-#: includes/modules/status/class-system-status.php:180
+#: includes/modules/status/class-system-status.php:88
 msgid "Database Table: Redirection Cache"
 msgstr "Bảng cơ sở dữ liệu: Bộ nhớ cache chuyển hướng"
 
-#: includes/modules/status/class-system-status.php:184
+#: includes/modules/status/class-system-status.php:92
 msgid "Database Table: Flat Posts"
 msgstr "Bảng cơ sở dữ liệu: Bài viết phẳng"
 
@@ -3374,7 +3666,7 @@ msgstr "Cài đặt theo dõi 404"
 msgid "No schema found."
 msgstr "Không tìm thấy schema."
 
-#: includes/rest/class-shared.php:413
+#: includes/rest/class-shared.php:412
 msgid "schemas to add or update data."
 msgstr "schemas để thêm hoặc cập nhật dữ liệu."
 
@@ -3383,35 +3675,9 @@ msgstr "schemas để thêm hoặc cập nhật dữ liệu."
 msgid "You are using the outdated WordPress, please update it to version %s or higher."
 msgstr "Bạn đang sử dụng WordPress lỗi thời, vui lòng cập nhật lên phiên bản %s hoặc cao hơn."
 
-#: includes/admin/views/import-export/plugins-panel.php:20
-msgid "Other Plugins"
-msgstr "Các plugin khác"
-
-#: includes/admin/views/import-export/backup-panel.php:17
-msgid "Take a backup of your plugin settings in case you wish to restore them in future. Use it as backup before making substantial changes to Rank Math settings. For taking a backup of the SEO data of your content, use the XML Export option."
-msgstr "Sao lưu cài đặt plugin của bạn trong trường hợp bạn muốn khôi phục chúng trong tương lai. Sử dụng nó làm bản sao lưu trước khi thực hiện các thay đổi đáng kể đối với cài đặt Rank Math. Để sao lưu dữ liệu SEO của nội dung, hãy sử dụng tùy chọn Xuất XML."
-
-#. translators: Link to learn about import export panel KB article
-#: includes/admin/views/import-export/plugins-panel.php:25
-msgid "If you were using another plugin to add important SEO information to your website before switching to Rank Math SEO, you can import the settings and data here. %s"
-msgstr "Nếu bạn đang sử dụng một plugin khác để thêm thông tin SEO quan trọng vào trang web của mình trước khi chuyển sang Rank Math SEO, bạn có thể nhập cài đặt và dữ liệu tại đây. %s"
-
-#: includes/admin/views/import-export/backup-panel.php:15
-msgid "Settings Backup"
-msgstr "Sao lưu cài đặt"
-
-#: includes/admin/views/import-export/import-export-panel.php:14
-msgid "Plugin Settings"
-msgstr "Cài đặt plugin"
-
 #: includes/modules/seo-analysis/class-seo-analyzer.php:421
 msgid "Unexpected API response."
 msgstr "Phản hồi API không mong muốn."
-
-#. translators: Link to learn about import export panel KB article
-#: includes/admin/views/import-export/import-export-panel.php:19
-msgid "Import or export your Rank Math settings, This option is useful for replicating Rank Math settings across multiple websites. %s"
-msgstr "Nhập hoặc xuất cài đặt Rank Math của bạn, Tùy chọn này hữu ích cho việc sao chép cài đặt Rank Math trên nhiều trang web. %s"
 
 #. Translators: placeholder is a HTTP error code.
 #: includes/modules/seo-analysis/class-seo-analyzer.php:414
@@ -3578,7 +3844,7 @@ msgstr "SEO hình ảnh"
 msgid "read here"
 msgstr "đọc ở đây"
 
-#: includes/modules/status/class-error-log.php:158
+#: includes/modules/status/class-error-log.php:98
 msgid "The error log cannot be retrieved: Error log file is too large."
 msgstr "Không thể truy xuất nhật ký lỗi: Tệp nhật ký lỗi quá lớn."
 
@@ -3606,8 +3872,8 @@ msgstr "Chọn cách bạn muốn Rank Math xử lý WooCommerce SEO của bạn
 msgid "Advanced Mode"
 msgstr "Chế độ nâng cao"
 
-#: includes/modules/database-tools/class-database-tools.php:281
-#: includes/modules/database-tools/class-database-tools.php:300
+#: includes/modules/database-tools/class-database-tools.php:259
+#: includes/modules/database-tools/class-database-tools.php:278
 msgid "Conversion started. A success message will be shown here once the process completes. You can close this page."
 msgstr "Quá trình chuyển đổi đã bắt đầu. Một thông báo thành công sẽ được hiển thị tại đây sau khi quá trình hoàn tất. Bạn có thể đóng trang này."
 
@@ -3616,18 +3882,9 @@ msgstr "Quá trình chuyển đổi đã bắt đầu. Một thông báo thành 
 msgid "Easily create redirects without fiddling with tedious code. %s."
 msgstr "Dễ dàng tạo chuyển hướng mà không cần mày mò với mã tẻ nhạt. %s."
 
-#: includes/modules/status/class-error-log.php:147
+#: includes/modules/status/class-error-log.php:92
 msgid "The error log cannot be retrieved."
 msgstr "Không thể truy xuất nhật ký lỗi."
-
-#: includes/modules/status/class-error-log.php:76
-msgid "Copy Log to Clipboard"
-msgstr "Sao chép nhật ký vào bảng tạm"
-
-#. Translators: placeholder is a link to WP_DEBUG documentation.
-#: includes/modules/status/class-error-log.php:51
-msgid "If you have %s enabled, errors will be stored in a log file. Here you can find the last 100 lines in reversed order so that you or the Rank Math support team can view it easily. The file cannot be edited here."
-msgstr "Nếu bạn đã bật %s, các lỗi sẽ được lưu trữ trong tệp nhật ký. Tại đây, bạn có thể tìm thấy 100 dòng cuối cùng theo thứ tự đảo ngược để bạn hoặc nhóm hỗ trợ Rank Math có thể xem dễ dàng. Tệp không thể được chỉnh sửa ở đây."
 
 #. Translators: placeholder is an activate button.
 #: includes/modules/seo-analysis/seo-analysis-tests.php:194
@@ -3716,10 +3973,6 @@ msgstr "Sử dụng đoạn mã sau trong các tệp mẫu giao diện của b�
 #: includes/admin/class-option-center.php:61
 msgid "Here you can set up the breadcrumbs function. %s"
 msgstr "Tại đây bạn có thể thiết lập chức năng điều hướng trang. %s"
-
-#: includes/modules/status/class-error-log.php:44
-msgid "Error Log"
-msgstr "Nhật ký lỗi"
 
 #. translators: Link to kb article
 #: includes/modules/robots-txt/class-robots-txt.php:69
@@ -3899,16 +4152,16 @@ msgstr "Chỉ mục sơ đồ trang web của bạn có thể được tìm th�
 msgid "Unordered"
 msgstr "Không có thứ tự"
 
-#: includes/modules/database-tools/class-database-tools.php:372
-#: includes/modules/database-tools/class-database-tools.php:382
+#: includes/modules/database-tools/class-database-tools.php:332
+#: includes/modules/database-tools/class-database-tools.php:342
 msgid "Convert Blocks"
 msgstr "Chuyển đổi khối"
 
-#: includes/modules/database-tools/class-database-tools.php:371
+#: includes/modules/database-tools/class-database-tools.php:331
 msgid "Are you sure you want to convert Yoast blocks into Rank Math blocks? This action is irreversible."
 msgstr "Bạn có chắc chắn muốn chuyển đổi các khối Yoast thành các khối Rank Math không? Hành động này là không thể đảo ngược."
 
-#: includes/modules/database-tools/class-database-tools.php:380
+#: includes/modules/database-tools/class-database-tools.php:340
 msgid "Convert TOC block created using AIOSEO. Use this option to easily move your previous blocks into Rank Math."
 msgstr "Chuyển đổi khối TOC được tạo bằng AIOSEO. Sử dụng tùy chọn này để dễ dàng di chuyển các khối trước đó của bạn vào Rank Math."
 
@@ -3921,70 +4174,27 @@ msgstr "Chuyển đổi khối TOC được tạo bằng AIOSEO. Sử dụng tù
 msgid "Numbered"
 msgstr "Có đánh số"
 
-#: includes/modules/database-tools/class-database-tools.php:369
+#: includes/modules/database-tools/class-database-tools.php:329
 msgid "Yoast Block Converter"
 msgstr "Bộ chuyển đổi khối Yoast"
 
-#: includes/modules/database-tools/class-database-tools.php:275
-#: includes/modules/database-tools/class-database-tools.php:294
+#: includes/modules/database-tools/class-database-tools.php:253
+#: includes/modules/database-tools/class-database-tools.php:272
 msgid "No posts found to convert."
 msgstr "Không tìm thấy bài viết nào để chuyển đổi."
 
-#: includes/modules/version-control/views/version-control-panel.php:27
-msgid "Your Version"
-msgstr "Phiên bản của bạn"
-
-#: includes/modules/version-control/views/version-control-panel.php:51
-msgid "This is the latest version of the plugin."
-msgstr "Đây là phiên bản mới nhất của plugin."
-
-#: includes/modules/version-control/views/auto-update-panel.php:31
-msgid "Auto Update Plugin"
-msgstr "Tự động cập nhật plugin"
-
-#. translators: Version number.
-#: includes/modules/version-control/views/version-control-panel.php:74
-msgid "Install Version %s"
-msgstr "Cài đặt phiên bản %s"
-
-#. translators: Placeholder is version number.
-#: includes/modules/version-control/class-version-control.php:167
-msgid "Are you sure you want to install version %s?"
-msgstr "Bạn có chắc chắn muốn cài đặt phiên bản %s không?"
-
 #: includes/module/class-manager.php:278
-#: includes/modules/database-tools/class-database-tools.php:314
+#: includes/modules/status/assets/js/status.js:1
 msgid "Database Tools"
 msgstr "Công cụ cơ sở dữ liệu"
-
-#: includes/modules/version-control/views/version-control-panel.php:20
-msgid "If you are facing issues after an update, you can reinstall a previous version with this tool."
-msgstr "Nếu bạn gặp sự cố sau khi cập nhật, bạn có thể cài đặt lại phiên bản trước bằng công cụ này."
-
-#. translators: Version number.
-#: includes/modules/version-control/views/version-control-panel.php:74
-msgid "Install Selected Version"
-msgstr "Cài đặt phiên bản đã chọn"
 
 #: includes/modules/version-control/class-rollback-version.php:141
 msgid "Installing the rollback version&#8230;"
 msgstr "Đang cài đặt phiên bản khôi phục…"
 
-#: includes/modules/version-control/views/version-control-panel.php:45
-msgid "Latest Stable Version"
-msgstr "Phiên bản ổn định mới nhất"
-
 #: includes/modules/version-control/class-rollback-version.php:137
 msgid "Plugin rollback successful."
 msgstr "Khôi phục plugin thành công."
-
-#: includes/modules/version-control/views/version-control-panel.php:56
-msgid "Rollback Version"
-msgstr "Phiên bản khôi phục"
-
-#: includes/modules/version-control/views/version-control-panel.php:39
-msgid "This is the version you are using on this site."
-msgstr "Đây là phiên bản bạn đang sử dụng trên trang web này."
 
 #: includes/modules/version-control/class-beta-optin.php:243
 #: includes/modules/version-control/class-beta-optin.php:267
@@ -3992,105 +4202,14 @@ msgid "This update will install a beta version of Rank Math."
 msgstr "Bản cập nhật này sẽ cài đặt phiên bản beta của Rank Math."
 
 #: includes/module/class-manager.php:272
-#: includes/modules/version-control/class-version-control.php:244
-#: includes/modules/version-control/class-version-control.php:260
+#: includes/modules/version-control/class-version-control.php:174
+#: includes/modules/status/assets/js/status.js:1
 msgid "Version Control"
 msgstr "Kiểm soát phiên bản"
-
-#: includes/modules/version-control/views/auto-update-panel.php:26
-msgid "Turn on auto-updates to automatically update to stable versions of Rank Math as soon as they are released. The beta versions will never install automatically."
-msgstr "Bật tự động cập nhật để tự động cập nhật lên các phiên bản ổn định của Rank Math ngay khi chúng được phát hành. Các phiên bản beta sẽ không bao giờ tự động cài đặt."
-
-#: includes/modules/version-control/views/beta-optin-panel.php:34
-msgid "Beta Tester"
-msgstr "Người kiểm tra bản beta"
-
-#. translators: Warning.
-#: includes/modules/version-control/views/beta-optin-panel.php:29
-msgid "%s It is not recommended to use the beta version on live production sites."
-msgstr "%s Không nên sử dụng phiên bản beta trên các trang web sản xuất trực tiếp."
-
-#: includes/modules/version-control/views/beta-optin-panel.php:27
-msgid "You can take part in shaping Rank Math by test-driving the newest features and letting us know what you think. Turn on the Beta Tester feature to get notified about new beta releases. The beta version will not install automatically and you always have the option to ignore it."
-msgstr "Bạn có thể tham gia định hình Rank Math bằng cách lái thử các tính năng mới nhất và cho chúng tôi biết suy nghĩ của bạn. Bật tính năng Người kiểm tra bản beta để nhận thông báo về các bản phát hành bản beta mới. Phiên bản beta sẽ không tự động cài đặt và bạn luôn có tùy chọn bỏ qua nó."
-
-#: includes/modules/version-control/views/beta-optin-panel.php:17
-msgid "Beta Opt-in"
-msgstr "Chọn tham gia bản beta"
-
-#: includes/modules/version-control/views/version-control-panel.php:76
-msgid "Reinstalling, please wait..."
-msgstr "Đang cài đặt lại, vui lòng đợi..."
-
-#: includes/modules/version-control/views/version-control-panel.php:65
-msgid "Roll back to this version."
-msgstr "Khôi phục về phiên bản này."
-
-#: includes/modules/version-control/views/version-control-panel.php:49
-#: assets/admin/js/post-list.js:1 assets/admin/js/rank-math-app.js:1
-#: includes/modules/content-ai/assets/js/content-ai-media.js:1
-#: includes/modules/content-ai/assets/js/content-ai.js:1
-msgid "Update Now"
-msgstr "Cập nhật ngay"
-
-#: includes/modules/version-control/views/version-control-panel.php:37
-msgid "You are using the latest version of the plugin."
-msgstr "Bạn đang sử dụng phiên bản mới nhất của plugin."
-
-#. Translators: placeholder is "Rolled Back Version:".
-#: includes/modules/version-control/views/version-control-panel.php:34
-msgid "Rolled Back Version: "
-msgstr "Phiên bản đã khôi phục: "
-
-#. Translators: placeholder is "Rolled Back Version:".
-#: includes/modules/version-control/views/version-control-panel.php:34
-msgid "%s Auto updates will not work, please update the plugin manually."
-msgstr "%s Tự động cập nhật sẽ không hoạt động, vui lòng cập nhật plugin theo cách thủ công."
-
-#. translators: Warning.
-#. translators: placeholder is the word "warning".
-#: includes/modules/version-control/views/beta-optin-panel.php:29
-#: includes/modules/version-control/views/version-control-panel.php:22
-msgid "Warning: "
-msgstr "Cảnh báo: "
-
-#. translators: placeholder is the word "warning".
-#: includes/modules/version-control/views/version-control-panel.php:22
-msgid "%s Previous versions may not be secure or stable. Proceed with caution and always create a backup."
-msgstr "%s Các phiên bản trước có thể không an toàn hoặc ổn định. Hãy tiến hành thận trọng và luôn tạo bản sao lưu."
-
-#: includes/modules/version-control/views/version-control-panel.php:17
-msgid "Rollback to Previous Version"
-msgstr "Khôi phục về phiên bản trước"
-
-#: includes/modules/version-control/views/auto-update-panel.php:73
-msgid "Rank Math will not auto-update because you have rolled back to a previous version. Update to the latest version manually to make this option work again."
-msgstr "Rank Math sẽ không tự động cập nhật vì bạn đã khôi phục về phiên bản trước. Cập nhật lên phiên bản mới nhất theo cách thủ công để tùy chọn này hoạt động trở lại."
 
 #: includes/modules/version-control/class-rollback-version.php:76
 msgid "Rollback Plugin"
 msgstr "Khôi phục plugin"
-
-#: includes/admin/class-import-export.php:59
-msgid "Import & Export"
-msgstr "Nhập & Xuất"
-
-#: includes/modules/status/class-error-log.php:78
-#: includes/modules/status/class-system-status.php:57
-#: includes/modules/content-ai/assets/js/content-ai-page.js:1
-#: includes/modules/content-ai/assets/js/content-ai.js:1
-#: includes/modules/schema/assets/js/schema-gutenberg.js:1
-#: includes/modules/schema/assets/js/schema-template.js:1
-msgid "Copied!"
-msgstr "Đã sao chép!"
-
-#: includes/modules/status/class-system-status.php:55
-msgid "Copy System Info to Clipboard"
-msgstr "Sao chép thông tin hệ thống vào bảng tạm"
-
-#: includes/modules/status/class-system-status.php:49
-msgid "System Info"
-msgstr "Thông tin hệ thống"
 
 #: includes/settings/general/links.php:48
 msgid "Redirect Orphan Attachments"
@@ -4148,24 +4267,15 @@ msgid "Custom or Generated SEO Title of the current post/page"
 msgstr "Tiêu đề SEO Tùy chỉnh hoặc Được tạo tự động của bài viết/trang hiện tại"
 
 #. translators: 1. Bold text 2. Bold text
-#: rank-math.php:467
+#: rank-math.php:466
 msgid "%1$s A filter to remove the Rank Math data from the database is present. Deactivating & Deleting this plugin will remove everything related to the Rank Math plugin. %2$s"
 msgstr "%1$s Bộ lọc để xóa dữ liệu Rank Math khỏi cơ sở dữ liệu hiện có. Việc hủy kích hoạt & Xóa plugin này sẽ xóa mọi thứ liên quan đến plugin Rank Math. %2$s"
-
-#: includes/modules/database-tools/class-update-score.php:266
-#: assets/admin/js/rank-math-app.js:1
-#: includes/modules/content-ai/assets/js/content-ai-page.js:1
-#: includes/modules/content-ai/assets/js/content-ai.js:1
-#: includes/modules/schema/assets/js/schema-gutenberg.js:1
-#: includes/modules/schema/assets/js/schema-template.js:1
-msgid "Close"
-msgstr "Đóng"
 
 #: includes/modules/redirections/class-metabox.php:88
 msgid "Can't update redirection."
 msgstr "Không thể cập nhật chuyển hướng."
 
-#: includes/rest/class-shared.php:330
+#: includes/rest/class-shared.php:329
 msgid "Meta to add or update data."
 msgstr "Meta để thêm hoặc cập nhật dữ liệu."
 
@@ -4179,13 +4289,13 @@ msgstr "Không thể kết nối Rank Math."
 msgid "Read more"
 msgstr "Đọc thêm"
 
-#: includes/rest/class-shared.php:252 includes/rest/class-shared.php:316
-#: includes/rest/class-shared.php:408
+#: includes/rest/class-shared.php:252 includes/rest/class-shared.php:315
+#: includes/rest/class-shared.php:407
 msgid "Object unique id"
 msgstr "ID duy nhất của đối tượng"
 
-#: includes/rest/class-shared.php:259 includes/rest/class-shared.php:310
-#: includes/rest/class-shared.php:402
+#: includes/rest/class-shared.php:259 includes/rest/class-shared.php:309
+#: includes/rest/class-shared.php:401
 msgid "Object Type i.e. post, term, user"
 msgstr "Loại đối tượng, ví dụ: bài viết, thuật ngữ, người dùng"
 
@@ -4213,40 +4323,40 @@ msgstr "Plugin Rank Math không thể được kết nối."
 msgid "Enable the BuddyPress module for Rank Math SEO to make your BuddyPress forum SEO friendly by adding proper meta tags to all forum pages."
 msgstr "Kích hoạt module BuddyPress cho Rank Math SEO để làm cho diễn đàn BuddyPress của bạn thân thiện với SEO bằng cách thêm các thẻ meta phù hợp vào tất cả các trang diễn đàn."
 
-#: includes/modules/database-tools/class-database-tools.php:345
-#: includes/modules/database-tools/class-database-tools.php:348
+#: includes/modules/database-tools/class-database-tools.php:305
+#: includes/modules/database-tools/class-database-tools.php:308
 msgid "Clear 404 Log"
 msgstr "Xóa nhật ký 404"
 
-#: includes/modules/database-tools/class-database-tools.php:346
+#: includes/modules/database-tools/class-database-tools.php:306
 msgid "Is the 404 error log getting out of hand? Use this option to clear ALL 404 logs generated by your website in the Rank Math 404 Monitor."
 msgstr "Nhật ký lỗi 404 có đang vượt khỏi tầm tay? Sử dụng tùy chọn này để xóa TẤT CẢ nhật ký 404 được tạo bởi trang web của bạn trong Trình theo dõi Rank Math 404."
 
-#: includes/modules/database-tools/class-database-tools.php:398
+#: includes/modules/database-tools/class-database-tools.php:358
 msgid "Getting a redirection loop or need a fresh start? Delete all the redirections using this tool. Note: This process is irreversible and will delete ALL your redirection rules."
 msgstr "Bạn đang gặp phải vòng lặp chuyển hướng hoặc cần bắt đầu lại? Xóa tất cả các chuyển hướng bằng công cụ này. Lưu ý: Quá trình này là không thể đảo ngược và sẽ xóa TẤT CẢ các quy tắc chuyển hướng của bạn."
 
-#: includes/modules/database-tools/class-database-tools.php:389
+#: includes/modules/database-tools/class-database-tools.php:349
 msgid "In some instances, the internal links data might show an inflated number or no number at all. Deleting the internal links data might fix the issue."
 msgstr "Trong một số trường hợp, dữ liệu liên kết nội bộ có thể hiển thị số lượng bị tăng cao hoặc không có số nào cả. Việc xóa dữ liệu liên kết nội bộ có thể khắc phục sự cố."
 
-#: includes/modules/database-tools/class-database-tools.php:332
+#: includes/modules/database-tools/class-database-tools.php:292
 msgid "Need a clean slate or not able to run the SEO Analyzer tool? Flushing the analysis data might fix the issue. Flushing SEO Analyzer data is entirely safe and doesn't remove any critical data from your website."
 msgstr "Cần một bảng sạch hoặc không thể chạy công cụ SEO Analyzer? Việc xóa dữ liệu phân tích có thể khắc phục sự cố. Việc xóa dữ liệu SEO Analyzer hoàn toàn an toàn và không xóa bất kỳ dữ liệu quan trọng nào khỏi trang web của bạn."
 
-#: includes/modules/database-tools/class-database-tools.php:331
+#: includes/modules/database-tools/class-database-tools.php:291
 msgid "Flush SEO Analyzer Data"
 msgstr "Xóa dữ liệu SEO Analyzer"
 
-#: includes/modules/database-tools/class-database-tools.php:340
+#: includes/modules/database-tools/class-database-tools.php:300
 msgid "Remove transients"
 msgstr "Xóa transient"
 
-#: includes/modules/database-tools/class-database-tools.php:339
+#: includes/modules/database-tools/class-database-tools.php:299
 msgid "If you see any issue while using Rank Math or one of its options - clearing the Rank Math transients fixes the problem in most cases. Deleting transients does not delete ANY data added using Rank Math."
 msgstr "Nếu bạn gặp bất kỳ sự cố nào khi sử dụng Rank Math hoặc một trong các tùy chọn của nó - việc xóa transient Rank Math sẽ khắc phục sự cố trong hầu hết các trường hợp. Việc xóa transient không xóa BẤT KỲ dữ liệu nào được thêm bằng Rank Math."
 
-#: includes/modules/database-tools/class-database-tools.php:338
+#: includes/modules/database-tools/class-database-tools.php:298
 msgid "Remove Rank Math Transients"
 msgstr "Xóa transient Rank Math"
 
@@ -4356,65 +4466,61 @@ msgstr "Hiển thị trang blog trong điều hướng trang."
 msgid "ACF"
 msgstr "ACF"
 
-#: includes/modules/database-tools/class-database-tools.php:399
+#: includes/modules/database-tools/class-database-tools.php:359
 msgid "Are you sure you want to delete all the Redirection Rules? This action is irreversible."
 msgstr "Bạn có chắc chắn muốn xóa tất cả các Quy tắc chuyển hướng không? Hành động này là không thể đảo ngược."
 
-#: includes/modules/database-tools/class-database-tools.php:347
+#: includes/modules/database-tools/class-database-tools.php:307
 msgid "Are you sure you want to delete the 404 log? This action is irreversible."
 msgstr "Bạn có chắc chắn muốn xóa nhật ký 404 không? Hành động này là không thể đảo ngược."
 
-#: includes/modules/database-tools/class-database-tools.php:388
+#: includes/modules/database-tools/class-database-tools.php:348
 msgid "Delete Internal Links Data"
 msgstr "Xóa dữ liệu liên kết nội bộ"
 
-#: includes/modules/database-tools/class-database-tools.php:400
+#: includes/modules/database-tools/class-database-tools.php:360
 msgid "Delete Redirections"
 msgstr "Xóa chuyển hướng"
 
-#: includes/modules/status/class-status.php:78
+#: includes/modules/status/class-status.php:85
 msgid "Status & Tools"
 msgstr "Trạng thái & Công cụ"
 
-#: includes/modules/status/class-status.php:141
-msgid "System Status"
-msgstr "Trạng thái hệ thống"
-
-#: includes/modules/database-tools/class-database-tools.php:189
+#: includes/modules/database-tools/class-database-tools.php:167
 msgid "Redirection rules successfully deleted."
 msgstr "Các quy tắc chuyển hướng đã được xóa thành công."
 
-#: includes/modules/database-tools/class-database-tools.php:169
+#: includes/modules/database-tools/class-database-tools.php:147
 msgid "404 Log successfully deleted."
 msgstr "Nhật ký 404 đã được xóa thành công."
 
-#: includes/modules/database-tools/class-database-tools.php:150
+#: includes/modules/database-tools/class-database-tools.php:128
 msgid "Internal Links successfully deleted."
 msgstr "Các liên kết nội bộ đã được xóa thành công."
 
-#: includes/modules/database-tools/class-database-tools.php:130
+#: includes/modules/database-tools/class-database-tools.php:108
 msgid "SEO Analyzer data successfully deleted."
 msgstr "Dữ liệu SEO Analyzer đã được xóa thành công."
 
 #. Translators: placeholder is the number of transients deleted.
-#: includes/modules/database-tools/class-database-tools.php:112
+#: includes/modules/database-tools/class-database-tools.php:90
 msgid "%d Rank Math transient cleared."
 msgid_plural "%d Rank Math transients cleared."
 msgstr[0] "%d transient Rank Math đã được xóa."
 
-#: includes/modules/database-tools/class-database-tools.php:397
+#: includes/modules/database-tools/class-database-tools.php:357
 msgid "Delete Redirections Rules"
 msgstr "Xóa các quy tắc chuyển hướng"
 
-#: includes/modules/database-tools/class-database-tools.php:391
+#: includes/modules/database-tools/class-database-tools.php:351
 msgid "Delete Internal Links"
 msgstr "Xóa liên kết nội bộ"
 
-#: includes/modules/database-tools/class-database-tools.php:390
+#: includes/modules/database-tools/class-database-tools.php:350
 msgid "Are you sure you want to delete Internal Links Data? This action is irreversible."
 msgstr "Bạn có chắc chắn muốn xóa Dữ liệu liên kết nội bộ không? Hành động này là không thể đảo ngược."
 
-#: includes/modules/database-tools/class-database-tools.php:333
+#: includes/modules/database-tools/class-database-tools.php:293
 msgid "Clear SEO Analyzer"
 msgstr "Xóa SEO Analyzer"
 
@@ -4512,10 +4618,8 @@ msgstr "BuddyPress"
 msgid "Robots Txt"
 msgstr "Txt rô bốt"
 
-#: includes/admin/class-options.php:307
-#: includes/modules/version-control/views/auto-update-panel.php:81
-#: includes/modules/version-control/views/beta-optin-panel.php:51
-#: assets/admin/js/common.js:1
+#: includes/admin/class-options.php:307 assets/admin/js/common.js:1
+#: includes/modules/status/assets/js/status.js:1
 msgid "Save Changes"
 msgstr "Lưu thay đổi"
 
@@ -4550,10 +4654,6 @@ msgstr "Mô tả thuật ngữ tùy chỉnh"
 #: includes/admin/wizard/views/ready.php:24
 msgid "Enable auto update of the plugin"
 msgstr "Bật tự động cập nhật plugin"
-
-#: includes/modules/version-control/views/auto-update-panel.php:16
-msgid "Auto Update"
-msgstr "Tự động cập nhật"
 
 #: includes/replace-variables/class-term-variables.php:62
 msgid "Custom term value"
@@ -4652,7 +4752,7 @@ msgstr "Được cung cấp bởi %s"
 msgid "SEO Score Template"
 msgstr "Mẫu điểm SEO"
 
-#: includes/admin/class-import-export.php:393
+#: includes/modules/status/class-import-export-settings.php:46
 msgid "Settings could not be imported: Upload failed."
 msgstr "Không thể nhập cài đặt: Tải lên không thành công."
 
@@ -4905,7 +5005,7 @@ msgid "<strong>API Error:</strong> %s"
 msgstr "<strong>Lỗi API:</strong> %s"
 
 #: includes/rest/class-rest-helper.php:244
-#: includes/rest/class-rest-helper.php:273 includes/rest/class-shared.php:321
+#: includes/rest/class-rest-helper.php:273 includes/rest/class-shared.php:320
 msgid "Sorry, field is empty which is not allowed."
 msgstr "Xin lỗi, trường trống là không được phép."
 
@@ -5252,7 +5352,7 @@ msgstr "Tùy chọn nâng cao"
 msgid "Author"
 msgstr "Tác giả"
 
-#: includes/admin/wizard/views/navigation.php:17 rank-math.php:487
+#: includes/admin/wizard/views/navigation.php:17 rank-math.php:486
 msgid "Getting Started"
 msgstr "Bắt đầu"
 
@@ -5269,14 +5369,12 @@ msgstr "Hỗ trợ sản phẩm"
 msgid "Share"
 msgstr "Chia sẻ"
 
-#: includes/admin/views/import-export/backup-panel.php:32
-#: includes/admin/views/import-export/backup-panel.php:42
 #: includes/modules/redirections/class-table.php:230
 #: includes/modules/redirections/class-table.php:307
+#: includes/modules/status/assets/js/importExport.js:1
 msgid "Restore"
 msgstr "Khôi phục"
 
-#: includes/admin/views/import-export/import-export-panel.php:61
 #: includes/admin/wizard/class-monitor-redirection.php:76
 #: includes/admin/wizard/class-monitor-redirection.php:84
 #: includes/module/class-manager.php:125
@@ -5285,6 +5383,7 @@ msgstr "Khôi phục"
 #: includes/modules/redirections/class-redirections.php:67
 #: includes/modules/redirections/class-redirections.php:130
 #: includes/modules/role-manager/class-capability-manager.php:61
+#: includes/modules/status/assets/js/importExport.js:1
 msgid "Redirections"
 msgstr "Chuyển hướng"
 
@@ -5369,7 +5468,7 @@ msgstr "Google PageSpeed"
 #: includes/module/class-module.php:96
 #: includes/modules/404-monitor/class-admin.php:219
 #: includes/modules/instant-indexing/class-instant-indexing.php:221
-#: includes/modules/redirections/class-admin.php:316 rank-math.php:430
+#: includes/modules/redirections/class-admin.php:316 rank-math.php:429
 #: assets/admin/js/rank-math-app.js:1
 #: includes/modules/schema/blocks/schema/assets/js/index.js:1
 #: includes/modules/schema/blocks/schema/assets/src/edit.js:65
@@ -5762,10 +5861,6 @@ msgstr "Thẻ tiêu đề trên trang kết quả tìm kiếm."
 msgid "Headline"
 msgstr "Tiêu đề"
 
-#: includes/admin/views/import-export/import-export-panel.php:58
-msgid "Titles &amp; Metas"
-msgstr "Tiêu đề &amp; Metas"
-
 #. translators: php version
 #: includes/admin/wizard/views/compatibility.php:55
 msgid "Your PHP Version: %s"
@@ -5957,18 +6052,10 @@ msgstr "Sách"
 msgid "Categories (advanced)"
 msgstr "Danh mục (nâng cao)"
 
-#: includes/admin/views/import-export/import-export-panel.php:63
-msgid "Choose the panels to export."
-msgstr "Chọn các bảng để xuất."
-
 #: includes/modules/local-seo/views/titles-options.php:26
 #: includes/settings/titles/local.php:20
 msgid "Choose whether the site represents a person or an organization."
 msgstr "Chọn xem trang web đại diện cho một người hay một tổ chức."
-
-#: includes/admin/views/import-export/plugins-panel.php:77
-msgid "Clean"
-msgstr "Dọn dẹp"
 
 #: includes/modules/redirections/class-redirections.php:132
 #: includes/modules/redirections/class-redirections.php:142
@@ -6022,7 +6109,7 @@ msgstr "Ngày xuất bản (nâng cao)"
 msgid "Deactivate"
 msgstr "Hủy kích hoạt"
 
-#: rank-math.php:488
+#: rank-math.php:487
 msgid "Documentation"
 msgstr "Tài liệu"
 
@@ -6078,10 +6165,6 @@ msgstr "Thẻ ví dụ 1, Thẻ ví dụ 2"
 #: includes/modules/sitemap/settings/authors.php:76
 msgid "Exclude Users"
 msgstr "Loại trừ người dùng"
-
-#: includes/admin/views/import-export/import-export-panel.php:31
-msgid "Export Settings"
-msgstr "Xuất Cài đặt"
 
 #: includes/admin/class-admin-bar-menu.php:376
 msgid "External Tools"
@@ -6140,10 +6223,6 @@ msgstr "Trường tùy chỉnh hình ảnh"
 #: includes/admin/importers/class-plugin-importer.php:154
 msgid "Import Redirections"
 msgstr "Nhập chuyển hướng"
-
-#: includes/admin/views/import-export/import-export-panel.php:44
-msgid "Import settings by locating settings file and clicking \"Import settings\"."
-msgstr "Nhập cài đặt bằng cách định vị tệp cài đặt và nhấp vào \"Nhập cài đặt\"."
 
 #. translators: total
 #: includes/admin/importers/class-status.php:117
@@ -6296,10 +6375,6 @@ msgstr "Không tìm thấy trang"
 msgid "Person or Company"
 msgstr "Cá nhân hoặc Công ty"
 
-#: includes/admin/views/import-export/import-export-panel.php:43
-msgid "Please select a file to import."
-msgstr "Vui lòng chọn một tệp để nhập."
-
 #: includes/replace-variables/class-author-variables.php:57
 #: includes/replace-variables/class-author-variables.php:68
 msgid "Post Author"
@@ -6395,7 +6470,7 @@ msgid "Redirection successfully restored."
 msgstr "Đã khôi phục chuyển hướng thành công."
 
 #: includes/modules/redirections/views/options.php:51
-#: includes/rest/class-shared.php:292 assets/admin/js/rank-math-app.js:1
+#: includes/rest/class-shared.php:291 assets/admin/js/rank-math-app.js:1
 #: includes/modules/redirections/assets/js/redirections.js:1
 msgid "Redirection Type"
 msgstr "Loại chuyển hướng"
@@ -6555,6 +6630,7 @@ msgstr "Ngày bắt đầu"
 #: includes/module/class-manager.php:284
 #: includes/modules/analytics/assets/js/stats.js:1
 #: includes/modules/redirections/assets/js/redirections.js:1
+#: includes/modules/status/assets/js/status.js:1
 msgid "Status"
 msgstr "Trạng thái"
 
@@ -6581,10 +6657,6 @@ msgstr "Mô tả thuật ngữ"
 #: includes/modules/404-monitor/views/options.php:30
 msgid "The Simple mode only logs URI and access time, while the Advanced mode creates detailed logs including additional information such as the Referer URL."
 msgstr "Chế độ Đơn giản chỉ ghi nhật ký URI và thời gian truy cập, trong khi chế độ Nâng cao tạo nhật ký chi tiết bao gồm thông tin bổ sung như URL giới thiệu."
-
-#: includes/admin/views/import-export/backup-panel.php:51
-msgid "There is no backup."
-msgstr "Không có bản sao lưu."
 
 #: includes/modules/seo-analysis/seo-analysis-tests.php:67
 msgid "This looks nice for readers - and it gets your keywords into the URL (keywords in the URL is a ranking factor)."
@@ -6725,7 +6797,7 @@ msgstr "Nội dung bị khóa vì tệp robots.txt có trong thư mục gốc."
 msgid "Items"
 msgstr "Mục"
 
-#: includes/modules/status/class-system-status.php:202
+#: includes/modules/status/class-system-status.php:110
 msgid "Not found"
 msgstr "Không tìm thấy"
 
@@ -6763,8 +6835,7 @@ msgid "Authors"
 msgstr "Tác giả"
 
 #: includes/admin/class-setup-wizard.php:111
-#: includes/admin/views/import-export/import-export-panel.php:50
-#: includes/admin/views/import-export/plugins-panel.php:76
+#: includes/modules/status/assets/js/importExport.js:1
 msgid "Import"
 msgstr "Nhập"
 
@@ -7134,6 +7205,10 @@ msgstr "Khẩu hiệu trang web của bạn được đặt thành giá trị m�
 msgid "If you don't have an XML sitemap, the best option is to install a plugin that creates sitemaps for you. That way you'll know the sitemap will always be up-to-date. Plugins can also automatically ping the search engines when the XML file is updated. The Rank Math WordPress plugin gives you complete control over your site's XML sitemaps. You can control the settings for each page as you write or edit it, and Rank Math will ping Google as soon as you submit your edits. This results in fast crawls and indexing."
 msgstr "Nếu bạn không có sơ đồ trang web XML, tùy chọn tốt nhất là cài đặt plugin tạo sơ đồ trang web cho bạn. Bằng cách đó, bạn sẽ biết sơ đồ trang web luôn được cập nhật. Plugin cũng có thể tự động ping các công cụ tìm kiếm khi tệp XML được cập nhật. Plugin Rank Math WordPress cung cấp cho bạn toàn quyền kiểm soát sơ đồ trang web XML của trang web. Bạn có thể kiểm soát cài đặt cho mỗi trang khi bạn viết hoặc chỉnh sửa nó và Rank Math sẽ ping Google ngay khi bạn gửi chỉnh sửa của mình. Điều này dẫn đến việc thu thập dữ liệu và lập chỉ mục nhanh chóng."
 
+#: includes/modules/seo-analysis/seo-analysis-tests.php:133
+msgid "XML sitemaps are a special type of text file that tells search engines about the structure of your site. They're a list of all the resources (pages and files) you would like the search engine to index. You can assign different priorities, so certain pages will be crawled first. Before XML sitemaps, search engines were limited to indexing the content they could find by following links. That's still an important feature for search engine spiders, but XML sitemaps have made it easier for content creators and search engines to collaborate."
+msgstr "Sơ đồ trang web XML là một loại tệp văn bản đặc biệt cho các công cụ tìm kiếm biết về cấu trúc trang web của bạn. Chúng là danh sách tất cả các tài nguyên (trang và tệp) mà bạn muốn công cụ tìm kiếm lập chỉ mục. Bạn có thể gán các mức độ ưu tiên khác nhau, vì vậy một số trang nhất định sẽ được thu thập dữ liệu trước. Trước sơ đồ trang web XML, các công cụ tìm kiếm chỉ giới hạn trong việc lập chỉ mục nội dung mà họ có thể tìm thấy bằng cách theo dõi các liên kết. Đó vẫn là một tính năng quan trọng đối với bot công cụ tìm kiếm, nhưng sơ đồ trang web XML đã giúp người tạo nội dung và công cụ tìm kiếm dễ dàng cộng tác hơn."
+
 #. translators: Link to Search Console KB article
 #: includes/modules/seo-analysis/seo-analysis-tests.php:124
 msgid "Read <a href=\"%1$s\" target=\"_blank\">this article</a> for detailed instructions on setting up your Google Webmaster account and getting Rank Math to work with the Google Search Console."
@@ -7147,10 +7222,6 @@ msgstr "Bạn có thể tích hợp Google Search Console với Rank Math trong 
 #: includes/modules/seo-analysis/seo-analysis-tests.php:120
 msgid "Google's Search Console is a vital source of information concerning your rankings and click-through rates.  Rank Math can import this data, so you don't have to log into your Google account to get the data you need."
 msgstr "Google Search Console là nguồn thông tin quan trọng liên quan đến thứ hạng và tỷ lệ nhấp của bạn.  Rank Math có thể nhập dữ liệu này, vì vậy bạn không cần phải đăng nhập vào tài khoản Google của mình để lấy dữ liệu bạn cần."
-
-#: includes/modules/seo-analysis/seo-analysis-tests.php:133
-msgid "XML sitemaps are a special type of text file that tells search engines about the structure of your site. They're a list of all the resources (pages and files) you would like the search engine to index. You can assign different priorities, so certain pages will be crawled first. Before XML sitemaps, search engines were limited to indexing the content they could find by following links. That's still an important feature for search engine spiders, but XML sitemaps have made it easier for content creators and search engines to collaborate."
-msgstr "Sơ đồ trang web XML là một loại tệp văn bản đặc biệt cho các công cụ tìm kiếm biết về cấu trúc trang web của bạn. Chúng là danh sách tất cả các tài nguyên (trang và tệp) mà bạn muốn công cụ tìm kiếm lập chỉ mục. Bạn có thể gán các mức độ ưu tiên khác nhau, vì vậy một số trang nhất định sẽ được thu thập dữ liệu trước. Trước sơ đồ trang web XML, các công cụ tìm kiếm chỉ giới hạn trong việc lập chỉ mục nội dung mà họ có thể tìm thấy bằng cách theo dõi các liên kết. Đó vẫn là một tính năng quan trọng đối với bot công cụ tìm kiếm, nhưng sơ đồ trang web XML đã giúp người tạo nội dung và công cụ tìm kiếm dễ dàng cộng tác hơn."
 
 #: includes/modules/seo-analysis/seo-analysis-tests.php:77
 msgid "Of course, if you don't give Rank Math a focus keyword to work with, it can't give you any useful feedback."
@@ -7357,10 +7428,6 @@ msgstr "Gỡ lỗi chuyển hướng"
 msgid "Using a 302 <em>temporary</em> redirection is useful when you want to test a new page for client feedback temporarily without affecting the SEO scores of the original page."
 msgstr "Sử dụng chuyển hướng <em>tạm thời</em> 302 rất hữu ích khi bạn muốn kiểm tra trang mới để nhận phản hồi của khách hàng tạm thời mà không ảnh hưởng đến điểm SEO của trang gốc."
 
-#: includes/modules/redirections/views/help-tab-overview.php:16
-msgid "301 redirections are <em>permanent</em>. The old URL will be removed in search engines and replaced by the new one, passing on SearchRank and other SEO scores. Browsers may also store the new URL in cache and redirect to it even after the redirection is deleted from the list here."
-msgstr "Chuyển hướng 301 là <em>vĩnh viễn</em>. URL cũ sẽ bị xóa trong các công cụ tìm kiếm và được thay thế bằng URL mới, chuyển Xếp hạng tìm kiếm và các điểm SEO khác. Trình duyệt cũng có thể lưu trữ URL mới trong bộ nhớ cache và chuyển hướng đến URL đó ngay cả sau khi chuyển hướng bị xóa khỏi danh sách ở đây."
-
 #: includes/modules/redirections/views/help-tab-overview.php:13
 msgid "Here you can set up custom redirections. It is important to choose the right type of redirection."
 msgstr "Tại đây, bạn có thể thiết lập chuyển hướng tùy chỉnh. Điều quan trọng là chọn đúng loại chuyển hướng."
@@ -7376,6 +7443,10 @@ msgstr "<strong>Xóa</strong> vĩnh viễn chuyển hướng."
 #: includes/modules/redirections/views/help-tab-actions.php:17
 msgid "<strong>Activate/Deactivate</strong> redirections. Deactivated redirections do not take effect on your site."
 msgstr "<strong>Kích hoạt / Hủy kích hoạt</strong> chuyển hướng. Chuyển hướng bị hủy kích hoạt không có hiệu lực trên trang web của bạn."
+
+#: includes/modules/redirections/views/help-tab-overview.php:16
+msgid "301 redirections are <em>permanent</em>. The old URL will be removed in search engines and replaced by the new one, passing on SearchRank and other SEO scores. Browsers may also store the new URL in cache and redirect to it even after the redirection is deleted from the list here."
+msgstr "Chuyển hướng 301 là <em>vĩnh viễn</em>. URL cũ sẽ bị xóa trong các công cụ tìm kiếm và được thay thế bằng URL mới, chuyển Xếp hạng tìm kiếm và các điểm SEO khác. Trình duyệt cũng có thể lưu trữ URL mới trong bộ nhớ cache và chuyển hướng đến URL đó ngay cả sau khi chuyển hướng bị xóa khỏi danh sách ở đây."
 
 #: includes/modules/redirections/views/help-tab-actions.php:16
 msgid "<strong>Edit</strong> redirection details: from/to URLs and the redirection type."
@@ -8034,10 +8105,6 @@ msgstr "Tiêu đề bài viết"
 msgid "Page %1$d of %2$d"
 msgstr "Trang %1$d trên %2$d"
 
-#: rank-math.php:538
-msgid "Once Weekly"
-msgstr "Mỗi tuần một lần"
-
 #: includes/module/class-base.php:147
 msgid "Items per page"
 msgstr "Mục trên mỗi trang"
@@ -8229,41 +8296,18 @@ msgstr "Kết nối Tài khoản của bạn"
 msgid "You have successfully activated Rank Math. If you find the plugin useful, %1$s feel free to recommend it to your friends or colleagues %2$s."
 msgstr "Bạn đã kích hoạt Rank Math thành công. Nếu bạn thấy plugin này hữu ích, %1$s hãy giới thiệu nó cho bạn bè hoặc đồng nghiệp của bạn %2$s."
 
-#: includes/admin/views/import-export/plugins-panel.php:33
-msgid "No plugin detected with importable data."
-msgstr "Không tìm thấy plugin nào có dữ liệu có thể nhập."
-
-#. translators: Link to learn about import export panel KB article
-#: includes/admin/views/import-export/import-export-panel.php:19
-#: includes/admin/views/import-export/plugins-panel.php:25
-msgid "Learn more about the Import/Export options."
-msgstr "Tìm hiểu thêm về các tùy chọn Nhập/Xuất."
-
-#: includes/admin/views/import-export/import-export-panel.php:40
-msgid "Settings File"
-msgstr "Tệp Cài đặt"
-
-#: includes/admin/views/import-export/import-export-panel.php:68
 #: includes/modules/redirections/class-import-export.php:109
+#: includes/modules/status/assets/js/importExport.js:1
 msgid "Export"
 msgstr "Xuất"
 
-#: includes/admin/views/import-export/import-export-panel.php:60
-msgid "Role Manager Settings"
-msgstr "Cài đặt Trình quản lý Vai trò"
-
-#: includes/admin/views/import-export/backup-panel.php:33
-#: includes/admin/views/import-export/backup-panel.php:43
 #: includes/modules/404-monitor/class-table.php:154
 #: includes/modules/404-monitor/class-table.php:274
 #: includes/modules/schema/assets/js/schema-gutenberg.js:1
 #: includes/modules/schema/assets/js/schema-template.js:1
+#: includes/modules/status/assets/js/importExport.js:1
 msgid "Delete"
 msgstr "Xóa"
-
-#: includes/admin/views/import-export/backup-panel.php:13
-msgid "Create Backup"
-msgstr "Tạo bản sao lưu"
 
 #: includes/admin/views/dashboard-help.php:95
 msgid "Online Documentation"
@@ -8334,7 +8378,7 @@ msgstr "Nhập cài đặt plugin, meta toàn cầu, cài đặt sơ đồ trang
 #: includes/admin/importers/class-aioseo.php:67
 #: includes/admin/importers/class-plugin-importer.php:150
 #: includes/admin/importers/class-wp-schema-pro.php:602
-#: includes/admin/views/import-export/import-export-panel.php:27
+#: includes/modules/status/assets/js/importExport.js:1
 msgid "Import Settings"
 msgstr "Nhập Cài Đặt"
 
@@ -8850,13 +8894,13 @@ msgstr "Các loại nội dung công khai"
 msgid "Select post types to enable SEO options for them and include them in the sitemap."
 msgstr "Chọn loại nội dung để bật tùy chọn SEO cho chúng và đưa chúng vào sơ đồ trang web."
 
-#: includes/settings/general/links.php:110
-msgid "Automatically add <code>target=\"_blank\"</code> attribute for external links appearing in your posts, pages, and other post types to make them open in a new browser tab or window. The attribute is dynamically applied when the content is displayed, and the stored content is not changed."
-msgstr "Tự động thêm thuộc tính <code>target=\"_blank\"</code> cho các liên kết bên ngoài xuất hiện trong bài viết, trang và các loại nội dung khác của bạn để mở chúng trong tab hoặc cửa sổ trình duyệt mới. Thuộc tính được áp dụng động khi nội dung được hiển thị và nội dung được lưu trữ không bị thay đổi."
-
 #: includes/modules/sitemap/settings/post-types.php:35
 msgid "Include this post type in the XML sitemap."
 msgstr "Bao gồm loại nội dung này trong sơ đồ trang web XML."
+
+#: includes/settings/general/links.php:110
+msgid "Automatically add <code>target=\"_blank\"</code> attribute for external links appearing in your posts, pages, and other post types to make them open in a new browser tab or window. The attribute is dynamically applied when the content is displayed, and the stored content is not changed."
+msgstr "Tự động thêm thuộc tính <code>target=\"_blank\"</code> cho các liên kết bên ngoài xuất hiện trong bài viết, trang và các loại nội dung khác của bạn để mở chúng trong tab hoặc cửa sổ trình duyệt mới. Thuộc tính được áp dụng động khi nội dung được hiển thị và nội dung được lưu trữ không bị thay đổi."
 
 #: includes/modules/sitemap/settings/general.php:64
 msgid "Enter post IDs of posts you want to exclude from the sitemap, separated by commas. This option **applies** to all posts types including posts, pages, and custom post types."
@@ -8953,7 +8997,7 @@ msgstr "Điều hướng trang"
 msgid "Titles &amp; Meta"
 msgstr "Tiêu đề & mô tả"
 
-#: includes/admin/class-import-export.php:218
+#: includes/admin/class-import-export.php:80
 msgid "Action not allowed."
 msgstr "Hành động không được phép."
 
@@ -9020,14 +9064,6 @@ msgstr "Loại hình kinh doanh"
 msgid "Small Business Site"
 msgstr "Trang web doanh nghiệp nhỏ"
 
-#: includes/admin/class-import-export.php:154
-msgid "Are you sure you want to delete this backup?"
-msgstr "Bạn có chắc chắn muốn xóa bản sao lưu này không?"
-
-#: includes/admin/class-import-export.php:153
-msgid "Are you sure you want to restore this backup? Your current configuration will be overwritten."
-msgstr "Bạn có chắc chắn muốn khôi phục bản sao lưu này không? Cấu hình hiện tại của bạn sẽ bị ghi đè."
-
 #: includes/modules/schema/shortcode/recipe.php:48
 #: includes/modules/schema/assets/js/schema-gutenberg.js:1
 #: includes/modules/schema/assets/js/schema-template.js:1
@@ -9079,7 +9115,7 @@ msgstr "Chi tiết SEO"
 msgid "SEO Title"
 msgstr "Tiêu đề SEO"
 
-#: includes/admin/class-import-export.php:388
+#: includes/modules/status/class-import-export-settings.php:40
 msgid "Settings could not be imported:"
 msgstr "Không thể nhập cài đặt:"
 
@@ -9120,7 +9156,7 @@ msgstr "Rank Math SEO"
 #: includes/modules/role-manager/class-members.php:48
 #: includes/modules/role-manager/class-user-role-editor.php:58
 #: includes/modules/schema/class-blocks.php:75
-#: includes/modules/status/class-system-status.php:129
+#: includes/modules/status/class-system-status.php:37
 #: assets/admin/js/blocks.js:1 assets/admin/js/gutenberg.js:1
 #: assets/admin/js/rank-math-app.js:1
 msgid "Rank Math"
@@ -9242,61 +9278,50 @@ msgstr "Đề xuất Liên kết"
 msgid "The featured image should be at least 200 by 200 pixels to be picked up by Facebook and other social media sites."
 msgstr "Hình ảnh nổi bật nên có kích thước ít nhất 200 x 200 pixel để được Facebook và các trang mạng xã hội khác chọn."
 
-#: includes/admin/class-import-export.php:367
+#: includes/modules/status/class-import-export-settings.php:70
 msgid "No settings found to be imported."
 msgstr "Không tìm thấy cài đặt nào để nhập."
 
-#: includes/admin/class-import-export.php:363
+#: includes/modules/status/class-import-export-settings.php:65
 msgid "Settings successfully imported. Your old configuration has been saved as a backup."
 msgstr "Nhập cài đặt thành công. Cấu hình cũ của bạn đã được lưu dưới dạng bản sao lưu."
 
-#: includes/admin/class-import-export.php:283
+#: includes/modules/status/class-backup.php:87
 msgid "Backup restored successfully."
 msgstr "Khôi phục bản sao lưu thành công."
 
-#: includes/admin/class-import-export.php:280
+#: includes/modules/status/class-backup.php:79
 msgid "Backup does not exist."
 msgstr "Bản sao lưu không tồn tại."
 
-#: includes/admin/class-import-export.php:276
-msgid "No backup key found to restore."
-msgstr "Không tìm thấy khóa sao lưu để khôi phục."
-
-#: includes/admin/class-import-export.php:264
+#: includes/modules/status/class-backup.php:111
 msgid "Backup successfully deleted."
 msgstr "Xóa bản sao lưu thành công."
 
-#: includes/admin/class-import-export.php:260
+#: includes/modules/status/class-backup.php:101
 msgid "No backup key found to delete."
 msgstr "Không tìm thấy khóa sao lưu để xóa."
 
-#: includes/admin/class-import-export.php:246
+#: includes/modules/status/class-backup.php:64
 msgid "Backup created successfully."
 msgstr "Tạo bản sao lưu thành công."
 
-#. translators: Backup formatted date
-#. translators: Snapshot formatted date
-#: includes/admin/class-import-export.php:245
-#: includes/admin/views/import-export/backup-panel.php:28
-msgid "Backup: %s"
-msgstr "Sao lưu: %s"
-
-#: includes/admin/class-import-export.php:238
+#: includes/modules/status/class-backup.php:54
 msgid "Unable to create backup this time."
 msgstr "Không thể tạo bản sao lưu vào lúc này."
 
 #. translators: Plugin name
-#: includes/admin/class-import-export.php:206
+#: includes/admin/class-import-export.php:68
 msgid "Cleanup of %s data failed."
 msgstr "Dọn dẹp dữ liệu của %s không thành công."
 
 #. translators: Plugin name
-#: includes/admin/class-import-export.php:202
+#: includes/admin/class-import-export.php:64
 msgid "Cleanup of %s data successfully done."
 msgstr "Dọn dẹp dữ liệu của %s thành công."
 
-#: includes/admin/class-import-export.php:148
 #: includes/admin/class-setup-wizard.php:298
+#: includes/modules/status/assets/js/importExport.js:1
 msgid "Are you sure you want to import settings into Rank Math? Don't worry, your current configuration will be saved as a backup."
 msgstr "Bạn có chắc chắn muốn nhập cài đặt vào Rank Math không? Đừng lo lắng, cấu hình hiện tại của bạn sẽ được lưu dưới dạng bản sao lưu."
 
@@ -9346,21 +9371,21 @@ msgstr "Hỗ trợ"
 
 #: includes/admin/class-admin-dashboard-nav.php:111
 #: includes/admin/class-setup-wizard.php:262
-#: includes/admin/class-setup-wizard.php:263 rank-math.php:431
-#: rank-math.php:436
+#: includes/admin/class-setup-wizard.php:263 rank-math.php:430
+#: rank-math.php:435
 msgid "Setup Wizard"
 msgstr "Trình hướng dẫn cài đặt"
 
-#: includes/admin/views/import-export/import-export-panel.php:59
 #: includes/modules/role-manager/class-capability-manager.php:58
 #: includes/modules/sitemap/class-admin.php:114
 #: includes/modules/sitemap/class-admin.php:115
+#: includes/modules/status/assets/js/importExport.js:1
 msgid "Sitemap Settings"
 msgstr "Cài đặt sơ đồ trang"
 
 #: includes/admin/class-option-center.php:106
-#: includes/admin/views/import-export/import-export-panel.php:57
 #: includes/modules/role-manager/class-capability-manager.php:57
+#: includes/modules/status/assets/js/importExport.js:1
 msgid "General Settings"
 msgstr "Cài đặt chung"
 
@@ -9376,7 +9401,7 @@ msgstr "Chúng tôi không thể hiển thị bất kỳ đề xuất liên kế
 #: includes/admin/class-admin-bar-menu.php:187
 #: includes/admin/class-admin-breadcrumbs.php:32
 #: includes/admin/class-admin-menu.php:107
-#: includes/modules/version-control/class-version-control.php:234
+#: includes/modules/version-control/class-version-control.php:164
 #: assets/admin/js/components.js:1
 #: includes/modules/analytics/assets/js/stats.js:1
 msgid "Dashboard"

@@ -1,15 +1,15 @@
-# Translation of WordPress - 6.7.x - Development - Administration - Network Admin in Vietnamese
-# This file is distributed under the same license as the WordPress - 6.7.x - Development - Administration - Network Admin package.
+# Translation of WordPress - 6.8.x - Development - Administration - Network Admin in Vietnamese
+# This file is distributed under the same license as the WordPress - 6.8.x - Development - Administration - Network Admin package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-03-01 13:10:10+0000\n"
+"PO-Revision-Date: 2025-03-29 08:53:06+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: GlotPress/4.0.1\n"
 "Language: vi_VN\n"
-"Project-Id-Version: WordPress - 6.7.x - Development - Administration - Network Admin\n"
+"Project-Id-Version: WordPress - 6.8.x - Development - Administration - Network Admin\n"
 
 #: wp-admin/network/upgrade.php:32
 msgid "<a href=\"https://developer.wordpress.org/advanced-administration/multisite/admin/#network-admin-updates-screen\">Documentation on Upgrade Network</a>"
@@ -106,12 +106,12 @@ msgid "You should back up your existing %1$s and %2$s files."
 msgstr "Bạn phải sao lưu các file %1$s và %2$s hiện tại"
 
 #. translators: %s: Theme name.
-#: wp-admin/includes/class-wp-ms-themes-list-table.php:738
+#: wp-admin/includes/class-wp-ms-themes-list-table.php:744
 msgid "Visit theme site for %s"
 msgstr "Truy cập trang web của %s"
 
 #. translators: %s: Theme name.
-#: wp-admin/includes/class-wp-ms-themes-list-table.php:751
+#: wp-admin/includes/class-wp-ms-themes-list-table.php:757
 msgid "Child theme of %s"
 msgstr "Giao diện con của %s"
 
@@ -239,7 +239,7 @@ msgstr "Cài đặt tên miền con"
 msgid "Sub-directory Installation"
 msgstr "Cài đặt thư mục con"
 
-#: wp-admin/includes/class-wp-ms-themes-list-table.php:944
+#: wp-admin/includes/class-wp-ms-themes-list-table.php:950
 msgid "Active Child Theme"
 msgstr "Theme con đang hoạt động"
 
@@ -381,7 +381,7 @@ msgctxt "user"
 msgid "Mark as spam"
 msgstr "Đánh dấu là spam"
 
-#: wp-admin/includes/class-wp-ms-themes-list-table.php:744
+#: wp-admin/includes/class-wp-ms-themes-list-table.php:750
 msgid "Visit Theme Site"
 msgstr "Truy cập trang giao diện"
 
@@ -513,7 +513,7 @@ msgstr "Spam"
 msgid "Archived"
 msgstr "Lưu trữ"
 
-#: wp-admin/network/site-users.php:373 wp-admin/network/user-new.php:149
+#: wp-admin/network/site-users.php:376 wp-admin/network/user-new.php:149
 msgid "A password reset link will be sent to the user via email."
 msgstr "Một liên kết đặt lại mật khẩu sẽ được gửi cho người dùng qua email."
 
@@ -769,7 +769,7 @@ msgstr "Chào mừng bạn tới trang Quản trị Network. Tại đây bạn c
 msgid "Only use this screen once you have updated to a new version of WordPress through Updates/Available Updates (via the Network Administration navigation menu or the Toolbar). Clicking the Upgrade Network button will step through each site in the network, five at a time, and make sure any database updates are applied."
 msgstr "Chỉ sử dụng màn hình này sau khi bạn đã cập nhật lên phiên bản WordPress mới thông qua Cập nhật/Cập nhật có sẵn (qua menu điều hướng Quản trị mạng hoặc Thanh công cụ). Nhấp vào nút Nâng cấp mạng sẽ đi qua từng trang web trong mạng, năm trang một lần và đảm bảo mọi cập nhật cơ sở dữ liệu đều được áp dụng."
 
-#: wp-admin/network/menu.php:46 wp-admin/network/upgrade.php:16
+#: wp-admin/network/menu.php:51 wp-admin/network/upgrade.php:16
 #: wp-admin/network/upgrade.php:43 wp-admin/network/upgrade.php:145
 msgid "Upgrade Network"
 msgstr "Nâng cấp mạng lưới"
@@ -788,8 +788,8 @@ msgid "Language Settings"
 msgstr "Cài Đặt Ngôn Ngữ"
 
 #: wp-admin/network/settings.php:253
-msgid "Allow site administrators to add new users to their site via the \"Users &rarr; Add New\" page"
-msgstr "Cho phép người quản trị trang web thêm người dùng mới vào trang web của họ thông qua \"Thành viên &rarr; Thêm mới\"."
+msgid "Allow site administrators to add new users to their site via the \"Users &rarr; Add User\" page"
+msgstr "Cho phép các quản trị viên trang web thêm người dùng mới vào trang web của họ qua trang 'Người dùng &rarr; Thêm Người dùng'"
 
 #: wp-admin/network/settings.php:58
 msgid "Super admins can no longer be added on the Options screen. You must now go to the list of existing users on Network Admin > Users and click on Username or the Edit action link below that name. This goes to an Edit User page where you can check a box to grant super admin privileges."
@@ -913,11 +913,11 @@ msgid "An Edit link to a separate Edit Site screen."
 msgstr "Liên kết Biên Tập để mở màn hình Biên Tập Trang Mạng tách biệt."
 
 #: wp-admin/network/sites.php:31
-msgid "Add New Site takes you to the screen for adding a new site to the network. You can search for a site by Name, ID number, or IP address. Screen Options allows you to choose how many sites to display on one page."
-msgstr "Thêm trang mới sẽ đưa bạn đến màn hình để thêm trang mới vào mạng. Bạn có thể tìm kiếm một trang web theo Tên, số ID hoặc địa chỉ IP. Tùy chọn màn hình cho phép bạn chọn số lượng trang web sẽ hiển thị trên một trang."
+msgid "Add Site takes you to the screen for adding a new site to the network. You can search for a site by Name, ID number, or IP address. Screen Options allows you to choose how many sites to display on one page."
+msgstr "Thêm trang web đưa bạn đến trang để thêm một trang web mới vào mạng. Bạn có thể tìm kiếm một trang web bằng Tên, số ID hoặc địa chỉ IP. Tuỳ chọn màn hình cho phép bạn chọn số lượng trang web hiển thị trên một trang."
 
-#: wp-admin/network/site-users.php:336 wp-admin/network/user-new.php:161
-msgid "Add User"
+#: wp-admin/network/settings.php:251
+msgid "Add Users"
 msgstr "Thêm người dùng"
 
 #: wp-admin/network/user-new.php:55
@@ -928,19 +928,19 @@ msgstr "Không thể thêm người dùng mới."
 msgid "Add User will set up a new user account on the network and send that person an email with username and password."
 msgstr "\"Thêm người dùng\" sẽ tạo một tài khoản người dùng mới trên mạng lưới và gửi tới người đó một thư điện tử có chứa tên truy cập và mật khẩu."
 
-#: wp-admin/network/menu.php:41
+#: wp-admin/network/menu.php:46
 msgid "Updates"
 msgstr "Nâng Cấp"
 
-#: wp-admin/network/menu.php:111 wp-admin/network/settings.php:21
+#: wp-admin/network/menu.php:116 wp-admin/network/settings.php:21
 msgid "Network Settings"
 msgstr "Cài Đặt Mạng Lưới"
 
-#: wp-admin/network/menu.php:80
+#: wp-admin/network/menu.php:85
 msgid "Installed Themes"
 msgstr "Các Chủ Đề Đã Cài Đặt"
 
-#: wp-admin/network/menu.php:52
+#: wp-admin/network/menu.php:57
 msgid "All Sites"
 msgstr "Tất Cả Trang Mạng"
 
@@ -1043,8 +1043,8 @@ msgid "Welcome to the Network installation process!"
 msgstr "Chào mừng bạn đến quá trình cài đặt Mạng Lưới!"
 
 #: wp-admin/includes/network.php:161
-msgid "Error: The network could not be created."
-msgstr "Lỗi: Không thể khởi tạo liên kết mạng."
+msgid "The network could not be created."
+msgstr "Mạng không thể được tạo ra."
 
 #: wp-admin/includes/network.php:146
 msgid "Once the network is created, you may reactivate your plugins."
@@ -1358,7 +1358,9 @@ msgstr "Một thành viên mới sẽ được tạo nếu thư điện tử tr�
 msgid "Admin Email"
 msgstr "Email quản trị"
 
-#: wp-admin/network/site-new.php:299
+#: wp-admin/network/menu.php:58 wp-admin/network/site-new.php:182
+#: wp-admin/network/site-new.php:192 wp-admin/network/site-new.php:299
+#: wp-admin/network/sites.php:391
 msgid "Add Site"
 msgstr "Thêm trang web"
 
@@ -1410,8 +1412,8 @@ msgstr "Thêm thư điện tử"
 msgid "Banned Names"
 msgstr "Các tên bị cấm"
 
-#: wp-admin/network/settings.php:251
-msgid "Add New Users"
+#: wp-admin/network/site-users.php:353
+msgid "Add New User"
 msgstr "Thêm người dùng mới"
 
 #: wp-admin/network/settings.php:239

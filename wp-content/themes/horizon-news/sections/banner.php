@@ -79,31 +79,3 @@ if ( $editor_content_type === 'post' ) {
 	);
 }
 $editor_args = apply_filters( 'horizon_news_banner_section_args', $editor_args );
-
-horizon_news_render_banner_section( $main_news_args, $trending_args, $editor_args );
-
-/**
- * Render Banner Section.
- */
-function horizon_news_render_banner_section( $main_news_args, $trending_args, $editor_args ) {
-	?>
-
-	<section id="horizon_news_banner_section" class="banner-section magazine-frontpage-section banner-section-style-1 banner-grid-slider">
-		<?php
-		if ( is_customize_preview() ) :
-			horizon_news_section_link( 'horizon_news_banner_section' );
-		endif;
-		?>
-		<div class="ascendoor-wrapper">
-			<div class="banner-section-wrapper">
-				<?php
-				require get_template_directory() . '/template-parts/banner/trending-posts.php';
-				require get_template_directory() . '/template-parts/banner/main-news.php';
-				require get_template_directory() . '/template-parts/banner/editor-pick.php';
-				?>
-			</div>
-		</div>
-	</section>
-
-	<?php
-}

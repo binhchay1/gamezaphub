@@ -144,7 +144,7 @@
             modal.className = 'modal';
             modal.innerHTML = `
                 <span class="close">×</span>
-                <img class="modal-content" src="" alt="Full Screen Image">
+                <img class="modal-content-img" src="" alt="Full Screen Image">
             `;
             document.body.appendChild(modal);
 
