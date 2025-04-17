@@ -13,14 +13,6 @@ if (! defined('HORIZON_NEWS_VERSION')) {
 	define('HORIZON_NEWS_VERSION', '1.0.0');
 }
 
-function initialize_custom_session()
-{
-	if (!session_id()) {
-		session_start();
-	}
-}
-add_action('init', 'initialize_custom_session');
-
 if (! function_exists('horizon_news_setup')) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -243,6 +235,16 @@ function horizon_news_scripts()
 	));
 }
 add_action('wp_enqueue_scripts', 'horizon_news_scripts');
+
+add_action('wp_headers', function ($headers) {
+	if (!is_admin() && !is_user_logged_in() && !isset($_GET['code']) && !isset($_GET['custom_logout']) && !wp_doing_ajax()) {
+		$headers['Cache-Control'] = 'public, max-age=3600';
+		unset($headers['Pragma']);
+		unset($headers['Expires']);
+		unset($headers['Set-Cookie']);
+	}
+	return $headers;
+}, 100);
 
 /**
  * Webfont Loader.

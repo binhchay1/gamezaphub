@@ -38,52 +38,66 @@ add_action('wp_ajax_nopriv_check_email', 'check_email');
 
 function custom_user_ajax_login()
 {
-    global $wpdb;
+    // global $wpdb;
 
-    check_ajax_referer('auth_nonce', 'nonce');
+    // check_ajax_referer('auth_nonce', 'nonce');
 
-    $username = isset($_POST['username']) ? sanitize_text_field($_POST['username']) : '';
-    $password = isset($_POST['password']) ? $_POST['password'] : '';
+    // $username = isset($_POST['username']) ? sanitize_text_field($_POST['username']) : '';
+    // $password = isset($_POST['password']) ? $_POST['password'] : '';
 
-    if (empty($username) || empty($password)) {
-        wp_send_json_error(array('message' => 'Vui lòng nhập đầy đủ thông tin.'));
-    }
+    // if (empty($username) || empty($password)) {
+    //     wp_send_json_error(array('message' => 'Vui lòng nhập đầy đủ thông tin.'));
+    // }
 
-    $table_name = $wpdb->prefix . 'custom_users';
-    $user = $wpdb->get_row(
-        $wpdb->prepare(
-            "SELECT * FROM $table_name WHERE username = %s",
-            $username
-        )
-    );
+    // $table_name = $wpdb->prefix . 'custom_users';
+    // $user = $wpdb->get_row(
+    //     $wpdb->prepare(
+    //         "SELECT * FROM $table_name WHERE username = %s",
+    //         $username
+    //     )
+    // );
 
-    if ($user && password_verify($password, $user->password)) {
-        session_start();
-        $_SESSION['custom_user'] = array(
-            'id' => $user->id,
-            'username' => $user->username,
-            'logged_in' => true
-        );
+    // if ($user && password_verify($password, $user->password)) {
+    //     if (!session_id()) {
+    //         session_start();
+    //     }
+    //     $_SESSION['custom_user'] = array(
+    //         'id' => $user->id,
+    //         'username' => $user->username,
+    //         'logged_in' => true
+    //     );
 
-        wp_send_json_success(array(
-            'message' => 'Đăng nhập thành công!',
-            'redirect' => home_url()
-        ));
-    } else {
-        wp_send_json_error(array('message' => 'Tên đăng nhập hoặc mật khẩu không đúng.'));
-    }
+    //     wp_send_json_success(array(
+    //         'message' => 'Đăng nhập thành công!',
+    //         'redirect' => home_url()
+    //     ));
+    //     session_write_close();
+    // } else {
+    //     wp_send_json_error(array('message' => 'Tên đăng nhập hoặc mật khẩu không đúng.'));
+    // }
 }
 add_action('wp_ajax_custom_user_login', 'custom_user_ajax_login');
 add_action('wp_ajax_nopriv_custom_user_login', 'custom_user_ajax_login');
 
 function is_custom_user_logged_in()
 {
-    return isset($_SESSION['custom_user']) && $_SESSION['custom_user']['logged_in'] === true;
+    $isCustomUserLoggedIn = false;
+    if (isset($_SESSION['custom_user']) && $_SESSION['custom_user']['logged_in']) {
+        $isCustomUserLoggedIn = true;
+    } 
+
+    return $isCustomUserLoggedIn;
 }
 
 function get_custom_user()
 {
-    return isset($_SESSION['custom_user']) ? $_SESSION['custom_user'] : null;
+    if (isset($_SESSION['custom_user'])) {
+        $customUser = $_SESSION['custom_user'];
+    } else {
+        $customUser = null;
+    }
+
+    return $customUser;
 }
 
 function restrict_admin_for_custom_users()
@@ -151,6 +165,10 @@ function handle_google_callback()
             $existing_user = $wpdb->get_row(
                 $wpdb->prepare("SELECT * FROM $table_name WHERE email = %s", $email)
             );
+
+            if (!session_id()) {
+                session_start();
+            }
 
             if ($existing_user) {
                 $_SESSION['custom_user'] = array(
