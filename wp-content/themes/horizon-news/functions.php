@@ -236,16 +236,6 @@ function horizon_news_scripts()
 }
 add_action('wp_enqueue_scripts', 'horizon_news_scripts');
 
-add_action('wp_headers', function ($headers) {
-	if (!is_admin() && !is_user_logged_in() && !isset($_GET['code']) && !isset($_GET['custom_logout']) && !wp_doing_ajax()) {
-		$headers['Cache-Control'] = 'public, max-age=3600';
-		unset($headers['Pragma']);
-		unset($headers['Expires']);
-		unset($headers['Set-Cookie']);
-	}
-	return $headers;
-}, 100);
-
 /**
  * Webfont Loader.
  */
@@ -340,6 +330,11 @@ require get_template_directory() . '/inc/custom-config.php';
  * Helper function
  */
 require get_template_directory() . '/inc/helper-func.php';
+
+/**
+ * Seo function
+ */
+require get_template_directory() . '/inc/custom-seo.php';
 
 /**
  * One Click Demo Import after import setup.

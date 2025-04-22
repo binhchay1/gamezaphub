@@ -7,18 +7,6 @@ function add_custom_rewrite_rules()
         'index.php?custom_games=1&game_slug=$matches[1]',
         'top'
     );
-
-    add_rewrite_rule(
-        '^developers/([^/]+)/?$',
-        'index.php?custom_developer=1&developer_slug=$matches[1]',
-        'top'
-    );
-
-    add_rewrite_rule(
-        '^publishers/([^/]+)/?$',
-        'index.php?custom_publisher=1&publisher_slug=$matches[1]',
-        'top'
-    );
 }
 add_action('init', 'add_custom_rewrite_rules');
 
@@ -26,12 +14,6 @@ function add_custom_query_vars($vars)
 {
     $vars[] = 'custom_games';
     $vars[] = 'game_slug';
-
-    $vars[] = 'custom_developers';
-    $vars[] = 'developer_slug';
-
-    $vars[] = 'custom_publishers';
-    $vars[] = 'publisher_slug';
 
     return $vars;
 }
@@ -51,17 +33,8 @@ function custom_games_template($template)
         if (!empty($new_template)) {
             return $new_template;
         }
-    } elseif (get_query_var('custom_developers') == 1) {
-        $new_template = locate_template(array('single-developers.php'));
-        if (!empty($new_template)) {
-            return $new_template;
-        }
-    } elseif (get_query_var('custom_publishers') == 1) {
-        $new_template = locate_template(array('single-publishers.php'));
-        if (!empty($new_template)) {
-            return $new_template;
-        }
     }
+
     return $template;
 }
 add_filter('template_include', 'custom_games_template');
@@ -70,16 +43,6 @@ function adjust_main_query($query)
 {
     if ($query->is_main_query() && !is_admin()) {
         if (get_query_var('custom_games') == 1) {
-            $query->is_front_page = false;
-            $query->is_singular = true;
-            $query->is_page = false;
-            $query->is_home = false;
-        } elseif (get_query_var('custom_developers') == 1) {
-            $query->is_front_page = false;
-            $query->is_singular = true;
-            $query->is_page = false;
-            $query->is_home = false;
-        } elseif (get_query_var('custom_publishers') == 1) {
             $query->is_front_page = false;
             $query->is_singular = true;
             $query->is_page = false;
