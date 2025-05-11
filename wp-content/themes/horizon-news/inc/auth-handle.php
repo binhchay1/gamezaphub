@@ -3,7 +3,7 @@
 /**
  * Require Google Package.
  */
-require_once get_template_directory() . '/vendor/autoload.php';
+// require_once get_template_directory() . '/vendor/autoload.php';
 
 function check_email()
 {
@@ -144,62 +144,62 @@ function google_login_url()
     return '#';
 }
 
-function handle_google_callback()
-{
-    global $wpdb;
+// function handle_google_callback()
+// {
+//     global $wpdb;
 
-    if (isset($_GET['code']) && strpos($_SERVER['REQUEST_URI'], '/google-callback') !== false) {
-        $client = get_google_client();
+//     if (isset($_GET['code']) && strpos($_SERVER['REQUEST_URI'], '/google-callback') !== false) {
+//         $client = get_google_client();
 
-        $client->fetchAccessTokenWithAuthCode($_GET['code']);
-        $access_token = $client->getAccessToken();
+//         $client->fetchAccessTokenWithAuthCode($_GET['code']);
+//         $access_token = $client->getAccessToken();
 
-        if ($access_token) {
-            $oauth_service = new Google_Service_Oauth2($client);
-            $user_info = $oauth_service->userinfo->get();
+//         if ($access_token) {
+//             $oauth_service = new Google_Service_Oauth2($client);
+//             $user_info = $oauth_service->userinfo->get();
 
-            $email = $user_info->email;
-            $name = $user_info->givenName ?: explode('@', $email)[0];
+//             $email = $user_info->email;
+//             $name = $user_info->givenName ?: explode('@', $email)[0];
 
-            $table_name = $wpdb->prefix . 'custom_users';
-            $existing_user = $wpdb->get_row(
-                $wpdb->prepare("SELECT * FROM $table_name WHERE email = %s", $email)
-            );
+//             $table_name = $wpdb->prefix . 'custom_users';
+//             $existing_user = $wpdb->get_row(
+//                 $wpdb->prepare("SELECT * FROM $table_name WHERE email = %s", $email)
+//             );
 
-            if (!session_id()) {
-                session_start();
-            }
+//             if (!session_id()) {
+//                 session_start();
+//             }
 
-            if ($existing_user) {
-                $_SESSION['custom_user'] = array(
-                    'id' => $existing_user->id,
-                    'name' => $existing_user->name,
-                    'email' => $existing_user->email,
-                    'logged_in' => true
-                );
-            } else {
-                $wpdb->insert(
-                    $table_name,
-                    array(
-                        'name' => $name,
-                        'email' => $email,
-                        'password' => ''
-                    )
-                );
-                $user_id = $wpdb->insert_id;
+//             if ($existing_user) {
+//                 $_SESSION['custom_user'] = array(
+//                     'id' => $existing_user->id,
+//                     'name' => $existing_user->name,
+//                     'email' => $existing_user->email,
+//                     'logged_in' => true
+//                 );
+//             } else {
+//                 $wpdb->insert(
+//                     $table_name,
+//                     array(
+//                         'name' => $name,
+//                         'email' => $email,
+//                         'password' => ''
+//                     )
+//                 );
+//                 $user_id = $wpdb->insert_id;
 
-                $_SESSION['custom_user'] = array(
-                    'id' => $user_id,
-                    'name' => $name,
-                    'email' => $email,
-                    'logged_in' => true
-                );
-            }
+//                 $_SESSION['custom_user'] = array(
+//                     'id' => $user_id,
+//                     'name' => $name,
+//                     'email' => $email,
+//                     'logged_in' => true
+//                 );
+//             }
 
-            session_write_close();
-            wp_redirect(home_url());
-            exit;
-        }
-    }
-}
-add_action('template_redirect', 'handle_google_callback');
+//             session_write_close();
+//             wp_redirect(home_url());
+//             exit;
+//         }
+//     }
+// }
+// add_action('template_redirect', 'handle_google_callback');

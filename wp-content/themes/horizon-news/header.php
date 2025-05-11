@@ -25,6 +25,10 @@
 </head>
 
 <body <?php body_class(); ?>>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TQTP5Z33"
+			height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
 	<?php wp_body_open(); ?>
 	<div id="page" class="site ascendoor-site-wrapper">
 		<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'horizon-news'); ?></a>
@@ -49,43 +53,7 @@
 									<?php } ?>
 								</div>
 							</div>
-							<div class="top-header-right">
-								<div class="auth-buttons">
-									<?php if (is_user_logged_in() || is_custom_user_logged_in()) : ?>
-										<?php
-										if (is_user_logged_in()) {
-											$current_user = wp_get_current_user();
-											$avatar = get_avatar($current_user->ID, 32);
-											$display_name = esc_html($current_user->display_name);
-											$logout_url = wp_logout_url(home_url('/'));
-										} else {
-											$custom_user = get_custom_user();
-											$avatar = get_avatar($custom_user['email'], 32);
-											$display_name = esc_html($custom_user['name']);
-											$logout_url = home_url('?custom_logout=1');
-											$profile_url = home_url('/profile');
-										}
 
-										?>
-										<div class="user-menu">
-											<a id="signin-button" class="profile-btn">
-												<div class="user-info">
-													<?php echo $avatar; ?>
-													<span class="user-name"><?php echo $display_name; ?></span>
-												</div>
-											</a>
-
-											<div class="dropdown-menu">
-												<a href="<?php echo home_url('/profile'); ?>">Xem Profile</a>
-												<a href="<?php echo esc_url($logout_url); ?>">Đăng Xuất</a>
-											</div>
-										</div>
-									<?php else : ?>
-										<a id="signin-button" class="signin-btn">Đăng nhập ngay</a>
-										<?php require get_template_directory() . '/sections/modal-auth.php'; ?>
-									<?php endif; ?>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
