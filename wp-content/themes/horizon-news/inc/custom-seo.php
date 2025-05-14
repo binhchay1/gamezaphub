@@ -139,3 +139,12 @@ add_action('template_redirect', function () {
         wp_die('Invalid media file request', 'Error 404', ['response' => 404]);
     }
 });
+
+add_filter('rank_math/json_ld', function ($data, $jsonld) {
+    foreach ($data as &$schema) {
+        if (isset($schema['@type']) && in_array($schema['@type'], ['Article', 'WebPage', 'NewsArticle'])) {
+            $schema['inLanguage'] = 'vi';
+        }
+    }
+    return $data;
+}, 99, 2);

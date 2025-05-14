@@ -18,17 +18,12 @@
 	<meta charset="<?php bloginfo('charset'); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
-	<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16922998234"></script>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
 
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
-	<!-- Google Tag Manager (noscript) -->
-	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TQTP5Z33"
-			height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-	<!-- End Google Tag Manager (noscript) -->
 	<?php wp_body_open(); ?>
 	<div id="page" class="site ascendoor-site-wrapper">
 		<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'horizon-news'); ?></a>
@@ -86,7 +81,7 @@
 										}
 										?>
 									</div>
-								</nav><!-- #site-navigation -->
+								</nav>
 							</div>
 							<div class="bottom-header-right-part">
 								<div class="header-search">
