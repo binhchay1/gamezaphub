@@ -5,7 +5,7 @@ Tags: seo, WordPress SEO, google search console, schema, redirection,
 Tested up to: 6.8
 Requires at least: 6.3
 Requires PHP: 7.4
-Stable tag: 1.0.242
+Stable tag: 1.0.244
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -339,15 +339,12 @@ Please drop us an email at support@rankmath.com, and we will be more than happy 
 
 == Changelog ==
 
-= 1.0.242 [Apr 10, 2025] =
-- Improved: Moved [Status & Tools page](https://rankmath.com/kb/rank-math-status-and-tools/) code to React to load blazing fast. We will gradually enhance the performance of other modules
-- Fixed: Compatibility issues with WordPress 6.8
-- Fixed: [Deleting Redirection from the Post screen](https://rankmath.com/kb/advanced-tab/#redirect) was not working after the last update
-- Fixed: Editing Schema in [Elementor editor](https://rankmath.com/blog/elementor-seo/) was not working the second time after revisiting the Schema tab
-- Fixed: PHP Deprecated warning on Sitemap page when [Author sitemap](https://rankmath.com/kb/configure-sitemaps/#authors) is enabled
-- Fixed: Site URL was incorrectly logged in the [404 monitor](https://rankmath.com/kb/monitor-404-errors/) on some setups
-- Fixed: Incorrect 404 title and description were used on the `sitemap_index.xml` page when Sitemap module was disabled
-- Fixed: PHP warning regarding Translations loading too early on some setups
-- Fixed: Missing `SEO Score` label on frontend when[ Show SEO Score to Visitors option](https://rankmath.com/kb/general-settings/#show-seo-score) is enabled
+= 1.0.244 [May 07, 2025] =
+- Improved: Moved [Rank Math Dashboard page](https://rankmath.com/kb/managing-modules/) code to React to load blazing fast. We will gradually enhance the performance of other modules
+- Improved: [Bulk Meta Tags Generation using Content AI](https://rankmath.com/kb/bulk-generate-seo-meta-tags/) by sending more specific content to the AI
+- Fixed: [Database tool to update the SEO score](https://rankmath.com/kb/seo-score-not-available/#update-seo-scores) was not working on some setups due to a missing script dependency
+- Fixed: [Deleting Custom prompt](https://rankmath.com/kb/how-to-use-rankbot-ai/#how-to-delete-a-custom-prompt) was not working
+- Fixed: Missing Knowledge Base links for some fields in the [AI Tools](https://rankmath.com/kb/how-to-use-content-ai/#ai-tools)
+- Fixed: Diacritics content added on the user's profile page was being stored in the wrong format
 
 Full changelog can be found here - **[Rank Math changelog](https://rankmath.com/changelog/?utm_source=Plugin&utm_medium=Changelog&utm_campaign=WP)**
