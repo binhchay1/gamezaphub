@@ -42,3 +42,4 @@ add_filter('get_the_archive_description', function ($description) {
     }
     return '<div class="archive-description">' . $description . '</div>';
 });
+

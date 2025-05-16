@@ -35,12 +35,4 @@
     .duration {
         width: inherit;
     }
-
-    .custom-blockquote-tip p {
-        font-size: 14px;
-        padding: 0 10px;
-    }
-    .tip-header {
-        font-size: 12px;
-    }
 }

@@ -966,8 +966,8 @@ abstract class Model {
 			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		}
 
-		// $result = dbDelta( $sql );
-		// self::log_error( self::get_wpdb()->last_error );
+		$result = dbDelta( $sql );
+		self::log_error( self::get_wpdb()->last_error );
 
 		$reference_charset_table  = $reference_charset_table ? $reference_charset_table : self::get_wp_table_name( 'posts' );
 		$reference_charset_status = $this->get_table_charset( $reference_charset_table, true );

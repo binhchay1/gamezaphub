@@ -36,14 +36,19 @@
 				<div class="site-footer-bottom-wrapper style-1">
 					<div class="site-info">
 						<?php
+							/**
+							 * Hook: horizon_news_footer_copyright.
+							 *
+							 * @hooked - horizon_news_output_footer_copyright_content - 10
+							 */
 							do_action( 'horizon_news_footer_copyright' );
 						?>
-					</div>
+					</div><!-- .site-info -->
 				</div>
 			</div>
 		</div>
-	</footer>
-</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
 
 <a href="#" id="scroll-to-top" class="magazine-scroll-to-top all-device">
 	<i class="fa-solid fa-chevron-up"></i>

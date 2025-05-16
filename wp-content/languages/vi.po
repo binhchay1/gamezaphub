@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 6.8.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-03-29 08:47:13+0000\n"
+"PO-Revision-Date: 2025-04-29 12:00:07+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,7 +14,7 @@ msgstr ""
 #. translators: Use this to specify the proper Google Font name and variants to
 #. load that is supported by your language. Do not translate. Set to 'off' to
 #. disable loading.
-#: wp-includes/script-loader.php:1656
+#: wp-includes/script-loader.php:1678
 #, gp-priority: high
 msgctxt "Google Font Name and Variants"
 msgid "Noto Serif:400,400i,700,700i"
@@ -52,7 +52,7 @@ msgstr "tắt"
 #: wp-includes/js/dist/block-library.js:43971
 #: wp-includes/js/dist/block-library.js:46218
 #: wp-includes/js/dist/editor.js:27461 wp-includes/js/dist/editor.js:27505
-#: wp-includes/js/dist/editor.js:32495
+#: wp-includes/js/dist/editor.js:32494
 #, gp-priority: high
 msgctxt "Word count type. Do not translate!"
 msgid "words"
@@ -69,7 +69,7 @@ msgstr "https://vi.wordpress.org/"
 #. translators: If there are characters in your language that are not supported
 #. by Open Sans, translate this to 'off'. Do not translate into your own
 #. language.
-#: wp-includes/script-loader.php:1565
+#: wp-includes/script-loader.php:1587
 #, gp-priority: high
 msgctxt "Open Sans font: on or off"
 msgid "on"
@@ -280,7 +280,7 @@ msgstr "Tháng 1"
 #: wp-includes/js/dist/block-editor.js:48938
 #: wp-includes/js/dist/block-editor.js:48943
 #: wp-includes/js/dist/block-editor.js:50082
-#: wp-includes/js/dist/block-editor.js:74013
+#: wp-includes/js/dist/block-editor.js:74008
 #: wp-includes/js/dist/edit-site.js:27267 wp-admin/includes/upgrade.php:182
 #, gp-priority: high
 msgid "Uncategorized"
@@ -319,8 +319,8 @@ msgstr "Tải lên"
 
 #. translators: Hidden accessibility text.
 #: wp-includes/js/dist/block-editor.js:24700
-#: wp-includes/js/dist/block-editor.js:68823
-#: wp-includes/js/dist/block-editor.js:68841
+#: wp-includes/js/dist/block-editor.js:68826
+#: wp-includes/js/dist/block-editor.js:68844
 #: wp-includes/js/dist/block-library.js:65522
 #: wp-includes/js/dist/editor.js:24986
 #: wp-admin/includes/class-custom-background.php:357
@@ -343,11 +343,11 @@ msgstr "Hàm này không nên được gọi trước khi thư mục chủ đề
 msgid "Add Link Category"
 msgstr "Thêm danh mục liên kết"
 
-#: wp-includes/script-loader.php:986
+#: wp-includes/script-loader.php:1008
 msgid "This file cannot be processed by the web server."
 msgstr "Tệp này không thể được xử lý bởi máy chủ web."
 
-#: wp-includes/script-loader.php:813 wp-admin/js/tags.js:62
+#: wp-includes/script-loader.php:835 wp-admin/js/tags.js:62
 msgid "An error occurred while processing your request. Please try again later."
 msgstr "Đã xảy ra lỗi trong khi xử lý yêu cầu của bạn. Vui lòng thử lại sau."
 
@@ -367,8 +367,8 @@ msgstr "Mẫu dựa trên tập tin theme không thể có bản sửa đổi."
 msgid "Whether to ignore sticky posts or not."
 msgstr "Có bỏ qua bài đăng nổi bật hay không."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:162
-#: wp-includes/script-loader.php:1010
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:170
+#: wp-includes/script-loader.php:1032
 msgid "The web server cannot generate responsive image sizes for this image. Convert it to JPEG or PNG before uploading."
 msgstr "Máy chủ web không thể tạo kích thước ảnh phản hồi cho ảnh này. Hãy chuyển đổi nó sang JPEG hoặc PNG trước khi tải lên."
 
@@ -891,7 +891,7 @@ msgid "Disable"
 msgstr "Tắt"
 
 #. translators: Hidden accessibility text.
-#: wp-includes/js/dist/editor.js:20571 wp-includes/js/dist/editor.js:32977
+#: wp-includes/js/dist/editor.js:20571 wp-includes/js/dist/editor.js:32976
 #: wp-admin/edit-form-comment.php:133
 msgid "Comment status"
 msgstr "Trạng thái bình luận"
@@ -1200,7 +1200,7 @@ msgid "Add or remove pattern categories"
 msgstr "Thêm hoặc xóa danh mục mẫu"
 
 #. translators: %s: wp_remove_surrounding_empty_script_tags()
-#: wp-includes/script-loader.php:3419
+#: wp-includes/script-loader.php:3441
 msgid "Function %s used incorrectly in PHP."
 msgstr "Hàm %s được sử dụng không chính xác trong PHP."
 
@@ -1452,7 +1452,7 @@ msgid "Public facing script module IDs."
 msgstr "ID mô-đun tập lệnh công khai."
 
 #. translators: %s: attachment mime type
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:414
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:422
 msgid "This site does not support post thumbnails on attachments with MIME type %s."
 msgstr "Trang web này không hỗ trợ đăng hình thu nhỏ trên các tệp đính kèm có loại MIME %s."
 
@@ -1776,7 +1776,7 @@ msgctxt "taxonomy general name"
 msgid "Pattern Categories"
 msgstr "Danh mục mẫu"
 
-#: wp-includes/script-loader.php:3412
+#: wp-includes/script-loader.php:3434
 msgid "Expected string to start with script tag (without attributes) and end with script tag, with optional whitespace."
 msgstr "Chuỗi dự kiến ​​bắt đầu bằng thẻ script (không có thuộc tính) và kết thúc bằng thẻ script, với khoảng trắng tùy chọn."
 
@@ -1963,7 +1963,8 @@ msgstr "Học WordPress"
 
 #: wp-includes/update.php:1132
 #: wp-admin/includes/class-wp-automatic-updater.php:506
-#: wp-admin/includes/class-wp-upgrader.php:189 wp-admin/includes/file.php:1613
+#: wp-admin/includes/class-wp-upgrader.php:189
+#: wp-admin/includes/class-wp-upgrader.php:1020 wp-admin/includes/file.php:1613
 #: wp-admin/includes/plugin.php:948 wp-admin/includes/theme.php:62
 msgid "Could not access filesystem."
 msgstr "Không thể truy cập file hệ thống."
@@ -2324,14 +2325,14 @@ msgctxt "block category"
 msgid "Patterns"
 msgstr "Mẫu khối"
 
-#: wp-includes/admin-bar.php:1127
+#: wp-includes/admin-bar.php:1136
 #: wp-admin/includes/class-custom-image-header.php:77
 #: wp-admin/includes/class-custom-image-header.php:78 wp-admin/menu.php:237
 msgctxt "custom image header"
 msgid "Header"
 msgstr "Đầu trang"
 
-#: wp-includes/admin-bar.php:1113
+#: wp-includes/admin-bar.php:1122
 #: wp-admin/includes/class-custom-background.php:70
 #: wp-admin/includes/class-custom-background.php:71 wp-admin/menu.php:242
 msgctxt "custom background"
@@ -2459,8 +2460,8 @@ msgid "Style Variations"
 msgstr "Giao diện các biến thể"
 
 #: wp-includes/js/dist/block-editor.js:35084
-#: wp-includes/js/dist/block-editor.js:71832
-#: wp-includes/js/dist/block-editor.js:71837 wp-admin/widgets-form.php:300
+#: wp-includes/js/dist/block-editor.js:71827
+#: wp-includes/js/dist/block-editor.js:71832 wp-admin/widgets-form.php:300
 msgid "Position"
 msgstr "Vị trí"
 
@@ -2475,7 +2476,7 @@ msgstr "Ghim"
 msgid "https://wordpress.org/documentation/article/reset-your-password/"
 msgstr "https://wordpress.org/documentation/article/reset-your-password/"
 
-#: wp-includes/script-loader.php:1343
+#: wp-includes/script-loader.php:1365
 msgid "https://wordpress.org/documentation/article/site-editor/"
 msgstr "https://wordpress.org/documentation/article/site-editor/"
 
@@ -3448,13 +3449,13 @@ msgctxt "Block pattern category"
 msgid "Featured"
 msgstr "Nổi bật"
 
-#: wp-includes/script-loader.php:1347
+#: wp-includes/script-loader.php:1369
 msgid "Use Site Editor"
 msgstr "Sử dụng trình thiết kế trang web"
 
 #. translators: 1: Link to Site Editor documentation on HelpHub, 2: HTML
 #. button.
-#: wp-includes/script-loader.php:1342
+#: wp-includes/script-loader.php:1364
 msgid "Hurray! Your theme supports site editing with blocks. <a href=\"%1$s\">Tell me more</a>. %2$s"
 msgstr "Hoan hô! Mẫu của bạn hỗ trợ Chỉnh sửa trang web đầy đủ với các khối. <a href=\"%1$s\">Cho tôi biết thêm</a>. %2$s"
 
@@ -3672,7 +3673,7 @@ msgstr "Vùng chứa thành phần của mẫu"
 msgid "Template Part Areas"
 msgstr "Những vùng chứa thành phần mẫu trang"
 
-#: wp-includes/script-loader.php:994
+#: wp-includes/script-loader.php:1016
 msgid "The server cannot process the image. This can happen if the server is busy or does not have enough resources to complete the task. Uploading a smaller image may help. Suggested maximum size is 2560 pixels."
 msgstr "Máy chủ không thể xử lý hình ảnh. Điều này có thể xảy ra nếu máy chủ bận hoặc không có đủ tài nguyên để hoàn thành tác vụ. Tải lên một hình ảnh nhỏ hơn có thể hữu ích. Kích thước tối đa được đề xuất là 2560 pixel."
 
@@ -4666,7 +4667,7 @@ msgstr "Logo trang web"
 #: wp-includes/blocks/shortcode/block.json
 msgctxt "block description"
 msgid "Insert additional custom elements with a WordPress shortcode."
-msgstr "Chèn thêm các thành phần tùy chỉnh bằng mã ngắn WordPress."
+msgstr "Chèn thêm các thành phần tùy chỉnh bằng mã rút gọn WordPress."
 
 #: wp-includes/blocks/separator/block.json
 msgctxt "block style label"
@@ -5175,7 +5176,7 @@ msgid "Show on front"
 msgstr "Hiển thị trên trang nhất"
 
 #: wp-includes/post.php:299 wp-includes/js/dist/block-editor.js:57598
-#: wp-includes/js/dist/block-editor.js:65316
+#: wp-includes/js/dist/block-editor.js:65319
 msgid "Patterns list"
 msgstr "Danh sách mẫu"
 
@@ -5768,7 +5769,7 @@ msgstr "Mẫu mới"
 #: wp-includes/js/dist/edit-site.js:10664
 #: wp-includes/js/dist/edit-site.js:38117
 #: wp-includes/js/dist/edit-site.js:40241 wp-includes/js/dist/editor.js:9949
-#: wp-includes/js/dist/editor.js:19845 wp-includes/js/dist/editor.js:33187
+#: wp-includes/js/dist/editor.js:19845 wp-includes/js/dist/editor.js:33186
 msgid "Templates"
 msgstr "Mẫu trang"
 
@@ -5791,7 +5792,7 @@ msgstr "(Link trang chủ, mở ở tab mới)"
 
 #. translators: 1: Block type, 2: Typography supports key, e.g: fontSize,
 #. lineHeight, etc. 3: block.json, 4: Old metadata key, 5: New metadata key.
-#: wp-includes/blocks.php:2534
+#: wp-includes/blocks.php:2551
 msgid "Block \"%1$s\" is declaring %2$s support in %3$s file under %4$s. %2$s support is now declared under %5$s."
 msgstr "Khối \"%1$s\" đang khai báo hỗ trợ %2$s trong file %3$s dưới %4$s. Hỗ trợ %2$s hiện được khai báo dưới %5$s."
 
@@ -5876,7 +5877,7 @@ msgstr "Văn bản"
 #. translators: Hidden accessibility text. %s: Total number of updates
 #. available.
 #. translators: %s: Total number of updates available.
-#: wp-includes/admin-bar.php:1154 wp-admin/js/updates.js:370
+#: wp-includes/admin-bar.php:1163 wp-admin/js/updates.js:370
 msgid "%s update available"
 msgid_plural "%s updates available"
 msgstr[0] "%s cập nhật mới"
@@ -5943,7 +5944,7 @@ msgstr "Khoảng cách"
 #: wp-includes/blocks/shortcode/block.json
 msgctxt "block title"
 msgid "Shortcode"
-msgstr "Mã ngắn"
+msgstr "Mã rút gọn"
 
 #: wp-includes/blocks/separator/block.json
 msgctxt "block title"
@@ -6184,71 +6185,71 @@ msgstr "Một plugin đã ngăn việc lên lịch sự kiện này."
 msgid "Event timestamp must be a valid Unix timestamp."
 msgstr "Dấu thời gian sự kiện phải là dấu thời gian Unix hợp lệ."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1562
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1570
 msgid "As a percentage of the image, the height to crop the image to. DEPRECATED: Use `modifiers` instead."
 msgstr "Tính theo phần trăm của hình ảnh, chiều cao để cắt hình ảnh. ĐÃ BỎ QUA: Thay vào đó, hãy sử dụng `modifiers`."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1556
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1564
 msgid "As a percentage of the image, the width to crop the image to. DEPRECATED: Use `modifiers` instead."
 msgstr "Tính theo phần trăm của hình ảnh, chiều rộng để cắt hình ảnh. ĐÃ BỎ QUA: Thay vào đó, hãy sử dụng `modifiers`."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1550
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1558
 msgid "As a percentage of the image, the y position to start the crop from. DEPRECATED: Use `modifiers` instead."
 msgstr "Tính theo phần trăm của hình ảnh, vị trí y để bắt đầu cắt xén. ĐÃ BỎ QUA: Thay vào đó, hãy sử dụng `modifiers`."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1544
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1552
 msgid "As a percentage of the image, the x position to start the crop from. DEPRECATED: Use `modifiers` instead."
 msgstr "Tính theo phần trăm của hình ảnh, vị trí x để bắt đầu cắt xén. ĐÃ BỎ QUA: Thay vào đó, hãy sử dụng `modifiers`."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1536
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1544
 msgid "The amount to rotate the image clockwise in degrees. DEPRECATED: Use `modifiers` instead."
 msgstr "The amount to rotate the image clockwise in degrees. DEPRECATED: Use `modifiers` instead."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1525
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1533
 msgid "Height of the crop as a percentage of the image height."
 msgstr "Chiều cao của vùng cắt theo tỷ lệ phần trăm của chiều cao hình ảnh."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1521
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1529
 msgid "Width of the crop as a percentage of the image width."
 msgstr "Chiều rộng của vùng cắt theo tỷ lệ phần trăm của chiều rộng hình ảnh."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1517
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1525
 msgid "Vertical position from the top to begin the crop as a percentage of the image height."
 msgstr "Vị trí dọc từ trên xuống để bắt đầu cắt theo tỷ lệ phần trăm của chiều cao hình ảnh."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1513
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1521
 msgid "Horizontal position from the left to begin the crop as a percentage of the image width."
 msgstr "Vị trí nằm ngang từ bên trái để bắt đầu cắt theo tỷ lệ phần trăm của chiều rộng hình ảnh."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1503
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1511
 msgid "Crop arguments."
 msgstr "Tham số cắt."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1498
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1506
 msgid "Crop type."
 msgstr "Kiểu cắt."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1487
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1495
 msgid "Angle to rotate clockwise in degrees."
 msgstr "Góc xoay theo chiều kim đồng hồ theo độ."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1480
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1488
 msgid "Rotation arguments."
 msgstr "Tham số xoay vòng."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1475
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1483
 msgid "Rotation type."
 msgstr "Kiểu xoay."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1472
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1480
 msgid "Rotation"
 msgstr "Xoay"
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1464
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1472
 msgid "Image edit."
 msgstr "Chỉnh sửa hình ảnh."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1460
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1468
 msgid "Array of image edits."
 msgstr "Mảng chỉnh sửa hình ảnh."
 
@@ -6368,8 +6369,8 @@ msgstr "&#8592; Tới thư viện"
 
 #: wp-includes/js/dist/block-editor.js:28914
 #: wp-includes/js/dist/block-editor.js:29746
-#: wp-includes/js/dist/edit-site.js:36751 wp-includes/js/dist/editor.js:33963
-#: wp-includes/js/dist/editor.js:33965 wp-admin/menu.php:194
+#: wp-includes/js/dist/edit-site.js:36751 wp-includes/js/dist/editor.js:33962
+#: wp-includes/js/dist/editor.js:33964 wp-admin/menu.php:194
 msgid "Appearance"
 msgstr "Giao diện"
 
@@ -6770,7 +6771,7 @@ msgstr "Mục Menu"
 msgid "Comment"
 msgstr "Bình luận"
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1495
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1503
 #: wp-includes/js/dist/block-library.js:27153
 #: wp-includes/js/dist/block-library.js:55443
 #: wp-admin/includes/image-edit.php:63
@@ -6781,7 +6782,7 @@ msgstr "Cắt ảnh"
 msgid "Notifications"
 msgstr "Thông báo"
 
-#: wp-includes/script-loader.php:1011 wp-includes/js/media-views.js:6541
+#: wp-includes/script-loader.php:1033 wp-includes/js/media-views.js:6541
 #: wp-admin/js/media.js:247 wp-admin/js/post.js:1300
 msgid "The file URL has been copied to your clipboard"
 msgstr "URL của file đã được sao chép vào bộ nhớ tạm"
@@ -7062,31 +7063,31 @@ msgstr "Thông báo này được tạo bởi %s."
 msgid "Please consider writing more inclusive code."
 msgstr "Please consider writing more inclusive code."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1454
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1462
 msgid "URL to the edited image file."
 msgstr "URL tới file ảnh đã sửa."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:664
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:672
 msgid "Unable to crop this image."
 msgstr "Không thể cắt ảnh này."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:642
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:650
 msgid "Unable to rotate this image."
 msgstr "Không thể xoay ảnh này."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:624
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:632
 msgid "Unable to edit this image."
 msgstr "Không thể sửa ảnh này."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:603
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:611
 msgid "The image was not edited. Edit the image before applying the changes."
 msgstr "Ảnh chưa được sửa. Sửa ản trước khi áp dụng thay đổi."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:568
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:576
 msgid "This type of file cannot be edited."
 msgstr "Loại file không thể sửa."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:558
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:566
 msgid "Unable to get meta information for file."
 msgstr "Không thể lấy thông tin về file."
 
@@ -7556,7 +7557,7 @@ msgctxt "theme"
 msgid "<strong>Error:</strong> Current WordPress and PHP versions do not meet minimum requirements for %s."
 msgstr "<strong>Lỗi:</strong> Phiên bản WordPress và PHP hiện tại chưa đáp ứng được yêu cầu tối thiểu cho %s."
 
-#: wp-includes/script-loader.php:1009
+#: wp-includes/script-loader.php:1031
 msgid "This image cannot be displayed in a web browser. For best results convert it to JPEG before uploading."
 msgstr "Hình ảnh này không thể được hiển thị trong trình duyệt web. Để có kết quả tốt nhất, hãy chuyển nó thành JPEG trước khi tải lên."
 
@@ -7853,7 +7854,7 @@ msgstr "Tùy chỉnh màu nền / hình nền nếu được xác định bởi 
 
 #: wp-includes/theme.php:4039
 msgid "Custom header if defined by the theme."
-msgstr "Tùy chỉnh header nếu được xác định bởi giao diện."
+msgstr "Tùy chỉnh đầu trang nếu được xác định bởi giao diện."
 
 #: wp-includes/theme.php:3948
 msgid "Whether posts and comments RSS feed links are added to head."
@@ -7876,7 +7877,7 @@ msgstr "Xin lỗi, không thể tạo bài viết."
 
 #. translators: Minimum input length in characters to start searching posts in
 #. the "Insert/edit link" modal.
-#: wp-includes/script-loader.php:1252
+#: wp-includes/script-loader.php:1274
 msgctxt "minimum input length for searching post links"
 msgid "3"
 msgstr "3"
@@ -7905,7 +7906,7 @@ msgctxt "file type group"
 msgid "Archives"
 msgstr "Lưu trữ"
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1071
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1079
 msgid "List of the missing image sizes of the attachment."
 msgstr "Danh sách các kích thước hình ảnh còn thiếu của tệp đính kèm."
 
@@ -7922,14 +7923,14 @@ msgid "Filter media"
 msgstr "Lọc media"
 
 #. translators: Hidden accessibility text.
-#: wp-includes/media-template.php:335 wp-includes/js/dist/block-editor.js:65221
+#: wp-includes/media-template.php:335 wp-includes/js/dist/block-editor.js:65224
 #: wp-admin/includes/class-wp-media-list-table.php:44
 msgid "Grid view"
 msgstr "Xem dạng lưới"
 
 #. translators: Hidden accessibility text.
-#: wp-includes/media-template.php:327 wp-includes/js/dist/block-editor.js:64671
-#: wp-includes/js/dist/block-editor.js:64705
+#: wp-includes/media-template.php:327 wp-includes/js/dist/block-editor.js:64674
+#: wp-includes/js/dist/block-editor.js:64708
 #: wp-admin/includes/class-wp-media-list-table.php:43
 msgid "List view"
 msgstr "Xem dạng danh sách"
@@ -8120,7 +8121,7 @@ msgstr "RSS bình luận"
 msgid "Entries feed"
 msgstr "RSS bài viết"
 
-#: wp-includes/script-loader.php:993
+#: wp-includes/script-loader.php:1015
 msgid "Unexpected response from the server. The file may have been uploaded successfully. Check in the Media Library or reload the page."
 msgstr "Có phản hồi không mong muốn từ máy chủ. Các file có thể đã được tải lên thành công. Kiểm tra trong Thư viện hoặc tải lại trang."
 
@@ -8555,13 +8556,13 @@ msgstr "Hình ảnh đã được thêm vào thư viện này: %s"
 msgid "The current image has no alternative text. The file name is: %s"
 msgstr "Hình ảnh hiện tại không có văn bản thay thế. Tên tệp là: %s"
 
-#: wp-includes/admin-bar.php:1225
+#: wp-includes/admin-bar.php:1234
 msgid "Exit Recovery Mode"
 msgstr "Thoát khỏi chế độ khôi phục"
 
 #. translators: Hidden accessibility text. %s: Number of comments.
 #. translators: %s: Number of comments.
-#: wp-includes/admin-bar.php:1039 wp-admin/includes/ajax-actions.php:500
+#: wp-includes/admin-bar.php:1048 wp-admin/includes/ajax-actions.php:500
 #: wp-admin/includes/ajax-actions.php:571
 #: wp-admin/includes/ajax-actions.php:1443 wp-admin/includes/dashboard.php:342
 #: wp-admin/menu.php:97
@@ -8716,7 +8717,7 @@ msgstr[0] "%s giây"
 #. translators: %s: the number of minutes to read the post.
 #: wp-includes/formatting.php:3882 wp-includes/functions.php:562
 #: wp-includes/js/dist/block-library.js:46221
-#: wp-includes/js/dist/editor.js:32505
+#: wp-includes/js/dist/editor.js:32504
 msgid "%s minute"
 msgid_plural "%s minutes"
 msgstr[0] "%s phút"
@@ -8841,8 +8842,8 @@ msgid "Embeds"
 msgstr "Nhúng"
 
 #: wp-includes/js/dist/editor.js:9787 wp-includes/js/dist/editor.js:20658
-#: wp-includes/js/dist/editor.js:20758 wp-includes/js/dist/editor.js:32947
-#: wp-includes/js/dist/editor.js:32968 wp-includes/js/dist/editor.js:33944
+#: wp-includes/js/dist/editor.js:20758 wp-includes/js/dist/editor.js:32946
+#: wp-includes/js/dist/editor.js:32967 wp-includes/js/dist/editor.js:33943
 #: wp-admin/includes/meta-boxes.php:1679 wp-admin/menu.php:392
 msgid "Discussion"
 msgstr "Bình luận"
@@ -9153,13 +9154,13 @@ msgstr "Người dùng hiện tại này có thể ghim bài viết nổi bật.
 msgid "The current user can publish this post."
 msgstr "Người dùng hiện tại có thể Xuất bản bài viết này."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1436
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1444
 #: wp-admin/includes/ms.php:45
 msgid "You have used your space quota. Please delete files before uploading."
 msgstr "Bạn đã sử dụng hết dung lượng của mình. Vui lòng xóa file trước khi tải lên."
 
 #. translators: %s: Required disk space in kilobytes.
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1416
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1424
 #: wp-admin/includes/ms.php:36
 msgid "Not enough space to upload. %s KB needed."
 msgstr "Không đủ dung lượng để tải lên. Cần tối thiểu %s KB."
@@ -9512,7 +9513,7 @@ msgid "The link you followed has expired."
 msgstr "Liên kết bạn theo dõi đã hết hạn."
 
 #: wp-includes/class-wp-customize-manager.php:524
-#: wp-includes/script-loader.php:1296 wp-admin/customize.php:17
+#: wp-includes/script-loader.php:1318 wp-admin/customize.php:17
 #: wp-admin/customize.php:34 wp-admin/edit-comments.php:13
 #: wp-admin/edit-tags.php:28 wp-admin/edit-tags.php:85
 #: wp-admin/edit-tags.php:116 wp-admin/edit-tags.php:136
@@ -9546,7 +9547,7 @@ msgstr "Cập nhật bất kể có thể gây lỗi và làm hỏng website c�
 msgid "The query only expected one placeholder, but an array of multiple placeholders was sent."
 msgstr "Truy vấn chỉ mong đợi một trình giữ chỗ, nhưng một mảng chứa nhiều chỗ chèn đã được gửi."
 
-#: wp-includes/script-loader.php:1285
+#: wp-includes/script-loader.php:1307
 msgctxt "customizer changeset status"
 msgid "Scheduled"
 msgstr "Đã lên lịch"
@@ -9567,7 +9568,7 @@ msgid "%1$s is not a valid property of Object."
 msgstr "%1$s không phải là một thuộc tính hợp lệ của Object."
 
 #. translators: %s: URL to Add Themes admin screen.
-#: wp-includes/script-loader.php:1334
+#: wp-includes/script-loader.php:1356
 msgid "You will not be able to install new themes from here yet since your install requires SFTP credentials. For now, please <a href=\"%s\">add themes in the admin</a>."
 msgstr "Bạn sẽ không thể cài đặt các giao diện mới từ đây vì cài đặt của bạn yêu cầu thông tin SFTP. Hiện tại, vui lòng <a href=\"%s\">thêm giao diện trong quản trị</a>."
 
@@ -9588,7 +9589,7 @@ msgid "Click &#8220;Next&#8221; to start adding links to your new menu."
 msgstr "Click &#8220;Tiếp theo&#8221; để bắt đầu thêm liên kết vào menu mới tạo."
 
 #: wp-includes/class-wp-customize-manager.php:4874
-#: wp-includes/script-loader.php:1284
+#: wp-includes/script-loader.php:1306
 msgctxt "customizer changeset action/button label"
 msgid "Schedule"
 msgstr "Lên lịch"
@@ -9613,11 +9614,11 @@ msgstr "Thêm trình đơn vào sidebar của bạn."
 
 #. translators: %s: Display name of the user who has taken over the changeset
 #. in customizer.
-#: wp-includes/script-loader.php:1309
+#: wp-includes/script-loader.php:1331
 msgid "%s has taken over and is currently customizing."
 msgstr "%s đã được tiếp nhận và đang được chỉnh sửa."
 
-#: wp-includes/script-loader.php:1303
+#: wp-includes/script-loader.php:1325
 msgid "Looks like something&#8217;s gone wrong. Wait a couple seconds, and then try again."
 msgstr "Có lỗi đã xảy ra. Hãy chờ vài giây, sau đó thử lại."
 
@@ -9821,20 +9822,20 @@ msgstr "&larr; Đi đến danh mục"
 msgid "&larr; Go to Link Categories"
 msgstr "&larr; Đi đến Danh mục liên kết"
 
-#: wp-includes/script-loader.php:1331
+#: wp-includes/script-loader.php:1353
 msgid "Sorry, you cannot preview new themes when you have changes scheduled or saved as a draft. Please publish your changes, or wait until they publish to preview new themes."
 msgstr "Xin lỗi, bạn không thể xem trước các giao diện mới khi bạn có các thay đổi đã lên lịch hoặc đã lưu dưới dạng bản nháp. Vui lòng xuất bản các thay đổi của bạn, hoặc đợi cho đến khi chúng được Xuất bản để xem trước các giao diện mới."
 
-#: wp-includes/script-loader.php:1330
+#: wp-includes/script-loader.php:1352
 msgid "Schedule your customization changes to publish (\"go live\") at a future date."
 msgstr "Lên lịch áp dụng các tùy chỉnh của bạn trong tương lai."
 
-#: wp-includes/script-loader.php:1322
+#: wp-includes/script-loader.php:1344
 msgid "Homepage and posts page must be different."
 msgstr "Trang chủ và trang danh sách bài phải khác nhau."
 
 #. translators: %d: Error count.
-#: wp-includes/script-loader.php:1317 wp-includes/script-loader.php:1319
+#: wp-includes/script-loader.php:1339 wp-includes/script-loader.php:1341
 #: wp-includes/widgets/class-wp-widget-custom-html.php:230
 #: wp-includes/widgets/class-wp-widget-custom-html.php:232
 msgid "There is %d error which must be fixed before you can save."
@@ -9842,273 +9843,273 @@ msgid_plural "There are %d errors which must be fixed before you can save."
 msgstr[0] "Có %d lỗi cần được sửa trước khi bạn có thể lưu. "
 
 #. translators: %s: URL to the Customizer to load the autosaved version.
-#: wp-includes/script-loader.php:1311
+#: wp-includes/script-loader.php:1333
 msgid "There is a more recent autosave of your changes than the one you are previewing. <a href=\"%s\">Restore the autosave</a>"
 msgstr "Đây là bản tự động lưu gần nhất các thay đổi của bạn hơn bản bạn đang xem thử. <a href=\"%s\">Hồi phục bản tự động lưu</a>"
 
-#: wp-includes/script-loader.php:1307
+#: wp-includes/script-loader.php:1329
 msgid "Are you sure you want to discard your unpublished changes?"
 msgstr "Bạn có chắc bạn muốn bỏ qua các thay đổi chưa được công bố?"
 
-#: wp-includes/script-loader.php:1306
+#: wp-includes/script-loader.php:1328
 msgid "Reverting unpublished changes&hellip;"
 msgstr "Khôi phục các thay đổi chưa công bố&hellip;"
 
-#: wp-includes/script-loader.php:1305
+#: wp-includes/script-loader.php:1327
 msgid "Setting up your live preview. This may take a bit."
 msgstr "Đang thiết lập xem thử. Vui lòng chờ một chút."
 
-#: wp-includes/script-loader.php:1304
+#: wp-includes/script-loader.php:1326
 msgid "Downloading your new theme&hellip;"
 msgstr "Đang tải về giao diện mới&hellip;"
 
-#: wp-includes/script-loader.php:1294
+#: wp-includes/script-loader.php:1316
 msgid "Discard changes"
 msgstr "Hủy các thay đổi"
 
-#: wp-includes/script-loader.php:1287
+#: wp-includes/script-loader.php:1309
 msgid "Please save your changes in order to share the preview."
 msgstr "Vui lòng lưu thay đổi của bạn để chia sẻ bản xem trước."
 
-#: wp-includes/script-loader.php:1283
+#: wp-includes/script-loader.php:1305
 msgid "Updating"
 msgstr "Đang cập nhật"
 
-#: wp-includes/script-loader.php:1282
+#: wp-includes/script-loader.php:1304
 msgid "Draft Saved"
 msgstr "Bản nháp đã lưu"
 
-#: wp-includes/script-loader.php:1277 wp-admin/customize.php:197
+#: wp-includes/script-loader.php:1299 wp-admin/customize.php:197
 msgid "Activate &amp; Publish"
 msgstr "Cài &amp; Công bố"
 
-#: wp-includes/script-loader.php:1142
+#: wp-includes/script-loader.php:1164
 msgid "Yiddish"
 msgstr "Tiếng Yiddish"
 
-#: wp-includes/script-loader.php:1141
+#: wp-includes/script-loader.php:1163
 msgid "Welsh"
 msgstr "Tiếng Welsh"
 
-#: wp-includes/script-loader.php:1140
+#: wp-includes/script-loader.php:1162
 msgid "Vietnamese"
 msgstr "Tiếng Việt"
 
-#: wp-includes/script-loader.php:1139
+#: wp-includes/script-loader.php:1161
 msgid "Ukrainian"
 msgstr "Tiếng Ukraina"
 
-#: wp-includes/script-loader.php:1138
+#: wp-includes/script-loader.php:1160
 msgid "Turkish"
 msgstr "Tiếng Thổ Nhĩ Kì"
 
-#: wp-includes/script-loader.php:1137
+#: wp-includes/script-loader.php:1159
 msgid "Thai"
 msgstr "Tiếng Thái"
 
-#: wp-includes/script-loader.php:1136
+#: wp-includes/script-loader.php:1158
 msgid "Tagalog"
 msgstr "Tiếng Tagalog"
 
-#: wp-includes/script-loader.php:1135
+#: wp-includes/script-loader.php:1157
 msgid "Swedish"
 msgstr "Tiếng Thụy Điển"
 
-#: wp-includes/script-loader.php:1134
+#: wp-includes/script-loader.php:1156
 msgid "Swahili"
 msgstr "Tiếng Swahili"
 
-#: wp-includes/script-loader.php:1133
+#: wp-includes/script-loader.php:1155
 msgid "Spanish"
 msgstr "Tiếng Tây Ban Nha"
 
-#: wp-includes/script-loader.php:1132
+#: wp-includes/script-loader.php:1154
 msgid "Slovenian"
 msgstr "Tiếng Slovenia"
 
-#: wp-includes/script-loader.php:1131
+#: wp-includes/script-loader.php:1153
 msgid "Slovak"
 msgstr "Tiếng Slovakia"
 
-#: wp-includes/script-loader.php:1130
+#: wp-includes/script-loader.php:1152
 msgid "Serbian"
 msgstr "Tiếng Serbia"
 
-#: wp-includes/script-loader.php:1129
+#: wp-includes/script-loader.php:1151
 msgid "Russian"
 msgstr "Tiếng Nga"
 
-#: wp-includes/script-loader.php:1128
+#: wp-includes/script-loader.php:1150
 msgid "Romanian"
 msgstr "Tiếng Romani"
 
-#: wp-includes/script-loader.php:1127
+#: wp-includes/script-loader.php:1149
 msgid "Portuguese"
 msgstr "Tiếng Bồ Đào Nha"
 
-#: wp-includes/script-loader.php:1126
+#: wp-includes/script-loader.php:1148
 msgid "Polish"
 msgstr "Tiếng Ba Lan"
 
-#: wp-includes/script-loader.php:1125
+#: wp-includes/script-loader.php:1147
 msgid "Persian"
 msgstr "Tiếng Ba Tư"
 
-#: wp-includes/script-loader.php:1124
+#: wp-includes/script-loader.php:1146
 msgid "Norwegian"
 msgstr "Tiếng Na Uy"
 
-#: wp-includes/script-loader.php:1123
+#: wp-includes/script-loader.php:1145
 msgid "Maltese"
 msgstr "Tiếng Maltese"
 
-#: wp-includes/script-loader.php:1122
+#: wp-includes/script-loader.php:1144
 msgid "Malay"
 msgstr "Tiếng Malaysia"
 
-#: wp-includes/script-loader.php:1121
+#: wp-includes/script-loader.php:1143
 msgid "Macedonian"
 msgstr "Tiếng Macedonia"
 
-#: wp-includes/script-loader.php:1120
+#: wp-includes/script-loader.php:1142
 msgid "Lithuanian"
 msgstr "Tiếng Lithuani"
 
-#: wp-includes/script-loader.php:1119
+#: wp-includes/script-loader.php:1141
 msgid "Latvian"
 msgstr "Tiếng Latvia"
 
-#: wp-includes/script-loader.php:1118
+#: wp-includes/script-loader.php:1140
 msgid "Korean"
 msgstr "Tiếng Hàn Quốc"
 
-#: wp-includes/script-loader.php:1117
+#: wp-includes/script-loader.php:1139
 msgid "Japanese"
 msgstr "Tiếng Nhật"
 
-#: wp-includes/script-loader.php:1116
+#: wp-includes/script-loader.php:1138
 msgid "Italian"
 msgstr "Tiếng Ý"
 
-#: wp-includes/script-loader.php:1115
+#: wp-includes/script-loader.php:1137
 msgid "Irish"
 msgstr "Tiếng Ailen"
 
-#: wp-includes/script-loader.php:1114
+#: wp-includes/script-loader.php:1136
 msgid "Indonesian"
 msgstr "Tiếng Indonesia"
 
-#: wp-includes/script-loader.php:1113
+#: wp-includes/script-loader.php:1135
 msgid "Icelandic"
 msgstr "Tiếng Ailen"
 
-#: wp-includes/script-loader.php:1112
+#: wp-includes/script-loader.php:1134
 msgid "Hungarian"
 msgstr "Tiếng Hungary"
 
-#: wp-includes/script-loader.php:1111
+#: wp-includes/script-loader.php:1133
 msgid "Hindi"
 msgstr "Tiếng Hindu"
 
-#: wp-includes/script-loader.php:1110
+#: wp-includes/script-loader.php:1132
 msgid "Hebrew"
 msgstr "Tiếng Do Thái"
 
-#: wp-includes/script-loader.php:1109
+#: wp-includes/script-loader.php:1131
 msgid "Haitian Creole"
 msgstr "Tiếng Haiti"
 
-#: wp-includes/script-loader.php:1108
+#: wp-includes/script-loader.php:1130
 msgid "Greek"
 msgstr "Tiếng Hy Lạp"
 
-#: wp-includes/script-loader.php:1107
+#: wp-includes/script-loader.php:1129
 msgid "German"
 msgstr "Tiếng Đức"
 
-#: wp-includes/script-loader.php:1106
+#: wp-includes/script-loader.php:1128
 msgid "Galician"
 msgstr "Tiếng Galicia"
 
-#: wp-includes/script-loader.php:1105
+#: wp-includes/script-loader.php:1127
 msgid "French"
 msgstr "Tiếng Pháp"
 
-#: wp-includes/script-loader.php:1103
+#: wp-includes/script-loader.php:1125
 msgid "Filipino"
 msgstr "Tiếng Philippin"
 
-#: wp-includes/script-loader.php:1102
+#: wp-includes/script-loader.php:1124
 msgid "Estonian"
 msgstr "Tiếng Estonia"
 
-#: wp-includes/script-loader.php:1101
+#: wp-includes/script-loader.php:1123
 #: wp-includes/js/dist/block-library.js:65371 wp-admin/includes/ms.php:655
 msgid "English"
 msgstr "Tiếng Anh"
 
-#: wp-includes/script-loader.php:1100
+#: wp-includes/script-loader.php:1122
 msgid "Dutch"
 msgstr "Tiếng Hà Lan"
 
-#: wp-includes/script-loader.php:1099
+#: wp-includes/script-loader.php:1121
 msgid "Danish"
 msgstr "Tiếng Đan Mạch"
 
-#: wp-includes/script-loader.php:1098
+#: wp-includes/script-loader.php:1120
 msgid "Czech"
 msgstr "Tiếng Séc"
 
-#: wp-includes/script-loader.php:1097
+#: wp-includes/script-loader.php:1119
 msgid "Croatian"
 msgstr "Tiếng Croatia"
 
-#: wp-includes/script-loader.php:1096
+#: wp-includes/script-loader.php:1118
 msgid "Chinese (Traditional)"
 msgstr "Tiếng Trung ( Phồn thể )"
 
-#: wp-includes/script-loader.php:1095
+#: wp-includes/script-loader.php:1117
 msgid "Chinese (Simplified)"
 msgstr "Tiếng Trung Quốc (giản thể)"
 
-#: wp-includes/script-loader.php:1094
+#: wp-includes/script-loader.php:1116
 msgid "Chinese"
 msgstr "Tiếng Trung Quốc"
 
-#: wp-includes/script-loader.php:1093
+#: wp-includes/script-loader.php:1115
 msgid "Catalan"
 msgstr "Tiếng Catalan"
 
-#: wp-includes/script-loader.php:1092
+#: wp-includes/script-loader.php:1114
 msgid "Bulgarian"
 msgstr "Tiếng Bulgari"
 
-#: wp-includes/script-loader.php:1091
+#: wp-includes/script-loader.php:1113
 msgid "Belarusian"
 msgstr "Tiếng Belarus"
 
-#: wp-includes/script-loader.php:1090
+#: wp-includes/script-loader.php:1112
 msgid "Arabic"
 msgstr "Tiếng Ả Rập"
 
-#: wp-includes/script-loader.php:1089
+#: wp-includes/script-loader.php:1111
 msgid "Albanian"
 msgstr "Tiếng Albani"
 
-#: wp-includes/script-loader.php:1088
+#: wp-includes/script-loader.php:1110
 msgid "Afrikaans"
 msgstr "Tiếng Nam Phi"
 
-#: wp-includes/script-loader.php:1078
+#: wp-includes/script-loader.php:1100
 msgid "Live Broadcast"
 msgstr "Trực tiếp"
 
-#: wp-includes/script-loader.php:1086
+#: wp-includes/script-loader.php:1108
 #: wp-includes/js/dist/block-library.js:65263
 msgid "Chapters"
 msgstr "Các mục"
 
-#: wp-includes/script-loader.php:1072
+#: wp-includes/script-loader.php:1094
 msgid "You are using a browser that does not have Flash player enabled or installed. Please turn on your Flash player plugin or download the latest version from https://get.adobe.com/flashplayer/"
 msgstr ""
 "Bạn đang sử dụng trình duyệt không hỗ trợ Flash player. Vui lòng bật hoặc cài đặt \n"
@@ -10480,7 +10481,7 @@ msgstr "Thư viện giao diện WordPress.org"
 msgid "Installed themes"
 msgstr "Giao diện đã cài đặt"
 
-#: wp-includes/script-loader.php:1337 wp-admin/customize.php:200
+#: wp-includes/script-loader.php:1359 wp-admin/customize.php:200
 #: wp-admin/customize.php:205 wp-admin/edit-form-advanced.php:389
 msgid "Publish Settings"
 msgstr "Lưu và công bố tùy chọn"
@@ -10525,14 +10526,14 @@ msgstr "Đã xảy ra sự cố xác thực. Vui lòng tải lại và thử m�
 
 #. translators: %s: Number of invalid settings.
 #: wp-includes/class-wp-customize-manager.php:2803
-#: wp-includes/script-loader.php:1325 wp-includes/script-loader.php:1327
+#: wp-includes/script-loader.php:1347 wp-includes/script-loader.php:1349
 msgid "Unable to save due to %s invalid setting."
 msgid_plural "Unable to save due to %s invalid settings."
 msgstr[0] "Không thể lưu do cài đặt không hợp lệ %s."
 
 #: wp-includes/class-wp-customize-manager.php:2684
 #: wp-includes/class-wp-customize-manager.php:2699
-#: wp-includes/script-loader.php:1288
+#: wp-includes/script-loader.php:1310
 msgid "You must supply a future date to schedule."
 msgstr "Bạn phải cung cấp một ngày trong tương lai để lên lịch."
 
@@ -10540,11 +10541,11 @@ msgstr "Bạn phải cung cấp một ngày trong tương lai để lên lịch.
 msgid "The previous set of changes has already been published. Please try saving your current set of changes again."
 msgstr "Các thiết lập trước đây đã được công bố. Vui lòng thử lưu lại thiết lập hiện tại một lần nữa."
 
-#: wp-includes/admin-bar.php:923
+#: wp-includes/admin-bar.php:932
 msgid "Edit User"
 msgstr "Sửa tài khoản"
 
-#: wp-includes/admin-bar.php:877
+#: wp-includes/admin-bar.php:886
 msgid "View User"
 msgstr "Xem tài khoản"
 
@@ -10640,7 +10641,7 @@ msgstr "Thêm tệp Audio"
 msgid "(no author)"
 msgstr "(không có tác giả)"
 
-#: wp-includes/script-loader.php:1295 wp-admin/includes/file.php:638
+#: wp-includes/script-loader.php:1317 wp-admin/includes/file.php:638
 msgid "An error occurred. Please try again later."
 msgstr "Đã xảy ra lỗi. Vui lòng thử lại sau."
 
@@ -11217,23 +11218,23 @@ msgstr "Không thể xem trạng thái."
 msgid "Invalid status."
 msgstr "Trạng thái không hợp lệ."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1063
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1071
 msgid "URL to the original attachment file."
 msgstr "Link tới tệp tin đính kèm gốc."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1043
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1051
 msgid "The attachment MIME type."
 msgstr "Định dạng tệp tin đính kèm."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1035
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1043
 msgid "Attachment type."
 msgstr "Loại đính kèm."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1012
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1020
 msgid "The attachment description."
 msgstr "Miêu tả của tệp tin đính kèm."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:989
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:997
 msgid "The attachment caption."
 msgstr "Chú thích của tệp tin đính kèm."
 
@@ -11298,7 +11299,7 @@ msgid "Invalid page template."
 msgstr "Mẫu trang không hợp lệ."
 
 #: wp-includes/post.php:4607 wp-includes/rest-api.php:2273
-#: wp-includes/script-loader.php:1338 wp-admin/includes/post.php:193
+#: wp-includes/script-loader.php:1360 wp-admin/includes/post.php:193
 msgid "Invalid date."
 msgstr "Ngày không hợp lệ."
 
@@ -11481,7 +11482,7 @@ msgstr "Xin lỗi, bạn không được phép tạo bài ghim."
 msgid "Reassign the deleted user's posts and links to this user ID."
 msgstr "Gán lại bài viết và các liên kết của người dùng bị xóa cho người dùng với ID này."
 
-#: wp-includes/script-loader.php:1312
+#: wp-includes/script-loader.php:1334
 msgid "This theme does not support video headers on this page. Navigate to the front page or another page that supports video headers."
 msgstr "Giao diện này không hỗ trợ tiêu đề video trên trang này. Điều hướng đến trang chủ hoặc trang khác hỗ trợ tiêu đề video."
 
@@ -11612,12 +11613,12 @@ msgstr "Mật khẩu không được để trống."
 msgid "Invalid user parameter(s)."
 msgstr "Tham số người dùng không hợp lệ."
 
-#: wp-includes/script-loader.php:1301
+#: wp-includes/script-loader.php:1323
 msgctxt "label for hide controls button without length constraints"
 msgid "Show Controls"
 msgstr "Hiển thị tùy chọn"
 
-#: wp-includes/script-loader.php:1300 wp-admin/customize.php:270
+#: wp-includes/script-loader.php:1322 wp-admin/customize.php:270
 msgctxt "label for hide controls button without length constraints"
 msgid "Hide Controls"
 msgstr "Ẩn tùy chọn"
@@ -11646,19 +11647,19 @@ msgctxt "default site language"
 msgid "Site Default"
 msgstr "Trang web mặc định"
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1026
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1034
 msgid "HTML description for the attachment, transformed for display."
 msgstr "Mô tả HTML cho file đính kèm, dùng để hiển thị."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1021
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1029
 msgid "Description for the attachment, as it exists in the database."
 msgstr "Mô tả cho file đính kèm, như có sẵn trong cơ sở dữ liệu."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1003
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1011
 msgid "HTML caption for the attachment, transformed for display."
 msgstr "Tiêu đề HTML cho tệp tin đính kèm, được chuyển đổi để hiển thị."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:998
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1006
 msgid "Caption for the attachment, as it exists in the database."
 msgstr "Tiêu đề cho tệp tin đính kèm, vì nó tồn tại trong cơ sở dữ liệu."
 
@@ -12400,54 +12401,54 @@ msgstr "Tham số truy vấn không được phép: %s"
 msgid "Whether to bypass Trash and force deletion."
 msgstr "Có xóa vĩnh viễn hay không."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1291
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1299
 msgid "Limit result set to attachments of a particular MIME type."
 msgstr "Giới hạn kết quả chỉ gồm attachments có kiểu MIME cụ thể."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1284
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1292
 msgid "Limit result set to attachments of a particular media type."
 msgstr "Giới hạn kết quả chỉ gồm attachments có kiểu MIME cụ thể."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1159
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1167
 msgid "Could not open file handle."
 msgstr "Không thể mở file."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1139
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1327
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1147
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1335
 msgid "Content hash did not match expected."
 msgstr "Giá trị hash không khớp như mong đợi."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1126
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1134
 msgid "Invalid Content-Disposition supplied. Content-Disposition needs to be formatted as `attachment; filename=\"image.png\"` or similar."
 msgstr "Content-Disposition không hợp lệ. Content-Disposition cần được định dạng như sau: `attachment; filename=\"image.png\"` hoặc tương tự."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1116
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1124
 msgid "No Content-Disposition supplied."
 msgstr "Content-Disposition không được cung cấp."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1108
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1116
 msgid "No Content-Type supplied."
 msgstr "Chưa bổ sung Content-Type."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1100
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1313
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1108
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1321
 msgid "No data supplied."
 msgstr "Dữ liệu không được cung cấp."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1057
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1065
 msgid "The ID for the associated post of the attachment."
 msgstr "ID của bài viết được được đính với tệp tin đính kèm."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1050
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1058
 msgid "Details about the media file, specific to its type."
 msgstr "Chi tiết của tệp tin media, đặc biệt cho kiểu tệp tin."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:980
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:988
 msgid "Alternative text to display when attachment is not displayed."
 msgstr "Chữ hiện thị thay thế khi tệp tin đính kèm không thể hiển thị."
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:183
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:433
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:191
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:441
 msgid "Invalid parent type."
 msgstr "Loại cha không hợp lệ."
 
@@ -12456,7 +12457,7 @@ msgid "Sorry, you are not allowed to upload media to this post."
 msgstr "Xin lỗi, bạn không được phép tải media lên bài viết này."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:124
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:526
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:534
 msgid "Sorry, you are not allowed to upload media on this site."
 msgstr "Xin lỗi, bạn không được phép tải lên media trên trang này."
 
@@ -12754,7 +12755,7 @@ msgid "Learn more about CSS"
 msgstr "Tìm hiểu thêm về CSS"
 
 #: wp-includes/class-wp-customize-manager.php:5748
-#: wp-includes/js/dist/block-editor.js:73288
+#: wp-includes/js/dist/block-editor.js:73283
 #: wp-includes/js/dist/edit-site.js:12235
 #: wp-includes/js/dist/edit-site.js:24327
 msgid "Additional CSS"
@@ -12914,35 +12915,35 @@ msgstr "Kết quả tìm kiếm"
 msgid "Rich Text Area. Press Control-Option-H for help."
 msgstr "Vùng Rich Text. Nhấn Control-Option-H để được trợ giúp."
 
-#: wp-includes/script-loader.php:1077
+#: wp-includes/script-loader.php:1099
 msgid "Use Left/Right Arrow keys to advance one second, Up/Down arrows to advance ten seconds."
 msgstr "Sử dụng các phím mũi tên Trái/Phải để tiến một giây, mũi tên Lên/Xuống để tiến mười giây."
 
-#: wp-includes/script-loader.php:1079
+#: wp-includes/script-loader.php:1101
 msgid "Use Up/Down Arrow keys to increase or decrease volume."
 msgstr "Sử dụng các phím mũi tên Lên/Xuống để tăng hoặc giảm âm lượng."
 
-#: wp-includes/script-loader.php:1082
+#: wp-includes/script-loader.php:1104
 msgid "Volume Slider"
 msgstr "Âm lượng Trình chiếu"
 
-#: wp-includes/script-loader.php:1084
+#: wp-includes/script-loader.php:1106
 msgid "Audio Player"
 msgstr "Trình chơi Audio"
 
-#: wp-includes/script-loader.php:1083
+#: wp-includes/script-loader.php:1105
 msgid "Video Player"
 msgstr "Trình chơi Video"
 
-#: wp-includes/script-loader.php:1076
+#: wp-includes/script-loader.php:1098
 msgid "Time Slider"
 msgstr "Thời gian trình chiếu"
 
-#: wp-includes/script-loader.php:1075 wp-includes/theme.php:1717
+#: wp-includes/script-loader.php:1097 wp-includes/theme.php:1717
 msgid "Pause"
 msgstr "Tạm dừng"
 
-#: wp-includes/script-loader.php:1074 wp-includes/theme.php:1718
+#: wp-includes/script-loader.php:1096 wp-includes/theme.php:1718
 msgid "Play"
 msgstr "Chạy"
 
@@ -13042,7 +13043,7 @@ msgstr "Không thể truy xuất thông báo lỗi từ MySQL"
 msgid "Edit Menu"
 msgstr "Sửa Menu"
 
-#: wp-includes/script-loader.php:1977 wp-admin/includes/dashboard.php:1018
+#: wp-includes/script-loader.php:1999 wp-admin/includes/dashboard.php:1018
 msgid "Today"
 msgstr "Hôm nay"
 
@@ -13056,13 +13057,13 @@ msgstr "Đã xóa:"
 msgid "Confirm use of weak password"
 msgstr "Chấp nhận sử dụng mật khẩu yếu."
 
-#: wp-includes/script-loader.php:1201
+#: wp-includes/script-loader.php:1223
 msgctxt "password strength"
 msgid "Password strength unknown"
 msgstr "Mật khẩu mạnh không xác định"
 
 #: wp-includes/rest-api/class-wp-rest-server.php:1266
-#: wp-includes/script-loader.php:812 wp-admin/js/tags.js:58
+#: wp-includes/script-loader.php:834 wp-admin/js/tags.js:58
 msgid "Sorry, you are not allowed to do that."
 msgstr "Xin lỗi, bạn không được phép làm điều đó."
 
@@ -13112,12 +13113,12 @@ msgstr "Xin lỗi, bạn không được phép phê duyệt người dùng."
 
 #: wp-includes/class-wp-customize-manager.php:2389
 #: wp-includes/class-wp-customize-setting.php:599
-#: wp-includes/script-loader.php:1339
+#: wp-includes/script-loader.php:1361
 msgid "Invalid value."
 msgstr "Giá trị không hợp lệ."
 
 #: wp-includes/class-wp-customize-manager.php:525
-#: wp-includes/script-loader.php:1297 wp-admin/customize.php:18
+#: wp-includes/script-loader.php:1319 wp-admin/customize.php:18
 msgid "Sorry, you are not allowed to customize this site."
 msgstr "Xin lỗi, bạn không có quyền tùy chỉnh trang này."
 
@@ -13132,11 +13133,11 @@ msgstr "Không vượt qua %1$s thẻ cho %2$s."
 msgid "Link options"
 msgstr "Tùy chọn link"
 
-#: wp-includes/script-loader.php:1250 wp-includes/js/dist/format-library.js:800
+#: wp-includes/script-loader.php:1272 wp-includes/js/dist/format-library.js:800
 msgid "Link inserted."
 msgstr "Đã chèn liên kết."
 
-#: wp-includes/script-loader.php:1249 wp-includes/js/dist/block-editor.js:22690
+#: wp-includes/script-loader.php:1271 wp-includes/js/dist/block-editor.js:22690
 msgid "Link selected."
 msgstr "Đã chọn liên kết."
 
@@ -13194,7 +13195,7 @@ msgstr "<strong>Lỗi:</strong> Mục nhập email rỗng."
 msgid "Unregistering a built-in taxonomy is not allowed."
 msgstr "Không thể hủy đăng ký taxonomy có sẵn của hệ thống."
 
-#: wp-includes/script-loader.php:1302 wp-includes/js/dist/block-library.js:6495
+#: wp-includes/script-loader.php:1324 wp-includes/js/dist/block-library.js:6495
 #: wp-includes/js/dist/editor.js:25089
 msgid "(Untitled)"
 msgstr "(Không có tiêu đề)"
@@ -13657,11 +13658,11 @@ msgstr "Điều hướng danh sách thẻ"
 #. characters.
 #: wp-includes/shortcodes.php:80
 msgid "Invalid shortcode name: %1$s. Do not use spaces or reserved characters: %2$s"
-msgstr "Tên mã ngắn không xác thực: %1$s. Không dùng dấu cách hay ký tự đặc biệt: %2$s"
+msgstr "Tên mã rút gọn không xác thực: %1$s. Không dùng dấu cách hay ký tự đặc biệt: %2$s"
 
 #: wp-includes/shortcodes.php:69
 msgid "Invalid shortcode name: Empty name given."
-msgstr "Tên mã ngắn không hợp lệ: Tên trống."
+msgstr "Tên mã rút gọn không hợp lệ: Tên trống."
 
 #. translators: 1: Function name, 2: WordPress version number, 3: Error
 #. message.
@@ -14042,22 +14043,22 @@ msgstr "Email xác nhận sẽ được gửi tới hộp thư của bạn."
 msgid "Show"
 msgstr "Hiện"
 
-#: wp-includes/script-loader.php:1206
+#: wp-includes/script-loader.php:1228
 msgctxt "password mismatch"
 msgid "Mismatch"
 msgstr "Mật khẩu không khớp"
 
-#: wp-includes/script-loader.php:1205
+#: wp-includes/script-loader.php:1227
 msgctxt "password strength"
 msgid "Strong"
 msgstr "Mạnh"
 
-#: wp-includes/script-loader.php:1203
+#: wp-includes/script-loader.php:1225
 msgctxt "password strength"
 msgid "Weak"
 msgstr "Yếu"
 
-#: wp-includes/script-loader.php:1202
+#: wp-includes/script-loader.php:1224
 msgctxt "password strength"
 msgid "Very weak"
 msgstr "Rất yếu"
@@ -14237,53 +14238,53 @@ msgstr "Không có thẻ nào"
 #. translators: %s: Shortcode tag.
 #: wp-includes/shortcodes.php:407
 msgid "Attempting to parse a shortcode without a valid callback: %s"
-msgstr "Đang thử phân tách một mã ngắn mà không có một dự phòng hợp lệ: %s"
+msgstr "Đang thử phân tách một mã rút gọn mà không có một dự phòng hợp lệ: %s"
 
-#: wp-includes/script-loader.php:796
+#: wp-includes/script-loader.php:818
 msgid "Close code tag"
 msgstr "Đóng nhãn mã"
 
-#: wp-includes/script-loader.php:794
+#: wp-includes/script-loader.php:816
 msgid "Close list item tag"
 msgstr "Đóng nhãn mục danh sách"
 
-#: wp-includes/script-loader.php:793
+#: wp-includes/script-loader.php:815
 msgid "List item"
 msgstr "Mục danh sách"
 
-#: wp-includes/script-loader.php:792
+#: wp-includes/script-loader.php:814
 msgid "Close numbered list tag"
 msgstr "Đóng nhãn danh sách được đánh số"
 
-#: wp-includes/script-loader.php:790
+#: wp-includes/script-loader.php:812
 msgid "Close bulleted list tag"
 msgstr "Đóng nhãn danh sách được kí hiệu"
 
-#: wp-includes/script-loader.php:787
+#: wp-includes/script-loader.php:809
 msgid "Close inserted text tag"
 msgstr "Đóng thẻ văn bản đã chèn"
 
-#: wp-includes/script-loader.php:786
+#: wp-includes/script-loader.php:808
 msgid "Inserted text"
 msgstr "Văn bản đã chèn"
 
-#: wp-includes/script-loader.php:785
+#: wp-includes/script-loader.php:807
 msgid "Close deleted text tag"
 msgstr "Đóng nhãn văn bản đã xóa"
 
-#: wp-includes/script-loader.php:784
+#: wp-includes/script-loader.php:806
 msgid "Deleted text (strikethrough)"
 msgstr "Văn bản đã xóa (gạch ngang giữa chữ)"
 
-#: wp-includes/script-loader.php:783
+#: wp-includes/script-loader.php:805
 msgid "Close blockquote tag"
 msgstr "Đóng nhãn dấu nháy kép"
 
-#: wp-includes/script-loader.php:780
+#: wp-includes/script-loader.php:802
 msgid "Close italic tag"
 msgstr "Đóng nhãn nghiêng"
 
-#: wp-includes/script-loader.php:778
+#: wp-includes/script-loader.php:800
 msgid "Close bold tag"
 msgstr "Đóng nhãn đậm"
 
@@ -14624,7 +14625,7 @@ msgstr "Không thể chia shared term."
 msgid "Taxonomy names must be between 1 and 32 characters in length."
 msgstr "Độ dài của tên taxonomy phải ở trong khoảng từ 1 đến 32 ký tự."
 
-#: wp-includes/script-loader.php:1298 wp-includes/js/dist/edit-site.js:25365
+#: wp-includes/script-loader.php:1320 wp-includes/js/dist/edit-site.js:25365
 msgid "Site Preview"
 msgstr "Xem trước website"
 
@@ -14818,7 +14819,7 @@ msgstr "Thông tin về giao diện"
 msgid "No categories found."
 msgstr "Không tìm thấy mục nào."
 
-#: wp-includes/class-wp-editor.php:1391 wp-includes/script-loader.php:776
+#: wp-includes/class-wp-editor.php:1391 wp-includes/script-loader.php:798
 msgid "Distraction-free writing mode"
 msgstr "Chế độ viết chống xao nhãng"
 
@@ -14921,7 +14922,7 @@ msgctxt "verb"
 msgid "Trash"
 msgstr "Xóa tạm"
 
-#: wp-includes/script-loader.php:1981
+#: wp-includes/script-loader.php:2003
 #: wp-includes/js/dist/block-library.js:45111
 #: wp-includes/js/dist/components.js:58767
 msgid "Previous"
@@ -15060,10 +15061,10 @@ msgstr "Màu tùy chỉnh"
 #: wp-includes/class-wp-editor.php:1277
 #: wp-includes/js/dist/block-editor.js:27632
 #: wp-includes/js/dist/block-editor.js:28096
-#: wp-includes/js/dist/block-editor.js:71907
-#: wp-includes/js/dist/block-editor.js:72300
-#: wp-includes/js/dist/block-editor.js:72430
-#: wp-includes/js/dist/block-editor.js:73485
+#: wp-includes/js/dist/block-editor.js:71902
+#: wp-includes/js/dist/block-editor.js:72295
+#: wp-includes/js/dist/block-editor.js:72425
+#: wp-includes/js/dist/block-editor.js:73480
 #: wp-includes/js/dist/edit-site.js:21101
 msgid "Color"
 msgstr "Màu sắc"
@@ -15115,7 +15116,7 @@ msgctxt "list style"
 msgid "Default"
 msgstr "Mặc định"
 
-#: wp-includes/admin-bar.php:954
+#: wp-includes/admin-bar.php:963
 msgctxt "add new from admin bar"
 msgid "Link"
 msgstr "Liên kết"
@@ -15647,7 +15648,7 @@ msgctxt "list style"
 msgid "Square"
 msgstr "Vuông"
 
-#: wp-includes/class-wp-editor.php:1192 wp-includes/script-loader.php:789
+#: wp-includes/class-wp-editor.php:1192 wp-includes/script-loader.php:811
 msgid "Bulleted list"
 msgstr "Danh sách liệt kê được đánh số"
 
@@ -15859,7 +15860,7 @@ msgctxt "Search widget"
 msgid "Search"
 msgstr "Tìm kiếm"
 
-#: wp-includes/class-wp-editor.php:1388 wp-includes/script-loader.php:797
+#: wp-includes/class-wp-editor.php:1388 wp-includes/script-loader.php:819
 msgid "Insert Read More tag"
 msgstr "Chèn thẻ Đọc Thêm"
 
@@ -15867,8 +15868,8 @@ msgstr "Chèn thẻ Đọc Thêm"
 msgid "Toolbar Toggle"
 msgstr "Hiện hoặc ẩn thanh công cụ"
 
-#: wp-includes/js/dist/block-editor.js:71051
-#: wp-includes/js/dist/block-editor.js:71060
+#: wp-includes/js/dist/block-editor.js:71046
+#: wp-includes/js/dist/block-editor.js:71055
 #: wp-includes/js/dist/block-library.js:34446
 #: wp-includes/js/dist/customize-widgets.js:934
 #: wp-includes/js/dist/edit-widgets.js:4095 wp-includes/js/dist/editor.js:29684
@@ -15930,7 +15931,7 @@ msgstr "Nhóm cột"
 msgid "Rows"
 msgstr "Dòng"
 
-#: wp-includes/script-loader.php:1104
+#: wp-includes/script-loader.php:1126
 msgid "Finnish"
 msgstr "Tiếng Phần Lan"
 
@@ -15998,7 +15999,7 @@ msgstr "Chữ để hiển thị"
 msgid "Insert date/time"
 msgstr "Thêm ngày/giờ"
 
-#: wp-includes/class-wp-editor.php:1233 wp-includes/script-loader.php:788
+#: wp-includes/class-wp-editor.php:1233 wp-includes/script-loader.php:810
 msgid "Insert image"
 msgstr "Chèn ảnh"
 
@@ -16069,7 +16070,7 @@ msgid "Clear formatting"
 msgstr "Xóa định dạng"
 
 #: wp-includes/widgets/class-wp-widget-block.php:45
-#: wp-includes/js/dist/edit-widgets.js:3320 wp-includes/js/dist/editor.js:33304
+#: wp-includes/js/dist/edit-widgets.js:3320 wp-includes/js/dist/editor.js:33303
 msgid "Block"
 msgstr "Khối"
 
@@ -16077,7 +16078,7 @@ msgstr "Khối"
 msgid "Increase indent"
 msgstr "Tăng khoảng cách thụt đầu dòng"
 
-#: wp-includes/class-wp-editor.php:1193 wp-includes/script-loader.php:791
+#: wp-includes/class-wp-editor.php:1193 wp-includes/script-loader.php:813
 msgid "Numbered list"
 msgstr "Danh sách được đánh số"
 
@@ -16292,7 +16293,7 @@ msgstr "Đã xảy ra lỗi không mong muốn. Có thể có sự cố với Wo
 #. translators: To add an additional Open Sans character subset specific to
 #. your language, translate this to 'greek', 'cyrillic' or 'vietnamese'. Do not
 #. translate into your own language.
-#: wp-includes/script-loader.php:1572
+#: wp-includes/script-loader.php:1594
 msgctxt "Open Sans font: add new subset (greek, cyrillic, vietnamese)"
 msgid "no-subset"
 msgstr "vietnamese"
@@ -16380,20 +16381,20 @@ msgstr "Nhúng hoặc Liên kết"
 msgid "Length:"
 msgstr "Độ dài:"
 
-#: wp-includes/script-loader.php:1085
+#: wp-includes/script-loader.php:1107
 msgid "Captions/Subtitles"
 msgstr "Phụ đề"
 
-#: wp-includes/script-loader.php:1080
+#: wp-includes/script-loader.php:1102
 msgid "Unmute"
 msgstr "Bật tiếng"
 
-#: wp-includes/script-loader.php:1071
+#: wp-includes/script-loader.php:1093
 msgid "Download File"
 msgstr "Tải về tệp tin"
 
 #. translators: Whether the navigation link is Invalid or a Draft.
-#: wp-includes/script-loader.php:1286
+#: wp-includes/script-loader.php:1308
 #: wp-includes/js/dist/block-library.js:38500
 msgid "Invalid"
 msgstr "Không hợp lệ"
@@ -16515,7 +16516,7 @@ msgctxt "placeholder"
 msgid "Search &hellip;"
 msgstr "Tìm kiếm &hellip;"
 
-#: wp-includes/functions.php:7488 wp-includes/script-loader.php:1299
+#: wp-includes/functions.php:7488 wp-includes/script-loader.php:1321
 msgid "Session expired"
 msgstr "Phiên làm việc đã hết hạn"
 
@@ -16551,7 +16552,7 @@ msgstr "ID người dùng không hợp lệ."
 msgid "Random Order"
 msgstr "Thứ tự ngẫu nhiên"
 
-#: wp-includes/media.php:5016 wp-includes/js/dist/block-editor.js:68520
+#: wp-includes/media.php:5016 wp-includes/js/dist/block-editor.js:68523
 msgid "Insert from URL"
 msgstr "Chèn từ URL"
 
@@ -16621,7 +16622,7 @@ msgid "Manage Video"
 msgstr "Quản lý Video"
 
 #: wp-includes/widgets/class-wp-widget-media-video.php:28
-#: wp-includes/js/dist/block-editor.js:68714
+#: wp-includes/js/dist/block-editor.js:68717
 #: wp-includes/js/dist/block-library.js:48875
 #: wp-includes/js/dist/block-library.js:65663
 #: wp-includes/js/dist/editor.js:21651
@@ -16657,7 +16658,7 @@ msgid "Insert into page"
 msgstr "Chèn vào trang"
 
 #: wp-includes/widgets/class-wp-widget-media-audio.php:28
-#: wp-includes/js/dist/block-editor.js:68710
+#: wp-includes/js/dist/block-editor.js:68713
 #: wp-includes/js/dist/block-library.js:48851
 #: wp-includes/js/dist/editor.js:10534 wp-includes/js/dist/editor.js:21627
 msgid "Audio"
@@ -16753,7 +16754,7 @@ msgstr "Thả các tệp tin để tải lên"
 msgid "Create gallery"
 msgstr "Tạo thư viện ảnh"
 
-#: wp-includes/media.php:4979 wp-includes/js/dist/block-editor.js:68792
+#: wp-includes/media.php:4979 wp-includes/js/dist/block-editor.js:68795
 #: wp-admin/includes/media.php:21 wp-admin/upload.php:204
 #: wp-admin/upload.php:358
 msgid "Media Library"
@@ -16986,7 +16987,7 @@ msgid "Header Text Color"
 msgstr "Màu chữ đầu trang"
 
 #: wp-includes/class-wp-customize-manager.php:5275
-#: wp-includes/js/dist/block-editor.js:73487
+#: wp-includes/js/dist/block-editor.js:73482
 #: wp-includes/js/dist/edit-site.js:11520
 #: wp-includes/js/dist/edit-site.js:20789
 #: wp-includes/js/dist/edit-site.js:22444
@@ -16995,13 +16996,13 @@ msgstr "Màu chữ đầu trang"
 msgid "Colors"
 msgstr "Màu sắc"
 
-#: wp-includes/script-loader.php:1290 wp-includes/js/dist/edit-site.js:8848
+#: wp-includes/script-loader.php:1312 wp-includes/js/dist/edit-site.js:8848
 #: wp-includes/js/dist/edit-site.js:8860 wp-includes/js/dist/editor.js:25928
 #: wp-admin/js/widgets.js:130 wp-admin/js/widgets.js:575
 msgid "Saved"
 msgstr "Đã lưu"
 
-#: wp-includes/script-loader.php:1278
+#: wp-includes/script-loader.php:1300
 msgid "Save &amp; Publish"
 msgstr "Lưu &amp; xuất bản"
 
@@ -17010,7 +17011,7 @@ msgstr "Lưu &amp; xuất bản"
 msgid "Select file"
 msgstr "Chọn tệp tin"
 
-#: wp-includes/admin-bar.php:528
+#: wp-includes/admin-bar.php:537
 #: wp-includes/customize/class-wp-customize-theme-control.php:240
 #: wp-admin/customize.php:210
 #: wp-admin/includes/class-theme-upgrader-skin.php:92
@@ -17044,11 +17045,11 @@ msgstr "Ảnh phần đầu trang"
 msgid "Post Thumbnail"
 msgstr "Ảnh đại diện cho bài viết"
 
-#: wp-includes/script-loader.php:775
+#: wp-includes/script-loader.php:797
 msgid "Toggle Editor Text Direction"
 msgstr "Chuyển đổi hướng đọc văn bản của bộ soạn thảo"
 
-#: wp-includes/script-loader.php:774
+#: wp-includes/script-loader.php:796
 msgid "text direction"
 msgstr "hướng đọc văn bản"
 
@@ -17114,7 +17115,7 @@ msgstr "Xin lỗi, bạn không được phép chỉnh sửa loại post này"
 msgid "Posts page"
 msgstr "Trang tập hợp bài viết"
 
-#: wp-includes/script-loader.php:1314
+#: wp-includes/script-loader.php:1336
 msgid "Allowed Files"
 msgstr "Tệp tin cho phép"
 
@@ -17298,7 +17299,7 @@ msgstr "Bài viết mới nhất"
 #: wp-includes/js/dist/core-commands.js:547
 #: wp-includes/js/dist/edit-site.js:6814 wp-includes/js/dist/edit-site.js:9284
 #: wp-includes/js/dist/edit-site.js:10647
-#: wp-includes/js/dist/edit-site.js:26673 wp-includes/js/dist/editor.js:33995
+#: wp-includes/js/dist/edit-site.js:26673 wp-includes/js/dist/editor.js:33994
 #: wp-admin/index.php:57
 msgid "Navigation"
 msgstr "Điều hướng"
@@ -17338,7 +17339,7 @@ msgstr "Kiểu liên kết mặc định cho hình ảnh"
 msgid "Sorry, you are not allowed to edit this post."
 msgstr "Xin lỗi, bạn không được phép chỉnh sửa bài viết này."
 
-#: wp-includes/admin-bar.php:480 wp-admin/site-editor.php:316
+#: wp-includes/admin-bar.php:482 wp-admin/site-editor.php:316
 msgid "Edit Site"
 msgstr "Sửa trang web"
 
@@ -17486,24 +17487,24 @@ msgstr "Một hoặc một vài bảng dữ liệu không thể hoạt động. 
 msgid "You are posting comments too quickly. Slow down."
 msgstr "Bạn gửi bình luận quá nhanh, vui lòng gửi chậm lại một chút."
 
-#: wp-includes/admin-bar.php:985 wp-includes/admin-bar.php:993
+#: wp-includes/admin-bar.php:994 wp-includes/admin-bar.php:1002
 msgctxt "admin bar menu group label"
 msgid "New"
 msgstr "Tạo mới"
 
 #. translators: %s: File name.
-#: wp-includes/script-loader.php:999
+#: wp-includes/script-loader.php:1021
 msgid "%s exceeds the maximum upload size for the multi-file uploader when used in your browser."
 msgstr "%s vượt quá kích thước tải lên tối đa trong chương trình Tải lên bằng trình duyệt của bạn"
 
 #. translators: %s: File name.
 #. translators: %s: Name of the file that failed to upload.
-#: wp-includes/script-loader.php:1008 wp-admin/async-upload.php:125
+#: wp-includes/script-loader.php:1030 wp-admin/async-upload.php:125
 msgid "&#8220;%s&#8221; has failed to upload."
 msgstr "&#8220;%s&#8221; không thể tải lên."
 
 #. translators: 1: Opening link tag, 2: Closing link tag.
-#: wp-includes/script-loader.php:997
+#: wp-includes/script-loader.php:1019
 msgid "Please try uploading this file with the %1$sbrowser uploader%2$s."
 msgstr "Vui lòng thử tải tệp này lên bằng %1$strình tải lên trình duyệt%2$s."
 
@@ -17535,7 +17536,7 @@ msgid "About WordPress"
 msgstr "Giới thiệu về WordPress"
 
 #. translators: %s: File name.
-#: wp-includes/script-loader.php:984
+#: wp-includes/script-loader.php:1006
 msgid "%s exceeds the maximum upload size for this site."
 msgstr "%s vượt quá kích thước tải lên tối đa cho trang web này."
 
@@ -17609,15 +17610,15 @@ msgstr "Không thể đăng ký mã kịch bản và/hoặc định nghĩa phong
 msgid "You have been added to this site. Please visit the <a href=\"%1$s\">homepage</a> or <a href=\"%2$s\">log in</a> using your username and password."
 msgstr "Bạn đã được thêm vào trang web này. Hãy truy cập <a href=\"%1$s\">trang chủ</a> hoặc <a href=\"%2$s\">đăng nhập</a> bằng tên người dùng và mật khẩu."
 
-#: wp-includes/script-loader.php:988
+#: wp-includes/script-loader.php:1010
 msgid "Memory exceeded. Please try another smaller file."
 msgstr "Đã vượt quá bộ nhớ. Vui lòng thử một tệp khác nhỏ hơn."
 
-#: wp-includes/script-loader.php:989
+#: wp-includes/script-loader.php:1011
 msgid "This is larger than the maximum size. Please try another."
 msgstr "Kích thước này lớn hơn kích thước tối đa. Vui lòng thử cái khác."
 
-#: wp-includes/script-loader.php:987
+#: wp-includes/script-loader.php:1009
 msgid "This file is not an image. Please try another."
 msgstr "Tệp tin này không phải là một hình ảnh. Vui lòng thử cái khác."
 
@@ -17630,12 +17631,12 @@ msgstr "Xanh dương"
 msgid "The timezone you have entered is not valid. Please select a valid timezone."
 msgstr "Múi giờ không hợp lệ, vui lòng nhập lại."
 
-#: wp-includes/admin-bar.php:1016
+#: wp-includes/admin-bar.php:1025
 msgctxt "add new from admin bar"
 msgid "Site"
 msgstr "Trang web"
 
-#: wp-includes/admin-bar.php:978
+#: wp-includes/admin-bar.php:987
 msgctxt "add new from admin bar"
 msgid "User"
 msgstr "Thành viên"
@@ -17670,8 +17671,8 @@ msgstr "Tài khoản của bạn đã được kích hoạt. <a href=\"%1$s\">Xe
 #: wp-includes/class-wp-editor.php:1266
 #: wp-includes/js/dist/block-editor.js:23583
 #: wp-includes/js/dist/block-editor.js:28110
-#: wp-includes/js/dist/block-editor.js:71488
-#: wp-includes/js/dist/block-editor.js:73476
+#: wp-includes/js/dist/block-editor.js:71483
+#: wp-includes/js/dist/block-editor.js:73471
 #: wp-includes/js/dist/block-library.js:5407
 #: wp-includes/js/dist/block-library.js:22588
 #: wp-includes/js/dist/block-library.js:22624
@@ -17874,7 +17875,7 @@ msgstr "Không tìm thấy bài viết nào trong Thùng rác."
 msgid "No pages found."
 msgstr "Không tìm thấy trang nào."
 
-#: wp-includes/admin-bar.php:776 wp-includes/admin-bar.php:781
+#: wp-includes/admin-bar.php:785 wp-includes/admin-bar.php:790
 msgid "Shortlink"
 msgstr "Liên kết ngắn"
 
@@ -17966,7 +17967,7 @@ msgstr "Bài không hợp lệ."
 msgid "Manage Site"
 msgstr "Quản lý trang web"
 
-#: wp-includes/admin-bar.php:742
+#: wp-includes/admin-bar.php:751
 msgid "Manage Comments"
 msgstr "Quản lý bình luận"
 
@@ -18005,7 +18006,7 @@ msgstr "Danh mục liên kết"
 msgid "User"
 msgstr "Người dùng"
 
-#: wp-includes/admin-bar.php:582
+#: wp-includes/admin-bar.php:591
 msgid "Network Admin"
 msgstr "Network Admin"
 
@@ -18478,7 +18479,7 @@ msgstr "Tiêu đề trang web:"
 msgid "sitename"
 msgstr "tên trang"
 
-#: wp-includes/script-loader.php:1002
+#: wp-includes/script-loader.php:1024
 msgid "File canceled."
 msgstr "Tệp tin bị hủy bỏ."
 
@@ -18542,7 +18543,7 @@ msgstr "Kết quả tìm kiếm: \"%s\""
 msgid "One response to %s"
 msgstr "Một bình luận cho %s"
 
-#: wp-includes/admin-bar.php:1102
+#: wp-includes/admin-bar.php:1111
 #: wp-includes/class-wp-customize-nav-menus.php:675
 #: wp-includes/customize/class-wp-customize-nav-menus-panel.php:113
 #: wp-includes/js/dist/block-library.js:34420 wp-admin/menu.php:232
@@ -18760,7 +18761,7 @@ msgid "%s is your new username"
 msgstr "%s là tên người dùng mới của bạn"
 
 #: wp-includes/class-wp-customize-nav-menus.php:1115
-#: wp-includes/script-loader.php:1980 wp-signup.php:660
+#: wp-includes/script-loader.php:2002 wp-signup.php:660
 #: wp-includes/js/dist/block-library.js:45111
 #: wp-includes/js/dist/components.js:58773
 msgid "Next"
@@ -18924,7 +18925,7 @@ msgstr "ID không hợp lệ."
 msgid "Empty Term."
 msgstr "Không tìm thấy mục nào."
 
-#: wp-includes/script-loader.php:1204
+#: wp-includes/script-loader.php:1226
 msgctxt "password strength"
 msgid "Medium"
 msgstr "Trung bình"
@@ -18933,93 +18934,93 @@ msgstr "Trung bình"
 msgid "Separate pattern categories with commas"
 msgstr "Phân tách các danh mục mẫu bằng dấu phẩy"
 
-#: wp-includes/script-loader.php:1006
+#: wp-includes/script-loader.php:1028
 msgid "moved to the Trash."
 msgstr "đã bị chuyển vào Thùng rác."
 
-#: wp-includes/script-loader.php:1005
+#: wp-includes/script-loader.php:1027
 msgid "Crunching&hellip;"
 msgstr "Đang xử lý&hellip;"
 
-#: wp-includes/script-loader.php:1003
+#: wp-includes/script-loader.php:1025
 msgid "Upload stopped."
 msgstr "Tải lên bị dừng."
 
-#: wp-includes/script-loader.php:1001
+#: wp-includes/script-loader.php:1023
 msgid "Security error."
 msgstr "Lỗi bảo mật."
 
-#: wp-includes/script-loader.php:1000
+#: wp-includes/script-loader.php:1022
 msgid "IO error."
 msgstr "Lỗi IO."
 
-#: wp-includes/script-loader.php:995 wp-admin/includes/ajax-actions.php:2552
+#: wp-includes/script-loader.php:1017 wp-admin/includes/ajax-actions.php:2552
 msgid "Upload failed."
 msgstr "Tải lên không thành công."
 
-#: wp-includes/script-loader.php:992
+#: wp-includes/script-loader.php:1014
 msgid "You may only upload 1 file."
 msgstr "Bạn chỉ có thể tải lên 1 tệp tin."
 
-#: wp-includes/script-loader.php:991
+#: wp-includes/script-loader.php:1013
 msgid "There was a configuration error. Please contact the server administrator."
 msgstr "Lỗi cài đặt. Hãy liên hệ với quản lý của máy chủ."
 
-#: wp-includes/script-loader.php:990
+#: wp-includes/script-loader.php:1012
 msgid "An error occurred in the upload. Please try again later."
 msgstr "Lỗi khi tải lên. Hãy thử lại sau."
 
-#: wp-includes/script-loader.php:985
+#: wp-includes/script-loader.php:1007
 msgid "This file is empty. Please try another."
 msgstr "Tệp tin này trống. Vui lòng thử cái khác."
 
-#: wp-includes/script-loader.php:982
+#: wp-includes/script-loader.php:1004
 msgid "You have attempted to queue too many files."
 msgstr "Bạn đã cố gắng xếp quá nhiều tệp vào hàng đợi."
 
-#: wp-includes/script-loader.php:970
+#: wp-includes/script-loader.php:992
 msgid "This feature requires inline frames. You have iframes disabled or your browser does not support them."
 msgstr "Tính năng này yêu cầu bật frame. Bạn có thể đã tắt tính năng này hoặc trình duyệt không hỗ trợ."
 
-#: wp-includes/script-loader.php:968
+#: wp-includes/script-loader.php:990
 msgid "of"
 msgstr "của"
 
-#: wp-includes/class-wp-editor.php:1222 wp-includes/script-loader.php:967
+#: wp-includes/class-wp-editor.php:1222 wp-includes/script-loader.php:989
 #: wp-includes/widgets/class-wp-widget-media-image.php:28
 #: wp-includes/js/dist/block-editor.js:25415
-#: wp-includes/js/dist/block-editor.js:68712
+#: wp-includes/js/dist/block-editor.js:68715
 #: wp-includes/js/dist/block-library.js:27818
 #: wp-includes/js/dist/block-library.js:48860
 #: wp-includes/js/dist/editor.js:21636 wp-admin/includes/media.php:2958
 msgid "Image"
 msgstr "Hình ảnh"
 
-#: wp-includes/script-loader.php:966
+#: wp-includes/script-loader.php:988
 msgid "&lt; Prev"
 msgstr "&lt; Trang trước"
 
-#: wp-includes/script-loader.php:965
+#: wp-includes/script-loader.php:987
 msgid "Next &gt;"
 msgstr "Trang sau &gt;"
 
-#: wp-includes/script-loader.php:773
+#: wp-includes/script-loader.php:795
 msgid "Enter a description of the image"
 msgstr "Điền mô tả của ảnh"
 
-#: wp-includes/script-loader.php:772
+#: wp-includes/script-loader.php:794
 msgid "Enter the URL of the image"
 msgstr "Điền đường dẫn của ảnh"
 
-#: wp-includes/script-loader.php:771
+#: wp-includes/script-loader.php:793
 msgid "Enter the URL"
 msgstr "Điền đường dẫn"
 
-#: wp-includes/script-loader.php:770
+#: wp-includes/script-loader.php:792
 msgid "close tags"
 msgstr "đóng thẻ"
 
-#: wp-includes/script-loader.php:769
+#: wp-includes/script-loader.php:791
 msgid "Close all open tags"
 msgstr "Đóng tất cả các thẻ"
 
@@ -19240,7 +19241,7 @@ msgstr "Tôi cần phải làm gì bây giờ?"
 
 #. translators: %s: Maximum allowed file size in kilobytes.
 #: wp-includes/ms-functions.php:2147
-#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1425
+#: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:1433
 #: wp-admin/includes/ms.php:41
 msgid "This file is too big. Files must be less than %s KB in size."
 msgstr "File này quá lớn. File phải có dung lượng nhỏ hơn %s KB."
@@ -19364,12 +19365,12 @@ msgstr "Cả màn hình"
 
 #: wp-includes/class-wp-editor.php:1263
 #: wp-includes/js/dist/block-editor.js:23928
-#: wp-includes/js/dist/block-editor.js:71474
+#: wp-includes/js/dist/block-editor.js:71469
 msgid "Remove link"
 msgstr "Xóa đường dẫn"
 
-#: wp-includes/class-wp-editor.php:1267 wp-includes/script-loader.php:781
-#: wp-includes/js/dist/block-editor.js:71174
+#: wp-includes/class-wp-editor.php:1267 wp-includes/script-loader.php:803
+#: wp-includes/js/dist/block-editor.js:71169
 msgid "Insert link"
 msgstr "Thêm đường dẫn"
 
@@ -19383,7 +19384,7 @@ msgstr "Kiểm tra chính tả"
 msgid "Select all"
 msgstr "Chọn tất cả"
 
-#: wp-includes/class-wp-editor.php:1417 wp-includes/script-loader.php:1293
+#: wp-includes/class-wp-editor.php:1417 wp-includes/script-loader.php:1315
 msgid "Action"
 msgstr "Tác vụ"
 
@@ -19425,11 +19426,11 @@ msgstr "Trên bên phải"
 msgid "Top Left"
 msgstr "Trên bên trái"
 
-#: wp-includes/script-loader.php:1081
+#: wp-includes/script-loader.php:1103
 msgid "Mute"
 msgstr "Tắt tiếng"
 
-#: wp-includes/class-wp-editor.php:1258 wp-includes/script-loader.php:1073
+#: wp-includes/class-wp-editor.php:1258 wp-includes/script-loader.php:1095
 msgid "Fullscreen"
 msgstr "Toàn màn hình"
 
@@ -19457,8 +19458,8 @@ msgstr "Định dạng"
 msgid "Constrain proportions"
 msgstr "Giữ tỉ lệ gốc"
 
-#: wp-includes/class-wp-editor.php:1224 wp-includes/js/dist/editor.js:33898
-#: wp-includes/js/dist/editor.js:34036
+#: wp-includes/class-wp-editor.php:1224 wp-includes/js/dist/editor.js:33897
+#: wp-includes/js/dist/editor.js:34035
 msgid "General"
 msgstr "Tổng quan"
 
@@ -19499,9 +19500,9 @@ msgstr "Khoảng trống chiều dọc"
 
 #: wp-includes/class-wp-editor.php:1232
 #: wp-includes/js/dist/block-editor.js:32414
-#: wp-includes/js/dist/block-editor.js:71919
-#: wp-includes/js/dist/block-editor.js:72310
-#: wp-includes/js/dist/block-editor.js:72440
+#: wp-includes/js/dist/block-editor.js:71914
+#: wp-includes/js/dist/block-editor.js:72305
+#: wp-includes/js/dist/block-editor.js:72435
 msgid "Dimensions"
 msgstr "Kích thước lề"
 
@@ -19559,22 +19560,22 @@ msgstr "Gạch giữa từ"
 msgid "Underline"
 msgstr "Gạch chân"
 
-#: wp-includes/class-wp-editor.php:1167 wp-includes/script-loader.php:779
+#: wp-includes/class-wp-editor.php:1167 wp-includes/script-loader.php:801
 #: wp-includes/js/dist/format-library.js:365
 msgid "Italic"
 msgstr "Nghiêng"
 
-#: wp-includes/class-wp-editor.php:1166 wp-includes/script-loader.php:777
+#: wp-includes/class-wp-editor.php:1166 wp-includes/script-loader.php:799
 #: wp-includes/js/dist/format-library.js:40
 msgid "Bold"
 msgstr "Đậm"
 
-#: wp-includes/class-wp-editor.php:1168 wp-includes/script-loader.php:795
+#: wp-includes/class-wp-editor.php:1168 wp-includes/script-loader.php:817
 #: wp-includes/js/dist/block-library.js:7406
 msgid "Code"
 msgstr "Mã code"
 
-#: wp-includes/class-wp-editor.php:1154 wp-includes/script-loader.php:782
+#: wp-includes/class-wp-editor.php:1154 wp-includes/script-loader.php:804
 msgid "Blockquote"
 msgstr "Trích dẫn"
 
@@ -19603,7 +19604,7 @@ msgid "Heading 1"
 msgstr "Tiêu đề 1"
 
 #: wp-includes/class-wp-editor.php:1153
-#: wp-includes/js/dist/block-editor.js:65059
+#: wp-includes/js/dist/block-editor.js:65062
 msgid "Paragraph"
 msgstr "Đoạn"
 
@@ -19619,7 +19620,7 @@ msgstr "Ngôn ngữ"
 msgid "Document properties"
 msgstr "Thuộc tính tài liệu"
 
-#: wp-includes/class-wp-editor.php:1373 wp-includes/script-loader.php:1289
+#: wp-includes/class-wp-editor.php:1373 wp-includes/script-loader.php:1311
 #: wp-includes/theme.php:3746 wp-admin/js/nav-menu.js:1555
 #: wp-admin/js/post.js:493 wp-admin/js/theme-plugin-editor.js:71
 #: wp-admin/js/user-profile.js:519 wp-admin/js/widgets.js:98
@@ -19698,7 +19699,7 @@ msgid "Insert row before"
 msgstr "Thêm dòng vào trước"
 
 #: wp-includes/class-wp-editor.php:1262 wp-includes/class-wp-editor.php:1882
-#: wp-includes/script-loader.php:1244
+#: wp-includes/script-loader.php:1266
 msgid "Insert/edit link"
 msgstr "Thêm/sửa đường dẫn"
 
@@ -19932,7 +19933,7 @@ msgstr "%s là một lựa chọn không thể thay đổi"
 
 #. translators: Used between list items, there is a space after the comma.
 #: wp-includes/class-wp-locale.php:241 wp-includes/l10n.php:1972
-#: wp-includes/js/dist/block-editor.js:73646
+#: wp-includes/js/dist/block-editor.js:73641
 msgid ", "
 msgstr ", "
 
@@ -20310,7 +20311,7 @@ msgid "Comments on %s"
 msgstr "Bình luận cho %s"
 
 #: wp-includes/class-wp-customize-nav-menus.php:336
-#: wp-includes/script-loader.php:1248
+#: wp-includes/script-loader.php:1270
 #: wp-includes/js/dist/block-directory.js:1794
 #: wp-includes/js/dist/block-editor.js:48828
 #: wp-includes/js/dist/block-library.js:11351
@@ -20335,7 +20336,7 @@ msgstr "&laquo; Trang trước"
 msgid "Sorry, comments are closed for this item."
 msgstr "Xin lỗi, phần bình luận đang bị đóng cho mục này."
 
-#: wp-includes/admin-bar.php:1091
+#: wp-includes/admin-bar.php:1100
 #: wp-includes/class-wp-customize-widgets.php:419
 #: wp-includes/functions.php:5451 wp-includes/js/dist/blocks.js:8102
 #: wp-includes/js/dist/core-data.js:1579
@@ -20413,9 +20414,9 @@ msgstr "Mặc định"
 #: wp-includes/js/dist/block-editor.js:31767
 #: wp-includes/js/dist/block-editor.js:31962
 #: wp-includes/js/dist/block-editor.js:32032
-#: wp-includes/js/dist/block-editor.js:68193
-#: wp-includes/js/dist/block-editor.js:76553
-#: wp-includes/js/dist/block-editor.js:76559
+#: wp-includes/js/dist/block-editor.js:68196
+#: wp-includes/js/dist/block-editor.js:76548
+#: wp-includes/js/dist/block-editor.js:76554
 #: wp-includes/js/dist/block-library.js:44360
 #: wp-includes/js/dist/block-library.js:44371
 #: wp-includes/js/dist/block-library.js:58750
@@ -20454,7 +20455,7 @@ msgstr "Email"
 msgid "Site Title"
 msgstr "Tiêu đề trang web"
 
-#: wp-includes/taxonomy.php:196 wp-includes/js/dist/block-editor.js:66474
+#: wp-includes/taxonomy.php:196 wp-includes/js/dist/block-editor.js:66477
 #: wp-includes/js/dist/blocks.js:8105 wp-includes/js/dist/edit-site.js:20615
 #: wp-includes/js/dist/edit-site.js:20966
 #: wp-includes/js/dist/edit-site.js:21037
@@ -20475,7 +20476,7 @@ msgstr "Cho phép"
 msgid "First Post"
 msgstr "Bài viết đầu tiên"
 
-#: wp-includes/admin-bar.php:645 wp-includes/js/dist/block-editor.js:71721
+#: wp-includes/admin-bar.php:654 wp-includes/js/dist/block-editor.js:71716
 #: wp-includes/js/dist/block-library.js:1893
 #: wp-includes/js/dist/block-library.js:2277
 #: wp-includes/js/dist/block-library.js:3456
@@ -20533,11 +20534,11 @@ msgstr "Bài viết đầu tiên"
 msgid "Settings"
 msgstr "Cài đặt"
 
-#: wp-includes/admin-bar.php:565 wp-admin/menu.php:34 wp-admin/my-sites.php:38
+#: wp-includes/admin-bar.php:574 wp-admin/menu.php:34 wp-admin/my-sites.php:38
 msgid "My Sites"
 msgstr "Các trang web của tôi"
 
-#: wp-includes/admin-bar.php:623 wp-includes/admin-bar.php:1076
+#: wp-includes/admin-bar.php:632 wp-includes/admin-bar.php:1085
 #: wp-includes/customize/class-wp-customize-themes-panel.php:81
 #: wp-includes/taxonomy.php:195 wp-includes/js/dist/core-data.js:1650
 #: wp-admin/includes/ms.php:1078 wp-admin/themes.php:127
@@ -20548,7 +20549,7 @@ msgid "Themes"
 msgstr "Giao diện"
 
 #. translators: Sites menu item.
-#: wp-includes/admin-bar.php:601
+#: wp-includes/admin-bar.php:610
 #: wp-admin/includes/class-wp-ms-users-list-table.php:197
 #: wp-admin/network/menu.php:56 wp-admin/network/sites.php:21
 #: wp-admin/network/sites.php:388
@@ -20581,8 +20582,8 @@ msgid "Strength indicator"
 msgstr "Độ bảo mật"
 
 #. translators: Network menu item.
-#: wp-includes/admin-bar.php:433 wp-includes/admin-bar.php:591
-#: wp-includes/admin-bar.php:711 wp-includes/deprecated.php:2822
+#: wp-includes/admin-bar.php:433 wp-includes/admin-bar.php:600
+#: wp-includes/admin-bar.php:720 wp-includes/deprecated.php:2822
 #: wp-includes/deprecated.php:2824 wp-admin/index.php:33 wp-admin/menu.php:29
 #: wp-admin/my-sites.php:142 wp-admin/user/menu.php:15
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:748
@@ -20605,9 +20606,9 @@ msgstr "<strong>Lỗi:</strong> Vui lòng nhập tên người dùng."
 #: wp-includes/widgets/class-wp-widget-media-image.php:78
 #: wp-includes/js/dist/block-editor.js:31962
 #: wp-includes/js/dist/block-editor.js:32032
-#: wp-includes/js/dist/block-editor.js:68186
-#: wp-includes/js/dist/block-editor.js:76537
-#: wp-includes/js/dist/block-editor.js:76543
+#: wp-includes/js/dist/block-editor.js:68189
+#: wp-includes/js/dist/block-editor.js:76532
+#: wp-includes/js/dist/block-editor.js:76538
 #: wp-includes/js/dist/block-library.js:5228
 #: wp-includes/js/dist/block-library.js:5236
 #: wp-includes/js/dist/block-library.js:7783
@@ -20681,7 +20682,7 @@ msgstr "Hỗ trợ"
 #: wp-includes/blocks/latest-comments.php:31
 #: wp-includes/blocks/latest-posts.php:76 wp-includes/blocks/page-list.php:196
 #: wp-includes/blocks/rss.php:37 wp-includes/media.php:4556
-#: wp-includes/script-loader.php:1247
+#: wp-includes/script-loader.php:1269
 #: wp-includes/widgets/class-wp-widget-recent-posts.php:114
 #: wp-includes/js/dist/block-library.js:29297
 #: wp-includes/js/dist/block-library.js:29329
@@ -20721,9 +20722,9 @@ msgstr "Chọn"
 #: wp-includes/blocks/image.php:254 wp-includes/blocks/navigation.php:490
 #: wp-includes/class-wp-customize-manager.php:5742
 #: wp-includes/class-wp-editor.php:1189 wp-includes/class-wp-editor.php:1886
-#: wp-includes/script-loader.php:969 wp-includes/script-loader.php:1292
-#: wp-includes/script-loader.php:1976 wp-includes/js/dist/block-editor.js:71193
-#: wp-includes/js/dist/block-editor.js:72948
+#: wp-includes/script-loader.php:991 wp-includes/script-loader.php:1314
+#: wp-includes/script-loader.php:1998 wp-includes/js/dist/block-editor.js:71188
+#: wp-includes/js/dist/block-editor.js:72943
 #: wp-includes/js/dist/block-library.js:34674
 #: wp-includes/js/dist/block-library.js:37031
 #: wp-includes/js/dist/components.js:34659
@@ -20805,7 +20806,7 @@ msgid "Version"
 msgstr "Phiên bản"
 
 #. translators: Hidden accessibility text.
-#: wp-includes/admin-bar.php:1187 wp-includes/admin-bar.php:1189
+#: wp-includes/admin-bar.php:1196 wp-includes/admin-bar.php:1198
 #: wp-includes/blocks/search.php:27 wp-includes/blocks/search.php:28
 #: wp-includes/blocks/search.php:52 wp-includes/class-wp-editor.php:1909
 #: wp-includes/media.php:4959 wp-includes/js/dist/block-editor.js:49056
@@ -20842,7 +20843,7 @@ msgstr "Tìm kiếm"
 
 #. translators: Hidden accessibility text.
 #: wp-includes/class-wp-customize-manager.php:4306
-#: wp-includes/script-loader.php:1004
+#: wp-includes/script-loader.php:1026
 #: wp-includes/widgets/class-wp-widget-text.php:547
 #: wp-includes/widgets/class-wp-widget-text.php:562
 #: wp-includes/js/wp-pointer.js:20 wp-admin/async-upload.php:121
@@ -20869,7 +20870,7 @@ msgstr "Thêm"
 msgid "Add or remove tags"
 msgstr "Thêm hoặc xóa thẻ"
 
-#: wp-includes/media.php:4962 wp-includes/script-loader.php:1245
+#: wp-includes/media.php:4962 wp-includes/script-loader.php:1267
 #: wp-login.php:738 wp-includes/js/dist/edit-site.js:14782
 #: wp-includes/js/dist/edit-widgets.js:3709 wp-admin/edit-form-comment.php:245
 #: wp-admin/edit-tag-form.php:301
@@ -20920,7 +20921,7 @@ msgstr "Đường dẫn của ảnh"
 #: wp-includes/js/dist/edit-site.js:35025
 #: wp-includes/js/dist/edit-site.js:35595
 #: wp-includes/js/dist/edit-site.js:37380
-#: wp-includes/js/dist/edit-site.js:40887 wp-includes/js/dist/editor.js:32240
+#: wp-includes/js/dist/edit-site.js:40887 wp-includes/js/dist/editor.js:32239
 #: wp-admin/includes/media.php:2597
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:374
 msgid "Actions"
@@ -20929,11 +20930,11 @@ msgstr "Tác vụ"
 #. translators: Default privacy policy heading.
 #: wp-includes/class-wp-editor.php:1239 wp-includes/media.php:4956
 #: wp-includes/media.php:5645 wp-includes/js/dist/block-editor.js:51891
-#: wp-includes/js/dist/block-editor.js:68708
+#: wp-includes/js/dist/block-editor.js:68711
 #: wp-includes/js/dist/block-library.js:55689
 #: wp-includes/js/dist/blocks.js:8096 wp-includes/js/dist/core-data.js:1543
 #: wp-includes/js/dist/edit-site.js:22452
-#: wp-includes/js/dist/edit-site.js:22467 wp-includes/js/dist/editor.js:34033
+#: wp-includes/js/dist/edit-site.js:22467 wp-includes/js/dist/editor.js:34032
 #: wp-admin/export.php:311
 #: wp-admin/includes/class-wp-privacy-policy-content.php:508
 #: wp-admin/includes/media.php:2595 wp-admin/menu.php:71 wp-admin/menu.php:393
@@ -20949,7 +20950,7 @@ msgstr "Sửa ảnh"
 #: wp-includes/media-template.php:645 wp-includes/media-template.php:793
 #: wp-includes/media-template.php:1084 wp-includes/media-template.php:1147
 #: wp-includes/widgets/class-wp-widget-media-image.php:91
-#: wp-includes/js/dist/block-editor.js:73475 wp-admin/includes/media.php:1405
+#: wp-includes/js/dist/block-editor.js:73470 wp-admin/includes/media.php:1405
 #: wp-admin/includes/media.php:3263
 msgid "Caption"
 msgstr "Chú thích"
@@ -21056,8 +21057,8 @@ msgstr "Tệp &#8220;%s&#8221; không tồn tại?"
 msgid "Thumbnail"
 msgstr "Ảnh thu nhỏ"
 
-#: wp-includes/js/dist/block-editor.js:74176
-#: wp-includes/js/dist/block-editor.js:74183
+#: wp-includes/js/dist/block-editor.js:74171
+#: wp-includes/js/dist/block-editor.js:74178
 #: wp-admin/includes/image-edit.php:64 wp-admin/includes/image-edit.php:161
 msgid "Scale"
 msgstr "Phóng to/Thu nhỏ"
@@ -21139,7 +21140,7 @@ msgid "Reply"
 msgstr "Bình luận"
 
 #: wp-includes/class-wp-customize-manager.php:4869
-#: wp-includes/script-loader.php:1281 wp-admin/includes/dashboard.php:607
+#: wp-includes/script-loader.php:1303 wp-admin/includes/dashboard.php:607
 #: wp-admin/includes/meta-boxes.php:56 wp-admin/js/post.js:844
 msgid "Save Draft"
 msgstr "Lưu nháp"
@@ -21149,23 +21150,23 @@ msgid "Tags"
 msgstr "Thẻ"
 
 #. translators: accessibility text for the content landmark region.
-#: wp-includes/revision.php:33 wp-includes/js/dist/block-editor.js:72421
+#: wp-includes/revision.php:33 wp-includes/js/dist/block-editor.js:72416
 #: wp-includes/js/dist/edit-widgets.js:1443 wp-includes/js/dist/editor.js:12854
-#: wp-includes/js/dist/editor.js:33360 wp-includes/js/dist/editor.js:33415
+#: wp-includes/js/dist/editor.js:33359 wp-includes/js/dist/editor.js:33414
 #: wp-admin/includes/dashboard.php:598 wp-admin/index.php:104
 msgid "Content"
 msgstr "Nội dung"
 
 #: wp-includes/class-wp-editor.php:1188 wp-includes/class-wp-editor.php:1939
-#: wp-includes/media.php:4961 wp-includes/script-loader.php:1291
+#: wp-includes/media.php:4961 wp-includes/script-loader.php:1313
 #: wp-includes/js/dist/block-editor.js:24504
 #: wp-includes/js/dist/block-editor.js:50778
 #: wp-includes/js/dist/block-editor.js:58918
 #: wp-includes/js/dist/block-editor.js:59195
-#: wp-includes/js/dist/block-editor.js:67971
-#: wp-includes/js/dist/block-editor.js:68757
+#: wp-includes/js/dist/block-editor.js:67974
 #: wp-includes/js/dist/block-editor.js:68760
-#: wp-includes/js/dist/block-editor.js:74080
+#: wp-includes/js/dist/block-editor.js:68763
+#: wp-includes/js/dist/block-editor.js:74075
 #: wp-includes/js/dist/block-library.js:7034
 #: wp-includes/js/dist/block-library.js:40298
 #: wp-includes/js/dist/block-library.js:63030
@@ -21187,7 +21188,7 @@ msgstr "Nội dung"
 #: wp-includes/js/dist/editor.js:8449 wp-includes/js/dist/editor.js:8595
 #: wp-includes/js/dist/editor.js:14335 wp-includes/js/dist/editor.js:17626
 #: wp-includes/js/dist/editor.js:18680 wp-includes/js/dist/editor.js:25373
-#: wp-includes/js/dist/editor.js:31853 wp-includes/js/dist/editor.js:32000
+#: wp-includes/js/dist/editor.js:31852 wp-includes/js/dist/editor.js:31999
 #: wp-includes/js/dist/patterns.js:653 wp-includes/js/dist/patterns.js:841
 #: wp-includes/js/dist/patterns.js:1257 wp-includes/js/dist/patterns.js:1338
 #: wp-includes/js/dist/patterns.js:1380
@@ -21208,7 +21209,7 @@ msgstr "Nội dung"
 msgid "Cancel"
 msgstr "Hủy"
 
-#: wp-includes/admin-bar.php:447 wp-includes/admin-bar.php:634
+#: wp-includes/admin-bar.php:447 wp-includes/admin-bar.php:643
 #: wp-includes/js/dist/block-editor.js:53584
 #: wp-includes/js/dist/core-data.js:1660 wp-includes/js/dist/editor.js:29679
 #: wp-admin/plugins.php:634 wp-admin/update-core.php:469
@@ -21249,7 +21250,7 @@ msgid "RSS"
 msgstr "RSS"
 
 #: wp-includes/js/dist/block-editor.js:24462
-#: wp-includes/js/dist/block-editor.js:71203
+#: wp-includes/js/dist/block-editor.js:71198
 #: wp-includes/js/dist/block-library.js:20478
 #: wp-admin/includes/dashboard.php:1398 wp-admin/setup-config.php:272
 msgid "Submit"
@@ -21269,7 +21270,7 @@ msgstr "Khách"
 msgid "Done"
 msgstr "Hoàn thành"
 
-#: wp-includes/admin-bar.php:612 wp-admin/includes/ms.php:866
+#: wp-includes/admin-bar.php:621 wp-admin/includes/ms.php:866
 #: wp-admin/includes/ms.php:1073 wp-admin/menu.php:323 wp-admin/users.php:25
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:370
 #: wp-admin/network/menu.php:60 wp-admin/network/users.php:34
@@ -21290,7 +21291,7 @@ msgstr "Xem bài viết"
 msgid "Edit Tag"
 msgstr "Sửa thẻ"
 
-#: wp-includes/script-loader.php:1087 wp-includes/js/dist/block-editor.js:29457
+#: wp-includes/script-loader.php:1109 wp-includes/js/dist/block-editor.js:29457
 #: wp-includes/js/dist/block-editor.js:29553
 #: wp-includes/js/dist/block-editor.js:30939
 #: wp-includes/js/dist/block-library.js:22235
@@ -21350,7 +21351,7 @@ msgid "Name"
 msgstr "Tên"
 
 #: wp-includes/class-wp-editor.php:1225
-#: wp-includes/js/dist/block-editor.js:71758
+#: wp-includes/js/dist/block-editor.js:71753
 #: wp-includes/js/dist/edit-post.js:2178 wp-includes/js/dist/edit-site.js:12884
 #: wp-admin/edit-link-form.php:34
 msgid "Advanced"
@@ -21394,7 +21395,7 @@ msgstr "Danh mục"
 msgid "Save"
 msgstr "Lưu thay đổi"
 
-#: wp-includes/class-wp-editor.php:1942 wp-includes/script-loader.php:1246
+#: wp-includes/class-wp-editor.php:1942 wp-includes/script-loader.php:1268
 #: wp-admin/edit-link-form.php:23 wp-admin/edit-link-form.php:90
 #: wp-admin/includes/meta-boxes.php:1151 wp-admin/link-add.php:17
 #: wp-admin/link-manager.php:104 wp-admin/menu.php:86
@@ -21411,7 +21412,7 @@ msgstr "Sửa danh mục liên kết"
 
 #: wp-includes/js/dist/block-editor.js:59672
 #: wp-includes/js/dist/block-editor.js:61417
-#: wp-includes/js/dist/block-editor.js:74085
+#: wp-includes/js/dist/block-editor.js:74080
 #: wp-includes/js/dist/block-library.js:34965
 #: wp-includes/js/dist/edit-site.js:14775
 #: wp-includes/js/dist/edit-site.js:14821
@@ -21467,7 +21468,7 @@ msgstr "Bản sửa đổi"
 #. translators: Hidden accessibility text.
 #: wp-includes/revision.php:34 wp-includes/js/dist/block-library.js:29059
 #: wp-includes/js/dist/editor.js:21007 wp-includes/js/dist/editor.js:21068
-#: wp-includes/js/dist/editor.js:33938 wp-admin/includes/meta-boxes.php:750
+#: wp-includes/js/dist/editor.js:33937 wp-admin/includes/meta-boxes.php:750
 #: wp-admin/includes/meta-boxes.php:1642 wp-admin/options-reading.php:193
 msgid "Excerpt"
 msgstr "Tóm tắt"
@@ -21478,7 +21479,7 @@ msgstr "Thuộc tính"
 
 #. translators: accessibility text for the publish landmark region.
 #: wp-includes/class-wp-customize-manager.php:4864
-#: wp-includes/script-loader.php:1279 wp-includes/js/dist/block-editor.js:72992
+#: wp-includes/script-loader.php:1301 wp-includes/js/dist/block-editor.js:72987
 #: wp-includes/js/dist/edit-widgets.js:1449 wp-includes/js/dist/editor.js:12860
 #: wp-includes/js/dist/editor.js:22464 wp-includes/js/dist/editor.js:22472
 #: wp-includes/js/dist/editor.js:22850 wp-includes/js/dist/editor.js:26045
@@ -21511,9 +21512,9 @@ msgstr "Bình luận"
 #: wp-includes/class-wp-customize-widgets.php:804
 #: wp-includes/class-wp-editor.php:1396 wp-includes/media.php:5001
 #: wp-includes/js/dist/block-editor.js:58925
-#: wp-includes/js/dist/block-editor.js:67968
-#: wp-includes/js/dist/block-editor.js:68325
-#: wp-includes/js/dist/block-editor.js:68480
+#: wp-includes/js/dist/block-editor.js:67971
+#: wp-includes/js/dist/block-editor.js:68328
+#: wp-includes/js/dist/block-editor.js:68483
 #: wp-includes/js/dist/block-library.js:53661
 #: wp-includes/js/dist/block-library.js:57759
 #: wp-includes/js/dist/block-library.js:65390
@@ -21527,7 +21528,7 @@ msgid "Apply"
 msgstr "Áp dụng"
 
 #: wp-includes/class-wp-editor.php:1184
-#: wp-includes/js/dist/block-editor.js:66214
+#: wp-includes/js/dist/block-editor.js:66217
 #: wp-includes/js/dist/customize-widgets.js:1023
 #: wp-includes/js/dist/edit-post.js:1072 wp-includes/js/dist/edit-post.js:2479
 #: wp-includes/js/dist/edit-site.js:6615
@@ -21587,7 +21588,7 @@ msgstr "Khôi phục lại"
 #: wp-includes/class-walker-comment.php:260
 #: wp-includes/class-walker-comment.php:459
 #: wp-includes/class-wp-editor.php:1394
-#: wp-includes/js/dist/block-editor.js:68284
+#: wp-includes/js/dist/block-editor.js:68287
 #: wp-includes/js/dist/block-library.js:7006
 #: wp-includes/js/dist/block-library.js:9423
 #: wp-includes/js/dist/block-library.js:10667
@@ -21597,7 +21598,7 @@ msgstr "Khôi phục lại"
 #: wp-includes/js/dist/block-library.js:40614
 #: wp-includes/js/dist/block-library.js:63869
 #: wp-includes/js/dist/block-library.js:65284
-#: wp-includes/js/dist/edit-post.js:3137 wp-includes/js/dist/edit-site.js:25009
+#: wp-includes/js/dist/edit-post.js:3151 wp-includes/js/dist/edit-site.js:25009
 #: wp-includes/js/dist/edit-site.js:25574
 #: wp-includes/js/dist/edit-site.js:25935
 #: wp-includes/js/dist/edit-site.js:37454 wp-admin/comment.php:251
@@ -21652,7 +21653,7 @@ msgstr "Bình luận"
 #: wp-includes/sitemaps/class-wp-sitemaps-stylesheet.php:176
 #: wp-includes/widgets/class-wp-widget-media-image.php:113
 #: wp-includes/js/dist/block-editor.js:22786
-#: wp-includes/js/dist/block-editor.js:68469
+#: wp-includes/js/dist/block-editor.js:68472
 #: wp-includes/js/dist/block-library.js:18678 wp-admin/comment.php:196
 #: wp-admin/edit-form-comment.php:69
 #: wp-admin/includes/class-walker-nav-menu-edit.php:198
@@ -21696,7 +21697,7 @@ msgstr "Tác giả"
 msgid "Log Out"
 msgstr "Đăng xuất"
 
-#: wp-includes/admin-bar.php:412 wp-includes/admin-bar.php:752
+#: wp-includes/admin-bar.php:412 wp-includes/admin-bar.php:761
 #: wp-includes/deprecated.php:2820
 msgid "Visit Site"
 msgstr "Xem trang web"
@@ -21737,7 +21738,7 @@ msgid "Pending Review"
 msgstr "Chờ duyệt"
 
 #: wp-includes/post.php:1305 wp-includes/post.php:1325
-#: wp-includes/script-loader.php:1280 wp-includes/js/dist/edit-site.js:40526
+#: wp-includes/script-loader.php:1302 wp-includes/js/dist/edit-site.js:40526
 #: wp-includes/js/dist/editor.js:9091 wp-includes/js/dist/editor.js:25613
 #: wp-includes/js/dist/editor.js:25634 wp-admin/includes/ajax-actions.php:2270
 #: wp-admin/includes/class-wp-posts-list-table.php:1214
