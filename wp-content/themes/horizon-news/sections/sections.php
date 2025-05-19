@@ -1,7 +1,7 @@
 <?php
 
 // Flash News.
-require get_template_directory() . '/sections/flash-news.php';
+// require get_template_directory() . '/sections/flash-news.php';
 
 // Banner Section.
 require get_template_directory() . '/sections/banner.php';

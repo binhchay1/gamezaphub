@@ -60,7 +60,7 @@ $total_pages = $wp_query->max_num_pages;
 					<?php if ($current_page > 1) : ?>
 						<a href="<?php echo esc_url(get_pagenum_link($current_page - 1)); ?>" class="pagination-prev">← Quay lại</a>
 					<?php else : ?>
-						<span class="pagination-prev disabled">← PREV</span>
+						<span class="pagination-prev disabled">← Quay lại</span>
 					<?php endif; ?>
 
 					<?php
@@ -80,7 +80,7 @@ $total_pages = $wp_query->max_num_pages;
 					<?php if ($current_page < $total_pages) : ?>
 						<a href="<?php echo esc_url(get_pagenum_link($current_page + 1)); ?>" class="pagination-next">Tiếp theo →</a>
 					<?php else : ?>
-						<span class="pagination-next disabled">NEXT →</span>
+						<span class="pagination-next disabled">Tiếp theo →</span>
 					<?php endif; ?>
 				</div>
 			<?php endif; ?>

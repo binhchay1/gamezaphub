@@ -523,3 +523,34 @@ table {
 .user-name {
   margin-left: 10px;
 }
+
+.custom-small-list-design {
+  border-radius: 20px;
+}
+
+.custom-small-list-design img {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.magazine-grid-list-section-wrapper {
+  grid-gap: 30px !important;
+}
+
+.mag-post-single {
+  border-radius: 20px;
+  height: 100% !important;
+}
+
+#primary .mag-post-single .mag-post-img img {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.magazine-archive-layout.grid-layout {
+  grid-gap: 30px !important;
+}
+
+.main-widget-section {
+  margin-top: 30px !important;
+}

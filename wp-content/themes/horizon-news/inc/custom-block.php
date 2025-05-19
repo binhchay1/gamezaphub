@@ -87,7 +87,8 @@ function replace_twitter_iframe_with_embed($content)
 
 add_filter('the_content', 'replace_twitter_iframe_with_embed');
 
-function custom_blockquote_styles() {
+function custom_blockquote_styles()
+{
     wp_enqueue_style(
         'custom-blockquote-style',
         get_template_directory_uri() . '/assets/css/custom-blockquote.css',
@@ -98,7 +99,8 @@ function custom_blockquote_styles() {
 }
 add_action('wp_enqueue_scripts', 'custom_blockquote_styles');
 
-function custom_render_block_quote($block_content, $block) {
+function custom_render_block_quote($block_content, $block)
+{
     if ($block['blockName'] !== 'core/quote') {
         return $block_content;
     }
