@@ -80,9 +80,24 @@ if (! class_exists('Horizon_News_Popular_Widget')) {
                             <div class="mag-post-single <?php echo esc_attr($classes); ?>">
                                 <?php if (has_post_thumbnail()) { ?>
                                     <div class="mag-post-img">
-                                        <a href="<?php the_permalink(); ?>">
-                                            <?php the_post_thumbnail(); ?>
-                                        </a>
+                                        <?php if ($i === 1) { ?>
+                                            <a href="<?php the_permalink(); ?>">
+                                                <?php the_post_thumbnail(); ?>
+                                            </a>
+                                        <?php } else { ?>
+                                            <?php
+                                            $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+                                            if ($thumb_url): ?>
+                                                <a href="<?php the_permalink(); ?>">
+                                                    <img
+                                                        src="<?php echo esc_url($thumb_url); ?>"
+                                                        alt="<?php the_title_attribute(); ?>"
+                                                        width="800" height="450"
+                                                        fetchpriority="high"
+                                                        decoding="async" />
+                                                </a>
+                                            <?php endif; ?>
+                                        <?php } ?>
                                     </div>
                                 <?php } ?>
                                 <div class="mag-post-detail">

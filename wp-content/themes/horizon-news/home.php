@@ -18,7 +18,29 @@ global $wp_query;
 
 $grid_style = get_theme_mod('horizon_news_archive_grid_style', 'grid-column-2');
 $current_page = max(1, get_query_var('paged'));
-$total_pages = $wp_query->max_num_pages;
+
+$excluded_ids_news = get_posts([
+	'posts_per_page' => 4,
+	'category_name'  => 'tin-tuc',
+	'fields'         => 'ids',
+	'no_found_rows'  => true,
+]);
+
+$excluded_ids_how_to = get_posts([
+	'posts_per_page' => 4,
+	'category_name'  => 'cach-choi',
+	'fields'         => 'ids',
+	'no_found_rows'  => true,
+]);
+
+$custom_query = new WP_Query([
+	'post_type'      => 'post',
+	'post_status'    => 'publish',
+	'paged'          => $current_page,
+	'post__not_in'   => array_merge($excluded_ids_how_to, $excluded_ids_news),
+]);
+
+$total_pages = $custom_query->max_num_pages;
 ?>
 <main id="primary" class="site-main">
 
@@ -27,7 +49,7 @@ $total_pages = $wp_query->max_num_pages;
 		do_action('horizon_news_breadcrumb');
 	}
 
-	if (have_posts()) :
+	if ($custom_query->have_posts()) :
 		if (is_home() && ! is_front_page()) :
 	?>
 
@@ -41,8 +63,8 @@ $total_pages = $wp_query->max_num_pages;
 
 		<div class="magazine-archive-layout grid-layout <?php echo esc_attr($grid_style); ?>">
 			<?php
-			while (have_posts()) :
-				the_post();
+			while ($custom_query->have_posts()) :
+				$custom_query->the_post();
 				get_template_part('template-parts/content', get_post_type());
 			endwhile;
 			?>
@@ -97,6 +119,6 @@ if (horizon_news_is_sidebar_enabled()) {
 	get_sidebar();
 }
 ?>
-
+<?php wp_reset_postdata(); ?>
 <?php
 get_footer();
