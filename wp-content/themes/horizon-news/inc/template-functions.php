@@ -13,12 +13,10 @@
  * @return array
  */
 function horizon_news_body_classes( $classes ) {
-	// Adds a class of hfeed to non-singular pages.
 	if ( ! is_singular() ) {
 		$classes[] = 'hfeed';
 	}
 
-	// Adds a class of no-sidebar when there is no sidebar present.
 	if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 		$classes[] = 'no-sidebar';
 	}
@@ -72,9 +70,6 @@ function horizon_news_get_post_cat_choices() {
 }
 
 if ( ! function_exists( 'horizon_news_excerpt_length' ) ) :
-	/**
-	 * Excerpt length.
-	 */
 	function horizon_news_excerpt_length( $length ) {
 		if ( is_admin() ) {
 			return $length;
@@ -86,9 +81,6 @@ endif;
 add_filter( 'excerpt_length', 'horizon_news_excerpt_length', 999 );
 
 if ( ! function_exists( 'horizon_news_excerpt_more' ) ) :
-	/**
-	 * Excerpt more.
-	 */
 	function horizon_news_excerpt_more( $more ) {
 		if ( is_admin() ) {
 			return $more;
@@ -175,7 +167,7 @@ function horizon_news_section_link( $section_id ) {
 	</span>
 	<style type="text/css">
 		<?php
-		echo $starting_notation . $section_id; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+		echo $starting_notation . $section_id;
 		?>:hover .section-link {
 			visibility: visible !important;
 		}

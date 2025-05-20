@@ -3,7 +3,7 @@
 function add_custom_rewrite_rules()
 {
     add_rewrite_rule(
-        '^games/([^/]+)/?$',
+        '^games/([^/]+)/$',
         'index.php?custom_games=1&game_slug=$matches[1]',
         'top'
     );
@@ -51,3 +51,15 @@ function adjust_main_query($query)
     }
 }
 add_action('pre_get_posts', 'adjust_main_query');
+
+function redirect_missing_trailing_slash()
+{
+    if (get_query_var('custom_games') == 1) {
+        $request_uri = $_SERVER['REQUEST_URI'];
+        if (substr($request_uri, -1) !== '/') {
+            wp_redirect(home_url($request_uri . '/'), 301);
+            exit;
+        }
+    }
+}
+add_action('template_redirect', 'redirect_missing_trailing_slash');
