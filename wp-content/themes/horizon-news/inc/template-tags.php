@@ -10,30 +10,42 @@
 
 if (! function_exists('horizon_news_posted_on')) :
 	/**
-	 * Prints HTML with meta information for the current post-date/time.
+	 * Prints HTML with meta information for the current post-date/time in Vietnamese format.
 	 */
 	function horizon_news_posted_on()
 	{
 		if (get_theme_mod('horizon_news_post_hide_date', false)) {
 			return;
 		}
-		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
-		if (get_the_time('U') !== get_the_modified_time('U')) {
-			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+
+		$post_time = get_the_time('U');
+		$current_time = current_time('timestamp');
+		$diff = $current_time - $post_time;
+
+		if ($diff < DAY_IN_SECONDS) {
+			if ($diff < MINUTE_IN_SECONDS) {
+				$time_display = 'Vừa xong';
+			} elseif ($diff < HOUR_IN_SECONDS) {
+				$minutes = floor($diff / MINUTE_IN_SECONDS);
+				$time_display = sprintf('%d phút trước', $minutes);
+			} else {
+				$hours = floor($diff / HOUR_IN_SECONDS);
+				$time_display = sprintf('%d giờ trước', $hours);
+			}
+		} else {
+			$time_display = get_the_date('d/m/Y');
 		}
 
+		$time_attr = esc_attr(get_the_date(DATE_W3C));
 		$time_string = sprintf(
-			$time_string,
-			esc_attr(get_the_date(DATE_W3C)),
-			esc_html(get_the_date()),
-			esc_attr(get_the_modified_date(DATE_W3C)),
-			esc_html(get_the_modified_date())
+			'<time class="entry-date published updated" datetime="%s">%s</time>',
+			$time_attr,
+			esc_html($time_display)
 		);
 
-		$posted_on = '<a href="' . esc_url(get_permalink()) . '" rel="bookmark"><i class="far fa-clock"></i>' . $time_string . '</a>';
+		$posted_on = '<a href="' . esc_url(get_permalink()) . '" rel="bookmark"><i class="far fa-clock"></i> ' . $time_string . '</a>';
 
 		echo '<span class="post-date">' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-
 	}
 endif;
 
@@ -73,6 +85,7 @@ if (! function_exists('horizon_news_categories_list')) :
 						$style_attr = ' style="--cat-color: #' . esc_attr($category_color) . ';"';
 					}
 					$output .= '<a href="' . esc_url(get_category_link($category->term_id)) . '"' . $style_attr . '>' . esc_html($category->name) . '</a>';
+					break;
 				}
 				echo trim($output);
 			}

@@ -78,9 +78,6 @@ if ( ! class_exists( 'Horizon_News_Posts_Grid_Widget' ) ) {
 									</div>
 								<?php } ?>
 								<div class="mag-post-detail">
-									<div class="mag-post-category">
-										<?php horizon_news_categories_list(); ?>
-									</div>
 									<h3 class="mag-post-title">
 										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 									</h3>

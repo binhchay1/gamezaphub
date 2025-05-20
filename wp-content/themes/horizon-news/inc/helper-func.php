@@ -50,11 +50,11 @@ function get_game_data($slug)
             $post['meta'][$meta->meta_key] = $meta->meta_value;
         }
 
-        $post['meta']['screen_shots'] = unserialize($post['meta']['screen_shots']);
-        $post['meta']['genres'] = unserialize($post['meta']['genres']);
-        $post['meta']['platforms'] = unserialize($post['meta']['platforms']);
-        $post['meta']['developers'] = unserialize($post['meta']['developers']);
-        $post['meta']['publishers'] = unserialize($post['meta']['publishers']);
+        $post['meta']['screen_shots'] = maybe_unserialize($post['meta']['screen_shots']);
+        $post['meta']['genres'] = maybe_unserialize($post['meta']['genres']);
+        $post['meta']['platforms'] = maybe_unserialize($post['meta']['platforms']);
+        $post['meta']['developers'] = maybe_unserialize($post['meta']['developers']);
+        $post['meta']['publishers'] = maybe_unserialize($post['meta']['publishers']);
 
         $lasso_id = $post['ID'];
         $post_ids = $wpdb->get_col($wpdb->prepare(

@@ -54,11 +54,16 @@ if ($game_data) {
                 </div>
             </div>
             <div class="thumbnail-container">
-                <?php foreach ($screen_shots as $index => $shot) { ?>
-                    <?php if ($index == 0) {
-                        continue;
-                    } ?>
-                    <div class="thumbnail"><img src="<?php echo esc_url($shot); ?>" data-index="<?php echo esc_attr($index); ?>" alt="Thumbnail"></div>
+                <?php if (is_array($screen_shots) and array_key_exists(0, $screen_shots)) { ?>
+                    <div class="thumbnail active"><img src="<?php echo esc_url($screen_shots[0]); ?>" data-index="0" alt="Thumbnail"></div>
+                    <?php foreach ($screen_shots as $index => $shot) { ?>
+                        <?php if ($index == 0) {
+                            continue;
+                        } ?>
+                        <div class="thumbnail"><img src="<?php echo esc_url($shot); ?>" data-index="<?php echo esc_attr($index); ?>" alt="Thumbnail"></div>
+                    <?php } ?>
+                <?php } else { ?>
+                    <div class="thumbnail"><img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/no-image.png'); ?>" alt="No Image"></div>
                 <?php } ?>
             </div>
         </div>

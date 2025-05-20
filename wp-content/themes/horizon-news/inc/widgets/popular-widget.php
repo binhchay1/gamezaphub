@@ -57,7 +57,7 @@ if (! class_exists('Horizon_News_Popular_Widget')) {
                     <?php } ?>
                 </div>
             <?php } ?>
-            <div class="magazine-section-body">
+            <div class="magazine-section-body popular-widget">
                 <div class="magazine-grid-list-section-wrapper">
                     <?php
                     $magazine_grid_list_widgets_args = array(
@@ -80,6 +80,9 @@ if (! class_exists('Horizon_News_Popular_Widget')) {
                             <div class="mag-post-single <?php echo esc_attr($classes); ?>">
                                 <?php if (has_post_thumbnail()) { ?>
                                     <div class="mag-post-img">
+                                        <div class="mag-post-category">
+                                            <?php horizon_news_categories_list(); ?>
+                                        </div>
                                         <?php if ($i === 1) { ?>
                                             <a href="<?php the_permalink(); ?>">
                                                 <?php the_post_thumbnail(); ?>
@@ -101,9 +104,6 @@ if (! class_exists('Horizon_News_Popular_Widget')) {
                                     </div>
                                 <?php } ?>
                                 <div class="mag-post-detail">
-                                    <div class="mag-post-category">
-                                        <?php horizon_news_categories_list(); ?>
-                                    </div>
                                     <h3 class="mag-post-title">
                                         <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                     </h3>
