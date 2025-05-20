@@ -613,3 +613,19 @@ table {
 .mag-post-single .mag-post-img>a img:hover {
   opacity: 0.6;
 }
+
+.ml-5 {
+  margin-left: 3rem;
+}
+
+.store-layout-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px 15px;
+}
+
+.store-layout-box a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

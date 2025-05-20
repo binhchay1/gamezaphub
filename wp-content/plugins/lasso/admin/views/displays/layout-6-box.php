@@ -18,6 +18,8 @@ $isNintendo = false;
 $isPlaystation = false;
 $isXbox = false;
 $isMobile = false;
+$cache_key = 'rawg_stores';
+$dataStores = get_transient($cache_key);
 
 ?>
 
@@ -34,10 +36,12 @@ $isMobile = false;
 
 					<div class="d-flex justify-content-between mt-3">
 						<div class="genre">
-							<?php foreach ($lasso_url->genres as $genre) { ?>
-								<div class="genre-item">
-									<?php echo $genre['name'] ?>
-								</div>
+							<?php if (is_array($lasso_url->genres)) { ?>
+								<?php foreach ($lasso_url->genres as $genre) { ?>
+									<div class="genre-item">
+										<?php echo $genre['name'] ?>
+									</div>
+								<?php } ?>
 							<?php } ?>
 						</div>
 						<div class="systems">
@@ -72,41 +76,8 @@ $isMobile = false;
 			<p class="game-description">
 				<?php echo $lasso_url->description ?>
 			</p>
-			<?php if (is_array($lasso_url->ratings)) { ?>
-				<div class="open-critic">
-					<p><span>Đánh giá cộng động</span></p>
-					<div class="d-flex justify-content-between">
-						<?php if (array_key_exists(0, $lasso_url->ratings) and array_key_exists('percent', $lasso_url->ratings[0])) { ?>
-							<div class="open-critic-item">
-								<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/recommended.png' ?>" alt="Recommended">
-								<span class="text-center text-green"><?php echo $lasso_url->ratings[0]['percent'] ?></span>
-							</div>
-						<?php } ?>
 
-						<?php if (array_key_exists(1, $lasso_url->ratings) and array_key_exists('percent', $lasso_url->ratings[1])) { ?>
-							<div class="open-critic-item">
-								<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/exceptional.png' ?>" alt="Exceptional">
-								<span class="text-center text-yellow"><?php echo $lasso_url->ratings[1]['percent'] ?></span>
-							</div>
-						<?php } ?>
-
-						<?php if (array_key_exists(2, $lasso_url->ratings) and array_key_exists('percent', $lasso_url->ratings[2])) { ?>
-							<div class="open-critic-item">
-								<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/meh.png' ?>" alt="Meh">
-								<span class="text-center text-grey"><?php echo $lasso_url->ratings[2]['percent'] ?></span>
-							</div>
-						<?php } ?>
-
-						<?php if (array_key_exists(3, $lasso_url->ratings) and array_key_exists('percent', $lasso_url->ratings[3])) { ?>
-							<div class="open-critic-item">
-								<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/skip.png' ?>" alt="Skip">
-								<span class="text-center text-red"><?php echo $lasso_url->ratings[3]['percent'] ?></span>
-							</div>
-						<?php } ?>
-					</div>
-				</div>
-			<?php } ?>
-			<div class="d-flex justify-content-between mt-3">
+			<div class="d-flex justify-content-around mt-3">
 				<dl>
 					<div>
 						<dt>
@@ -130,7 +101,7 @@ $isMobile = false;
 					</div>
 				</dl>
 
-				<dl>
+				<dl class="ml-5">
 					<div>
 						<dt>
 							<strong>Nhà phát triển</strong>
@@ -170,17 +141,75 @@ $isMobile = false;
 						</dd>
 					</div>
 				</dl>
+
+				<dl class="ml-5">
+					<div>
+						<dt>
+							<strong>Cửa hàng</strong>
+						</dt>
+						<dd class="store-layout-box">
+							<?php if (is_array($lasso_url->stores) and is_array($dataStores)) {
+								foreach ($lasso_url->stores as $recordStore) {
+									foreach ($dataStores['results'] as $store) {
+										if ($recordStore['store_id'] == $store['id']) { ?>
+											<a href="<?php echo $recordStore['url'] ?>" target="_blank">
+												<img src="<?php echo (get_template_directory_uri() . '/assets/img/icon/' . $store['slug'] . '.png') ?>" alt="<?php echo $store['name'] ?>" class="mr-1" width="50" height="100%">
+											</a>
+										<?php } ?>
+									<?php } ?>
+								<?php } ?>
+							<?php } ?>
+						</dd>
+					</div>
+				</dl>
 			</div>
+
+			<?php if (is_array($lasso_url->ratings)) { ?>
+				<div class="open-critic">
+					<p><span>Đánh giá cộng động</span></p>
+					<div class="d-flex justify-content-between">
+						<?php if (array_key_exists(0, $lasso_url->ratings) and array_key_exists('percent', $lasso_url->ratings[0])) { ?>
+							<div class="open-critic-item">
+								<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/recommended.png' ?>" alt="Recommended">
+								<span class="text-center text-green"><?php echo $lasso_url->ratings[0]['percent'] ?></span>
+							</div>
+						<?php } ?>
+
+						<?php if (array_key_exists(1, $lasso_url->ratings) and array_key_exists('percent', $lasso_url->ratings[1])) { ?>
+							<div class="open-critic-item">
+								<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/exceptional.png' ?>" alt="Exceptional">
+								<span class="text-center text-yellow"><?php echo $lasso_url->ratings[1]['percent'] ?></span>
+							</div>
+						<?php } ?>
+
+						<?php if (array_key_exists(2, $lasso_url->ratings) and array_key_exists('percent', $lasso_url->ratings[2])) { ?>
+							<div class="open-critic-item">
+								<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/meh.png' ?>" alt="Meh">
+								<span class="text-center text-grey"><?php echo $lasso_url->ratings[2]['percent'] ?></span>
+							</div>
+						<?php } ?>
+
+						<?php if (array_key_exists(3, $lasso_url->ratings) and array_key_exists('percent', $lasso_url->ratings[3])) { ?>
+							<div class="open-critic-item">
+								<img class="img-critic" src="<?php echo LASSO_PLUGIN_URL . 'admin/assets/images/icons/skip.png' ?>" alt="Skip">
+								<span class="text-center text-red"><?php echo $lasso_url->ratings[3]['percent'] ?></span>
+							</div>
+						<?php } ?>
+					</div>
+				</div>
+			<?php } ?>
 
 			<div class="footer-box-lasso">
 				<div class="owl-carousel owl-theme">
-					<?php foreach ($lasso_url->screen_shots as $index => $screen_shot) { ?>
-						<?php if ($index == 0) {
-							continue;
-						} ?>
-						<div class="item">
-							<img src="<?php echo $screen_shot ?>" alt="screen shot">
-						</div>
+					<?php if (is_array($lasso_url->screen_shots)) { ?>
+						<?php foreach ($lasso_url->screen_shots as $index => $screen_shot) { ?>
+							<?php if ($index == 0) {
+								continue;
+							} ?>
+							<div class="item">
+								<img src="<?php echo $screen_shot ?>" alt="screen shot">
+							</div>
+						<?php } ?>
 					<?php } ?>
 				</div>
 			</div>

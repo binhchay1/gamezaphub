@@ -106,3 +106,58 @@ function custom_game_page_title($title)
     }
     return $title;
 }
+
+function fetch_and_store_rawg_stores()
+{
+    $apiKey = '79ca0ed080bb4109af9f504fe3bfca5b';
+    $url = "https://api.rawg.io/api/stores?key={$apiKey}";
+
+    $response = wp_remote_get($url);
+    if (is_wp_error($response)) {
+        error_log('Failed to fetch RAWG stores: ' . $response->get_error_message());
+        return;
+    }
+
+    $data = json_decode(wp_remote_retrieve_body($response), true);
+    global $wpdb;
+
+    if (!empty($data['results'])) {
+        foreach ($data['results'] as $store) {
+            $existing = $wpdb->get_row(
+                $wpdb->prepare("SELECT * FROM wp_rawg_stores WHERE id = %d", $store['id']),
+                ARRAY_A
+            );
+
+            $wpdb->replace(
+                'wp_rawg_stores',
+                [
+                    'id'          => $store['id'],
+                    'name'        => $store['name'],
+                    'domain'      => $store['domain'],
+                    'slug'        => $store['slug'],
+                    'games_count' => $store['games_count'],
+                    'updated_at'  => current_time('mysql'),
+                    'image_thumb' => $existing['image_thumb'] ?? null,
+                ],
+                ['%d', '%s', '%s', '%s', '%d', '%s']
+            );
+        }
+    }
+
+    $cache_key = 'rawg_stores';
+
+    set_transient($cache_key, $data, 24 * HOUR_IN_SECONDS);
+}
+
+add_action('switch_theme', function () {
+    $timestamp = wp_next_scheduled('fetch_rawg_stores_daily');
+    if ($timestamp) {
+        wp_unschedule_event($timestamp, 'fetch_rawg_stores_daily');
+    }
+});
+
+if (!wp_next_scheduled('fetch_rawg_stores_daily')) {
+    wp_schedule_event(time(), 'daily', 'fetch_rawg_stores_daily');
+}
+
+add_action('fetch_rawg_stores_daily', 'fetch_and_store_rawg_stores');

@@ -165,6 +165,7 @@ class Lasso_Affiliate_Link
 		$ratings = get_post_meta($post_id, 'ratings', true);
 		$description = get_post_meta($post_id, 'description', true);
 		$publishers = get_post_meta($post_id, 'publishers', true);
+		$stores = get_post_meta($post_id, 'stores', true);
 
 		if ($post_id > 0 && LASSO_POST_TYPE === $post_type && 'publish' === $post_status && $lasso_post) {
 			$lasso_post_details = $lasso_db->get_url_details($post_id);
@@ -222,6 +223,7 @@ class Lasso_Affiliate_Link
 			$ratings = get_post_meta($post_id, 'ratings', true);
 			$description = get_post_meta($post_id, 'description', true);
 			$publishers = get_post_meta($post_id, 'publishers', true);
+			$stores = get_post_meta($post_id, 'stores', true);
 
 			$open_new_tab2 = get_post_meta($post_id, 'open_new_tab2', true);
 			$open_new_tab2 = 1 === intval($open_new_tab2) ? true : false;
@@ -436,6 +438,7 @@ class Lasso_Affiliate_Link
 			'genres'        => $genres,
 			'ratings'        => $ratings,
 			'publishers'        => $publishers,
+			'stores'        => $stores,
 
 			'display'             => (object) array(
 				'theme'                         => $custom_theme,
@@ -628,21 +631,21 @@ class Lasso_Affiliate_Link
 			}
 		}
 
-		$url                                = Lasso_Helper::add_https($url);
-		$url                                = Lasso_Helper::format_url_before_requesting($url);
-		$is_amazon_link                     = Lasso_Amazon_Api::is_amazon_url($url);
+		$url = Lasso_Helper::add_https($url);
+		$url = Lasso_Helper::format_url_before_requesting($url);
+		$is_amazon_link = Lasso_Amazon_Api::is_amazon_url($url);
 		list($get_final_url, $page_title) = Lasso_Helper::get_redirect_final_target($url, true, true);
-		$res['status_code']                 = Lasso_Cache_Per_Process::get_instance()->get_cache(self::ADD_NEW_LINK_RESPONSE_STATUS . md5($url), 200);
-		$url                                = Lasso_Amazon_Api::is_amazon_shortened_url($url) ? $get_final_url : $url; // ? Set url as final url if this is amazon shortlink
-		$title                              = $is_amazon_link ? self::DEFAULT_AMAZON_NAME : self::DEFAULT_TITLE;
-		$default_title                      = $title;
-		$image                              = '';
-		$permalink                          = '';
-		$status                             = 200;
-		$amz_product                        = false;
-		$extend_product                     = false;
+		$res['status_code'] = Lasso_Cache_Per_Process::get_instance()->get_cache(self::ADD_NEW_LINK_RESPONSE_STATUS . md5($url), 200);
+		$url = Lasso_Amazon_Api::is_amazon_shortened_url($url) ? $get_final_url : $url;
+		$title = $is_amazon_link ? self::DEFAULT_AMAZON_NAME : self::DEFAULT_TITLE;
+		$default_title = $title;
+		$image = '';
+		$permalink = '';
+		$status = 200;
+		$amz_product = false;
+		$extend_product = false;
 
-		$url           = Lasso_Amazon_Api::format_amazon_url($url);
+		$url = Lasso_Amazon_Api::format_amazon_url($url);
 		$get_final_url = Lasso_Amazon_Api::format_amazon_url($get_final_url);
 
 		if ($page_title) {
@@ -698,6 +701,25 @@ class Lasso_Affiliate_Link
 
 			$result = $respCheckSearch;
 			$description = array_key_exists('description', $result) ? $this->extract_summary($result['description']) : '';
+			$slug = $result['slug'];
+			$apiUrlStore = "https://api.rawg.io/api/games/{$slug}/stores?key={$apiKey}";
+
+			$response = wp_remote_get($apiUrlStore, [
+				'timeout' => 20,
+				'sslverify' => false,
+			]);
+
+			if (is_wp_error($response)) {
+				$res = ['status_code' => 500, 'message' => $response->get_error_message()];
+				return $is_ajax_request ? wp_send_json_error($res) : $res;
+			}
+
+			$respStore = json_decode(wp_remote_retrieve_body($response), true);
+
+			if (!is_array($respStore)) {
+				$res = ['status_code' => 404, 'message' => 'Game details not found'];
+				return $is_ajax_request ? wp_send_json_error($res) : $res;
+			}
 
 			$data = [
 				'name' => $result['name'] ?? '',
@@ -714,6 +736,7 @@ class Lasso_Affiliate_Link
 				'publishers' => $result['publishers'] ?? [],
 				'genres' => $result['genres'] ?? [],
 				'screen_shots' => array_map(fn($shot) => $shot['image'], $short_screenshots),
+				'stores' => $respStore['results'] ?? [],
 			];
 
 			set_transient($cache_key, $data, 24 * HOUR_IN_SECONDS);
@@ -741,23 +764,19 @@ class Lasso_Affiliate_Link
 			}
 			update_post_meta($lasso_post_id, 'updated_on', date('Y-m-d'));
 
-			if (!wp_next_scheduled('lasso_download_game_images', [$lasso_post_id])) {
-				wp_schedule_single_event(time() + 10, 'lasso_download_game_images', [$lasso_post_id]);
-			}
-
 			if ($is_ajax_request) {
-				$this->check_error_and_response_ajax($lasso_post_id, '', '', $optional_data);
+				$this->check_error_and_response_ajax($lasso_post_id, '', '', $options);
 			} else {
 				return $lasso_post_id;
 			}
 		}
 
-		$url        = Lasso_Amazon_Api::get_amazon_product_url($url, true, false);
+		$url = Lasso_Amazon_Api::get_amazon_product_url($url, true, false);
 		$product_id = Lasso_Amazon_Api::get_product_id_country_by_url($get_final_url);
 
-		$extend_product_url  = Lasso_Extend_Product::url_to_get_product_id($url, $get_final_url);
+		$extend_product_url = Lasso_Extend_Product::url_to_get_product_id($url, $get_final_url);
 		$extend_product_type = Lasso_Extend_Product::get_extend_product_type_from_url($extend_product_url);
-		$extend_product_id   = Lasso_Extend_Product::get_extend_product_id_by_url($extend_product_url);
+		$extend_product_id = Lasso_Extend_Product::get_extend_product_id_by_url($extend_product_url);
 
 		if ($is_amazon_link && $product_id) {
 			$product = $lasso_amazon_api->get_amazon_product_from_db($product_id, $get_final_url);
@@ -765,37 +784,37 @@ class Lasso_Affiliate_Link
 			if ($product) {
 				$lasso_amazon_api->update_amazon_product_in_db(
 					array(
-						'product_id'      => $product['amazon_id'],
-						'title'           => $product['default_product_name'],
-						'price'           => $product['latest_price'],
-						'default_url'     => $product['base_url'],
-						'url'             => $url,
-						'image'           => $product['default_image'],
-						'quantity'        => '0' === $product['out_of_stock'] ? 200 : 0,
-						'is_manual'       => $product['is_manual'],
-						'is_prime'        => $product['is_prime'],
-						'features'        => $product['features'],
-						'currency'        => $product['currency'],
-						'savings_amount'  => $product['savings_amount'],
+						'product_id' => $product['amazon_id'],
+						'title' => $product['default_product_name'],
+						'price' => $product['latest_price'],
+						'default_url' => $product['base_url'],
+						'url' => $url,
+						'image' => $product['default_image'],
+						'quantity' => '0' === $product['out_of_stock'] ? 200 : 0,
+						'is_manual' => $product['is_manual'],
+						'is_prime' => $product['is_prime'],
+						'features' => $product['features'],
+						'currency' => $product['currency'],
+						'savings_amount' => $product['savings_amount'],
 						'savings_percent' => $product['savings_percent'],
-						'savings_basis'   => $product['savings_basis'],
+						'savings_basis' => $product['savings_basis'],
 					)
 				);
 			}
 
 			if (!$product) {
 				$product_info = $lasso_amazon_api->fetch_product_info($product_id, true, false, $get_final_url);
-				$product      = $product_info['product'];
+				$product = $product_info['product'];
 
 				if ('NotFound' === $product_info['error_code']) {
-					$res['status_code']              = 404;
+					$res['status_code'] = 404;
 					$product['default_product_name'] = self::DEFAULT_AMAZON_NAME;
-					$product['default_image']        = LASSO_DEFAULT_THUMBNAIL;
-					$product['monetized_url']        = $url;
+					$product['default_image'] = LASSO_DEFAULT_THUMBNAIL;
+					$product['monetized_url'] = $url;
 				} else {
 					$product['default_product_name'] = $product['title'];
-					$product['default_image']        = $product['image'];
-					$product['monetized_url']        = $product['url'];
+					$product['default_image'] = $product['image'];
+					$product['monetized_url'] = $product['url'];
 				}
 			}
 
@@ -814,10 +833,10 @@ class Lasso_Affiliate_Link
 		} elseif ($default_title === $title || $is_amazon_link) {
 			$res = Lasso_Helper::get_url_status_code($url, true);
 			if (200 === (int) $res['status_code']) {
-				$title  = $res['response']->title ?? $title;
-				$title  = $res['response']->productName ?? $title;
-				$title  = $res['response']->pageTitle ?? $title;
-				$image  = $res['response']->imgUrl ?? $image;
+				$title = $res['response']->title ?? $title;
+				$title = $res['response']->productName ?? $title;
+				$title = $res['response']->pageTitle ?? $title;
+				$image = $res['response']->imgUrl ?? $image;
 				$status = $res['response']->status ?? $status;
 				$url = Lasso_Amazon_Api::get_amazon_product_url($url);
 
@@ -851,19 +870,50 @@ class Lasso_Affiliate_Link
 			}
 		}
 
+		$errors = [];
+		if ($data['background_image']) {
+			$attachment_url = $this->download_image_to_media($data['background_image']);
+			if (is_wp_error($attachment_url)) {
+				$errors[] = 'Background image failed: ' . $attachment_url->get_error_message();
+			} else {
+				$data['background_image'] = $attachment_url;
+				$image = $attachment_url;
+			}
+		}
+
+		if (is_array($data['screen_shots'])) {
+			$updated_screenshots = [];
+			foreach ($data['screen_shots'] as $index => $shot_url) {
+				$attachment_url = $this->download_image_to_media($shot_url);
+				if (is_wp_error($attachment_url)) {
+					$errors[] = "Screenshot #$index failed: " . $attachment_url->get_error_message();
+					continue;
+				}
+				$updated_screenshots[] = $attachment_url;
+			}
+			if (!empty($updated_screenshots)) {
+				$data['screen_shots'] = $updated_screenshots;
+			}
+		}
+
+		if (!empty($errors)) {
+			Lasso_Helper::write_log('Image processing errors: ' . implode('; ', $errors), 'lasso_image_errors');
+			$data['image_errors'] = $errors; // Store errors in $data
+		}
+
 		$affiliate_link = array(
-			'is_amazon'       => $is_amazon_link,
-			'affiliate_name'  => $title,
-			'affiliate_url'   => trim($url),
-			'affiliate_desc'  => '',
-			'permalink'       => strtolower($permalink),
-			'is_opportunity'  => 1,
-			'buy_btn_text'    => '',
+			'is_amazon' => $is_amazon_link,
+			'affiliate_name' => $title,
+			'affiliate_url' => trim($url),
+			'affiliate_desc' => '',
+			'permalink' => strtolower($permalink),
+			'is_opportunity' => 1,
+			'buy_btn_text' => '',
 			'second_btn_text' => '',
-			'price'           => '',
-			'badge_text'      => '',
-			'second_btn_url'  => '',
-			'thumbnail'       => $image,
+			'price' => '',
+			'badge_text' => '',
+			'second_btn_url' => '',
+			'thumbnail' => $image,
 			'show_disclosure' => 0,
 			'link_cloaking' => 0,
 		);
@@ -883,6 +933,10 @@ class Lasso_Affiliate_Link
 
 		$post_id = $this->save_lasso_url($data, $is_ajax_request, $res, $amz_product, $extend_product, $isCrawls);
 
+		if (!empty($errors)) {
+			update_post_meta($post_id, 'image_errors', $errors); // Save errors to post meta
+		}
+
 		if ('' !== $link) {
 			return $post_id;
 		}
@@ -890,12 +944,12 @@ class Lasso_Affiliate_Link
 		wp_send_json_success(
 			array(
 				'success' => true,
-				'url'     => $url,
-				'link'    => $affiliate_link,
-				'title'   => $title,
-				'image'   => $image,
+				'url' => $url,
+				'link' => $affiliate_link,
+				'title' => $title,
+				'image' => $image,
 				'post_id' => $post_id,
-				'status'  => $status,
+				'status' => $status,
 			)
 		);
 	}
@@ -1131,6 +1185,7 @@ class Lasso_Affiliate_Link
 				'ratings' => $post['ratings'],
 				'description' => $post['description'],
 				'publishers' => $post['publishers'],
+				'stores' => $post['stores'],
 
 				'enable_nofollow'        => $post_data['enable_nofollow'] ?? $lasso_url->enable_nofollow,
 				'open_new_tab'           => $post_data['open_new_tab'] ?? $lasso_url->open_new_tab,
@@ -2502,7 +2557,7 @@ class Lasso_Affiliate_Link
 	public function download_image_to_media($image_url)
 	{
 		if (empty($image_url) || !filter_var($image_url, FILTER_VALIDATE_URL)) {
-			return new WP_Error('invalid_url', 'URL không hợp lệ.');
+			return new WP_Error('invalid_url', 'Invalid image URL.');
 		}
 
 		$image_data = wp_remote_get($image_url, [
@@ -2516,12 +2571,17 @@ class Lasso_Affiliate_Link
 
 		$response_code = wp_remote_retrieve_response_code($image_data);
 		if ($response_code != 200) {
-			return new WP_Error('http_error', 'Lỗi HTTP ' . $response_code);
+			return new WP_Error('http_error', 'HTTP Error ' . $response_code);
 		}
 
 		$image_body = wp_remote_retrieve_body($image_data);
 		if (empty($image_body)) {
-			return new WP_Error('empty_body', 'Không thể lấy dữ liệu ảnh.');
+			return new WP_Error('empty_body', 'Unable to retrieve image data.');
+		}
+
+		$max_size = 5 * 1024 * 1024;
+		if (strlen($image_body) > $max_size) {
+			return new WP_Error('file_too_large', 'Image too large, exceeds 5MB.');
 		}
 
 		$filename = sanitize_file_name(pathinfo($image_url, PATHINFO_FILENAME)) . '-' . uniqid() . '.' . pathinfo($image_url, PATHINFO_EXTENSION);
@@ -2530,27 +2590,27 @@ class Lasso_Affiliate_Link
 
 		$result = file_put_contents($file_path, $image_body);
 		if ($result === false) {
-			return new WP_Error('file_error', 'Không thể lưu file ảnh.');
+			return new WP_Error('file_error', 'Unable to save image file.');
 		}
 
 		$file_type = wp_check_filetype($file_path, null);
 		if (empty($file_type['type'])) {
 			@unlink($file_path);
-			return new WP_Error('invalid_filetype', 'Loại file không hợp lệ.');
+			return new WP_Error('invalid_filetype', 'Invalid file type.');
 		}
 
 		$attachment = [
-			'guid'           => $upload_dir['url'] . '/' . $filename,
+			'guid' => $upload_dir['url'] . '/' . $filename,
 			'post_mime_type' => $file_type['type'],
-			'post_title'     => sanitize_file_name(pathinfo($filename, PATHINFO_FILENAME)),
-			'post_content'   => '',
-			'post_status'    => 'inherit',
+			'post_title' => sanitize_file_name(pathinfo($filename, PATHINFO_FILENAME)),
+			'post_content' => '',
+			'post_status' => 'inherit',
 		];
 
 		$attach_id = wp_insert_attachment($attachment, $file_path);
 		if (!$attach_id) {
 			@unlink($file_path);
-			return new WP_Error('attachment_error', 'Không thể thêm ảnh vào media library.');
+			return new WP_Error('attachment_error', 'Unable to add image to media library.');
 		}
 
 		require_once ABSPATH . 'wp-admin/includes/image.php';
@@ -2558,10 +2618,15 @@ class Lasso_Affiliate_Link
 		if (empty($attach_data)) {
 			@unlink($file_path);
 			wp_delete_attachment($attach_id, true);
-			return new WP_Error('metadata_error', 'Không thể tạo metadata cho ảnh.');
+			return new WP_Error('metadata_error', 'Unable to generate image metadata.');
 		}
 
-		wp_update_attachment_metadata($attach_id, $attach_data);
+		$image = wp_get_image_editor($file_path);
+		if (!is_wp_error($image)) {
+			$image->resize(1200, 1200, false);
+			$image->save($file_path);
+			wp_update_attachment_metadata($attach_id, wp_generate_attachment_metadata($attach_id, $file_path));
+		}
 
 		return wp_get_attachment_url($attach_id);
 	}
@@ -2570,24 +2635,60 @@ class Lasso_Affiliate_Link
 	{
 		$background_image = get_post_meta($lasso_post_id, 'background_image', true);
 		$screen_shots = get_post_meta($lasso_post_id, 'screen_shots', true);
+		$errors = [];
 
 		if ($background_image) {
-			$attachment_url = $this->download_image_to_media($background_image);
-			if (!is_wp_error($attachment_url)) {
-				update_post_meta($lasso_post_id, 'background_image', $attachment_url);
-			}
+			as_enqueue_async_action('lasso_download_single_image', [
+				'post_id' => $lasso_post_id,
+				'image_url' => $background_image,
+				'meta_key' => 'background_image',
+			], 'lasso_image_processing');
 		}
 
 		if (is_array($screen_shots)) {
-			$updated_screenshots = [];
-			foreach ($screen_shots as $shot_url) {
-				$attachment_url = $this->download_image_to_media($shot_url);
-				if (!is_wp_error($attachment_url)) {
-					$updated_screenshots[] = $attachment_url;
-				}
+			foreach ($screen_shots as $index => $shot_url) {
+				as_enqueue_async_action('lasso_download_single_image', [
+					'post_id' => $lasso_post_id,
+					'image_url' => $shot_url,
+					'meta_key' => 'screen_shots',
+					'index' => $index,
+				], 'lasso_image_processing');
 			}
-			if (!empty($updated_screenshots)) {
-				update_post_meta($lasso_post_id, 'screen_shots', $updated_screenshots);
+		}
+
+		if (!empty($errors)) {
+			Lasso_Helper::write_log('Image processing errors for post ID ' . $lasso_post_id . ': ' . implode('; ', $errors), 'lasso_image_errors');
+			update_post_meta($lasso_post_id, 'image_errors', $errors);
+		}
+	}
+
+	/**
+	 * Download and process a single image
+	 * @param array $args Arguments containing post_id, image_url, meta_key, and optional index
+	 */
+	public function download_single_image($args)
+	{
+		$post_id = $args['post_id'];
+		$image_url = $args['image_url'];
+		$meta_key = $args['meta_key'];
+		$index = isset($args['index']) ? $args['index'] : null;
+
+		$attachment_url = $this->download_image_to_media($image_url);
+		if (is_wp_error($attachment_url)) {
+			Lasso_Helper::write_log("Failed to download image $image_url for post ID $post_id: " . $attachment_url->get_error_message(), 'lasso_image_errors');
+			$errors = get_post_meta($post_id, 'image_errors', true) ?: [];
+			$errors[] = "Image $image_url failed: " . $attachment_url->get_error_message();
+			update_post_meta($post_id, 'image_errors', $errors);
+			return;
+		}
+
+		if ($meta_key === 'background_image') {
+			update_post_meta($post_id, 'background_image', $attachment_url);
+		} elseif ($meta_key === 'screen_shots' && !is_null($index)) {
+			$screen_shots = get_post_meta($post_id, 'screen_shots', true);
+			if (is_array($screen_shots)) {
+				$screen_shots[$index] = $attachment_url;
+				update_post_meta($post_id, 'screen_shots', $screen_shots);
 			}
 		}
 	}

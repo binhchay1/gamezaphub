@@ -112,6 +112,9 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 		$lasso_post        = Lasso_Post::create_instance($lasso_url->lasso_id, $lasso_url);
 		$description       = $lasso_post->is_show_description() ? $lasso_url->description : '';
 
+		$cache_key = 'rawg_stores';
+		$dataStores = get_transient($cache_key);
+
 		?>
 		<form id="url-details" autocomplete="off">
 			<div class="row mb-5">
@@ -271,6 +274,27 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 
 							<div class="col-lg-6">
 								<div class="form-group mb-4">
+									<label data-tooltip="Store of app">
+										<strong>Stores</strong> <i class="far fa-info-circle light-purple"></i>
+									</label>
+									<div class="form-control tag-container" id="store_input" tabindex="0">
+										<?php if (is_array($lasso_url->stores) and is_array($dataStores)) {
+											foreach ($lasso_url->stores as $recordStore) {
+												foreach ($dataStores['results'] as $store) {
+													if ($recordStore['store_id'] == $store['id']) { ?>
+														<a href="<?php echo $recordStore['url'] ?>" target="_blank">
+															<img src="<?php echo (get_template_directory_uri() . '/assets/img/icon/' . $store['slug'] . '.png') ?>" alt="<?php echo $store['name'] ?>" class="mr-1" width="30" height="100%">
+														</a>
+													<?php } ?>
+												<?php } ?>
+											<?php } ?>
+										<?php } ?>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-6">
+								<div class="form-group mb-4">
 									<label data-tooltip="ESRB rating name of app in store">
 										<strong>ESRB name</strong> <i class="far fa-info-circle light-purple"></i></label>
 									<input type="text" class="form-control" id="esrb_rating_name" value="<?php echo $lasso_url->esrb_rating_name ?>" placeholder="Esrb Rating Name app">
@@ -296,7 +320,7 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 										<strong>Screen shots</strong> <i class="far fa-info-circle light-purple"></i></label>
 									<input type="hidden" id="screen_shots" name="screen_shots" value="<?php echo htmlspecialchars(json_encode($lasso_url->screen_shots)) ?>">
 
-									<?php if (isset($lasso_url->screen_shots)) { ?>
+									<?php if (isset($lasso_url->screen_shots) and is_array($lasso_url->screen_shots)) { ?>
 										<div class="owl-carousel owl-theme">
 											<?php foreach ($lasso_url->screen_shots as $screen_shot) { ?>
 												<div class="item">
