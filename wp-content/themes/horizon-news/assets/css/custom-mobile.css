@@ -35,4 +35,12 @@
     .duration {
         width: inherit;
     }
+
+    #primary .mag-post-single .mag-post-img {
+        width: 45%;
+        height: inherit;
+        overflow: hidden;
+        border-radius: 20px 0 0 20px;
+        flex-shrink: 0;
+    }
 }
