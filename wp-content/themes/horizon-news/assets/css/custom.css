@@ -703,3 +703,8 @@ table {
 .related-posts .row article .post-thumbnail img {
   border-radius: 20px 20px 0 0;
 }
+
+.default-content {
+  font-size: 19px;
+  line-height: 2rem;
+}

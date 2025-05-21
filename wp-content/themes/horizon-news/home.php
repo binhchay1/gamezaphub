@@ -50,8 +50,8 @@ $videos = new WP_Query([
 $total_pages = $custom_query->max_num_pages;
 ?>
 
+<h1 style="display: none;">Gamezaphub - Mang cả thế giới game đến cho anh em</h1>
 <main id="primary" class="site-main">
-
 	<section class="home-video-list">
 		<div class="section-header">
 			<h3 class="section-title"><span>Video mới nhất</span></h3>
