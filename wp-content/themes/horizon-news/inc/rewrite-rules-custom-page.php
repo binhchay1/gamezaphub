@@ -63,3 +63,30 @@ function redirect_missing_trailing_slash()
     }
 }
 add_action('template_redirect', 'redirect_missing_trailing_slash');
+
+function custom_video_rewrite_rule()
+{
+    add_rewrite_rule(
+        '^video/([^/]+)/?$',
+        'index.php?video_slug=$matches[1]',
+        'top'
+    );
+}
+add_action('init', 'custom_video_rewrite_rule');
+
+function custom_video_query_vars($vars)
+{
+    $vars[] = 'video_slug';
+    return $vars;
+}
+add_filter('query_vars', 'custom_video_query_vars');
+
+function custom_video_template($template)
+{
+    $video_slug = get_query_var('video_slug');
+    if ($video_slug) {
+        return get_template_directory() . '/single-video.php';
+    }
+    return $template;
+}
+add_filter('template_include', 'custom_video_template');

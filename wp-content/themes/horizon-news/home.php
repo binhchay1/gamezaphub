@@ -40,9 +40,38 @@ $custom_query = new WP_Query([
 	'post__not_in'   => array_merge($excluded_ids_how_to, $excluded_ids_news),
 ]);
 
+$videos = new WP_Query([
+	'post_type'      => 'attachment',
+	'post_mime_type' => 'video',
+	'post_status'    => 'inherit',
+	'posts_per_page' => 3,
+]);
+
 $total_pages = $custom_query->max_num_pages;
 ?>
+
 <main id="primary" class="site-main">
+
+	<section class="home-video-list">
+		<div class="section-header">
+			<h3 class="section-title"><span>Video mới nhất</span></h3>
+		</div>
+		<div class="video-grid">
+			<?php
+
+			while ($videos->have_posts()) : $videos->the_post();
+				$thumbnail = get_the_post_thumbnail_url(get_the_ID());
+				$post = get_post();
+				$slug = $post->post_name;
+			?>
+				<a href="/video/<?= sanitize_title($slug) ?>" class="video-item">
+					<img src="<?= esc_url($thumbnail); ?>" alt="<?= esc_attr(get_the_title()); ?>" />
+					<span><?= horizon_news_unslugify(get_the_title()); ?></span>
+				</a>
+			<?php endwhile;
+			wp_reset_postdata(); ?>
+		</div>
+	</section>
 
 	<?php
 	if (is_home() && ! is_front_page()) {

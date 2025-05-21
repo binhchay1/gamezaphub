@@ -19,6 +19,8 @@ wp-config.php
 # Uploads
 /wp-content/uploads/
 
+/wp-content/plugins/refresh-info-games/action-scheduler/
+
 # Log files
 *.log
 

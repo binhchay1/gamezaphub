@@ -16,10 +16,8 @@ get_header();
 			the_post();
 			get_template_part( 'template-parts/content', 'single' );
 
-			do_action( 'horizon_news_post_navigation' );
-
 			if ( is_singular( 'post' ) ) {
-				$related_posts_label = get_theme_mod( 'horizon_news_post_related_post_label', __( 'Related Posts', 'horizon-news' ) );
+				$related_posts_label = get_theme_mod( 'horizon_news_post_related_post_label', __( 'Bài viết liên quan', 'horizon-news' ) );
 				$args                = array(
 					'posts_per_page' => 3,
 					'post__not_in'   => array( $post->ID ),

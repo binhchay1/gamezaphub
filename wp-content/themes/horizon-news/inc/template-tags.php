@@ -43,7 +43,12 @@ if (! function_exists('horizon_news_posted_on')) :
 			esc_html($time_display)
 		);
 
-		$posted_on = '<a href="' . esc_url(get_permalink()) . '" rel="bookmark"><i class="far fa-clock"></i> ' . $time_string . '</a>';
+		$video_slug = get_query_var('video_slug');
+		if ($video_slug) {
+			$posted_on = '<a class="tag-a-ref"><i class="far fa-clock"></i> ' . $time_string . '</a>';
+		} else {
+			$posted_on = '<a href="' . esc_url(get_permalink()) . '" rel="bookmark"><i class="far fa-clock"></i> ' . $time_string . '</a>';
+		}
 
 		echo '<span class="post-date">' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
@@ -58,7 +63,13 @@ if (! function_exists('horizon_news_posted_by')) :
 		if (get_theme_mod('horizon_news_post_hide_author', false)) {
 			return;
 		}
-		$byline = '<a class="url fn n" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '"><i class="fas fa-user"></i>' . esc_html(get_the_author()) . '</a>';
+
+		$video_slug = get_query_var('video_slug');
+		if ($video_slug) {
+			$byline = '<a class="fn n tag-a-ref"><i class="fas fa-user"></i>' . esc_html(get_the_author()) . '</a>';
+		} else {
+			$byline = '<a class="url fn n" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '"><i class="fas fa-user"></i>' . esc_html(get_the_author()) . '</a>';
+		}
 
 		echo '<span class="post-author"> ' . $byline . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}

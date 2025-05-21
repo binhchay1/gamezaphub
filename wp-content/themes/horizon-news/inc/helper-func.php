@@ -161,3 +161,10 @@ if (!wp_next_scheduled('fetch_rawg_stores_daily')) {
 }
 
 add_action('fetch_rawg_stores_daily', 'fetch_and_store_rawg_stores');
+
+function horizon_news_unslugify($slug)
+{
+    $words = explode('-', $slug);
+    $words = array_map('ucfirst', $words);
+    return implode(' ', $words);
+}

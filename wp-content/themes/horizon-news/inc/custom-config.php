@@ -28,11 +28,11 @@ add_filter('get_the_archive_title', function ($title) {
     return '<h1 class="page-title">' . $title . '</h1>';
 });
 
-add_filter('jpeg_quality', function ($arg) {
+add_filter('jpeg_quality', function () {
     return 100;
 });
 
-add_filter('wp_editor_set_quality', function ($arg) {
+add_filter('wp_editor_set_quality', function () {
     return 100;
 });
 
@@ -43,3 +43,6 @@ add_filter('get_the_archive_description', function ($description) {
     return '<div class="archive-description">' . $description . '</div>';
 });
 
+add_filter('action_scheduler_queue_runner_concurrent_batches', function () {
+    return 5;
+});
