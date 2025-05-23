@@ -65,7 +65,7 @@ $total_pages = $custom_query->max_num_pages;
 				$slug = $post->post_name;
 			?>
 				<a href="/video/<?= sanitize_title($slug) ?>" class="video-item">
-					<img src="<?= esc_url($thumbnail); ?>" alt="<?= esc_attr(get_the_title()); ?>" />
+					<img src="<?= esc_url($thumbnail); ?>" alt="image thumb video"/>
 					<span><?= horizon_news_unslugify(get_the_title()); ?></span>
 				</a>
 			<?php endwhile;
