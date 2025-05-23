@@ -28,7 +28,7 @@ $excluded_ids_news = get_posts([
 
 $excluded_ids_how_to = get_posts([
 	'posts_per_page' => 4,
-	'category_name'  => 'cach-choi',
+	'category_name'  => 'danh-gia',
 	'fields'         => 'ids',
 	'no_found_rows'  => true,
 ]);

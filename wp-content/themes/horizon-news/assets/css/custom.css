@@ -708,3 +708,13 @@ table {
   font-size: 19px;
   line-height: 2rem;
 }
+
+.wp-block-quote {
+  text-align: center;
+}
+
+.wp-block-quote p {
+  margin: 0 !important;
+  font-style: italic;
+  font-size: 18px;
+}
