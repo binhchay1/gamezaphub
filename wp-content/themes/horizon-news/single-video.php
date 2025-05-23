@@ -25,7 +25,10 @@ if (!$video) {
 $video = $video[0];
 $video_url = wp_get_attachment_url($video->ID);
 $thumbnail_url = get_the_post_thumbnail_url($video->ID, 'large');
-
+$upload_date = $video->post_date;
+$date = new DateTime($upload_date, new DateTimeZone('Asia/Ho_Chi_Minh'));
+$uploadDateIso = $date->format(DateTime::ATOM);
+$description = get_the_excerpt() ?: get_the_content();
 ?>
 
 <main id="primary" class="site-main">
@@ -58,6 +61,18 @@ $thumbnail_url = get_the_post_thumbnail_url($video->ID, 'large');
 if (horizon_news_is_sidebar_enabled()) {
     get_sidebar();
 }
-
+?>
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "<?= esc_js(horizon_news_unslugify($video->post_title)); ?>",
+        "description": "<?= esc_js(wp_strip_all_tags($description)); ?>",
+        "thumbnailUrl": "<?= esc_url($thumbnail_url); ?>",
+        "uploadDate": "<?= esc_js($uploadDateIso); ?>",
+        "embedUrl": "<?= esc_url($video_url); ?>"
+    }
+</script>
+<?php
 get_footer();
 ?>
