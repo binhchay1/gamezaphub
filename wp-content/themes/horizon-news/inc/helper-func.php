@@ -146,7 +146,7 @@ function fetch_and_store_rawg_stores()
 
     $cache_key = 'rawg_stores';
 
-    set_transient($cache_key, $data, 24 * HOUR_IN_SECONDS);
+    set_transient($cache_key, $data, 0);
 }
 
 add_action('switch_theme', function () {
@@ -168,3 +168,5 @@ function horizon_news_unslugify($slug)
     $words = array_map('ucfirst', $words);
     return implode(' ', $words);
 }
+
+do_action('fetch_rawg_stores_daily');
