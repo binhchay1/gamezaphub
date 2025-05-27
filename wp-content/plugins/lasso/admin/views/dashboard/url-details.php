@@ -277,7 +277,7 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 									<label data-tooltip="Store of app">
 										<strong>Stores</strong> <i class="far fa-info-circle light-purple"></i>
 									</label>
-									<div class="form-control tag-container" id="store_input" tabindex="0">
+									<div class="form-control tag-container" id="stores" tabindex="0">
 										<?php if (is_array($lasso_url->stores) and is_array($dataStores)) {
 											foreach ($lasso_url->stores as $recordStore) {
 												foreach ($dataStores['results'] as $store) {
@@ -545,48 +545,42 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 		const container = document.getElementById(input);
 		const tag = document.createElement('span');
 		tag.className = 'tag';
-		tag.style.backgroundColor = '#ff4d4d'; // Màu đỏ giống trong hình
+		tag.style.backgroundColor = '#ff4d4d';
 		tag.style.color = 'white';
 		tag.style.padding = '2px 8px';
 		tag.style.margin = '2px';
 		tag.style.borderRadius = '4px';
 
-		// Nếu key là platforms, lưu toàn bộ dữ liệu vào thuộc tính data
 		if (key === 'platforms') {
-			tag.setAttribute('data-platform', JSON.stringify(text)); // Lưu toàn bộ dữ liệu platform
+			tag.setAttribute('data-platform', JSON.stringify(text));
 			tag.innerHTML = `${text.platform.name} <button class="delete-btn" id="${id}" onclick="deleteTag(this, '${key}')">x</button>`;
 		} else {
 			tag.innerHTML = `${text} <button class="delete-btn" id="${id}" onclick="deleteTag(this, '${key}')">x</button>`;
 		}
 
-		// Thêm thẻ vào trước inputSpan (để đảm bảo inputSpan luôn ở cuối)
 		const inputSpan = container.querySelector('.input-span');
 		container.insertBefore(tag, inputSpan);
 	}
 
-	// Hàm xóa thẻ và cập nhật lại mảng giá trị
 	function deleteTag(button, key) {
 		const tag = button.parentElement;
 		tag.remove();
 		updateHiddenInput(key);
-		// Đảm bảo inputSpan vẫn ở cuối sau khi xóa
 		const container = document.getElementById(`${key}_input`);
 		const inputSpan = container.querySelector('.input-span');
 		container.appendChild(inputSpan);
 	}
 
-	// Hàm cập nhật giá trị của ô input ẩn
 	function updateHiddenInput(key) {
 		const container = document.getElementById(`${key}_input`);
 		const tags = container.getElementsByClassName('tag');
 		const values = [];
 		for (let tag of tags) {
 			if (key === 'platforms') {
-				// Nếu là platforms, lấy dữ liệu từ thuộc tính data-platform
 				const platformData = JSON.parse(tag.getAttribute('data-platform'));
 				values.push(platformData);
 			} else {
-				const text = tag.childNodes[0].textContent.trim(); // Lấy text của thẻ
+				const text = tag.childNodes[0].textContent.trim();
 				values.push({
 					name: text
 				});
@@ -595,20 +589,16 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 		document.getElementById(key).value = JSON.stringify(values);
 	}
 
-	// Hàm khởi tạo cho input
 	function initializeTagInput(key, data) {
-		// Hiển thị các thẻ ban đầu từ dữ liệu PHP
 		if (Array.isArray(data)) {
 			data.forEach((item, index) => {
 				if (item) {
 					const id = `${key}_${index}`;
 					if (key === 'platforms') {
-						// Nếu là platforms, truyền toàn bộ object
 						if (item.platform && item.platform.name) {
 							addTag(item, `${key}_input`, id, key);
 						}
 					} else {
-						// Các input khác (như developers)
 						if (item.name) {
 							addTag(item.name, `${key}_input`, id, key);
 						}
@@ -617,35 +607,29 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 			});
 		}
 
-		// Xử lý nhập liệu trong container
 		const container = document.getElementById(`${key}_input`);
-
-		// Tạo một span ẩn để nhập liệu
 		const inputSpan = document.createElement('span');
 		inputSpan.className = 'input-span';
 		inputSpan.contentEditable = true;
 		inputSpan.style.outline = 'none';
 		inputSpan.style.display = 'inline-block';
-		inputSpan.style.minWidth = '10px'; // Đảm bảo có không gian để nhập
+		inputSpan.style.minWidth = '10px';
 		container.appendChild(inputSpan);
 
-		// Khi container được focus, focus vào inputSpan
 		container.addEventListener('click', function() {
 			inputSpan.focus();
 		});
 
-		// Xử lý sự kiện nhấn Enter trong inputSpan
 		inputSpan.addEventListener('keypress', function(e) {
 			if (e.key === 'Enter') {
-				e.preventDefault(); // Ngăn xuống dòng
+				e.preventDefault();
 				const text = inputSpan.innerText.trim();
 				if (text !== '') {
-					const id = `${key}_` + Date.now(); // Tạo ID duy nhất cho thẻ
+					const id = `${key}_` + Date.now();
 					if (key === 'platforms') {
-						// Nếu là platforms, tạo một object platform mặc định
 						const platformData = {
 							platform: {
-								id: Date.now(), // ID tạm thời, có thể cần API để lấy ID thật
+								id: Date.now(),
 								name: text,
 								slug: text.toLowerCase(),
 								image: null,
@@ -654,16 +638,16 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 								games_count: 0,
 								image_background: ''
 							},
-							released_at: '2023-09-27', // Giá trị mặc định, có thể cần người dùng nhập
+							released_at: '2023-09-27',
 							requirements: {}
 						};
 						addTag(platformData, `${key}_input`, id, key);
 					} else {
 						addTag(text, `${key}_input`, id, key);
 					}
-					inputSpan.innerText = ''; // Xóa nội dung sau khi thêm thẻ
-					updateHiddenInput(key); // Cập nhật giá trị ô input ẩn
-					inputSpan.focus(); // Đưa con trỏ trở lại inputSpan
+					inputSpan.innerText = '';
+					updateHiddenInput(key);
+					inputSpan.focus();
 				}
 			}
 		});
@@ -1496,6 +1480,7 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 			var screen_shots = JSON.parse(jQuery("#screen_shots").val());
 			var ratings = JSON.parse(jQuery("#ratings").val());
 			var publishers = JSON.parse(jQuery("#publishers").val());
+			var stores = JSON.parse(jQuery("#stores").val())
 
 			var affiliate_desc = quill.root.innerHTML;
 			affiliate_desc = affiliate_desc == '<p><br></p>' ? '' : affiliate_desc;
@@ -1556,6 +1541,7 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 				ratings: ratings,
 				background_image: background_image,
 				publishers: publishers,
+				stores: stores,
 				action: action,
 				post_id: lasso_id,
 				settings: settings,
