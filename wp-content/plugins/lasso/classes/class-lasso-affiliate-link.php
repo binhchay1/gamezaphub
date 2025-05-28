@@ -661,7 +661,10 @@ class Lasso_Affiliate_Link
 
 		if (false === $data) {
 			$apiUrlGet = "https://api.rawg.io/api/games?key={$apiKey}&search={$searchString}";
-			$response = wp_remote_get($apiUrlGet);
+			$response = wp_remote_get($apiUrlGet, [
+				'timeout' => 20,
+				'sslverify' => false,
+			]);
 
 			if (is_wp_error($response)) {
 				$res = ['status_code' => 500, 'message' => $response->get_error_message()];
@@ -679,7 +682,10 @@ class Lasso_Affiliate_Link
 			$short_screenshots = $resultGet['short_screenshots'] ?? [];
 
 			$apiUrlCheckSearch = "https://api.rawg.io/api/games/{$id}?key={$apiKey}";
-			$response = wp_remote_get($apiUrlCheckSearch);
+			$response = wp_remote_get($apiUrlCheckSearch, [
+				'timeout' => 20,
+				'sslverify' => false,
+			]);
 
 			if (is_wp_error($response)) {
 				$res = ['status_code' => 500, 'message' => $response->get_error_message()];
@@ -698,7 +704,10 @@ class Lasso_Affiliate_Link
 			$slug = $result['slug'];
 			$apiUrlStore = "https://api.rawg.io/api/games/{$slug}/stores?key={$apiKey}";
 
-			$response = wp_remote_get($apiUrlStore);
+			$response = wp_remote_get($apiUrlStore, [
+				'timeout' => 20,
+				'sslverify' => false,
+			]);
 
 			if (is_wp_error($response)) {
 				$res = ['status_code' => 500, 'message' => $response->get_error_message()];
