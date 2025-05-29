@@ -277,7 +277,8 @@ require LASSO_PLUGIN_PATH . '/admin/views/header-new.php';
 									<label data-tooltip="Store of app">
 										<strong>Stores</strong> <i class="far fa-info-circle light-purple"></i>
 									</label>
-									<div class="form-control tag-container" id="stores" tabindex="0">
+									<div class="form-control tag-container">
+										<input type="hidden" id="stores" name="stores" value="<?php echo htmlspecialchars(json_encode($lasso_url->stores)); ?>">
 										<?php if (is_array($lasso_url->stores) and is_array($dataStores)) {
 											foreach ($lasso_url->stores as $recordStore) {
 												foreach ($dataStores['results'] as $store) {
