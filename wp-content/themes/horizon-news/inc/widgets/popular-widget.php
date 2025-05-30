@@ -84,9 +84,21 @@ if (! class_exists('Horizon_News_Popular_Widget')) {
                                             <?php horizon_news_categories_list(); ?>
                                         </div>
                                         <?php if ($i === 1) { ?>
-                                            <a href="<?php the_permalink(); ?>">
-                                                <?php the_post_thumbnail(); ?>
-                                            </a>
+                                            <?php
+                                            $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+                                            $image_id = get_post_thumbnail_id();
+                                            $image_meta = wp_get_attachment_metadata($image_id);
+                                            $width = $image_meta['width'];
+                                            $height = $image_meta['height'];
+                                            if ($thumb_url): ?>
+                                                <a href="<?php the_permalink(); ?>">
+                                                    <img
+                                                        src="<?php echo esc_url($thumb_url); ?>"
+                                                        alt="<?php the_title_attribute(); ?>"
+                                                        width="<?php echo $width ?>" height="<?php echo $height ?>"
+                                                        fetchpriority="high" class="image-detail-not-lazy" />
+                                                </a>
+                                            <?php endif; ?>
                                         <?php } else { ?>
                                             <?php
                                             $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
