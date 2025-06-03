@@ -302,19 +302,9 @@ require get_template_directory() . '/inc/rewrite-rules-custom-page.php';
 require get_template_directory() . '/inc/add-owl-carousel.php';
 
 /**
- * Handle user authentication
- */
-require get_template_directory() . '/inc/auth-handle.php';
-
-/**
  * Handle create db
  */
 require get_template_directory() . '/inc/db-handle.php';
-
-/**
- * Handle send mail
- */
-require get_template_directory() . '/inc/mail-handle.php';
 
 /**
  * Custom for block in post

@@ -1,13 +1,6 @@
 <?php
 
 add_action('init', function () {
-    if (is_ssl()) {
-        add_filter('secure_auth_cookie', '__return_true');
-        add_filter('secure_signed_cookie', '__return_true');
-    }
-});
-
-add_action('init', function () {
     if (!defined('COOKIE_DOMAIN')) {
         define('COOKIE_DOMAIN', '.gamezpub.com');
     }
@@ -46,3 +39,12 @@ add_filter('get_the_archive_description', function ($description) {
 add_filter('action_scheduler_queue_runner_concurrent_batches', function () {
     return 5;
 });
+
+add_filter('wp_get_attachment_image_attributes', function ($attributes) {
+    if (isset($attributes['fetchpriority']) && $attributes['fetchpriority'] === 'high') {
+        $attributes['data-od-protected'] = 'true';
+    }
+    return $attributes;
+});
+
+remove_action('template_redirect', 'redirect_canonical');
