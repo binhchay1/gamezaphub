@@ -717,3 +717,8 @@ table {
   font-style: italic;
   font-size: 18px;
 }
+
+.post-meta-in-widget {
+  font-size: 15px;
+  line-height: 2.5;
+}

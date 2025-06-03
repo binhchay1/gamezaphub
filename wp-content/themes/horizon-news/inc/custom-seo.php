@@ -37,7 +37,7 @@ add_action('wp_head', function () {
             <meta name="twitter:label1" content="Written by">
             <meta name="twitter:data1" content="Bình Nguyễn">
             <meta name="twitter:label2" content="Time to read">
-            <meta name="twitter:data2" content="6 minutes">
+            <meta name="twitter:data2" content="1 minutes">
             <link rel="canonical" href="<?php echo $canonical_url; ?>">
             <link rel="dns-prefetch" href="//cdnis.cloudflare.com">
             <link rel="dns-prefetch" href="//www.googletagmanager.com">

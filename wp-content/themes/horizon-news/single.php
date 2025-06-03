@@ -52,7 +52,7 @@ get_header();
 													<?php horizon_news_categories_list(); ?>
 												</div>
 												<?php the_title( '<h3 class="entry-title mag-post-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h5>' ); ?>
-												<div class="mag-post-meta">
+												<div class="mag-post-meta post-meta-in-widget">
 													<?php
 													horizon_news_posted_by();
 													horizon_news_posted_on();

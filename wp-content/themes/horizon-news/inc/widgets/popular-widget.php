@@ -108,7 +108,6 @@ if (! class_exists('Horizon_News_Popular_Widget')) {
                                                         src="<?php echo esc_url($thumb_url); ?>"
                                                         alt="<?php the_title_attribute(); ?>"
                                                         width="800" height="450"
-                                                        fetchpriority="high"
                                                         decoding="async" />
                                                 </a>
                                             <?php endif; ?>
@@ -119,7 +118,7 @@ if (! class_exists('Horizon_News_Popular_Widget')) {
                                     <h3 class="mag-post-title">
                                         <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                     </h3>
-                                    <div class="mag-post-meta">
+                                    <div class="mag-post-meta post-meta-in-widget">
                                         <?php
                                         horizon_news_posted_by();
                                         horizon_news_posted_on();
