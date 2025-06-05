@@ -4,7 +4,7 @@ function custom_table_block_styles()
 {
     wp_enqueue_style('custom-table-styles', get_template_directory_uri() . '/assets/css/custom-table.css', array(), '1.0');
 }
-add_action('enqueue_block_assets', 'custom_table_block_styles');
+add_action('wp_enqueue_scripts', 'custom_table_block_styles');
 
 function custom_table_block_render($block_content, $block)
 {
@@ -20,12 +20,6 @@ function custom_table_block_render($block_content, $block)
     return $block_content;
 }
 add_filter('render_block', 'custom_table_block_render', 10, 2);
-
-function custom_gallery_block_scripts()
-{
-    wp_enqueue_script('custom-gallery-block', get_template_directory_uri() . '/assets/js/custom-gallery.js', array(), '1.0', true);
-}
-add_action('enqueue_block_editor_assets', 'custom_gallery_block_scripts');
 
 function custom_gallery_frontend_scripts()
 {
@@ -76,29 +70,6 @@ add_filter('render_block', function ($block_content, $block) {
     return ob_get_clean();
 }, 10, 2);
 
-function replace_twitter_iframe_with_embed($content)
-{
-    $pattern = '/<iframe.*?src=["\']https?:\/\/(www\.)?twitter\.com\/(.*?)["\'].*?<\/iframe>/i';
-    return preg_replace_callback($pattern, function ($matches) {
-        $tweetUrl = "https://twitter.com/" . $matches[2];
-        return '<blockquote class="twitter-tweet"><a href="' . esc_url($tweetUrl) . '"></a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>';
-    }, $content);
-}
-
-add_filter('the_content', 'replace_twitter_iframe_with_embed');
-
-function custom_blockquote_styles()
-{
-    wp_enqueue_style(
-        'custom-blockquote-style',
-        get_template_directory_uri() . '/assets/css/custom-blockquote.css',
-        array(),
-        '1.0.2',
-        'all'
-    );
-}
-add_action('wp_enqueue_scripts', 'custom_blockquote_styles');
-
 function custom_render_block_quote($block_content, $block)
 {
     if ($block['blockName'] !== 'core/quote') {
@@ -106,8 +77,6 @@ function custom_render_block_quote($block_content, $block)
     }
 
     $block_content = str_replace('wp-block-quote', 'wp-block-quote custom-blockquote-tip', $block_content);
-    $tip_header = '<div class="tip-header">Mẹo</div>';
-    $block_content = $tip_header . $block_content;
 
     return $block_content;
 }

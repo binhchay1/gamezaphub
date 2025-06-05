@@ -47,3 +47,19 @@ function flush_rewrite_rules_on_activation()
     flush_rewrite_rules();
 }
 register_activation_hook(__FILE__, 'flush_rewrite_rules_on_activation');
+
+function redirect_to_trailing_slash()
+{
+    if (is_admin() || strpos($_SERVER['REQUEST_URI'], '/wp-json/') === 0) {
+        return;
+    }
+
+    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+    if (!empty($uri) && substr($uri, -1) !== '/' && !preg_match('/\.(php|html|jpg|png|gif|css|js|ico|woff|woff2|ttf)$/i', $uri)) {
+        $redirect_url = trailingslashit($uri) . (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : '');
+        wp_redirect($redirect_url, 301);
+        exit;
+    }
+}
+add_action('template_redirect', 'redirect_to_trailing_slash');

@@ -60,11 +60,9 @@ add_action('wp_head', function () {
         $slug = get_query_var('game_slug');
         $game_data = get_game_data($slug);
         if ($game_data) {
-            $post = $game_data;
-            $game_title = esc_attr($post['post_title']);
-            $game_image = !empty($post['meta']['background_image']) ? esc_url($post['meta']['background_image']) : esc_url(get_template_directory_uri() . '/assets/img/no-image.png');
-            $date_published = mysql2date('Y-m-d', $post['meta']['updated_on']);
-
+            $game_title = esc_attr($game_data['post_title']);
+            $game_image = !empty($game_data['meta']['background_image']) ? esc_url($game_data['meta']['background_image']) : esc_url(get_template_directory_uri() . '/assets/img/no-image.png');
+            $date_published = mysql2date('Y-m-d', $game_data['meta']['updated_on']);
         }
         ?>
         <script type="application/ld+json">

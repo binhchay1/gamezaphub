@@ -722,3 +722,24 @@ table {
   font-size: 15px;
   line-height: 2.5;
 }
+
+.custom-blockquote-tip {
+    border-top: 2px solid #d3d3d3;
+    border-bottom: 2px solid #d3d3d3;
+    padding: 10px 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+.custom-blockquote-tip p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    padding: 0 20px;
+    margin: 0;
+}
+
+.twitter-tweet {
+	margin: auto !important;
+}
