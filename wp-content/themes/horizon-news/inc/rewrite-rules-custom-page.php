@@ -3,8 +3,14 @@
 function add_custom_rewrite_rules()
 {
     add_rewrite_rule(
-        '^games/([^/]+)/$',
-        'index.php?custom_games=1&game_slug=$matches[1]',
+        '^games/([^/]+)/?$',
+        'index.php?game_slug=$matches[1]',
+        'top'
+    );
+
+    add_rewrite_rule(
+        '^video/([^/]+)/?$',
+        'index.php?video_slug=$matches[1]',
         'top'
     );
 }
@@ -12,12 +18,28 @@ add_action('init', 'add_custom_rewrite_rules');
 
 function add_custom_query_vars($vars)
 {
-    $vars[] = 'custom_games';
     $vars[] = 'game_slug';
-
+    $vars[] = 'video_slug';
     return $vars;
 }
 add_filter('query_vars', 'add_custom_query_vars');
+
+function custom_template($template)
+{
+    $video_slug = get_query_var('video_slug');
+    $game_slug = get_query_var('game_slug');
+
+    if ($video_slug) {
+        return get_template_directory() . '/single-video.php';
+    }
+
+    if ($game_slug) {
+        return get_template_directory() . '/single-games.php';
+    }
+
+    return $template;
+}
+add_filter('template_include', 'custom_template');
 
 function flush_rewrite_rules_on_activation()
 {
@@ -25,68 +47,3 @@ function flush_rewrite_rules_on_activation()
     flush_rewrite_rules();
 }
 register_activation_hook(__FILE__, 'flush_rewrite_rules_on_activation');
-
-function custom_games_template($template)
-{
-    if (get_query_var('custom_games') == 1) {
-        $new_template = locate_template(array('single-games.php'));
-        if (!empty($new_template)) {
-            return $new_template;
-        }
-    }
-
-    return $template;
-}
-add_filter('template_include', 'custom_games_template');
-
-function adjust_main_query($query)
-{
-    if ($query->is_main_query() && !is_admin()) {
-        if (get_query_var('custom_games') == 1) {
-            $query->is_front_page = false;
-            $query->is_singular = true;
-            $query->is_page = false;
-            $query->is_home = false;
-        }
-    }
-}
-add_action('pre_get_posts', 'adjust_main_query');
-
-function redirect_missing_trailing_slash()
-{
-    if (get_query_var('custom_games') == 1) {
-        $request_uri = $_SERVER['REQUEST_URI'];
-        if (substr($request_uri, -1) !== '/') {
-            wp_redirect(home_url($request_uri . '/'), 301);
-            exit;
-        }
-    }
-}
-add_action('template_redirect', 'redirect_missing_trailing_slash');
-
-function custom_video_rewrite_rule()
-{
-    add_rewrite_rule(
-        '^video/([^/]+)/?$',
-        'index.php?video_slug=$matches[1]',
-        'top'
-    );
-}
-add_action('init', 'custom_video_rewrite_rule');
-
-function custom_video_query_vars($vars)
-{
-    $vars[] = 'video_slug';
-    return $vars;
-}
-add_filter('query_vars', 'custom_video_query_vars');
-
-function custom_video_template($template)
-{
-    $video_slug = get_query_var('video_slug');
-    if ($video_slug) {
-        return get_template_directory() . '/single-video.php';
-    }
-    return $template;
-}
-add_filter('template_include', 'custom_video_template');

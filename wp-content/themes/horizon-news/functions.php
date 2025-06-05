@@ -302,11 +302,6 @@ require get_template_directory() . '/inc/rewrite-rules-custom-page.php';
 require get_template_directory() . '/inc/add-owl-carousel.php';
 
 /**
- * Handle create db
- */
-require get_template_directory() . '/inc/db-handle.php';
-
-/**
  * Custom for block in post
  */
 require get_template_directory() . '/inc/custom-block.php';

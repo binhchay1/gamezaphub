@@ -10,7 +10,6 @@ add_action('wp_head', function () {
             $game_description = !empty($post['meta']['affiliate_desc']) ? esc_attr(wp_strip_all_tags($post['meta']['affiliate_desc'])) : 'Check out ' . $game_title . ' on Game Zap Hub!';
             $game_image = !empty($post['meta']['background_image']) ? esc_url($post['meta']['background_image']) : esc_url(get_template_directory_uri() . '/assets/img/no-image.png');
             $canonical_url = esc_url('https://gamezaphub.com/games/' . $slug . '/');
-            $current_time = current_time('c');
 ?>
             <title><?php echo $game_title; ?> - Game Zap Hub</title>
             <meta name="description" content="<?php echo $game_description; ?>">
@@ -26,10 +25,10 @@ add_action('wp_head', function () {
             <meta property="og:image:type" content="image/jpeg">
             <meta property="og:type" content="website">
             <meta property="og:site_name" content="GameZapHub">
-            <meta property="og:updated_time" content="<?php echo $current_time; ?>">
+            <meta property="og:updated_time" content="<?php echo $post['meta']['updated_on']; ?>">
             <meta property="article:section" content="Games">
-            <meta property="article:published_time" content="<?php echo $current_time; ?>">
-            <meta property="article:modified_time" content="<?php echo $current_time; ?>">
+            <meta property="article:published_time" content="<?php echo $post['meta']['updated_on']; ?>">
+            <meta property="article:modified_time" content="<?php echo $post['meta']['updated_on']; ?>">
             <meta name="twitter:title" content="<?php echo $game_title; ?> - Game Zap Hub">
             <meta name="twitter:description" content="<?php echo $game_description; ?>">
             <meta name="twitter:image" content="<?php echo $game_image; ?>">
@@ -58,14 +57,21 @@ add_action('init', 'rankmath_disable_features', 1);
 
 add_action('wp_head', function () {
     if (preg_match('/\/games\/[^\/]+/', $_SERVER['REQUEST_URI'])) {
-        $title = get_the_title();
-        $slug = basename($_SERVER['REQUEST_URI']);
+        $slug = get_query_var('game_slug');
+        $game_data = get_game_data($slug);
+        if ($game_data) {
+            $post = $game_data;
+            $game_title = esc_attr($post['post_title']);
+            $game_image = !empty($post['meta']['background_image']) ? esc_url($post['meta']['background_image']) : esc_url(get_template_directory_uri() . '/assets/img/no-image.png');
+            $date_published = mysql2date('Y-m-d', $post['meta']['updated_on']);
+
+        }
         ?>
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
                 "@type": "Article",
-                "headline": "<?php echo esc_js($title); ?>",
+                "headline": "<?php echo esc_js($game_title); ?>",
                 "mainEntityOfPage": {
                     "@type": "WebPage",
                     "@id": "<?php echo esc_url(home_url($_SERVER['REQUEST_URI'])); ?>"
@@ -79,10 +85,10 @@ add_action('wp_head', function () {
                     "name": "Gamezaphub",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "<?php echo esc_url(get_theme_mod('custom_logo')); ?>"
+                        "url": "<?php echo esc_url($game_image); ?>"
                     }
                 },
-                "datePublished": "2025-04-21"
+                "datePublished": "<?php echo esc_js($date_published); ?>",
             }
         </script>
 <?php
@@ -99,12 +105,3 @@ add_action('template_redirect', function () {
         wp_die('Invalid media file request', 'Error 404', ['response' => 404]);
     }
 });
-
-add_filter('rank_math/json_ld', function ($data, $jsonld) {
-    foreach ($data as &$schema) {
-        if (isset($schema['@type']) && in_array($schema['@type'], ['Article', 'WebPage', 'NewsArticle'])) {
-            $schema['inLanguage'] = 'vi';
-        }
-    }
-    return $data;
-}, 99, 2);

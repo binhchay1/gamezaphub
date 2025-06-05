@@ -97,7 +97,8 @@ add_action('save_post', function ($post_id) {
 add_filter('pre_get_document_title', 'custom_game_page_title', 10, 1);
 function custom_game_page_title($title)
 {
-    if (get_query_var('custom_games') == 1) {
+    $game_slug = get_query_var('game_slug');
+    if ($game_slug) {
         $game_data = get_game_data(get_query_var('game_slug'));
         if ($game_data) {
             $new_title = esc_html($game_data['post_title']);
