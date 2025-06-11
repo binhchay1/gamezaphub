@@ -23,6 +23,9 @@ if ($game_data) {
     $publishers = $post['meta']['publishers'];
     $lasso_id = $post['ID'];
     $related_query = $post['related_posts'];
+    $game_title = esc_attr($post['post_title']);
+    $game_image = !empty($post['meta']['background_image']) ? esc_url($post['meta']['background_image']) : esc_url(get_template_directory_uri() . '/assets/img/no-image.png');
+    $date_published = mysql2date('Y-m-d', $post['meta']['updated_on']);
 } else {
     get_template_part('template-parts/content', 'none');
     get_footer();
@@ -207,4 +210,34 @@ if ($game_data) {
 if (horizon_news_is_sidebar_enabled()) {
     get_sidebar();
 }
+
+?>
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "<?php echo esc_js($game_title); ?>",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "<?php echo esc_url(home_url($_SERVER['REQUEST_URI'])); ?>"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Gamezaphub"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Gamezaphub",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "<?php echo esc_url($game_image); ?>"
+            }
+        },
+        "datePublished": "<?php echo esc_js($date_published); ?>",
+    }
+</script>
+
+<?php
+
 get_footer();
