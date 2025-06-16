@@ -41,7 +41,7 @@ add_action('wp_head', function () {
             <link rel="dns-prefetch" href="//cdnis.cloudflare.com">
             <link rel="dns-prefetch" href="//www.googletagmanager.com">
             <link rel="alternate" type="application/rss+xml" title="Game Zap Hub × Feed" href="https://gamezaphub.com/games/<?php echo esc_attr($slug) ?>/feed/">
-            <link rel="alternate" type="application/rss+xml" title="Game Zap Hub × Comments Feed" href="https://gamezaphub.com/games/<?php echo esc_attr($slug) ?>/feed/">`;
+            <link rel="alternate" type="application/rss+xml" title="Game Zap Hub × Comments Feed" href="https://gamezaphub.com/games/<?php echo esc_attr($slug) ?>/feed/">
         <?php        }
     }
 
