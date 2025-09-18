@@ -4,7 +4,7 @@ Contributors:      google
 Requires at least: 5.2
 Tested up to:      6.8
 Requires PHP:      7.4
-Stable tag:        1.152.1
+Stable tag:        1.161.0
 License:           Apache License 2.0
 License URI:       https://www.apache.org/licenses/LICENSE-2.0
 Tags:              google, search-console, analytics, adsense, pagespeed-insights
@@ -109,35 +109,28 @@ Please create a new topic on our [WordPress.org support forum](https://wordpress
 
 == Changelog ==
 
-= 1.152.1 =
-
-**Fixed**
-
-* Published a new plugin version after issues with WordPress.org plugin updates not appearing for users.
-
-= 1.152.0 =
+= 1.161.0 =
 
 **Enhanced**
 
-* Update the setup success notification copy to consistently refer to "visitor groups" instead of "audiences" in Audience Segmentation settings. See [#10554](https://github.com/google/site-kit-wp/issues/10554).
-* Improve the naming of the available audience selectors. See [#10449](https://github.com/google/site-kit-wp/issues/10449).
-* Add new components for notices. See [#10429](https://github.com/google/site-kit-wp/issues/10429).
-* Refactor `DashboardPageSpeed` component to reduce cyclomatic complexity and remove the ESLint override. See [#10362](https://github.com/google/site-kit-wp/issues/10362).
-* Refactor the `Footer` component in `SettingsActiveModule` to reduce cyclomatic complexity and remove the ESLint override. See [#10353](https://github.com/google/site-kit-wp/issues/10353).
-* Remove the ESLint complexity override from the dashboard sharing settings' `Module` component. See [#10350](https://github.com/google/site-kit-wp/issues/10350).
-* Fix minor visual issues when the Dashbaord Sharing modal is being closed. See [#9138](https://github.com/google/site-kit-wp/issues/9138).
-* Fix bug that could cause an erroneous module link to appear when a module isn't connected. See [#7698](https://github.com/google/site-kit-wp/issues/7698).
+* Add GTG key metrics tracking. See [#11412](https://github.com/google/site-kit-wp/issues/11412).
+* Update Partner Ads Experience to `1.1.10` and add `'site-kit'` identifier. See [#11399](https://github.com/google/site-kit-wp/issues/11399).
+* Add logo and GA events tracking to the AdSense server notifications. See [#11214](https://github.com/google/site-kit-wp/issues/11214).
+* Add integration for WooCommerce with Enhanced Conversions. See [#11006](https://github.com/google/site-kit-wp/issues/11006).
+* Update background colors of various UI elements to use a consistent, lighter gray. Props 10upsimon. See [#5579](https://github.com/google/site-kit-wp/issues/5579).
 
 **Changed**
 
-* Remove GM3 assets from the codebase. See [#10604](https://github.com/google/site-kit-wp/issues/10604).
+* Remove support for Analytics Pivot reports. Props 10upsimon. See [#10298](https://github.com/google/site-kit-wp/issues/10298).
 
 **Fixed**
 
-* Fix the `&amp;` occurrences issue in KMW widgets. See [#10622](https://github.com/google/site-kit-wp/issues/10622).
-* Fix bug that can occur when AAA Option Optimizer plugin is installed. Props tacoverdo. See [#10573](https://github.com/google/site-kit-wp/issues/10573).
-* Restore loading state for Google tag mismatch notification when actioning. See [#10489](https://github.com/google/site-kit-wp/issues/10489).
-* Fix glitches when closing various modal dialogs. See [#9137](https://github.com/google/site-kit-wp/issues/9137).
-* Update the Ad Blocking Recovery notification to remain visible after clicking on the CTA button. See [#7908](https://github.com/google/site-kit-wp/issues/7908).
+* Update the Google tag gateway for advertisers `measurement.php` proxy script to the latest version. See [#11389](https://github.com/google/site-kit-wp/issues/11389).
+* Update notification priorities to have more important permission-related notifications have higher priority. See [#11206](https://github.com/google/site-kit-wp/issues/11206).
+* Fix color issues for hX tags created by the `Typography` component. See [#11159](https://github.com/google/site-kit-wp/issues/11159).
+* Fix bug that caused the "Grant permission" button not to appear during failed plugin setup. See [#11063](https://github.com/google/site-kit-wp/issues/11063).
+* Fix a regression that caused the font size of the admin bar data block to appear too small. Props sudhanshugaikwad. See [#11041](https://github.com/google/site-kit-wp/issues/11041).
+* Fix bug that could cause odd error state when answering Key Metrics question about site goals. See [#10645](https://github.com/google/site-kit-wp/issues/10645).
+* Improve/consolidate permissions errors UI when setting up Site Kit. See [#10118](https://github.com/google/site-kit-wp/issues/10118).
 
 [See changelog for all versions](https://raw.githubusercontent.com/google/site-kit-wp/main/changelog.txt).

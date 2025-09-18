@@ -1,0 +1,228 @@
+3.0.7 (Dec 15, 2020)
+-----------------------------
+- Fix updates not showing on some occasions until Check Again button is clicked
+
+
+3.0.6 (Nov 28, 2020)
+-----------------------------
+- Fix conflict with Rank Math plugin
+
+
+3.0.5 (Sep 24, 2020)
+-----------------------------
+- Fixed error: call to undefined method
+
+
+3.0.4 (Aug 25, 2020)
+-----------------------------
+- Fixed notice appearance in WP 5.5
+- Fixed connect issues
+
+
+3.0.3 (Apr 14, 2020)
+-----------------------------
+- Fixed dismiss notice function
+- Fixed HTTP 414 error during connect process
+
+
+3.0.2 (Apr 06, 2020)
+-----------------------------
+- Fix for issue in previous version
+
+
+3.0.1 (Apr 06, 2020)
+-----------------------------
+- Fix for setups without mbstring library
+
+
+3.0 (Apr 06, 2020)
+-----------------------------
+- Added new authentication flow, now you don't need to enter the login details again
+- Code optimization
+
+
+2.0.17 (Jul 26, 2019)
+-----------------------------
+- Changed plugin name to MyThemeShop Theme & Plugin Updater
+
+
+2.0.16 (Jul 2, 2019)
+-----------------------------
+- Added new filters for developers to exclude products from the update process
+
+
+2.0.15 (May 11, 2019)
+-----------------------------
+- Optimized resource usage
+
+
+2.0.14 (Jan 9, 2019)
+-----------------------------
+- Fixed PHP notice
+- Fixed "mts_connect_admin_access" filter
+
+
+2.0.13 (Jan 7, 2019)
+-----------------------------
+- Moved CSS & JS enqueue functions to avoid notice
+
+
+2.0.12 (Dec 21, 2018)
+-----------------------------
+- Fixed PHP warning
+
+
+2.0.11 (Dec 20, 2018)
+-----------------------------
+- Improved error messages when connection fails
+
+
+2.0.10 (Nov 29, 2018)
+-----------------------------
+- Fixed issue when using SociallyViral Free
+
+
+2.0.9 (Nov 5, 2018)
+-----------------------------
+- Improved compatibility with several plugins
+
+
+2.0.8 (Nov 2, 2018)
+-----------------------------
+- Compatibility with WP Real Estate Pro, WP Notification Pro, WP Subscribe Pro
+
+
+2.0.7 (Nov 1, 2018)
+-----------------------------
+- Compatibility with WP Shortcode Pro
+
+
+2.0.6 (Oct 26, 2018)
+-----------------------------
+- Fixed compatibility with WP Quiz Pro plugin
+
+
+2.0.5 (Oct 2, 2018)
+-----------------------------
+- Added link to Connect from WP Review settings
+
+
+2.0.4 (Oct 1, 2018)
+-----------------------------
+- Compatibility fix for newer MTS theme code
+
+
+2.0.3 (Sep 27, 2018)
+-----------------------------
+- Fixed Connect link in admin page
+
+
+2.0.2 (Sep 26, 2018)
+-----------------------------
+- Rank Math compatibility
+
+
+2.0.1 (Jul 23, 2018)
+-----------------------------
+- Small fixes
+
+
+2.0 (Jul 23, 2018)
+-----------------------------
+- New Dashboard
+- Added Settings page
+- Design changes
+- Bug Fixes
+
+
+1.3.4 (Jun 8, 2018)
+-----------------------------
+- Fixed Themes/Plugins listings on "Dashboard -> Updates" page
+- "Check for updates now" button is again on Themes/Plugins page
+
+
+1.3.3 (Jan 21, 2018)
+-----------------------------
+- Added limit for update checks
+
+
+1.3.2 (May 18, 2017)
+-----------------------------
+- Fixed wordpress.org theme update issue
+
+
+1.3.1 (Feb 7, 2017)
+-----------------------------
+- Updated text and input label so that possibility to login using email is obvious
+
+
+1.3 (Mar 14, 2016)
+-----------------------------
+- Added possibility to login using email instead of username
+
+
+1.2.9 (Feb 2, 2016)
+-----------------------------
+- Fixed changelog inside notice not loading
+
+
+1.2.8 (Jan 5, 2016)
+-----------------------------
+- Fixed update notice not showing for some themes
+
+
+1.2.7 (Sep 26, 2015)
+-----------------------------
+- Changed text domain to â€˜mythemeshop-connectâ€™
+
+
+1.2.6 (May 19, 2015)
+-----------------------------
+- Updated Plugin name
+
+
+1.2.5 (Apr 30, 2015)
+-----------------------------
+- Small notification API fix
+
+
+1.2.4 (Apr 21, 2015)
+-----------------------------
+- Patched add_query_arg vulnerability issue
+- Fixed version details links on Updates page
+- Fixed theme update issue for themes using new folder name
+
+
+1.2.3 (Mar 15, 2015)
+-----------------------------
+- Fixed - False up-to-date message for new theme updates.
+
+
+1.2.2 (Feb 28, 2015)
+-----------------------------
+- Fixed false update notification from wordpress.org for MyThemeShop themes.
+
+
+1.2.1 (Oct 4, 2014)
+-----------------------------
+- Fixed another double notification issue
+
+
+1.2 (Sep 12, 2014)
+-----------------------------
+- Fixed double notification issue for plugin updates
+- Plugin Update notification will disappear once plugin is updated
+- Updated API
+- Fixed small bugs
+
+
+1.1 (Jul 3, 2014)
+-----------------------------
+- Fixed Double notification issue
+- Update notification will disappear once theme is updated
+- Fixed small bugs
+
+
+1.0
+-----------------------------
+- Plugin Released

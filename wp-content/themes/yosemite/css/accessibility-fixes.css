@@ -1,0 +1,367 @@
+/**
+ * Accessibility Fixes CSS for PageSpeed Insights
+ * 
+ * @package Yosemite
+ * @version 1.3.1
+ */
+
+/* Fix Color Contrast Issues */
+
+/* Footer Links */
+.copyrights a {
+    color: #0073aa !important;
+    text-decoration: underline !important;
+    font-weight: 600 !important;
+}
+
+.copyrights a:hover {
+    color: #005177 !important;
+    background-color: #e8f4fd !important;
+}
+
+/* Author Links */
+.postauthor h4 a,
+.postauthor h5 a {
+    color: #0073aa !important;
+    text-decoration: underline !important;
+    font-weight: 600 !important;
+}
+
+.postauthor h4 a:hover,
+.postauthor h5 a:hover {
+    color: #005177 !important;
+    background-color: #e8f4fd !important;
+}
+
+/* Category and Tag Links */
+.post-info a,
+.tags a,
+.widget a {
+    color: #0073aa !important;
+    text-decoration: underline !important;
+    font-weight: 500 !important;
+}
+
+.post-info a:hover,
+.tags a:hover,
+.widget a:hover {
+    color: #005177 !important;
+    background-color: #e8f4fd !important;
+}
+
+/* Comment Links */
+.reply a {
+    color: #0073aa !important;
+    text-decoration: underline !important;
+    font-weight: 600 !important;
+}
+
+.reply a:hover {
+    color: #005177 !important;
+    background-color: #e8f4fd !important;
+}
+
+/* Rating and Genre Text */
+.rating-title {
+    color: #333 !important;
+    font-weight: 700 !important;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8) !important;
+}
+
+.genre-item {
+    color: #333 !important;
+    font-weight: 600 !important;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8) !important;
+}
+
+/* Percentage Text with Better Contrast */
+.text-green {
+    color: #1a5a1a !important;
+    font-weight: 700 !important;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8) !important;
+}
+
+.text-yellow {
+    color: #8b5a00 !important;
+    font-weight: 700 !important;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8) !important;
+}
+
+.text-grey {
+    color: #444 !important;
+    font-weight: 700 !important;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8) !important;
+}
+
+.text-red {
+    color: #8b0000 !important;
+    font-weight: 700 !important;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8) !important;
+}
+
+/* Navigation Links */
+#navigation ul li a {
+    color: #333 !important;
+    font-weight: 500 !important;
+}
+
+#navigation ul li a:hover {
+    color: #0073aa !important;
+    text-decoration: underline !important;
+    background-color: #e8f4fd !important;
+}
+
+/* Search Button */
+.header-search .fa-search {
+    color: #333 !important;
+    font-weight: 600 !important;
+}
+
+.header-search .fa-search:hover {
+    color: #0073aa !important;
+    background-color: #e8f4fd !important;
+}
+
+/* Mobile Menu Button */
+.toggle-mobile-menu {
+    color: #333 !important;
+    background: #f8f8f8 !important;
+    border: 2px solid #ddd !important;
+    font-weight: 600 !important;
+}
+
+.toggle-mobile-menu:hover {
+    color: #0073aa !important;
+    background: #e8f4fd !important;
+    border-color: #0073aa !important;
+}
+
+/* Buttons */
+.button,
+.readMore a.button,
+#commentform input#submit,
+.contactform #submit,
+#mtscontact_submit {
+    background: #0073aa !important;
+    color: #fff !important;
+    border: 2px solid #005177 !important;
+    font-weight: 600 !important;
+}
+
+.button:hover,
+.readMore a.button:hover,
+#commentform input#submit:hover,
+.contactform #submit:hover,
+#mtscontact_submit:hover {
+    background: #005177 !important;
+    color: #fff !important;
+}
+
+/* Pagination */
+.pagination a,
+.pagination ul li span,
+.pagination > span {
+    background: #0073aa !important;
+    color: #fff !important;
+    border: 2px solid #005177 !important;
+    font-weight: 600 !important;
+}
+
+.pagination a:hover,
+.pagination span.current {
+    background: #005177 !important;
+    color: #fff !important;
+}
+
+/* Form Elements */
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="url"],
+textarea,
+select {
+    border: 2px solid #ddd !important;
+    background: #fff !important;
+    color: #333 !important;
+    font-weight: 500 !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="search"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #0073aa !important;
+    outline: 2px solid #0073aa !important;
+    outline-offset: 2px !important;
+}
+
+/* Form Labels */
+label {
+    color: #333 !important;
+    font-weight: 600 !important;
+}
+
+/* Required Field Indicators */
+.required {
+    color: #d63638 !important;
+    font-weight: bold !important;
+}
+
+/* Error Messages */
+.error-message {
+    color: #d63638 !important;
+    font-weight: 600 !important;
+}
+
+/* Success Messages */
+.success-message {
+    color: #00a32a !important;
+    font-weight: 600 !important;
+}
+
+/* Tables */
+table {
+    border: 2px solid #333 !important;
+}
+
+table th {
+    background: #f8f8f8 !important;
+    color: #333 !important;
+    font-weight: 600 !important;
+    border: 1px solid #333 !important;
+}
+
+table td {
+    border: 1px solid #333 !important;
+    color: #333 !important;
+}
+
+table tr:nth-child(even) {
+    background: #f9f9f9 !important;
+}
+
+table tr:hover {
+    background: #e8f4fd !important;
+}
+
+table caption {
+    color: #333 !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+}
+
+/* Focus States */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid #0073aa !important;
+    outline-offset: 2px !important;
+    background-color: #e8f4fd !important;
+}
+
+/* Screen Reader Text */
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+
+.screen-reader-text:focus {
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    color: #21759b;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}
+
+/* Skip Links */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    z-index: 999999;
+    background: #000;
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.skip-link:focus {
+    left: 6px;
+    top: 7px;
+}
+
+/* High Contrast Mode */
+.high-contrast {
+    filter: contrast(150%) brightness(120%);
+}
+
+.high-contrast * {
+    background-color: white !important;
+    color: black !important;
+    border-color: black !important;
+}
+
+.high-contrast a {
+    text-decoration: underline !important;
+}
+
+.high-contrast button,
+.high-contrast input,
+.high-contrast textarea,
+.high-contrast select {
+    border: 2px solid black !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .skip-link:focus {
+        left: 3px;
+        top: 3px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .rating-title,
+    .genre-item {
+        font-size: 14px !important;
+    }
+    
+    .text-green,
+    .text-yellow,
+    .text-grey,
+    .text-red {
+        font-size: 14px !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .skip-link,
+    .screen-reader-text {
+        display: none !important;
+    }
+    
+    a {
+        color: #000 !important;
+        text-decoration: underline !important;
+    }
+}

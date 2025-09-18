@@ -1,0 +1,1370 @@
+v3.9.23 (October 11, 2021)
+-----------------------------
+- Added: New Social Share icons layout, you can use it from Theme Options >> Social Buttons
+- Improved: Google Web Vitals performance on mobile screens of single pages
+- Fixed: Some PHP 8.0 related issues and warmings
+- Fixed: Widget block's styling issues
+
+Files Updated:
+- functions/theme-actions.php
+- options/fields/..
+- functions.php
+- style.css
+- theme-options.php
+
+
+v3.9.22 (September 28, 2021)
+-----------------------------
+- Fixed: Floating Navigation issue in header while it's disabled from option panel
+
+Files Updated:
+- js/customscript.js
+- functions.php
+- style.css
+
+
+v3.9.21 (September 27, 2021)
+-----------------------------
+- Fixed: Scrolling on the mobile screen was causing jump issue
+- Fixed: Search Widget block's styling issues
+- Added 83 new google fonts in the Typography options
+
+Files Updated:
+- js/customscript.js
+- functions.php
+- style.css
+
+
+v3.9.20 (June 23, 2021)
+-----------------------------
+- Fixed child theme styling not loading issue
+- Fixed WooCommerce memory issue caused by the last update
+- Added screenshot into child theme
+
+Files Updated:
+- options/child-theme/screenshot.png
+- functions.php
+- style.css
+
+
+v3.9.19 (June 22, 2021)
+-----------------------------
+- Fixed custom CSS issue caused by the last update
+
+Files Updated:
+- functions.php
+- style.css
+
+
+v3.9.18 (June 22, 2021)
+-----------------------------
+- Fixed missing background pattern URL if ‘No Background’ option is selected
+- Added theme version as a query string for the frontend loading CSS and JS files for better cache handling
+
+Files Updated:
+- functions.php
+- style.css
+
+
+v3.9.17 (May 24, 2021)
+-----------------------------
+- Added support for font-display: swap
+- Removed itemprop="url" meta tag as it is not required anymore, SEO plugins like Rank Math will handle the meta tags automatically
+
+Files Updated:
+- functions.php
+- functions/theme-actions.php
+- lang/schema.pot
+- options/google-typography/google-typography.php
+- style.css
+
+
+v3.9.16 (May 12, 2021)
+-----------------------------
+- Improved Web Vitals performance on mobile and desktop screen
+- Improved loading time by removing Slider related CSS and JS files from the pages where slider is not used
+- Added 'alt' attribute in the missing images
+
+Files Updated:
+- functions/theme-actions.php
+- functions/widget-authorposts.php
+- functions/widget-catposts.php
+- functions/widget-popular.php
+- functions/widget-postslider.php
+- functions/widget-recentposts.php
+- functions/widget-relatedposts.php
+- functions.php
+- js/owl.carousel.min.js
+- index.php
+- options/css/aristo.css
+- style.css
+
+
+v3.9.15 (April 13, 2021)
+-----------------------------
+- Added an option to enable/ disable mobile menu in the floating header
+- Added 24 new google fonts in the Typography options
+
+Files Updated:
+- functions.php
+- js/sticky.js
+- theme-options.php
+- style.css
+
+
+v3.9.14 (March 12, 2021)
+-----------------------------
+- Added 3 new google fonts in the Typography options
+- Fixed blank dropdown issue when hovering too fast.
+
+Files Updated:
+- style.css
+- js/customscript.js
+- style.css
+
+
+v3.9.13 (Dec 12, 2020)
+-----------------------------
+- Fixed compatibility issues with the WordPress 5.6
+- Added 20 new Google fonts in the typography options
+
+Files Updated:
+- functions.php
+- functions/rm-seo.php
+- options/css/aristo.css
+- options/fields/button_set/field_button_set.php
+- options/fields/button_set_hide_below/field_button_set_hide_below.php
+- options/fields/background/field_background.php
+- style.css
+
+
+v3.9.12 (Oct 20, 2020)
+-----------------------------
+- Fixed comment reply functionality
+- Fixed page jump when user clicks on the description tab in the single product
+
+Files Updated:
+- css/responsive.css
+- comments.php
+- functions.php
+- js/customscript.js
+- style.css
+
+
+v3.9.11 (Sep 21, 2020)
+-----------------------------
+- Fixed PHP Notice when saving the post
+- Fixed compatibility issue with the menu code when using Ultimate Member plugin
+
+Files Updated:
+- functions.php
+- functions/metaboxes.php
+- functions/nav-menu.php
+- header.php
+- style.css
+
+
+v3.9.10 (Sep 14, 2020)
+-----------------------------
+- Removed deprecated jQuery code from the Options Panel
+- Added 4 new google fonts in the Typography options
+- Fix main menu show duplicated when resizing window to specific width
+
+Files Updated:
+- functions.php
+- options/js/options.js
+- style.css
+
+
+v3.9.9 (Aug 13, 2020)
+-----------------------------
+- Fixed compatibility issues with the WordPress 5.5
+- Disabled WP 5.5 core lazy loading if theme's lazy loading option is enabled
+
+Files Updated:
+- functions.php
+- options/fields/group/field_group.css
+- options/fields/group/field_group.js
+- options/fields/layout2/field_layout2.js
+- lang/schema.pot
+- theme-options.php
+- style.css
+
+
+v3.9.8 (Jul 23, 2020)
+-----------------------------
+- Added 26 new google fonts in the Typography options
+- Improved site performance as per the new guidelines of CLS by Google
+- Fixed mobile menu closing if clicked in the search for present in it
+- Fixed Title button issue on  Pages.
+- Fixed blank dropdown issue when hovering too fast.
+- Fixed Pinterest count issue on single post pages.
+- Fixed anchor scrolling issue with the sticky header
+
+Files Updated:
+- style.css
+- js/owl.carousel.min.js
+- css/responsive.css
+- functions.php
+- functions/theme-actions.php
+- js/customscript.js
+- page-templates/contact.php
+- page.php
+- style.css
+
+
+v3.9.7 (May 13, 2020)
+-----------------------------
+- Fixed custom slider not working properly in the homepage
+
+Files Updated:
+- style.css
+- functions.php
+- js/owl.carousel.min.js
+
+
+v3.9.6 (Apr 27, 2020)
+-----------------------------
+- Added new share buttons: WhatsApp, Telegram, Tumblr, Pocket, Buffer, VK, Reddit
+- Updated .pot file for the localization
+- Strengthened the theme security
+- Replaced StumbleUpon share button with Mix
+- Fixed Menu Issue (iPad Air 2)
+
+Files Updated:
+- style.css
+- functions/rm-seo.php
+- functions/theme-actions.php
+- options/google-typography/google-typography.php
+- options/google-typography/javascripts/google-typography.js
+- options/js/help.js
+- options/js/options.js
+- options/options.php
+- options/support.php
+- lang/schema.pot
+- theme-options.php
+
+
+v3.9.5 (Jan 30, 2020)
+-----------------------------
+- Fixed conflict with Elementor Pro
+
+Files Updated:
+- header.php
+- style.css
+
+
+v3.9.4 (Jan 29, 2020)
+-----------------------------
+- Fixed missing closing `div` tag in the breadcrumbs code
+
+Files Updated:
+- functions.php
+- functions/theme-actions.php
+- style.css
+
+
+v3.9.3 (Jan 28, 2020)
+-----------------------------
+- Added schema markup for the last item of the Breadcrumb
+
+Files Updated:
+- functions.php
+- functions/theme-actions.php
+- style.css
+
+
+v3.9.2 (Jan 23, 2020)
+-----------------------------
+- Added lazy loading in the slider
+- Removed 'nobg.png' file from the frontend [one less http request]
+- Fixed 'data-vocabulary' schema warning in the breadcrumbs
+
+Files Updated:
+- css/font-awesome.min.css
+- css/owl.carousel.css
+- functions.php
+- functions/theme-actions.php
+- functions/widget-postslider.php
+- index.php
+- js/owl.carousel.min.js
+- lang/schema.pot
+- style.css
+
+
+v3.9.1 (Nov 14, 2019)
+-----------------------------
+- Fixed notices related to WP 5.3
+
+Files Updated:
+- functions.php
+- lang/schema.pot
+- options/options.php
+- style.css
+
+
+v3.9.0 (July 17, 2019)
+-----------------------------
+- Added an option to add the Search form in the Main Navigation
+- Added 9 new google fonts in the Typography options
+- Added option to disable lazy loading in the comments area
+
+Files Updated:
+- style.css
+- functions.php
+- js/customscript.js
+- functions/rm-seo.php
+- functions/welcome-message.php
+- theme-options.php
+- lang/schema.pot
+- options/support.php
+- options/css/options.css
+
+
+v3.8.9 (July 11, 2019)
+-----------------------------
+- Fixed Auto Scroll issue in Pagination
+
+Files Updated:
+- style.css
+- functions.php
+- lang/schema.pot
+
+
+v3.8.8 (July 11, 2019)
+-----------------------------
+- Fixed text translation issues
+
+Files Updated:
+- style.css
+- functions.php
+- functions/widget-authorposts.php
+- functions/widget-catposts.php
+- functions/widget-popular.php
+- functions/widget-recentposts.php
+- functions/widget-relatedposts.php
+- lang/schema.pot
+
+
+v3.8.7 (May 29, 2019)
+-----------------------------
+- Fixed compatibility with Rank Math breadcrumbs
+
+Files Updated:
+- style.css
+- functions.php
+- functions/theme-actions.php
+- page.php
+- single.php
+- page-templates/contact.php
+
+
+v3.8.6 (May 20, 2019)
+-----------------------------
+- Disable theme's structured data if Rank Math SEO or other SEO plugins are enabled
+
+Files Updated:
+- style.css
+- functions.php
+- lang/schema.pot
+
+
+v3.8.5 (May 7, 2019)
+-----------------------------
+- Added align-wide opt-in feature in Image blocks.
+
+Files Updated:
+- style.css
+- functions.php
+- lang/schema.pot
+
+
+v3.8.4 (May 4, 2019)
+-----------------------------
+- Added options to change header background colors
+
+Files Updated:
+- style.css
+- single.php
+- functions.php
+- options/js/options.js
+- lang/schema.pot
+
+
+v3.8.3 (Apr 15, 2019)
+-----------------------------
+- Fixed Ads not appearing in the single post content
+
+Files Updated:
+- style.css
+- single.php
+- functions.php
+
+
+v3.8.2 (Apr 14, 2019)
+-----------------------------
+- Fixed single post layout break if tags are enabled
+
+
+v3.8.1 (Apr 14, 2019)
+-----------------------------
+- Added a missing word in the translation file
+
+
+v3.8.0 (Apr 13, 2019)
+-----------------------------
+- Added Complete integration with the Elementor page builder
+- Added space between full-width page content and footer area
+- Improved overall code by fixing PHPCS errors
+- Fixed styling of alignfull Gutenberg blocks
+- Fixed minor alignment issue in the social sharing buttons
+- Removed remaining instances of Google Plus related features
+
+
+v3.7.0 (Apr 3, 2019)
+-----------------------------
+- Added 4 New Single Post Content Layouts
+ - Default
+ - Boxed
+ - Full Width/Contained
+ - Full Width/ Stretched
+-  Added options to hide content parts on single post
+ - Header
+ - Footer
+ - Title
+ - Breadcrumbs
+ - Post Meta
+ - Related Posts
+ - Author Box
+- Update the Google Fonts database to add 19 new fonts
+- Fixed compatibility issues with Gutenberg
+
+Files Updated:
+- css/responsive.css
+- footer.php
+- functions.php
+- functions/metaboxes.php
+- header.php
+- lang/schema.pot
+- single.php
+- style.css
+
+
+v3.6.9 (Feb 15, 2019)
+-----------------------------
+- Fixed double H1 tag if static page is set as homepage (Only if text logo is used)
+- Improved styling of single page title
+- Added 8 new google fonts in the Typography options
+
+Files Updated:
+- style.css
+- header.php
+- page.php
+- functions.php
+
+
+v3.6.8 (Feb 14, 2019)
+-----------------------------
+- Fixed double H1 tag issue if single page is state as the homepage
+
+Files Updated:
+- style.css
+- header.php
+- functions.php
+
+
+v3.6.7 (Jan 13, 2019)
+-----------------------------
+- Updated WooCommerce templates
+- Optimized style.css file to reduce the file size
+
+Files Updated:
+- style.css
+- functions.php
+- woocommerce/single-product.php
+- woocommerce/archive-product.php
+
+
+v3.6.6 (Jan 8, 2019)
+-----------------------------
+- Fix: script enqueue functions moved under admin_enqueue_scripts
+- Removed some unneeded code
+
+Files Updated:
+- functions.php
+- functions/rm-seo.php
+- style.css
+
+v3.6.5 (Jan 6, 2019)
+-----------------------------
+- Updated the Rank Math's auto installation process to give the control back to the users
+- Fixed MyThemeShop Connect install issue on Recommended Plugins page
+
+Files Updated:
+- functions.php
+- functions/rank-math-notice.php
+- functions/rm-seo.php
+- functions/theme-actions.php
+- images/rank-math-banner.jpg
+- lang/schema.pot
+- style.css
+
+
+v3.6.4 (Dec 23, 2018)
+-----------------------------
+- Fixed MyThemeShop Connect install issue on Recommended Plugins page
+
+Files updated:
+- functions.php
+- functions/rm-seo.php
+- style.css
+
+
+v3.6.3 (Nov 27, 2018)
+-----------------------------
+- Added More SEO Tweaks
+- Added better integration with Rank Math SEO plugin
+- Added integration for Rank Math SEO Breadcrumbs
+- Fixed Twitter widget issue
+- Improved comments cookies opt-in checkbox
+
+Files Updated:
+- comments.php
+- functions.php
+- functions/plugin-activation.php
+- functions/cacert.pem
+- functions/rm-seo.php
+- functions/widget-tweets.php
+- page-templates/contact.php
+- page.php
+- single.php
+- style.css
+
+
+v3.6.2 (Oct 26, 2018)
+-----------------------------
+- Replaced encoded inline image to avoid false positives in some security tools
+
+Files updated:
+- functions.php
+- style.css
+
+
+v3.6.1 (Oct 24, 2018)
+-----------------------------
+- Added missing translation text in the .pot file
+
+Files updated:
+- comments.php
+- functions.php
+- lang/schema.pot
+- style.css
+- theme-options.php
+
+
+v3.6.0 (Oct 10, 2018)
+-----------------------------
+- Added life-changing SEO support with an included SEO plugin
+- Added compatibility for Gutenberg editor
+- Security & licensing fixes
+- Fixed WooCommerce Product Search button styling issue
+- Fixed WooCommerce Layered Nav Dropdown button styling issue
+- Fixed other minor CSS issues
+- Important fixes for better performance
+
+Files Updated:
+- functions.php
+- style.css
+- css/woocommerce2.css
+- functions/plugin-activation.php
+- functions/rm-seo.php
+- functions/theme-actions.php
+- options/options.php
+- lang/schema.pot
+
+
+v3.5.1 (Sep 07, 2018)
+-----------------------------
+- Fixed thumbnails image responsive issues
+
+Files updated:
+- style.css
+- functions.php
+- functions/theme-actions.php
+
+
+v3.5 (Jul 23, 2018)
+-----------------------------
+- Implemented new license system
+- Minor bug fixes
+
+Files updated:
+- style.css
+- functions.php
+- functions/theme-actions.php
+- functions/plugin-activation.php
+
+
+v3.4.11 (Jul 11, 2018)
+-----------------------------
+- Fixed GDPR translation issue in comment & contact form
+- Fixed translation issue in prompt
+
+Files Updated:
+- style.css
+- functions.php
+- functions/contact-form.php
+- js/contact.js
+- lang/schema.pot
+
+
+v3.4.10 (May 23, 2018)
+-----------------------------
+- Added GDPR compliant comment & contact form
+
+Files Updated:
+- style.css
+- functions.php
+- comments.php
+- css/rtl.css
+- functions/contact-form.php
+- js/contact.js
+
+
+v3.4.9 (April 08, 2018)
+-----------------------------
+- Fixed Woocommerce compatibility issues
+
+Files updated:
+- style.css
+- functions.php
+- woocommerce/archive-product.php
+- woocommerce/single-product.php
+
+
+v3.4.8 (March 28, 2018)
+-----------------------------
+- Replace preg_replace with preg_replace_callback to make it compatible with PHP7
+
+Files updated:
+- options\validation\preg_replace\validation_preg_replace.php
+
+
+v3.4.7 (March 20, 2018)
+-----------------------------
+- Fixed "Install Required Plugins" page
+
+Files updated:
+- style.css
+- functions.php
+- functions/plugin-activation.php
+- js/addons.js
+- css/addons.css
+
+v3.4.6 (March 15, 2018)
+-----------------------------
+- Improved child theme compatibility
+
+Files updated:
+- functions.php
+- style.css
+- functions/metaboxes.php
+- functions/nav-menu.php
+- functions/plugin-activation.php
+- functions/theme-actions.php
+- functions/welcome-message.php
+- functions/widget-ad125.php
+- functions/widget-ad300.php
+- functions/widget-authorposts.php
+- functions/widget-catposts.php
+- functions/widget-fblikebox.php
+- functions/widget-popular.php
+- functions/widget-postslider.php
+- functions/widget-recentposts.php
+- functions/widget-relatedposts.php
+- functions/widget-social.php
+- functions/widget-social.php
+- lang/schema.pot
+
+
+v3.4.5 (Jan 29, 2018)
+-----------------------------
+- Added custom sidebar checking for WooCommerce's product archive page
+
+Files updated:
+- functions.php
+- lang/schema.pot
+- style.css
+
+
+v3.4.4 (Dec 08, 2017)
+-----------------------------
+- Fixed slider issue when lazy loading is enabled
+
+Files updated:
+- functions.php
+- lang/schema.pot
+- style.css
+
+
+v3.4.3 (Nov 22, 2017)
+-----------------------------
+- Added option "Show Featured image" to "Enable/Disable the Featured images in the single post".
+
+Files updated:
+- functions.php
+- functions/theme-actions.php
+- lang/schema.pot
+- options/options.php
+- single.php
+- style.css
+- theme-options.php
+
+
+v3.4.2 (Aug 21, 2017)
+-----------------------------
+- Dummy data updated
+
+Files updated:
+- functions.php
+- options\demo-importer\demo-files\default\content.xml
+- style.css
+
+
+v3.4.1 (Aug 08, 2017)
+-----------------------------
+- Fixed header image not showing on second header style
+
+Files updated:
+- functions.php
+- header.php
+- lang/schema.pot
+- style.css
+
+
+v3.4 (Aug 1, 2017)
+-----------------------------
+- Fixed Search text translation issue
+
+Files updated:
+- searchform.php
+
+
+v3.3 (Aug 1, 2017)
+-----------------------------
+- Updated FontAwesome to 4.7 (90+ New Icons!)
+- Updated Facebook Script
+- Improved WooCommerce check
+- Improved child theme creation
+- Improved Recommended plugin page
+- Improved demo data importer
+- Improved comments.php code
+- Improved overall code for better performance
+- Fixed PHP & importer warnings
+- Fixed OAuthException issue
+- Fixed CSS issues on /my-account page
+- Fixed unnecessary sprintf calls
+- Fixed bug in the Tags
+- Fixed enqueued styles
+- Fixed primary slider loop issue
+- Fixed isOnScreen when no element exists
+- Fixed Color picker styling issue
+- Fixed styling of Custom Menu Page
+- Fixed color picker styling on the nav menu page
+- Fixed few bugs in the Contact form
+- Fixed My Account Page styling
+- Fixed issue in mts_wp_link_pages_args()
+- Fixed breadcrumbs issue on the homepage
+- Fixed icon field was not showing in the group field
+- Load typography scripts only on theme options page
+- Added search form in the Theme Options
+- Added child theme file override support
+- Added missing words in the translation file & removed HTML tags
+- Added support for WPML
+- Added support for WooCommerce product gallery features (zoom, swipe, lightbox)
+- Updated Forum Link
+
+Files updated:
+- style.css
+- functions.php
+- style.css
+- sidebar.php
+- functions.php
+- header.php
+- index.php
+- comments.php
+- single.php
+- functions/twitteroauth.php
+- functions/theme-actions.php
+- functions/nav-menu.php
+- functions/widget-recentposts.php
+- functions/widget-authorposts.php
+- functions/widget-catposts.php
+- functions/widget-popular.php
+- functions/widget-relatedposts.php
+- functions/plugin-activation.php
+- page-contact.php → page-templates/contact.php
+- options/options.php
+- options/child-theme/functions.php
+- options/child-theme/screenshot.jpg
+- options/child-theme/stylesheet.php
+- options/css/options.css
+- options/css/select2.css
+- options/fields/group/field_group.js
+- options/css/aristo.css
+- options/demo-importer/importer/parsers.php
+- css/addons.css
+- css/font-awesome.min.css
+- fonts/FontAwesome.otf
+- fonts/fontawesome-webfont.eot
+- fonts/fontawesome-webfont.svg
+- fonts/fontawesome-webfont.ttf
+- fonts/fontawesome-webfont.woff
+- fonts/fontawesome-webfont.woff2
+- js/addons.js
+- js/owl.carousel.min.js
+- js/customscript.js
+- js/ajax.js
+- woocommerce/archive-product.php
+- woocommerce/single-product.php
+
+
+v3.2.1 (Apr 08, 2017)
+-----------------------------
+- Include Support tab in Theme Options Panel
+- Fixed wrong background field constructor args in the Options Panel
+
+Files updated:
+- style.css
+- functions.php
+- theme-options.php
+- options/support.php
+- options/options.php
+- options/css/options.css
+- options/js/clipboard.min.js
+- options/js/help.js
+- options/fields/background/field_background.php
+- options/fields/group/field_group.php
+
+
+v3.2.0 (Apr 06, 2017)
+-----------------------------
+- Fixed WooCommerce v3.0.0 compatibility issues
+
+Files updated:
+- functions.php
+- style.css
+- options/google-typography/google-typography.php
+- woocommerce/archive-product.php
+- woocommerce/single-product.php
+
+
+v3.1.9 (Mar 06, 2017)
+-----------------------------
+- Removed breadcrumbs from static home page
+
+Files updated:
+- functions.php
+- style.css
+- page.php
+- page-contact.php
+
+
+v3.1.8 (Mar 03, 2017)
+-----------------------------
+- Improved internalization
+
+Files updated:
+- functions.php
+- lang/schema.pot
+- style.css
+
+
+v3.1.7 (Jan 26, 2017)
+-----------------------------
+- Fixed issue with highlighted author comments also highlighting child comments
+
+Files updated:
+- functions.php
+- style.css
+
+
+v3.1.6 (Jan 18, 2017)
+-----------------------------
+- One click demo importer improvements
+
+Files updated:
+- style.css
+- functions.php
+- options/demo-importer/
+
+
+v3.1.5 (Jan 12, 2017)
+-----------------------------
+- One click demo importer improvements
+
+Files updated:
+- style.css
+- functions.php
+- options/demo-importer/
+
+
+v3.1.4 (Jan 1, 2017)
+-----------------------------
+- One click demo importer improvements
+- Fixed issue regarding slow loading of admin area
+- Post listing widgets improvements
+- Updated language file
+
+Files updated:
+- style.css
+- functions.php
+- functions/widget-authorposts.php
+- functions/widget-catposts.php
+- functions/widget-popular.php
+- functions/widget-postslider.php
+- functions/widget-recentposts.php
+- functions/widget-relatedposts.php
+- options/demo-importer/
+- options/js/options.js
+- options/options.php
+- lang/default.pot
+
+
+v3.1.3 (Oct 22, 2016)
+-----------------------------
+- One click demo importer improvements
+- Install Plugins page improvements
+
+Files updated:
+- style.css
+- functions.php
+- theme-presets.php
+- options/
+- lang/
+- functions/plugin-activation.php
+
+
+v3.1.2 (Jul 23, 2016)
+-----------------------------
+- Fix bug: Nav-submenu not appearing on certain window width right before the menu changes to mobile.
+- Added option to disable sidebar on WooCommerce shop page and product single page.
+
+Files updated:
+- style.css
+- functions.php
+- theme-options.php
+- js/customscript.js
+
+
+v3.1.1 (Jul 07, 2016)
+-----------------------------
+- Made single post schema use wp_get_document_title() and Yoast meta description if available
+
+Files updated:
+- style.css
+- functions.php
+
+
+v3.1.0 (Jul 04, 2016)
+-----------------------------
+- Updated lazy load script to work with responsive images
+- Fixed mts_disable_auto_update_theme() PHP warning
+- Removed comments template from Contact Page Template
+- Fixed dots styling issue in posts widgets
+
+Files updated:
+- style.css
+- functions.php
+- page-contact.php
+- js/layzr.min.js
+
+
+v3.0.9 (Mar 17, 2016)
+-----------------------------
+- Updated code on Recommended plugins page
+
+Files updated:
+- style.css
+- functions/plugin-activation.php
+- css/addons.css
+
+
+v3.0.8 (Mar 8, 2016)
+-----------------------------
+- Recommended plugins page changes
+
+Files updated:
+- style.css
+- functions.php
+- functions/plugin-activation.php
+- css/addons.css
+
+
+v3.0.7 (Feb 15, 2016)
+-----------------------------
+- Changed Pagination mid_size from 5 to 3
+
+Files updated:
+- style.css
+- functions/theme-actions.php
+
+
+v3.0.6 (Feb 6, 2016)
+-----------------------------
+- Removed unnecessary files added in the last update
+
+Files updated:
+- Removed .git folder
+
+
+v3.0.5 (Feb 3, 2016)
+-----------------------------
+- Fixed messed up sidebar
+
+Files updated:
+- style.css
+- functions.php
+- single.php
+
+
+v3.0.4 (Feb 3, 2016)
+-----------------------------
+- Fixed demo importer theme options data
+
+Files updated:
+- style.css
+- functions.php
+- options/demo-importer/demo-files/default/theme_options.txt
+- options/demo-importer/demo-files/minimal/theme_options.txt
+
+
+v3.0.3 (Feb 2, 2016)
+-----------------------------
+- Fixed html5shim SSL issue
+
+Files updated:
+- style.css
+- functions.php
+
+
+v3.0.2 (Jan 30, 2016)
+-----------------------------
+- Fixed un-overridable mts_the_tags()
+
+Files updated:
+- style.css
+- functions.php
+- functions/theme-actions.php
+
+
+v3.0.1 (Jan 21, 2016)
+-----------------------------
+- Fixed lazy load issues
+- Added one click demo importer with 2 demos
+- Improved Recommended plugins list loading
+- Fixed typography panel issues related to archive article title color and sidebar text colors
+- Fixed numbered pagination issue on small screens
+
+Files updated:
+- style.css
+- functions.php
+- header.php
+- theme-options.php
+- theme-presets.php
+- options/options.php
+- options/js/options.js
+- options/css/options.css
+- options/demo-importer/
+- functions/plugin-activation.php
+- css/addons.css
+- js/addons.js
+
+
+v3.0 (Jan 4, 2016)
+-----------------------------
+- Major Framework Update
+- Huge code and speed optimization
+- Changed theme folder name from 'schema' to 'mts_schema'
+- Added New improved Options Panel
+- Added Performance Options tab in Options Panel
+- Added Lazy Loading for images (Improves site speed dramatically)
+- Added Option to load Async JavaScript
+- Added Option to Remove ?ver= parameters from .css and .js files
+- Added Option to remove WooCommerce CSS and JS files from non WooCommerece Pages
+- Added Advanced Header Social Icons option
+- Added Drag & Drop feature for homepage meta info
+- Added Drag & Drop feature for Single Post Elements
+- Added header Ad (728x90) in second header style as well
+- Added Option to set separate menu for mobile screens
+- Added Option to Create Child Theme
+- Added Touch & Metro icon support
+- Added Advanced background option (Set Background colors, patterns, custom image and gradients)
+- Added Option to Show/Hide social sharing icons on Pages
+- Added Drag & Drop option for Social buttons to change the order
+- Added filter in functions.php for white labeling the theme
+- Added Display Trackbacks and Pingbacks in Comments
+- Added missing strings in translation file
+- Added Improved if/else PHP conditions
+- Added sidebar ID instead of the name
+- Added My WP Backup in recommended plugin list
+- Added prefix mts_ to functions in functions.php
+- Added ZoomOut Header Effect
+- Added Improved Recommended Plugins Page
+- Fixed nothumb-schema-widgetthumb.png on ajax search
+- Fixed loop on Popular Posts widget
+- Fixed Stripped HTML tags from .pot
+- Fixed deprecated function in twitter widget
+- Changed text domain from 'mythemeshop' to 'schema'
+- Updated Facebook Like Widget
+- Updated Pop-up script
+- Updated Font Awesome to v4.4.0
+- Removed 'nofollow' from archive links
+- Removed unnecessary wp_register_script calls
+- Removed singlepost-parallax.php template
+- Removed page-parallax.php template
+- Removed Translation Panel & added My WP Translate Plugin for the same
+- Removed unused codes
+- Replaced numbered pagination code with WordPress' default pagination
+- Replaced Archive page title code with the_archive_title()
+
+Note:
+- You need to regenerate thumbnails after upgrade, you can use "OTF Regenerate Thumbnails" Plugin
+- If navigation is messed up after update, you can set it up again from Appearance >> Menus
+- In Parallax page template you need to setup parallax option again by editing that page/post
+
+
+v1.1.7 (Aug 26, 2015)
+-----------------------------
+- Changed widget constructors to PHP 5 style
+- Fixed WC outdated template notices
+
+Files updated:
+- style.css
+- functions/widget-ad125.php
+- functions/widget-ad300.php
+- functions/widget-fblikebox.php
+- functions/widget-googleplus.php
+- functions/widget-social.php
+- functions/widget-subscribe.php
+- woocommerce/archive-product.php
+- woocommerce/single-product.php
+
+
+v1.1.6 (Aug 23, 2015)
+-----------------------------
+- Fixed Apple touch icon issue
+
+Files updated:
+- functions/theme-actions.php
+
+
+v1.1.5 (Jul 23, 2015)
+-----------------------------
+- Fixed Google structured data testing tool errors
+- Fixed one PHP warning
+
+Files updated:
+- archive.php
+- comments.php
+- functions.php
+- index.php
+- search.php
+- single.php
+- singlepost-parallax.php
+- style.css
+
+
+v1.1.4 (Jul 10, 2015)
+-----------------------------
+- Fixed recommended plugins class
+
+Files updated:
+- style.css
+- functions/plugin-activation.php
+
+
+v1.1.3 (Jul 3, 2015)
+-----------------------------
+- Fixed spacing bug in slider
+
+Files updated:
+- style.css
+- css/flexslider.css
+
+
+v1.1.2 (Jun 30, 2015)
+-----------------------------
+- Added missing * in required comment form fields.
+- Added missing words 'Post Comment' & 'Sidebar' in translation file.
+
+Files updated:
+- style.css
+- functions.php
+- comments.php
+
+
+v1.1.1 (Jun 14, 2015)
+-----------------------------
+- Fixed "no sidebar" issue
+- Fixed issue with parallax script not loading sometimes
+- Fixed query_posts() in widgets
+
+Files updated:
+- style.css
+- functions.php
+- functions/widget-authorposts.php
+- functions/widget-catposts.php
+- functions/widget-popular.php
+- functions/widget-postslider.php
+- functions/widget-recentposts.php
+- functions/widget-relatedposts.php
+
+
+v1.1.0 (Jun 14, 2015)
+-----------------------------
+- Renamed theme name to "Schema by MyThemeShop"
+- Fixed child comment styling issue
+
+Files updated:
+- style.css
+- css/responsive.css
+
+
+v1.0.9 (Jun 14, 2015)
+-----------------------------
+- Fixed facebook like box loading issue
+- Fixed YouTube/Vimeo bottom margin
+
+Files updated:
+- style.css
+- functions.php
+
+
+v1.0.8 (Jun 13, 2015)
+-----------------------------
+- SSL Call Breaking In IE
+
+Files updated:
+- style.css
+- functions.php
+
+
+v1.0.7 (Jun 12, 2015)
+-----------------------------
+- Fixed Double Sub menu issue in mobile
+- Fixed Draft posts showing in ajax search results
+- Fixed ul and ol styling
+- Small Menu Change Fixed
+- Replaced PrettyPhoto Lightbox script with Magnific Popup
+- Moved Lightbox CSS file in footer for better performance
+- Added support for add_theme_support( 'title-tag' )
+- Added recommended plugin code
+- Updated name of MyThemeShop Connect plugin
+- Added condition to “viewport” code
+- Added New Facebook Like Box
+- Added new code for responsive videos
+- Added website name micro-data
+- Fixed https issue in Typography Options tab
+- Fixed wrong social links in Options Panel
+- Updated description of Copyrights’ option in Options Panel
+- Added nofollow to MyThemeShop link in copyrights section
+- Optimized CSS files
+
+Files updated:
+- style.css
+- header.php
+- functions.php
+- theme-options.php
+- css/responsive.css
+- css/flexslider.css
+- css/woocommerce2.css
+- css/magnific-popup.css
+- functions/theme-actions.php
+- functions/widget-fblikebox.php
+- functions/plugin-activation.php
+- js/customscript.js
+- js/jquery.flexslider-min.js
+- js/jquery.magnific-popup.min.js
+- options/google-typography/google-typography.php
+
+
+v1.0.6 (Apr 8th, 2015)
+-----------------------------
+- Fixed social share icon issue on parallax pages.
+- Increased height of parallax image.
+
+Files changed:
+- single-parallax.php
+- style.css
+
+
+v1.0.5 (Mar 14th, 2015)
+-----------------------------
+- Fixed Google structured data testing tool errors and warnings
+- Fixed ajax load more button posts positioning
+- Added page hierarchy to breadcrumbs
+- Fixed post ads images bug
+
+Files changed:
+- functions/theme-actions.php
+- js/ajax.php
+- footer.php
+- functions.php
+- header.php
+- sidebar.php
+- style.css
+
+
+v1.0.4 (Jul 1st, 2014)
+-----------------------------
+- Minor change in typography code
+- Fixed some PHP notices
+- Fixed Post Slider widget
+
+Files updated:
+- functions.php
+- theme-actions.php
+- options.php
+- options/fields/group/field_group.php
+- style.css
+
+
+v1.0.3 (Jun 30th, 2014)
+-----------------------------
+- Updated typography panel
+- Fixed bug in comment section
+- Fixed thumbnail size on homepage Page 2,3
+
+Files updated:
+- options folder
+- index.php
+- comments.php
+- style.css
+
+
+v1.0.2 (Jun 13th, 2014)
+-----------------------------
+- Fixed Thumbnail size issue on Page 2, Archive and Search pages.
+- Fixed Black colored title issue in Subscribe widget.
+- Fixed 'Search' term translation issue.
+
+Files updated:
+- archive.php
+- search.php
+- searchform.php
+- style.css
+
+
+v1.0.1 (Jun 13th, 2014)
+-----------------------------
+- Fixed mobile navigation issue if secondary navigation is not set.
+
+Files updated:
+- header.php
+- style.css
+
+
+v1.0 (Jun 12th, 2014)
+----------------------------
+- Theme released

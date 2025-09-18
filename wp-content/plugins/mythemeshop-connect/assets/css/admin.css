@@ -1,0 +1,166 @@
+/*
+* MyThemeShop Theme & Plugin Updater
+*/
+.mts-connect-notice {
+	position: relative;
+}
+
+.mts-notice-dismiss-icon, .mts-notice-dismiss-all-icon {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	color: #222;
+	opacity: 0.4;
+	text-decoration: none !important;
+}
+
+.mts-notice-dismiss-all-icon {
+	color: #CF0101;
+	opacity: 1;
+	display: none;
+	right: 32px;
+}
+
+.mts-notice-dismiss-icon:hover, .mts-notice-dismiss-icon-all-icon:hover {
+	opacity: 1;
+}
+
+div.mts-connect-notice.update-nag, div.mts-connect-notice.error, div.mts-network-notice {
+	display: block;
+	margin: 5px 20px 0 0;
+	clear: both;
+}
+
+.toplevel_page_mts-connect .mts-connect-notice {
+	margin-left: 0;
+}
+
+div.mts-connect-notice.updated {
+	margin: 5px 20px 0px 0px;
+}
+
+.mts-network-notice {
+	border-left: 4px solid #1CA86F;
+	padding: 1px 12px;
+	background-color: #FFF;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+	margin: 5px 15px 2px;
+}
+
+.toplevel_page_mts-connect div.mts-network-notice {
+	margin: 20px 20px 0px 0px;
+	clear: both;
+}
+
+#adminmenu .toplevel_page_mts-connect .dashicons-update.connected {
+	text-shadow: 0px 0px 1px #057A00, 0px 0px 1px #057A00, 0px 0px 1px #057A00, 0px 0px 1px #057A00;
+}
+
+#adminmenu .toplevel_page_mts-connect .dashicons-update.disconnected {
+	text-shadow: 0px 0px 1px #B61600, 0px 0px 1px #B61600, 0px 0px 1px #B61600, 0px 0px 1px #B61600;
+}
+
+#adminmenu .toplevel_page_mts-connect .dashicons-update.updates-available {
+	text-shadow: 0px 0px 1px #f6c828, 0px 0px 1px #f6c828, 0px 0px 1px #f6c828, 0px 0px 1px #f6c828;
+}
+
+div#mts-connect-modal>div:first-child {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	z-index: 1111111;
+}
+
+div#mts-connect-modal>div:last-child {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #fff;
+	box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .3);
+	z-index: 1111112;
+	width: 400px;
+	max-width: 80%;
+	padding: 10px 20px 20px;
+}
+
+#mts-connect-modal>div>p:first-child {
+	border-left: 4px solid #ffba00;
+	background: #fffbee;
+	padding: 12px;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+}
+
+#mts_connect_form {
+	position: relative;
+	max-width: 300px;
+	margin: 20px auto 0 auto;
+	background: #fff;
+	padding: 16px 20px 20px 20px;
+	text-align: center;
+}
+
+#mts_connect_form label {
+	display: block;
+	width: 100%;
+	margin: 5px 0;
+}
+
+#mts_connect_form input[type="submit"] {
+	width: auto;
+	margin-top: 20px;
+}
+
+#mts_connect_form.loading:after,
+#mts_connect_settings_form.loading:after {
+	content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 11;
+}
+
+#mts_connect_form label {
+	font-weight: bold;
+}
+
+#mts_connect_form input {
+	margin-bottom: 10px;
+}
+
+#mts-connect-modal input#mts_agree {
+	margin-bottom: 0;
+}
+
+#mts_username,
+#mts_password {
+	width: 100%;
+	font-size: 22px;
+}
+
+#mts_connect_logo {
+	width: 220px;
+	margin: 0 auto 20px;
+	display: block;
+}
+
+#mts_connect_form .description {
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+
+.mtsc-error {
+	background: #ffe8e8;
+	border: 1px solid #c60000;
+	padding: 2px 6px;
+}
+
+#mts-connect-modal p:last-child a.button {
+	float: right;
+}

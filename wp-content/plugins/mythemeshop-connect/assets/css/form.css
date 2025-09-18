@@ -1,0 +1,101 @@
+/*
+* MyThemeShop Theme & Plugin Updater
+*/
+
+.mtsc-option-heading {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+    margin-top: 20px;
+}
+
+.mtsc-label {
+    display: block;
+    margin: 5px 0 10px 0;
+}
+
+label#mtsc-label-networknotices {
+    margin-bottom: 0;
+}
+
+.description.mtsc-description-networknotices {
+    margin-bottom: 10px;
+}
+
+.description.mtsc-description-networknotices-2 {
+    margin-left: 24px;
+}
+
+label#mtsc-label-agree {
+    font-weight: normal;
+}
+
+label#mtsc-label-agree input {
+    margin-top: 6px;
+}
+
+.mtsc-clear-notices-wrapper {
+    margin: 20px 0;
+}
+
+#mtsc-clear-notices-success {
+    margin-top: 4px;
+    display: inline-block;
+    font-style: italic;
+    color: #777;
+}
+
+#mtsc-connected {
+    position: relative;
+    max-width: 600px;
+    margin: 20px auto 0 auto;
+    background: #fff;
+    padding: 16px 20px 20px 20px;
+}
+
+.mtsc-status-icon .dashicons {
+    font-size: 88px;
+    width: 88px;
+    height: 88px;
+    float: left;
+    border: 5px solid #008000;
+    border-radius: 50%;
+    color: #008000;
+    margin-right: 20px;
+    background: #fff;
+}
+
+.mtsc-icon-updates-required .dashicons {
+    color: #c60000;
+    border-color: #c60000;
+}
+
+.mtsc-status-icon .dashicons-yes:before {
+    position: relative;
+    left: -3px;
+    top: 1px;
+}
+
+.mtsc-status-text p {
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+.mtsc-connected-msg {
+    display: block;
+    clear: both;
+    padding-top: 40px;
+}
+
+span.mtsc-connected-msg-connected {
+    font-weight: bold;
+}
+
+.mtsc-connected-msg-username {
+    border-left: 1px solid black;
+    margin-left: 4px;
+    padding-left: 8px;
+    border-right: 1px solid black;
+    margin-right: 8px;
+    padding-right: 4px;
+}

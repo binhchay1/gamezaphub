@@ -255,6 +255,18 @@ trait Conditional {
 	}
 
 	/**
+	 * Is React Mode.
+	 *
+	 * @since 1.0.250
+	 *
+	 * @return boolean
+	 */
+	public static function is_react_enabled() {
+		$is_react_enabled = get_option( 'rank_math_react_settings_ui', 'on' );
+		return apply_filters( 'rank_math/is_react_enabled', $is_react_enabled === 'on' );
+	}
+
+	/**
 	 * Is Breadcrumbs Enabled.
 	 *
 	 * @since 1.0.64
@@ -307,6 +319,41 @@ trait Conditional {
 	 */
 	public static function is_cron() {
 		return function_exists( 'wp_doing_cron' ) ? wp_doing_cron() : defined( 'DOING_CRON' ) && DOING_CRON;
+	}
+
+	/**
+	 * Checks if WP-Cron is enabled and functional.
+	 *
+	 * @return bool True if WP-Cron is usable; false otherwise.
+	 */
+	public static function is_cron_enabled() {
+		// Check if WP-Cron is disabled in the wp-config.php file.
+		if ( defined( 'DISABLE_WP_CRON' ) && DISABLE_WP_CRON ) {
+			return false;
+		}
+
+		// Early bail if usable cron transient is set to true.
+		if ( get_transient( 'rank_math_wp_cron_usable' ) ) {
+			return true;
+		}
+
+		// Attempt a loopback request to wp-cron.php to check if it is blocked by the server.
+		$response = wp_remote_post(
+			site_url( 'wp-cron.php' ),
+			[
+				'timeout'   => 5,
+				'blocking'  => true,
+				'sslverify' => apply_filters( 'https_local_ssl_verify', true ),
+			]
+		);
+
+		if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
+			return false;
+		}
+
+		set_transient( 'rank_math_wp_cron_usable', 1, HOUR_IN_SECONDS );
+
+		return true;
 	}
 
 	/**

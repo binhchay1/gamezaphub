@@ -1,0 +1,58 @@
+/*
+Plugin Name: WP Tab Widget
+Plugin URI: http://mythemeshop.com/plugins/wp-tab-widget/
+Description: WP Tab Widget is the AJAXified plugin which loads content by demand, and thus it makes the plugin incredibly lightweight.
+Author: MyThemeShop
+Author URI: http://mythemeshop.com/
+*/
+.item-wrap { position: relative; clear: both; }
+.item-wrap > a.wpt-remove-item { position: absolute; z-index: 999; color: #FFF; top: 8px; right: 40px; text-decoration: none; line-height: 20px; background: #D2D4D8; padding: 0 5px; border-radius: 2px; }
+.item-wrap > a.wpt-remove-item:hover { background: #E73B5F }
+.item-wrap > a.wpt-remove-item i { margin-left: -3px; margin-right: -4px; }
+.wpt_options_form .wpt-style-popup { float: right; width: auto; }
+/* tab-accordion */
+.group { zoom: 1 }
+#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+#sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
+html>body #sortable li { height: 1.5em; line-height: 1.2em; }
+.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+.wpt-styles, .wpt-accordion, .wpt-add-wrapper { margin: 0 0 15px 0; clear: both; float: left; width: 100%; }
+.wpt-style-popup { width: 100% }
+@-webkit-keyframes anim { 
+    0% { background-position: 0 0 }
+    100% { background-position: 50px 50px }
+}
+@keyframes anim { 
+    0% { background-position: 0 0 }
+    100% { background-position: 50px 50px }
+}
+.loading h3 { position: absolute; margin: auto; top: 0; bottom: 0; left: 0; right: 0; overflow: hidden; background-size: 100px 100px; background-image: linear-gradient(-45deg, #33c9ff 25%, #00b2f2 25%, #00b2f2 50%, #33c9ff 50%, #33c9ff 75%, #00b2f2 75%); -webkit-animation: anim 1s linear infinite; animation: anim 1s linear infinite; color: #fff!important; }
+.select2-container.wpt-imageselect .select2-choice { height: auto; padding: 5px; }
+.wpt-img-select-text, .select2-container.wpt-imageselect .select2-arrow { display: none }
+.select2-container.wpt-imageselect .select2-choice > .select2-chosen { margin-right: 12px }
+.wpt_options_form .left { float: left; margin-top: 8px; }
+.colorset-colors-none, .colorset-colors.colorset-none .colorset-color { display: none }
+.colorset-colors.colorset-none .colorset-colors-none { display: inline-block; color: green; font-weight: bold; }
+.colorset-colors > span { width: 14px; height: 14px; float: left; margin-right: 3px; margin-top: 1px; box-shadow: 0px 1px 1px #B6B6B6; }
+.colorset-label { float: left; margin-right: 5px; }
+.wpt-accordion .item-wrap > h3 { background-color: #FAFAFA; border-color: #e0e2e4; border-radius: 2px; padding: 9px; color: #7d7f81; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.07); margin-top: 5px; text-shadow: 0px 0px 0px #7d7f81; }
+.wpt-accordion .item-wrap > h3:hover, .wpt-accordion .item-wrap > h3:focus, .wpt-accordion.ui-accordion .ui-accordion-header.ui-accordion-header-active { background-color: #fff; border-color: #CED0D4; }
+.wpt-accordion.ui-accordion .ui-accordion-header .ui-accordion-header-icon { position: absolute; right: 8px; left: auto; top: 15px; text-decoration: none; line-height: 20px; background: #D2D4D8; color: #fff; padding: 0; border-radius: 2px; display: inline-block; width: 20px; height: 20px; font-size: 20px; line-height: 1; font-family: dashicons; text-decoration: inherit; font-weight: 400; font-style: normal; vertical-align: top; text-align: center; transition: color .1s ease-in 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-indent: 0; }
+.wpt-accordion.ui-accordion .ui-accordion-header .ui-accordion-header-icon:before { content: "\f347" }
+.wpt-accordion.ui-accordion .ui-accordion-header .ui-accordion-header-icon:hover, .wpt-accordion.ui-accordion .ui-accordion-header.ui-accordion-header-active .ui-accordion-header-icon { background: #323C4C }
+.wpt-accordion.ui-accordion .ui-accordion-header.ui-accordion-header-active .ui-accordion-header-icon { -webkit-transform: rotate(180deg); transform: rotate(180deg); }
+.wpt-accordion.ui-accordion .ui-accordion-content { padding: 15px 5px; background: #FDFDFD; }
+.wpt-accordion p:nth-child(2n+1) { clear: left }
+.wpt-accordion p { float: left; margin: 0 0 15px; padding: 0 5px; width: 50%; box-sizing: border-box; }
+.wpt-accordion p input[type=checkbox] { margin-right: 3px }
+.wpt-accordion p.wpt-opt-full-width { width: 100% }
+.wpt-accordion p input[type="text"], .wpt-accordion p input[type="number"], .wpt-accordion p select, .wpt-accordion p textarea { width: 100%; box-sizing: border-box; padding: 6px 10px; border: 1px solid #ddd; background: #fff; border-radius: 2px; font-size: 13px; line-height: 1.2; margin: 3px 0 0 0!important; height: auto; }
+.wpt-accordion p textarea { height: 150px; }
+/*.wpt-accordion p select { -webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; -o-appearance: none; appearance: none; }*/
+.wpt_thumbnail_size, .wpt_excerpt_length { display: block; margin-top: 8px; }
+.select2-container--default.select2-container--focus .select2-selection--multiple { border-color: #a4e3fa; color: #666666; outline: none; }
+.select2-container { width: 100%!important }
+.select2-container .select2-choice { margin-top: 0 }
+span[data-parent-select-id] { display: none; margin-top: 8px }
+span[data-parent-select-id].active { display: block }
+.wptp-width-height-opt { width: 65px!important }

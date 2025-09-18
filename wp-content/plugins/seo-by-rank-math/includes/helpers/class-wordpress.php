@@ -20,6 +20,7 @@ use RankMath\Helpers\Param;
 use RankMath\Helpers\Security;
 use stdClass;
 use WP_Screen;
+use WP_Error;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -112,6 +113,20 @@ trait WordPress {
 	}
 
 	/**
+	 * Get settings url.
+	 *
+	 * @param string $type Setting type.
+	 * @param string $page Page id.
+	 * @return string
+	 */
+	public static function get_settings_url( $type, $page ) {
+		$type = "options-{$type}";
+		$page = Helper::is_react_enabled() ? "&view=$page" : "#setting-panel-{$page}";
+
+		return self::get_admin_url( $type . $page );
+	}
+
+	/**
 	 * Get Rank Math Connect URL.
 	 *
 	 * @since 1.0.19
@@ -148,7 +163,7 @@ trait WordPress {
 		$business_type = [ 'news', 'business', 'webshop', 'otherbusiness' ];
 
 		if ( in_array( $site_type, $business_type, true ) ) {
-			return self::get_admin_url( 'options-titles#setting-panel-local' );
+			return self::get_settings_url( 'titles', 'local' );
 		}
 		return admin_url( 'admin.php?page=rank-math&view=modules' );
 	}
@@ -641,6 +656,7 @@ trait WordPress {
 		global $wp_filesystem;
 
 		if ( empty( $wp_filesystem ) ) {
+			global $wp_file_descriptions;
 			require_once ABSPATH . '/wp-admin/includes/file.php'; // @phpstan-ignore-line
 			WP_Filesystem();
 		}
@@ -747,5 +763,81 @@ trait WordPress {
 	 */
 	public static function get_current_time() {
 		return strtotime( current_time( 'mysql' ) );
+	}
+
+	/**
+	 * Handles the upload process to allow .txt and .json file types in WordPress.
+	 *
+	 * This function hooks into 'upload_mimes' and 'wp_check_filetype_and_ext'
+	 * to permit the upload of plain text (.txt) and JSON (.json) files via the media uploader.
+	 * It ensures the correct MIME types and file extensions are accepted.
+	 *
+	 * @return array|WP_Error Array of upload results, including file URL, path, and type, or error information.
+	 */
+	public static function handle_file_upload() {
+		// Add upload hooks.
+		add_filter( 'upload_mimes', [ __CLASS__, 'allow_txt_upload' ] );
+		add_filter( 'wp_check_filetype_and_ext', [ __CLASS__, 'filetype_and_ext' ], 10, 3 );
+
+		if ( isset( $_FILES['import-me'] ) ) {
+			// Do the upload.
+			if ( ! function_exists( 'wp_handle_upload' ) ) {
+				$required_file = ABSPATH . 'wp-admin/includes/file.php';
+				if ( file_exists( $required_file ) ) {
+					require_once $required_file; // @phpstan-ignore-line
+				}
+			}
+			$file = wp_handle_upload( $_FILES['import-me'], [ 'test_form' => false ] );
+		} else {
+			$file = new WP_Error( 'missing_file', __( 'No file selected for upload.', 'rank-math' ) );
+		}
+
+		// Remove upload hooks.
+		remove_filter( 'upload_mimes', [ __CLASS__, 'allow_txt_upload' ] );
+		remove_filter( 'wp_check_filetype_and_ext', [ __CLASS__, 'filetype_and_ext' ], 10 );
+
+		return $file;
+	}
+
+	/**
+	 * Allow txt & json file upload.
+	 *
+	 * @param array $types Mime types keyed by the file extension regex corresponding to those types.
+	 *
+	 * @return array
+	 */
+	public static function allow_txt_upload( $types ) {
+		$types['json'] = 'application/json';
+		$types['txt']  = 'text/plain';
+
+		return $types;
+	}
+
+	/**
+	 * Filters the "real" file type of the given file.
+	 *
+	 * @param array  $types {
+	 *     Values for the extension, mime type, and corrected filename.
+	 *
+	 *     @type string|false $ext             File extension, or false if the file doesn't match a mime type.
+	 *     @type string|false $type            File mime type, or false if the file doesn't match a mime type.
+	 *     @type string|false $proper_filename File name with its correct extension, or false if it cannot be determined.
+	 * }
+	 * @param string $file                      Full path to the file.
+	 * @param string $filename                  The name of the file (may differ from $file due to
+	 *                                                $file being in a tmp directory).
+	 *
+	 * @return array
+	 */
+	public static function filetype_and_ext( $types, $file, $filename ) {
+		if ( false !== strpos( $filename, '.json' ) ) {
+			$types['ext']  = 'json';
+			$types['type'] = 'application/json';
+		} elseif ( false !== strpos( $filename, '.txt' ) ) {
+			$types['ext']  = 'txt';
+			$types['type'] = 'text/plain';
+		}
+
+		return $types;
 	}
 }
