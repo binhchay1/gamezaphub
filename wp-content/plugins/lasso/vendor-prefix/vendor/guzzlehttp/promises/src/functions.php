@@ -21,7 +21,7 @@ namespace LassoVendor\GuzzleHttp\Promise;
  *
  * @deprecated queue will be removed in guzzlehttp/promises:2.0. Use Utils::queue instead.
  */
-function queue(TaskQueueInterface $assign = null)
+function queue(?TaskQueueInterface $assign = null)
 {
     return Utils::queue($assign);
 }
@@ -244,7 +244,7 @@ function settle($promises)
  *
  * @deprecated each will be removed in guzzlehttp/promises:2.0. Use Each::of instead.
  */
-function each($iterable, callable $onFulfilled = null, callable $onRejected = null)
+function each($iterable, ?callable $onFulfilled = null, ?callable $onRejected = null)
 {
     return Each::of($iterable, $onFulfilled, $onRejected);
 }
@@ -265,7 +265,7 @@ function each($iterable, callable $onFulfilled = null, callable $onRejected = nu
  *
  * @deprecated each_limit will be removed in guzzlehttp/promises:2.0. Use Each::ofLimit instead.
  */
-function each_limit($iterable, $concurrency, callable $onFulfilled = null, callable $onRejected = null)
+function each_limit($iterable, $concurrency, ?callable $onFulfilled = null, ?callable $onRejected = null)
 {
     return Each::ofLimit($iterable, $concurrency, $onFulfilled, $onRejected);
 }
@@ -282,7 +282,7 @@ function each_limit($iterable, $concurrency, callable $onFulfilled = null, calla
  *
  * @deprecated each_limit_all will be removed in guzzlehttp/promises:2.0. Use Each::ofLimitAll instead.
  */
-function each_limit_all($iterable, $concurrency, callable $onFulfilled = null)
+function each_limit_all($iterable, $concurrency, ?callable $onFulfilled = null)
 {
     return Each::ofLimitAll($iterable, $concurrency, $onFulfilled);
 }

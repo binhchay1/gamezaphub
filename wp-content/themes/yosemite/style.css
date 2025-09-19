@@ -3812,6 +3812,10 @@ pre:before {
     margin-top: 10px;
 }
 
+.platform-icon svg {
+    height: auto;
+}
+
 @media (max-width: 768px) {
     .ratings-chart {
         height: 30px;

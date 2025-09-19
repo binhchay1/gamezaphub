@@ -20,7 +20,7 @@ function yosemite_load_textdomain() {
         load_theme_textdomain('mythemeshop', get_template_directory() . '/lang');
     }
 }
-add_action('plugins_loaded', 'yosemite_load_textdomain', 1);
+add_action('wp_loaded', 'yosemite_load_textdomain');
 
 // Custom translations
 if (!empty($mts_options['translate'])) {
