@@ -60,7 +60,7 @@ jQuery(document).ready(function($){
 /*--------------------------------------------------*/
 jQuery(document).ready(function($) {
 	//move-to-top arrow
-	jQuery("body").prepend("<a href='#' id='move-to-top' class='animate to-top'><i class='fa fa-angle-up'></i></a>");
+    jQuery("body").prepend("<a href='#' id='move-to-top' class='animate to-top' style='background:#764ba2;border-color:#764ba2'><i class='fa fa-angle-up'></i></a>");
 	var scrollDes = 'html,body';  
 	/*Opera does a strange thing if we use 'html' and 'body' together so my solution is to do the UA sniffing thing*/
 	if(navigator.userAgent.match(/opera/i)){
