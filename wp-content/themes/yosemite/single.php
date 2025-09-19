@@ -53,8 +53,6 @@
 							</div>
 						<?php }?>
 
-						<?php mts_related_posts(); ?>
-
 					</div><!--.g post-->
 					<?php comments_template( '', true ); ?>
 				<?php endwhile; /* end loop */ ?>

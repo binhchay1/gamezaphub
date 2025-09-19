@@ -3,15 +3,6 @@ $mts_options = get_option(MTS_THEME_NAME);
 ?>
 <?php get_header(); ?>
 
-<section class="hero-section">
-	<div class="container">
-		<div class="hero-content">
-			<h1 class="hero-title">Gamezaphub</h1>
-			<p class="hero-subtitle">Khám phá thế giới game qua những trải nghiệm chân thực và đánh giá chuyên sâu từ cộng đồng game thủ Việt Nam</p>
-		</div>
-	</div>
-</section>
-
 <div id="page" class="blog-home">
 	<div class="container">
 		<div class="<?php mts_article_class(); ?>">

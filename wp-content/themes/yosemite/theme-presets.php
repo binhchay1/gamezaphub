@@ -1,5 +1,4 @@
 <?php
-// make sure to not include translations
 $args['presets']['default'] = array(
 	'title' => 'With Sidebar',
 	'demo' => 'http://demo.mythemeshop.com/yosemite-main/',

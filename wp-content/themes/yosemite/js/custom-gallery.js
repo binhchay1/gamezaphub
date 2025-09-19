@@ -75,28 +75,45 @@
         const container = document.getElementById(galleryId);
         if (!container) return;
 
+        const wrapper = container.querySelector('.thumbnail-wrapper');
         const thumbnailContainer = container.querySelector('.thumbnail-container');
         const thumbnails = container.querySelectorAll('.thumbnail');
 
-        if (!thumbnailContainer || !thumbnails.length) return;
+        if (!wrapper || !thumbnailContainer || !thumbnails.length) return;
 
-        const itemsPerView = galleryData.itemsPerView;
-        const thumbnailWidth = thumbnails[0].offsetWidth + 10;
-        const maxOffset = Math.max(0, thumbnails.length - itemsPerView);
+        const activeThumb = thumbnails[currentIndex];
+        if (!activeThumb) return;
 
-        let newOffset;
-        if (thumbnails.length <= itemsPerView) {
-            newOffset = 0;
-        } else if (currentIndex <= Math.floor(itemsPerView / 2)) {
-            newOffset = 0;
-        } else if (currentIndex >= thumbnails.length - Math.floor(itemsPerView / 2)) {
-            newOffset = maxOffset;
-        } else {
-            newOffset = currentIndex - Math.floor(itemsPerView / 2);
+        const computed = getComputedStyle(thumbnailContainer).transform;
+        let currentOffsetPx = 0;
+        if (computed && computed !== 'none') {
+            const matrix = computed.match(/matrix\(([^)]+)\)/);
+            if (matrix && matrix[1]) {
+                const values = matrix[1].split(',').map(Number);
+                const tx = values[4];
+                currentOffsetPx = Math.abs(tx) || 0;
+            }
         }
 
-        newOffset = Math.max(0, Math.min(newOffset, maxOffset));
-        thumbnailContainer.style.transform = `translateX(-${newOffset * thumbnailWidth}px)`;
+        const wrapperWidth = wrapper.clientWidth;
+        const contentWidth = thumbnailContainer.scrollWidth;
+        const maxOffsetPx = Math.max(0, contentWidth - wrapperWidth);
+
+        const thumbLeft = activeThumb.offsetLeft;
+        const thumbRight = thumbLeft + activeThumb.offsetWidth;
+
+        let newOffsetPx = currentOffsetPx;
+        const padding = 6;
+
+        if (thumbLeft < currentOffsetPx) {
+            newOffsetPx = Math.max(0, thumbLeft - padding);
+        } else if (thumbRight > currentOffsetPx + wrapperWidth) {
+            newOffsetPx = Math.min(maxOffsetPx, thumbRight - wrapperWidth + padding);
+        }
+
+        if (newOffsetPx === currentOffsetPx) return;
+
+        thumbnailContainer.style.transform = `translateX(-${newOffsetPx}px)`;
     }
 
     document.addEventListener('click', function (e) {

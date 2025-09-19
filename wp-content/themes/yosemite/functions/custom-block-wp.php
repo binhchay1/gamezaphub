@@ -50,15 +50,15 @@ function custom_gallery_block_render($block_content, $block)
     }
 
     $gallery_id = 'custom-gallery-' . uniqid();
-    
+
     ob_start();
-    ?>
+?>
     <div class="custom-gallery-container" id="<?php echo esc_attr($gallery_id); ?>">
         <div class="main-image">
-            <img src="<?php echo esc_url($images[0]['url']); ?>" 
-                 alt="<?php echo esc_attr($images[0]['alt']); ?>" 
-                 data-index="0"
-                 class="main-gallery-image">
+            <img src="<?php echo esc_url($images[0]['url']); ?>"
+                alt="<?php echo esc_attr($images[0]['alt']); ?>"
+                data-index="0"
+                class="main-gallery-image">
             <button class="zoom-btn" onclick="openModal('<?php echo esc_js($gallery_id); ?>', 0)">Phóng to</button>
             <div class="nav-buttons">
                 <button class="prev-btn" onclick="changeImage('<?php echo esc_js($gallery_id); ?>', -1)">←</button>
@@ -68,32 +68,32 @@ function custom_gallery_block_render($block_content, $block)
         <div class="thumbnail-wrapper">
             <div class="thumbnail-container">
                 <?php foreach ($images as $index => $image): ?>
-                <div class="thumbnail <?php echo $index === 0 ? 'active' : ''; ?>">
-                    <img src="<?php echo esc_url($image['url']); ?>" 
-                         alt="<?php echo esc_attr($image['alt']); ?>" 
-                         data-index="<?php echo $index; ?>"
-                         onclick="changeImage('<?php echo esc_js($gallery_id); ?>', <?php echo $index; ?>)"
-                         class="thumbnail-image">
-                </div>
+                    <div class="thumbnail <?php echo $index === 0 ? 'active' : ''; ?>">
+                        <img src="<?php echo esc_url($image['url']); ?>"
+                            alt="<?php echo esc_attr($image['alt']); ?>"
+                            data-index="<?php echo $index; ?>"
+                            onclick="changeImage('<?php echo esc_js($gallery_id); ?>', <?php echo $index; ?>)"
+                            class="thumbnail-image">
+                    </div>
                 <?php endforeach; ?>
             </div>
         </div>
     </div>
 
-    <div class="gallery-modal" id="modal-<?php echo esc_attr($gallery_id); ?>" style="display: none;">
+    <div class="gallery-modal" id="modal-<?php echo esc_attr($gallery_id); ?>">
         <span class="close" onclick="closeModal('<?php echo esc_js($gallery_id); ?>')">×</span>
         <img class="modal-content-img" src="" alt="Full Screen Image">
     </div>
 
     <script>
-    window.galleryData = window.galleryData || {};
-    window.galleryData['<?php echo esc_js($gallery_id); ?>'] = {
-        images: <?php echo json_encode($images); ?>,
-        currentIndex: 0,
-        itemsPerView: 5
-    };
+        window.galleryData = window.galleryData || {};
+        window.galleryData['<?php echo esc_js($gallery_id); ?>'] = {
+            images: <?php echo json_encode($images); ?>,
+            currentIndex: 0,
+            itemsPerView: 5
+        };
     </script>
-    <?php
+<?php
     return ob_get_clean();
 }
 add_filter('render_block', 'custom_gallery_block_render', 10, 2);
@@ -142,7 +142,7 @@ add_filter('render_block', function ($block_content, $block) {
     <div class="video-player">
         <video id="my-video-<?php echo uniqid(); ?>" class="video">
             <source src="<?php echo $video_src; ?>" type="video/mp4">
-            Your browser does not support the video tag.
+            Trình duyệt của bạn không hỗ trợ thẻ video.
         </video>
         <div class="now-playing">Đang phát</div>
         <div class="video-controls">

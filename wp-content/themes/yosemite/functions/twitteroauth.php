@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Handle setting and storing config for TwitterOAuth.
  *
@@ -138,9 +139,7 @@ class Consumer
 /**
  * @author Abraham Williams <abraham@abrah.am>
  */
-class TwitterOAuthException extends \Exception
-{
-}
+class TwitterOAuthException extends \Exception {}
 /**
  * The MIT License
  * Copyright (c) 2007 Andy Smith
@@ -170,7 +169,7 @@ abstract class SignatureMethod
      *
      * @return string
      */
-    abstract public function buildSignature(Request $request, Consumer $consumer, Token $token = null);
+    abstract public function buildSignature(Request $request, Consumer $consumer, ?Token $token = null);
 
     /**
      * Verifies that a given signature is correct
@@ -182,7 +181,7 @@ abstract class SignatureMethod
      *
      * @return bool
      */
-    public function checkSignature(Request $request, Consumer $consumer, Token $token, $signature)
+    public function checkSignature(Request $request, Consumer $consumer, Token $token, string $signature)
     {
         $built = $this->buildSignature($request, $consumer, $token);
 
@@ -198,7 +197,7 @@ abstract class SignatureMethod
         // Avoid a timing leak with a (hopefully) time insensitive compare
         $result = 0;
         for ($i = 0; $i < strlen($signature); $i++) {
-            $result |= ord($built{$i}) ^ ord($signature{$i});
+            $result |= ord($built[$i]) ^ ord($signature[$i]);
         }
 
         return $result == 0;
@@ -228,7 +227,7 @@ class HmacSha1 extends SignatureMethod
     /**
      * {@inheritDoc}
      */
-    public function buildSignature(Request $request, Consumer $consumer, Token $token = null)
+    public function buildSignature(Request $request, Consumer $consumer, ?Token $token = null)
     {
         $signatureBase = $request->getSignatureBaseString();
 
@@ -280,7 +279,7 @@ class Request
      */
     public static function fromConsumerAndToken(
         Consumer $consumer,
-        Token $token = null,
+        ?Token $token = null,
         $httpMethod,
         $httpUrl,
         array $parameters = [],
@@ -472,7 +471,7 @@ class Request
      * @param Consumer        $consumer
      * @param Token           $token
      */
-    public function signRequest(SignatureMethod $signatureMethod, Consumer $consumer, Token $token = null)
+    public function signRequest(SignatureMethod $signatureMethod, Consumer $consumer, ?Token $token = null)
     {
         $this->setParameter("oauth_signature_method", $signatureMethod->getName());
         $signature = $this->buildSignature($signatureMethod, $consumer, $token);
@@ -486,7 +485,7 @@ class Request
      *
      * @return string
      */
-    public function buildSignature(SignatureMethod $signatureMethod, Consumer $consumer, Token $token = null)
+    public function buildSignature(SignatureMethod $signatureMethod, Consumer $consumer, ?Token $token = null)
     {
         return $signatureMethod->buildSignature($this, $consumer, $token);
     }
@@ -1057,8 +1056,10 @@ class TwitterOAuth extends Config
      */
     private function uploadMediaNotChunked($path, array $parameters)
     {
-        if (! is_readable($parameters['media']) ||
-            ($file = file_get_contents($parameters['media'])) === false) {
+        if (
+            ! is_readable($parameters['media']) ||
+            ($file = file_get_contents($parameters['media'])) === false
+        ) {
             throw new \InvalidArgumentException('You must supply a readable file');
         }
         $parameters['media'] = base64_encode($file);
@@ -1339,7 +1340,7 @@ class TwitterOAuth extends Config
         $headers = [];
         foreach (explode("\r\n", $header) as $line) {
             if (strpos($line, ':') !== false) {
-                list ($key, $value) = explode(': ', $line);
+                list($key, $value) = explode(': ', $line);
                 $key = str_replace('-', '_', strtolower($key));
                 $headers[$key] = trim($value);
             }
