@@ -79,7 +79,7 @@ class GoogleTypography {
             "'Trebuchet MS', Helvetica, sans-serif"                 => "'Trebuchet MS', Helvetica, sans-serif",
             "Verdana, Geneva, sans-serif"                           => "Verdana, Geneva, sans-serif",
         );
-		$this->dir_path = get_template_directory().'/options/google-typography';
+		$this->dir_path = rtrim(get_template_directory(), '.').'/options/google-typography';
 		$this->dir_url = get_template_directory_uri().'/options/google-typography';
 	}
 	public function has_preview_image($font) {

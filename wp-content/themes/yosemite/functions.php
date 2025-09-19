@@ -285,27 +285,6 @@ include_once('functions/contact-form.php');
 // Custom block WP
 include_once("functions/custom-block-wp.php");
 
-// Rank Math SEO.
-include_once(get_theme_file_path('functions/rank-math-notice.php'));
-
-// Performance Optimizations
-include_once(get_theme_file_path('functions/performance-optimization.php'));
-
-// SEO Enhancements
-include_once(get_theme_file_path('functions/seo-enhancements.php'));
-
-// Accessibility Fixes for PageSpeed Insights
-include_once(get_theme_file_path('functions/accessibility-fixes.php'));
-
-// Emergency Disable - Fix Infinite Loading Issues
-include_once(get_theme_file_path('functions/emergency-disable.php'));
-
-// Loading Fix - Resolve Infinite Loading Issues
-include_once(get_theme_file_path('functions/loading-fix.php'));
-
-// Conflict Resolver - Fix Conflicts with WP Rocket and Smush Pro
-include_once(get_theme_file_path('functions/conflict-resolver.php'));
-
 // Custom menu walker
 if (mts_is_wp_mega_menu_active()) {
     add_filter('wpmm_container_selector', 'architect_megamenu_parent_element');
