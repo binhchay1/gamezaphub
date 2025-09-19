@@ -20,7 +20,7 @@ function yosemite_load_textdomain() {
         load_theme_textdomain('mythemeshop', get_template_directory() . '/lang');
     }
 }
-add_action('wp_loaded', 'yosemite_load_textdomain');
+add_action('plugins_loaded', 'yosemite_load_textdomain', 1);
 
 // Custom translations
 if (!empty($mts_options['translate'])) {
@@ -128,7 +128,7 @@ add_theme_support('menus');
 if (function_exists('register_nav_menus')) {
     register_nav_menus(
         array(
-            'primary-menu' => __('Primary Menu', 'mythemeshop')
+            'primary-menu' => 'Primary Menu'
         )
     );
 }
@@ -149,7 +149,7 @@ if (function_exists('register_sidebar')) {
         // Default sidebar
         register_sidebar(array(
             'name' => 'Sidebar',
-            'description'   => __('Default sidebar.', 'mythemeshop'),
+            'description'   => 'Default sidebar.',
             'id' => 'sidebar',
             'before_widget' => '<div id="%1$s" class="widget panel %2$s">',
             'after_widget' => '</div>',
@@ -352,7 +352,7 @@ function mts_wp_title($title, $sep)
 
     // Add a page number if necessary.
     if ($paged >= 2 || $page >= 2)
-        $title = "$title $sep " . sprintf(__('Page %s', 'mythemeshop'), max($paged, $page));
+        $title = "$title $sep " . sprintf('Page %s', max($paged, $page));
 
     return $title;
 }
@@ -464,9 +464,9 @@ function mts_load_footer_scripts()
                 'maxPages' => $max,
                 'nextLink' => next_posts($max, false),
                 'autoLoad' => $autoload,
-                'i18n_loadmore' => __('Load More Posts', 'mythemeshop'),
-                'i18n_loading' => __('Loading...', 'mythemeshop'),
-                'i18n_nomore' => __('No more posts.', 'mythemeshop')
+                'i18n_loadmore' => 'Load More Posts',
+                'i18n_loading' => 'Loading...',
+                'i18n_nomore' => 'No more posts.'
             )
         );
     }
@@ -558,7 +558,7 @@ function mts_enqueue_css()
         .share-item {margin: 2px;}';
     }
     if (! empty($mts_options['mts_author_comment'])) {
-        $mts_author = '.bypostauthor .fn > span:after { content: "' . __('Author', 'mythemeshop') . '"; margin-left: 10px; padding: 3px 10px; font-size: 13px; color: #333; -webkit-border-radius: 2px; border-radius: 2px; border-radius: 5px; border: 1px solid #D3D3D3; box-shadow: 0px 1px 1px #E7E7E7; }';
+        $mts_author = '.bypostauthor .fn > span:after { content: "Author"; margin-left: 10px; padding: 3px 10px; font-size: 13px; color: #333; -webkit-border-radius: 2px; border-radius: 2px; border-radius: 5px; border: 1px solid #D3D3D3; box-shadow: 0px 1px 1px #E7E7E7; }';
     }
     $custom_css = "
         body {background-color:{$mts_options['mts_bg_color']}; background-image: url( {$mts_bg} );}
@@ -611,11 +611,11 @@ function mts_comments($comment, $args, $depth)
                     <span class="ago"><?php comment_date(get_option('date_format')); ?></span>
                 <?php } ?>
                 <span class="comment-meta">
-                    <?php edit_comment_link(__('( Edit )', 'mythemeshop'), '  ', '') ?>
+                    <?php edit_comment_link('( Edit )', '  ', '') ?>
                 </span>
             </div>
             <?php if ($comment->comment_approved == '0') : ?>
-                <em><?php _e('Your comment is awaiting moderation.', 'mythemeshop') ?></em>
+                <em>Your comment is awaiting moderation.</em>
                 <br />
             <?php endif; ?>
             <div class="commentmetadata">
@@ -694,7 +694,7 @@ if (! function_exists('mts_readmore')) {
     ?>
         <div class="readMore">
             <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>" class="button">
-                <?php _e('Continue', 'mythemeshop'); ?>&nbsp;&nbsp;&#8594;
+                Continue&nbsp;&nbsp;&#8594;
             </a>
         </div>
         <?php
@@ -770,9 +770,9 @@ function ajax_mts_search()
 <?php
         endwhile;
         echo '</ul>';
-        echo '<div class="ajax-search-meta"><span class="results-count">' . $search_count . ' ' . __('Results', 'mythemeshop') . '</span><a href="' . get_search_link($query) . '" class="results-link">Show all results</a></div>';
+        echo '<div class="ajax-search-meta"><span class="results-count">' . $search_count . ' Results</span><a href="' . get_search_link($query) . '" class="results-link">Show all results</a></div>';
     else:
-        echo '<div class="no-results">' . __('No results found.', 'mythemeshop') . '</div>';
+        echo '<div class="no-results">No results found.</div>';
     endif;
 
     exit; // required for AJAX in WP
