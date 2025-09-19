@@ -3511,42 +3511,12 @@ pre:before {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     margin: 0 4px;
     border-radius: 8px;
     transition: all 0.3s ease;
     cursor: pointer;
-}
-
-.platform-icon svg {
-    width: 20px;
-    height: 20px;
-}
-
-.pc-icon {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-}
-
-.nintendo-icon {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-    color: white;
-}
-
-.playstation-icon {
-    background: linear-gradient(135deg, #003791 0%, #0070d1 100%);
-    color: white;
-}
-
-.xbox-icon {
-    background: linear-gradient(135deg, #107c10 0%, #00bcf2 100%);
-    color: white;
-}
-
-.mobile-icon {
-    background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
-    color: white;
 }
 
 .platform-icon:hover {
@@ -3556,10 +3526,7 @@ pre:before {
 
 .community-ratings {
     margin: 20px 0;
-    padding: 20px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-radius: 12px;
-    border: 1px solid #dee2e6;
+    padding: 0;
 }
 
 .ratings-title {
@@ -3576,17 +3543,18 @@ pre:before {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    height: 80px;
+    height: 40px;
 }
 
 .rating-segment {
-    flex: 1;
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
     overflow: hidden;
+    min-width: 60px;
 }
 
 .rating-segment:hover {
@@ -3611,55 +3579,60 @@ pre:before {
     background: linear-gradient(135deg, #dc3545 0%, #e83e8c 100%);
 }
 
-.segment-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 4px;
-    background: rgba(255, 255, 255, 0.3);
-}
-
 .segment-content {
     display: flex;
     align-items: center;
-    padding: 0 16px;
+    justify-content: center;
     width: 100%;
     color: white;
+    position: relative;
+}
+
+.segment-label {
+    font-size: 20px;
+    font-weight: 500;
+    opacity: 0.9;
+    margin-right: 8px;
 }
 
 .segment-icon {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 12px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 50%;
 }
 
 .segment-icon svg {
-    width: 18px;
-    height: 18px;
-}
-
-.segment-info {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.segment-label {
-    font-size: 12px;
-    font-weight: 500;
-    margin-bottom: 2px;
-    opacity: 0.9;
+    width: 14px;
+    height: 14px;
+    color: #333;
 }
 
 .segment-percent {
-    font-size: 16px;
-    font-weight: 700;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.95);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    z-index: 9999;
+    pointer-events: none;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rating-segment:hover .segment-percent {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-2px);
 }
 
 .genre-item {
@@ -3787,10 +3760,8 @@ pre:before {
 
 .stores-section {
     margin: 24px 0;
-    padding: 20px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-radius: 12px;
-    border: 1px solid #dee2e6;
+    padding: 0;
+    background: none;
 }
 
 .stores-title {
@@ -3802,120 +3773,73 @@ pre:before {
 }
 
 .stores-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
 }
 
 .store-link {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 12px;
-    background: white;
-    border-radius: 10px;
+    padding: 8px;
     text-decoration: none;
     color: inherit;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 .store-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px) scale(1.1);
     text-decoration: none;
     color: inherit;
 }
 
 .store-icon {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    margin-bottom: 8px;
+    border-radius: 8px;
+    margin-bottom: 4px;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.store-icon[data-store="steam"] {
-    background: linear-gradient(135deg, #171a21 0%, #2a475e 100%);
-    color: #66c0f4;
-}
-
-.store-icon[data-store="epic-games-store"] {
-    background: linear-gradient(135deg, #0078f2 0%, #00d4ff 100%);
-    color: white;
-}
-
-.store-icon[data-store="gog"] {
-    background: linear-gradient(135deg, #7f3f98 0%, #b967c7 100%);
-    color: white;
-}
-
-.store-icon[data-store="origin"] {
-    background: linear-gradient(135deg, #ff6a00 0%, #ff8c00 100%);
-    color: white;
-}
-
-.store-icon[data-store="uplay"] {
-    background: linear-gradient(135deg, #0080ff 0%, #00a8ff 100%);
-    color: white;
-}
-
-.store-icon svg {
-    width: 24px;
-    height: 24px;
-}
-
-.store-name {
-    font-size: 12px;
-    font-weight: 500;
-    text-align: center;
-    color: #495057;
+.mt-10 {
+    margin-top: 10px;
 }
 
 @media (max-width: 768px) {
     .ratings-chart {
-        flex-direction: column;
-        height: auto;
+        height: 30px;
     }
 
     .rating-segment {
-        height: 60px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .rating-segment:last-child {
-        border-bottom: none;
-    }
-
-    .rating-segment:hover {
-        transform: none;
-        box-shadow: none;
-    }
-
-    .segment-content {
-        padding: 0 12px;
+        min-width: 50px;
     }
 
     .segment-icon {
-        width: 28px;
-        height: 28px;
-        margin-right: 10px;
+        width: 20px;
+        height: 20px;
     }
 
     .segment-icon svg {
-        width: 16px;
-        height: 16px;
+        width: 12px;
+        height: 12px;
     }
 
     .segment-label {
-        font-size: 11px;
+        font-size: 10px;
+        margin-left: 6px;
     }
 
     .segment-percent {
-        font-size: 14px;
+        font-size: 10px;
+        top: -25px;
+        padding: 2px 6px;
     }
 
     .platform-icon {
@@ -3973,10 +3897,5 @@ pre:before {
     .store-icon {
         width: 40px;
         height: 40px;
-    }
-
-    .store-icon svg {
-        width: 20px;
-        height: 20px;
     }
 }

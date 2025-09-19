@@ -15,6 +15,9 @@ defined('ABSPATH') or die;
  */
 
 class GoogleTypography {
+    public $std_fonts;
+    public $dir_path;
+    public $dir_url;
 
 	/**
 	 * @var $api_url	The google web font API URL

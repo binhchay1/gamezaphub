@@ -15,7 +15,12 @@ $mts_options = get_option(MTS_THEME_NAME);
 /*-----------------------------------------------------------------------------------*/
 /*  Load Translation Text Domain
 /*-----------------------------------------------------------------------------------*/
-load_theme_textdomain('mythemeshop', get_template_directory() . '/lang');
+function yosemite_load_textdomain() {
+    if (!is_textdomain_loaded('mythemeshop')) {
+        load_theme_textdomain('mythemeshop', get_template_directory() . '/lang');
+    }
+}
+add_action('wp_loaded', 'yosemite_load_textdomain');
 
 // Custom translations
 if (!empty($mts_options['translate'])) {
