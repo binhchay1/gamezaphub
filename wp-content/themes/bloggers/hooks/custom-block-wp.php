@@ -64,9 +64,7 @@ function custom_gallery_block_render($block_content, $block)
             <img src="<?php echo esc_url($images[0]['url']); ?>"
                 alt="<?php echo esc_attr($images[0]['alt']); ?>"
                 data-index="0"
-                class="main-gallery-image"
-                loading="lazy"
-                decoding="async">
+                class="main-gallery-image">
             <button class="zoom-btn" onclick="openModal('<?php echo esc_js($gallery_id); ?>', 0)">Phóng to</button>
             <div class="nav-buttons">
                 <button class="prev-btn" onclick="changeImage('<?php echo esc_js($gallery_id); ?>', -1)">←</button>
@@ -81,9 +79,7 @@ function custom_gallery_block_render($block_content, $block)
                             alt="<?php echo esc_attr($image['alt']); ?>"
                             data-index="<?php echo $index; ?>"
                             onclick="changeImage('<?php echo esc_js($gallery_id); ?>', <?php echo $index; ?>)"
-                            class="thumbnail-image"
-                            loading="lazy"
-                            decoding="async">
+                            class="thumbnail-image">
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -92,7 +88,7 @@ function custom_gallery_block_render($block_content, $block)
 
     <div class="gallery-modal" id="modal-<?php echo esc_attr($gallery_id); ?>">
         <span class="close" onclick="closeModal('<?php echo esc_js($gallery_id); ?>')">×</span>
-        <img class="modal-content-img" src="" alt="Full Screen Image" loading="lazy" decoding="async">
+        <img class="modal-content-img" src="" alt="Full Screen Image">
     </div>
 
 <?php

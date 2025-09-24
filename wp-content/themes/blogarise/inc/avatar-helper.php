@@ -96,10 +96,16 @@ if (!class_exists('Blogarise_Avatar_Helper')) {
             $size = isset($sizes[$context]) ? $sizes[$context] : $sizes['small'];
 
             // Sử dụng get_avatar với kích thước tối ưu
-            return get_avatar($user_id, $size, '', $alt, array(
-                'loading' => 'lazy', // Lazy loading để tối ưu hiệu suất
-                'fetchpriority' => $context === 'large' ? 'high' : 'low'
-            ));
+            $args = array();
+            
+            // Chỉ thêm loading optimization cho context phù hợp
+            if ($context === 'large') {
+                $args['fetchpriority'] = 'high';
+            } else {
+                $args['loading'] = 'lazy';
+            }
+            
+            return get_avatar($user_id, $size, '', $alt, $args);
         }
 
         /**
