@@ -7,6 +7,16 @@
     margin: 20px 0;
 }
 
+/* Đảm bảo data attributes được xử lý đúng */
+.custom-gallery-container[data-gallery-images] {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.custom-gallery-container[data-gallery-images].loading {
+    opacity: 0.8;
+}
+
 .main-image {
     position: relative;
     width: 100%;

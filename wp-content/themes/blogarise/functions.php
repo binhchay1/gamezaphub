@@ -243,28 +243,6 @@ function blogarise_widgets_init()
 }
 add_action('widgets_init', 'blogarise_widgets_init');
 
-/**
- * Tối ưu hóa avatar theo kích thước thực tế
- * Thay vì tải ảnh 150x150 cho tất cả, sẽ tải đúng kích thước cần thiết
- */
-function blogarise_optimized_avatar($user_id, $context = 'small', $alt = '')
-{
-	// Định nghĩa kích thước theo context
-	$sizes = array(
-		'small' => 36,    // Cho .bs-author .auth img (25px -> 36px để đảm bảo chất lượng)
-		'large' => 96,    // Cho .bs-author-pic img (80px -> 96px)
-		'comment' => 32,  // Cho comment avatar
-		'widget' => 48    // Cho widget avatar
-	);
-
-	$size = isset($sizes[$context]) ? $sizes[$context] : $sizes['small'];
-
-	// Sử dụng get_avatar với kích thước tối ưu
-	return get_avatar($user_id, $size, '', $alt, array(
-		'loading' => 'lazy', // Lazy loading để tối ưu hiệu suất
-		'fetchpriority' => $context === 'large' ? 'high' : 'low'
-	));
-}
 
 /**
  * Hook để tối ưu hóa srcset - chỉ tạo srcset khi thực sự cần thiết
@@ -294,16 +272,23 @@ add_filter('get_avatar_url', function ($url, $id_or_email, $args) {
 }, 10, 3);
 
 // Include Avatar Helper để tối ưu hóa avatar
-require_once get_template_directory() . '/inc/avatar-helper.php';
+$avatar_helper_file = get_template_directory() . '/inc/avatar-helper.php';
+if (file_exists($avatar_helper_file)) {
+    require_once $avatar_helper_file;
+}
 
 // Enqueue Avatar Optimization CSS
-function blogarise_avatar_optimization_styles() {
-    wp_enqueue_style(
-        'blogarise-avatar-optimization',
-        get_template_directory_uri() . '/css/avatar-optimization.css',
-        array(),
-        '1.0'
-    );
-    wp_style_add_data('blogarise-avatar-optimization', 'defer', true);
+function blogarise_avatar_optimization_styles()
+{
+	$css_file = get_template_directory() . '/css/avatar-optimization.css';
+	if (file_exists($css_file)) {
+		wp_enqueue_style(
+			'blogarise-avatar-optimization',
+			get_template_directory_uri() . '/css/avatar-optimization.css',
+			array(),
+			'1.0'
+		);
+		wp_style_add_data('blogarise-avatar-optimization', 'defer', true);
+	}
 }
 add_action('wp_enqueue_scripts', 'blogarise_avatar_optimization_styles');
