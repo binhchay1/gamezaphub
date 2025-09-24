@@ -53,7 +53,7 @@ require_once __DIR__ . '/svg-loader.php';
 									<?php if (strpos($platform['platform']['name'], 'PC') !== false && !$isPC) { ?>
 										<?php $isPC = true; ?>
 										<div class="platform-icon pc-icon" title="PC">
-											<?php 
+											<?php
 											$pc_svg = getPlatformSVG('pc');
 											if ($pc_svg) {
 												echo $pc_svg;
@@ -64,7 +64,7 @@ require_once __DIR__ . '/svg-loader.php';
 									<?php if (strpos($platform['platform']['name'], 'Nintendo') !== false && !$isNintendo) { ?>
 										<?php $isNintendo = true; ?>
 										<div class="platform-icon nintendo-icon" title="Nintendo Switch">
-											<?php 
+											<?php
 											$nintendo_svg = getPlatformSVG('nintendo');
 											if ($nintendo_svg) {
 												echo $nintendo_svg;
@@ -75,7 +75,7 @@ require_once __DIR__ . '/svg-loader.php';
 									<?php if (strpos($platform['platform']['name'], 'PlayStation') !== false && !$isPlaystation) { ?>
 										<?php $isPlaystation = true; ?>
 										<div class="platform-icon playstation-icon" title="PlayStation">
-											<?php 
+											<?php
 											$ps_svg = getPlatformSVG('playstation');
 											if ($ps_svg) {
 												echo $ps_svg;
@@ -86,7 +86,7 @@ require_once __DIR__ . '/svg-loader.php';
 									<?php if (strpos($platform['platform']['name'], 'Xbox') !== false && !$isXbox) { ?>
 										<?php $isXbox = true; ?>
 										<div class="platform-icon xbox-icon" title="Xbox">
-											<?php 
+											<?php
 											$xbox_svg = getPlatformSVG('xbox');
 											if ($xbox_svg) {
 												echo $xbox_svg;
@@ -97,7 +97,7 @@ require_once __DIR__ . '/svg-loader.php';
 									<?php if ((strpos($platform['platform']['name'], 'iOS') !== false || strpos($platform['platform']['name'], 'Android') !== false) && !$isMobile) { ?>
 										<?php $isMobile = true; ?>
 										<div class="platform-icon mobile-icon" title="Mobile">
-											<?php 
+											<?php
 											$mobile_svg = getPlatformSVG('mobile');
 											if ($mobile_svg) {
 												echo $mobile_svg;
@@ -188,10 +188,6 @@ require_once __DIR__ . '/svg-loader.php';
 					</div>
 				</div>
 
-				<?php
-				// SVG loader already included at the top
-				?>
-
 				<div class="stores-section">
 					<h4 class="stores-title">Cửa hàng</h4>
 					<div class="stores-grid">
@@ -209,7 +205,7 @@ require_once __DIR__ . '/svg-loader.php';
 						?>
 									<a href="<?php echo $recordStore['url'] ?>" target="_blank" class="store-link">
 										<div class="store-icon" data-store="<?php echo $store['slug'] ?>">
-											<?php 
+											<?php
 											$store_svg = getStoreSVG($store['slug']);
 											if ($store_svg) {
 												echo $store_svg;

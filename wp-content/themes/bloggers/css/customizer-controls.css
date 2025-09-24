@@ -1,0 +1,126 @@
+#customize-control-theme_color  input , #customize-control-front_page_data input, #customize-control-front_page_data span{display:none !important;}
+.customize-control-radio label {margin-right: 20px;}
+.bizoh-time {font-family:'Lato';}
+
+
+#accordion-panel-quality_slider_setting .accordion-section-title::after{ content: "\f023"; float: right; font-family: FontAwesome; font-size: 17px; color: #555; }
+.customize-control-radio label {    display: inline-block !important;}
+
+#accordion-section-blogarise_pro_section .accordion-section-title {
+  background: #00a63f;
+  color: #fff;
+}
+
+#accordion-section-blogarise_pro_section .accordion-section-title:after {
+  content: "\f07a";
+  font-family: FontAwesome;
+  color: #fff;
+}
+
+#customize-control-blogarise_theme_color input, #customize-control-blogarise_default_bg_image input{display:none;}
+
+#customize-control-blogarise_default_bg_image img {height:40px; width:40px; }
+
+.blogarise-notice {
+    position: relative;
+    padding: 8px 40px 8px 8px;
+}
+
+.blogarise-notice-content {
+    display: flex;
+}
+
+.blogarise-notice-content .blogarise-notice_image {
+    display: flex;
+    flex: 0 1 30%;
+    min-height: 100px;
+    border-right: 1px solid #FCFCFD;
+}
+
+.blogarise-notice_text 
+{
+    flex: 0 1 70%;
+}
+
+
+.blogarise-notice-started {
+    padding: 38px 38px 38px 20px !important;
+    position: relative;
+}
+
+
+.blogarise-notice-content .blogarise-notice_image .blogarise-screenshot {
+    width: 100%;
+    box-shadow: 0 0 1px 0 #ccd0d4;
+    border: 1px solid #dddddd;
+}
+
+.blogarise-notice-content .text_heading {
+    margin-top: 0;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+/* Alpha */
+.customize-pane-child {
+  height: 100% !important;
+}
+
+li.customize-control-color .wp-picker-container .wp-color-result.button {
+    height: 35px;
+    padding: 0 0 0 35px;
+}
+
+.customize-control-elsie-wpcolorpicker-alpha-color {
+  margin-bottom: 10px;
+}
+
+
+.customize-control-description {
+  margin-bottom: 8px;
+}
+
+#customize-control-blog_page_tabs  .control-tab-design {
+    display: none;
+}
+.customize-control-select.custom-hide-control {
+    display: none;
+}
+
+#customize-control-header_menu_layout img{margin-bottom: 25px;
+border: 1px solid #2271b1;
+}
+#customize-control-header_menu_layout .ui-checkboxradio-checked img, #customize-control-blog_layout .ui-checkboxradio-checked img,  
+#customize-control-blogarise_footer_layout img .ui-checkboxradio-checked img, #customize-control-blogarise_slider_layout img 
+.ui-checkboxradio-checked img, #customize-control-blogarise_footer_layout img .ui-checkboxradio-checked img {
+  border: 4px solid #00d084;
+}
+#customize-controls img {
+  border: 1px solid #2271b1;
+}
+#customize-controls .ui-checkboxradio-checked img {
+  border: 4px solid #00d084;
+}
+
+
+#customize-control-blog_layout img{margin-right: 25px; margin-bottom: 25px;}
+
+#customize-control-blogarise_slider_layout img, #customize-control-blogarise_footer_layout img{margin-bottom: 10px;width: 100px;margin-right: 25px;}
+
+#customize-control-blogarise_footer_layout input{display: none;}
+
+#customize-control-blogarise_skin_mode input{display: none; }
+#customize-control-blogarise_skin_mode img{border: none;}
+
+
+.blogarise-notice_text .notice p, .notice-title, div.updated p, div.error p, .form-table td .notice p  {padding-right: 25px; font-size: 15px;}
+
+.dashicons-external:before {
+    color: #2271b1;
+}
+
+.blogarise-documentation, .blogarise-demos{ display:inline; margin-right: 10px; margin-left: 5px; }
+
+#customize-control-bloggers_content_layout input{display: none;}
+
+#customize-control-bloggers_content_layout img{width: 120px;}

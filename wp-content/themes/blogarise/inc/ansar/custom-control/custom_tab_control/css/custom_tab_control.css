@@ -1,0 +1,28 @@
+/* Tabs */
+.control-tabs {
+    margin: -15px -12px 0;
+    background: #fff;
+    display: flex;
+    border-bottom: 2px solid #e5e5e5;
+}
+.control-tab {
+    cursor: pointer;
+    height: 50px;
+    font-size: 16px;
+    text-align: center;
+    flex: 0 0 50%;
+    max-width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid #fff;
+}
+.control-tab.active {
+    border-color: #2271b1;
+}
+
+.customize-control.custom-hide-control {
+  display: none;
+  height: 0;
+  margin: 0 !important;
+}
