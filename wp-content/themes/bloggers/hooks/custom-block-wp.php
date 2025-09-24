@@ -34,7 +34,6 @@ function custom_gallery_block_render($block_content, $block)
             if ($inner_block['blockName'] === 'core/image') {
                 $img_id = $inner_block['attrs']['id'] ?? null;
                 if ($img_id) {
-                    // Tối ưu hóa: chỉ lấy thông tin cần thiết
                     $images[] = array(
                         'id' => $img_id,
                         'url' => wp_get_attachment_url($img_id),
@@ -54,12 +53,12 @@ function custom_gallery_block_render($block_content, $block)
 
     ob_start();
 ?>
-    <div class="custom-gallery-container loading" 
-         id="<?php echo esc_attr($gallery_id); ?>" 
-         data-gallery-id="<?php echo esc_attr($gallery_id); ?>"
-         data-gallery-images='<?php echo esc_attr(json_encode($images)); ?>'
-         data-gallery-current="0"
-         data-gallery-items-per-view="5">
+    <div class="custom-gallery-container"
+        id="<?php echo esc_attr($gallery_id); ?>"
+        data-gallery-id="<?php echo esc_attr($gallery_id); ?>"
+        data-gallery-images='<?php echo esc_attr(json_encode($images)); ?>'
+        data-gallery-current="0"
+        data-gallery-items-per-view="5">
         <div class="main-image">
             <img src="<?php echo esc_url($images[0]['url']); ?>"
                 alt="<?php echo esc_attr($images[0]['alt']); ?>"
@@ -113,8 +112,7 @@ function custom_gallery_minimal_scripts()
         wp_enqueue_script('custom-gallery-minimal', get_stylesheet_directory_uri() . '/js/custom-gallery.js', array(), '1.0', true);
         wp_script_add_data('custom-gallery-minimal', 'defer', true);
     }
-    
-    // CSP Safe Gallery Script
+
     $csp_js_file = get_stylesheet_directory() . '/js/csp-safe-gallery.js';
     if (file_exists($csp_js_file)) {
         wp_enqueue_script('csp-safe-gallery', get_stylesheet_directory_uri() . '/js/csp-safe-gallery.js', array('custom-gallery-minimal'), '1.0', true);

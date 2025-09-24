@@ -50,7 +50,7 @@ class CacheEntry
      * @param \DateTime|null $staleIfErrorTo if null, detected with the headers (RFC 5861)
      * @param \DateTime|null $staleWhileRevalidateTo
      */
-    public function __construct(RequestInterface $request, ResponseInterface $response, \DateTime $staleAt, \DateTime $staleIfErrorTo = null, \DateTime $staleWhileRevalidateTo = null)
+    public function __construct(RequestInterface $request, ResponseInterface $response, \DateTime $staleAt, ?\DateTime $staleIfErrorTo = null, ?\DateTime $staleWhileRevalidateTo = null)
     {
         $this->dateCreated = new \DateTime();
         $this->request = $request;

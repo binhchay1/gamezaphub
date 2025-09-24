@@ -16,7 +16,6 @@ if (!function_exists('blogarise_post_categories')) :
             return;
         }
 
-        // Hide category and tag text for pages.
         if ('post' === get_post_type()) {
 
             global $post;
@@ -29,7 +28,6 @@ if (!function_exists('blogarise_post_categories')) :
                     $t_id = $post_category->term_id;
                     $color_id = "category_color_" . $t_id;
 
-                    // retrieve the existing value(s) for this meta field. This returns an array
                     $term_meta = get_option($color_id);
                     $color_class = ($term_meta) ? $term_meta['color_class_term_meta'] : 'category-color-1';
 
@@ -51,7 +49,6 @@ if (!function_exists('blogarise_get_category_color_class')) :
     {
 
         $color_id = "category_color_" . $term_id;
-        // retrieve the existing value(s) for this meta field. This returns an array
         $term_meta = get_option($color_id);
         $color_class = ($term_meta) ? $term_meta['color_class_term_meta'] : '';
         return $color_class;
@@ -108,7 +105,6 @@ if (!function_exists('get_archive_title')) :
         } elseif (is_post_type_archive()) {
             $title = post_type_archive_title('', false);
         } elseif (is_search()) {
-            /* translators: %s: search term */
             $title = sprintf(esc_html__('Search Results for: %s', 'blogarise'), esc_html(get_search_query()));
         } else {
             $title =  get_the_title();
@@ -149,11 +145,9 @@ if (!function_exists('blogarise_archive_page_title')) :
 
                 if ('post' === get_post_type()) {
 
-                    /* translators: used between list items, there is a space after the comma */
                     $tags_list = get_the_tag_list('', esc_html_x('', 'list item separator', 'blogarise'));
                     if ($tags_list) {
-                        /* translators: 1: list of tags. */
-                        printf('<span class="tags-links">' . esc_html('Tags: %1$s') . '</span>', $tags_list); // WPCS: XSS OK.
+                        printf('<span class="tags-links">' . esc_html('Tags: %1$s') . '</span>', $tags_list);
                     }
                 }
 
@@ -161,7 +155,6 @@ if (!function_exists('blogarise_archive_page_title')) :
                     edit_post_link(
                         sprintf(
                             wp_kses(
-                                /* translators: %s: Name of current post. Only visible to screen readers */
                                 __('Edit <span class="screen-reader-text">%s</span>', 'blogarise'),
                                 array(
                                     'span' => array(
@@ -312,9 +305,7 @@ if (!function_exists('blogarise_archive_page_title')) :
                 if (! empty(get_the_excerpt($post_obj))) {
                     $source_content = get_the_excerpt($post_obj);
                 }
-                // Check if non-breaking space exists in the text with variations
                 if (preg_match('/\s*(&nbsp;|\xA0)\s*/u', $source_content)) {
-                    // Remove non-breaking space and its variations from the text
                     $source_content = preg_replace('/\s*(&nbsp;|\xA0)\s*/u', ' ', $source_content);
                 }
 
@@ -333,7 +324,6 @@ if (!function_exists('blogarise_archive_page_title')) :
             function blogarise_breadcrumb_trail()
             {
                 if (! function_exists('breadcrumb_trail')) {
-                    // load class file
                     require_once get_template_directory() . '/inc/ansar/breadcrumb-trail/breadcrumb-trail.php';
                 }
 
@@ -404,7 +394,7 @@ if (!function_exists('blogarise_archive_page_title')) :
                                                                             } else {
                                                                                 echo 'center';
                                                                             } ?>">
-                    <?php //Previous / next page navigation
+                    <?php
 
                     $prev_text =  (is_rtl()) ? "right" : "left";
                     $next_text =  (is_rtl()) ? "left" : "right";
@@ -434,7 +424,6 @@ if (!function_exists('blogarise_archive_page_title')) :
                 <p class="search-results-count">
                     <?php
                     if ($total_results > 0) {
-                        // Translators: %s is the number of found results.
                         echo sprintf(
                             _n('%s result found', '%s results found', $total_results, 'blogarise'),
                             number_format_i18n($total_results)

@@ -2446,14 +2446,18 @@ class Helper
 			$plugins = get_plugins();
 
 			foreach ($plugins as $plugin_path => $plugin) {
-				$description = wp_strip_all_tags($plugin['Description']);
-				$description = substr($description, 0, 100) . '...'; // ? get first 100 characters
+				if (!is_array($plugin) || !isset($plugin['Name']) || !isset($plugin['Version'])) {
+					continue;
+				}
+				
+				$description = isset($plugin['Description']) ? wp_strip_all_tags($plugin['Description']) : '';
+				$description = substr($description, 0, 100) . '...';
 				$result[]    = array(
 					'name'        => $plugin['Name'],
 					'version'     => $plugin['Version'],
 					'status'      => intval(self::get_is_plugin_active($plugin_path)),
 					'description' => $description,
-					'url'         => $plugin['PluginURI'],
+					'url'         => isset($plugin['PluginURI']) ? $plugin['PluginURI'] : '',
 				);
 			}
 		} catch (\Exception $exception) {
