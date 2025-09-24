@@ -24,9 +24,13 @@ $css_display_theme_mobile = isset($css_display_theme_mobile) ? $css_display_them
 
 require_once __DIR__ . '/svg-loader.php';
 
+$container_classes = 'lasso-container';
+
 ?>
 
-<div <?php echo $anchor_id_html ?> class="lasso-container">
+<?php do_action('lasso_layout_6_box_before', $lasso_url); ?>
+
+<div <?php echo $anchor_id_html ?> class="<?php echo esc_attr($container_classes); ?>">
 	<div class="lasso-display <?php echo $theme_name . ' lasso-url-' . $lasso_url->slug . ' ' . ($css_display_theme_mobile ?? ''); ?>">
 		<div class="container-box-lasso">
 			<div class="header-box-lasso">

@@ -59,6 +59,8 @@ class Lasso_Init
 			array('Lasso_DB_Script', 'class-lasso-db-script.php'),
 			array('Lasso_License', 'class-lasso-license.php'),
 			array('Lasso_Shortcode', 'class-lasso-shortcode.php'),
+			// ? Admin Classes - Temporarily disabled to fix infinite loop
+			// array('Lasso_Admin_Layout_6_Box_Simple', '../admin/class-admin-layout-6-box-simple.php'),
 		);
 
 		$this->ajaxes = array(

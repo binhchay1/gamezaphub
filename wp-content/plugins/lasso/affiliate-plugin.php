@@ -64,11 +64,21 @@ register_deactivation_hook(__FILE__, 'deactivate_lasso_urls');
 require_once LASSO_PLUGIN_PATH . '/classes/class-lasso-init.php';
 new Lasso_Init();
 
-require_once LASSO_PLUGIN_PATH . '/libs/lasso/process-other-plugin.php';
+// Temporarily disabled to fix memory issue
+// require_once LASSO_PLUGIN_PATH . '/libs/lasso/process-other-plugin.php';
 
-if (file_exists(LASSO_PLUGIN_PATH . '/fixes/plugin-object-fix.php')) {
-	require_once LASSO_PLUGIN_PATH . '/fixes/plugin-object-fix.php';
-}
+// Temporarily disabled to fix memory issue
+// if (file_exists(LASSO_PLUGIN_PATH . '/fixes/plugin-object-fix.php')) {
+//	require_once LASSO_PLUGIN_PATH . '/fixes/plugin-object-fix.php';
+// }
+
+// Temporarily disabled to fix plugin activation
+// add_action('admin_enqueue_scripts', function () {
+//	if (is_admin() && file_exists(LASSO_PLUGIN_PATH . '/admin/css/layout-6-box.css')) {
+//		wp_enqueue_style('lasso-layout-6-box-admin', LASSO_PLUGIN_URL . '/admin/css/layout-6-box.css', array(), '1.0');
+//	}
+// });
+
 
 add_action('activated_plugin', 'lasso_load_final');
 /**
