@@ -153,3 +153,717 @@
         width: 100%;
     }
 }
+
+.lasso-admin-edit-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.lasso-admin-edit-container .header-box-lasso {
+    position: relative;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.lasso-admin-edit-container .game-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    border-radius: 0 12px 12px 0;
+}
+
+.lasso-admin-edit-container .game-info {
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+
+.lasso-admin-edit-container .game-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.lasso-admin-edit-container .game-title:hover {
+    color: #ffd700;
+    text-decoration: none;
+}
+
+.lasso-admin-edit-container .rating-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffd700;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.lasso-admin-edit-container .genre {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.lasso-admin-edit-container .genre-item {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.lasso-admin-edit-container .systems {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.lasso-admin-edit-container .platform-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.lasso-admin-edit-container .platform-icon:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.lasso-admin-edit-container .platform-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
+
+.lasso-admin-edit-container .game-description {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+    border-left: 4px solid #667eea;
+}
+
+.lasso-admin-edit-container .details-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.lasso-admin-edit-container .detail-card {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+}
+
+.lasso-admin-edit-container .detail-card:hover {
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+    transform: translateY(-2px);
+}
+
+.lasso-admin-edit-container .card-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.lasso-admin-edit-container .card-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
+
+.lasso-admin-edit-container .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.lasso-admin-edit-container .card-label {
+    font-size: 12px;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.lasso-admin-edit-container .card-value {
+    font-size: 14px;
+    color: #212529;
+    font-weight: 600;
+}
+
+.lasso-admin-edit-container .stores-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #667eea;
+    display: inline-block;
+}
+
+.lasso-admin-edit-container .stores-grid {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.lasso-admin-edit-container .store-link {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.lasso-admin-edit-container .store-link:hover {
+    transform: translateY(-3px);
+}
+
+.lasso-admin-edit-container .store-icon {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lasso-admin-edit-container .store-link:hover .store-icon {
+    border-color: #667eea;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.lasso-admin-edit-container .store-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.lasso-admin-edit-container .ratings-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #667eea;
+    display: inline-block;
+}
+
+.lasso-admin-edit-container .ratings-chart {
+    display: flex;
+    background: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 40px;
+    border: 1px solid #e9ecef;
+}
+
+.lasso-admin-edit-container .rating-segment {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    transition: all 0.3s ease;
+}
+
+.lasso-admin-edit-container .rating-segment:hover {
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.lasso-admin-edit-container .rating-segment.recommended {
+    background: linear-gradient(135deg, #28a745, #20c997);
+}
+
+.lasso-admin-edit-container .rating-segment.exceptional {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+}
+
+.lasso-admin-edit-container .rating-segment.mixed {
+    background: linear-gradient(135deg, #6f42c1, #e83e8c);
+}
+
+.lasso-admin-edit-container .rating-segment.skip {
+    background: linear-gradient(135deg, #dc3545, #fd7e14);
+}
+
+.lasso-admin-edit-container .segment-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.lasso-admin-edit-container .segment-label {
+    font-size: 16px;
+    color: white;
+}
+
+.lasso-admin-edit-container .segment-percent {
+    font-size: 11px;
+    color: white;
+    font-weight: 600;
+}
+
+.lasso-admin-edit-container .owl-carousel .item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.lasso-admin-edit-container .owl-carousel .item:hover img {
+    transform: scale(1.05);
+}
+
+.lasso-admin-edit-container .owl-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.lasso-admin-edit-container .owl-nav button {
+    width: 40px;
+    height: 40px;
+    background: rgba(102, 126, 234, 0.8);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+    transition: all 0.3s ease;
+    margin: 0 10px;
+}
+
+.lasso-admin-edit-container .owl-nav button:hover {
+    background: rgba(102, 126, 234, 1);
+    transform: scale(1.1);
+}
+
+.lasso-admin-edit-container .owl-dots {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.lasso-admin-edit-container .owl-dot {
+    width: 12px;
+    height: 12px;
+    background: #e9ecef;
+    border-radius: 50%;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+
+.lasso-admin-edit-container .owl-dot.active,
+.lasso-admin-edit-container .owl-dot:hover {
+    background: #667eea;
+    transform: scale(1.2);
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+    .lasso-admin-edit-container {
+        margin: 15px;
+        padding: 18px;
+    }
+    
+    .lasso-admin-edit-container .details-row {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+    }
+    
+    .lasso-admin-edit-container .game-title {
+        font-size: 26px;
+    }
+}
+
+/* Mobile Large */
+@media (max-width: 768px) {
+    .lasso-admin-edit-container {
+        margin: 10px;
+        padding: 15px;
+        border-radius: 8px;
+    }
+    
+    .lasso-admin-edit-container .header-box-lasso {
+        padding: 20px;
+        border-radius: 8px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .lasso-admin-edit-container .game-image {
+        width: 150px;
+        height: 100px;
+        position: relative;
+        margin: 0 auto 15px auto;
+        border-radius: 8px;
+    }
+    
+    .lasso-admin-edit-container .game-info {
+        text-align: center;
+    }
+    
+    .lasso-admin-edit-container .game-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .lasso-admin-edit-container .rating-title {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    
+    .lasso-admin-edit-container .genre {
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+    
+    .lasso-admin-edit-container .systems {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .lasso-admin-edit-container .details-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .lasso-admin-edit-container .detail-card {
+        padding: 12px;
+        gap: 10px;
+    }
+    
+    .lasso-admin-edit-container .card-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .lasso-admin-edit-container .card-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .lasso-admin-edit-container .stores-title,
+    .lasso-admin-edit-container .ratings-title {
+        font-size: 16px;
+        text-align: center;
+        display: block;
+        margin-bottom: 12px;
+    }
+    
+    .lasso-admin-edit-container .stores-grid {
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .lasso-admin-edit-container .store-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .lasso-admin-edit-container .store-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .lasso-admin-edit-container .ratings-chart {
+        height: 35px;
+    }
+    
+    .lasso-admin-edit-container .rating-segment {
+        min-width: 50px;
+    }
+    
+    .lasso-admin-edit-container .segment-label {
+        font-size: 14px;
+    }
+    
+    .lasso-admin-edit-container .segment-percent {
+        font-size: 10px;
+    }
+    
+    .lasso-admin-edit-container .owl-carousel .item img {
+        height: 150px;
+    }
+    
+    .lasso-admin-edit-container .owl-nav button {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+        margin: 0 5px;
+    }
+}
+
+/* Mobile Medium */
+@media (max-width: 480px) {
+    .lasso-admin-edit-container {
+        margin: 5px;
+        padding: 12px;
+    }
+    
+    .lasso-admin-edit-container .header-box-lasso {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .lasso-admin-edit-container .game-image {
+        width: 120px;
+        height: 80px;
+    }
+    
+    .lasso-admin-edit-container .game-title {
+        font-size: 20px;
+    }
+    
+    .lasso-admin-edit-container .rating-title {
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+    
+    .lasso-admin-edit-container .genre-item {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+    
+    .lasso-admin-edit-container .platform-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .lasso-admin-edit-container .platform-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .lasso-admin-edit-container .detail-card {
+        padding: 10px;
+        gap: 8px;
+    }
+    
+    .lasso-admin-edit-container .card-icon {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .lasso-admin-edit-container .card-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .lasso-admin-edit-container .card-label {
+        font-size: 11px;
+    }
+    
+    .lasso-admin-edit-container .card-value {
+        font-size: 13px;
+    }
+    
+    .lasso-admin-edit-container .stores-title,
+    .lasso-admin-edit-container .ratings-title {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .lasso-admin-edit-container .stores-grid {
+        gap: 10px;
+    }
+    
+    .lasso-admin-edit-container .store-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .lasso-admin-edit-container .store-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .lasso-admin-edit-container .ratings-chart {
+        height: 30px;
+    }
+    
+    .lasso-admin-edit-container .rating-segment {
+        min-width: 45px;
+    }
+    
+    .lasso-admin-edit-container .segment-label {
+        font-size: 12px;
+    }
+    
+    .lasso-admin-edit-container .segment-percent {
+        font-size: 9px;
+    }
+    
+    .lasso-admin-edit-container .owl-carousel .item img {
+        height: 120px;
+    }
+    
+    .lasso-admin-edit-container .owl-nav button {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+        margin: 0 3px;
+    }
+    
+    .lasso-admin-edit-container .owl-dot {
+        width: 10px;
+        height: 10px;
+        margin: 0 3px;
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 360px) {
+    .lasso-admin-edit-container {
+        margin: 2px;
+        padding: 10px;
+    }
+    
+    .lasso-admin-edit-container .header-box-lasso {
+        padding: 12px;
+    }
+    
+    .lasso-admin-edit-container .game-image {
+        width: 100px;
+        height: 70px;
+    }
+    
+    .lasso-admin-edit-container .game-title {
+        font-size: 18px;
+    }
+    
+    .lasso-admin-edit-container .rating-title {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+    
+    .lasso-admin-edit-container .genre-item {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+    
+    .lasso-admin-edit-container .platform-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .lasso-admin-edit-container .platform-icon svg {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .lasso-admin-edit-container .detail-card {
+        padding: 8px;
+        gap: 6px;
+    }
+    
+    .lasso-admin-edit-container .card-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .lasso-admin-edit-container .card-icon svg {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .lasso-admin-edit-container .card-label {
+        font-size: 10px;
+    }
+    
+    .lasso-admin-edit-container .card-value {
+        font-size: 12px;
+    }
+    
+    .lasso-admin-edit-container .stores-title,
+    .lasso-admin-edit-container .ratings-title {
+        font-size: 14px;
+    }
+    
+    .lasso-admin-edit-container .stores-grid {
+        gap: 8px;
+    }
+    
+    .lasso-admin-edit-container .store-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .lasso-admin-edit-container .store-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .lasso-admin-edit-container .ratings-chart {
+        height: 28px;
+    }
+    
+    .lasso-admin-edit-container .rating-segment {
+        min-width: 40px;
+    }
+    
+    .lasso-admin-edit-container .segment-label {
+        font-size: 11px;
+    }
+    
+    .lasso-admin-edit-container .segment-percent {
+        font-size: 8px;
+    }
+    
+    .lasso-admin-edit-container .owl-carousel .item img {
+        height: 100px;
+    }
+    
+    .lasso-admin-edit-container .owl-nav button {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+        margin: 0 2px;
+    }
+}

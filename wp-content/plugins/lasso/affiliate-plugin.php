@@ -72,12 +72,30 @@ new Lasso_Init();
 //	require_once LASSO_PLUGIN_PATH . '/fixes/plugin-object-fix.php';
 // }
 
-// Temporarily disabled to fix plugin activation
-// add_action('admin_enqueue_scripts', function () {
-//	if (is_admin() && file_exists(LASSO_PLUGIN_PATH . '/admin/css/layout-6-box.css')) {
-//		wp_enqueue_style('lasso-layout-6-box-admin', LASSO_PLUGIN_URL . '/admin/css/layout-6-box.css', array(), '1.0');
-//	}
-// });
+// Load Layout 6 Box CSS in admin
+add_action('admin_enqueue_scripts', function () {
+	$css_url = LASSO_PLUGIN_URL . '/admin/assets/css/layout-6-box.css';
+	if (file_exists(LASSO_PLUGIN_PATH . '/admin/assets/css/layout-6-box.css')) {
+		wp_enqueue_style('lasso-layout-6-box', $css_url, array(), '1.0');
+	}
+});
+
+// Fix stdClass plugin property error
+add_filter('all_plugins', function($plugins) {
+	if (is_array($plugins)) {
+		foreach ($plugins as $key => $plugin) {
+			if (is_object($plugin) && !isset($plugin->plugin)) {
+				if (is_array($plugin) && isset($plugin['Name'])) {
+					// Convert array to object with plugin property
+					$plugin_obj = (object) $plugin;
+					$plugin_obj->plugin = $key;
+					$plugins[$key] = $plugin_obj;
+				}
+			}
+		}
+	}
+	return $plugins;
+}, 10, 1);
 
 
 add_action('activated_plugin', 'lasso_load_final');

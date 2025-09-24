@@ -221,7 +221,8 @@ class Lasso_Init
 			$auto_updates[] = $asset;
 			$auto_updates   = array_unique($auto_updates);
 
-			$all_items = apply_filters('all_plugins', get_plugins());
+			$all_items = get_plugins();
+			$all_items = apply_filters('all_plugins', $all_items);
 
 			if (!is_array($all_items)) {
 				$all_items = get_plugins();
