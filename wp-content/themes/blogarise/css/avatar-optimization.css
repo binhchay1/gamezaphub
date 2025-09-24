@@ -1,0 +1,121 @@
+/* Tối ưu hóa hiển thị avatar - Tránh forced reflow */
+
+/* Avatar nhỏ (25px) */
+.bs-blog-meta .bs-author .auth img {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    margin-right: 8px;
+    margin-left: 1px;
+    display: unset; 
+    box-shadow: 0px 2px 8px 1px rgba(33, 33, 33, 0.3);
+    border: var(--bxbr);
+    /* Tối ưu hiệu suất */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    will-change: transform;
+    transform: translateZ(0); /* Kích hoạt hardware acceleration */
+    backface-visibility: hidden;
+    transition: transform 0.2s ease;
+}
+
+/* Avatar lớn (80px) */
+.bs-author-pic img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    /* Tối ưu hiệu suất */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transition: transform 0.3s ease;
+}
+
+/* Avatar trong comment */
+.comments-area img.avatar {
+    border-radius: 50%;
+    /* Tối ưu hiệu suất */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Avatar trong widget */
+.bs-widget .bs-author img.rounded-circle {
+    /* Tối ưu hiệu suất */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Responsive avatar sizes */
+@media (max-width: 768px) {
+    .bs-author-pic img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .bs-blog-meta .bs-author .auth img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bs-author-pic img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .bs-blog-meta .bs-author .auth img {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Hover effects tối ưu */
+@media (hover: hover) {
+    .bs-author-pic img:hover {
+        transform: scale(1.05) translateZ(0);
+    }
+    
+    .bs-blog-meta .bs-author .auth img:hover {
+        transform: scale(1.1) translateZ(0);
+    }
+}
+
+/* Tối ưu hóa cho touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .bs-author-pic img:hover,
+    .bs-blog-meta .bs-author .auth img:hover {
+        transform: translateZ(0);
+    }
+}
+
+/* Loading state cho avatar */
+img[loading="lazy"] {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"].loaded {
+    opacity: 1;
+}
+
+/* Tối ưu hóa cho print */
+@media print {
+    .bs-author-pic img,
+    .bs-blog-meta .bs-author .auth img,
+    .comments-area img.avatar,
+    .bs-widget .bs-author img.rounded-circle {
+        will-change: auto;
+        transform: none;
+        backface-visibility: visible;
+    }
+}

@@ -34,6 +34,7 @@ function custom_gallery_block_render($block_content, $block)
             if ($inner_block['blockName'] === 'core/image') {
                 $img_id = $inner_block['attrs']['id'] ?? null;
                 if ($img_id) {
+                    // Tối ưu hóa: chỉ lấy thông tin cần thiết
                     $images[] = array(
                         'id' => $img_id,
                         'url' => wp_get_attachment_url($img_id),
@@ -53,12 +54,14 @@ function custom_gallery_block_render($block_content, $block)
 
     ob_start();
 ?>
-    <div class="custom-gallery-container" id="<?php echo esc_attr($gallery_id); ?>">
+    <div class="custom-gallery-container loading" id="<?php echo esc_attr($gallery_id); ?>" data-gallery-id="<?php echo esc_attr($gallery_id); ?>">
         <div class="main-image">
             <img src="<?php echo esc_url($images[0]['url']); ?>"
                 alt="<?php echo esc_attr($images[0]['alt']); ?>"
                 data-index="0"
-                class="main-gallery-image">
+                class="main-gallery-image"
+                loading="lazy"
+                decoding="async">
             <button class="zoom-btn" onclick="openModal('<?php echo esc_js($gallery_id); ?>', 0)">Phóng to</button>
             <div class="nav-buttons">
                 <button class="prev-btn" onclick="changeImage('<?php echo esc_js($gallery_id); ?>', -1)">←</button>
@@ -68,12 +71,14 @@ function custom_gallery_block_render($block_content, $block)
         <div class="thumbnail-wrapper">
             <div class="thumbnail-container">
                 <?php foreach ($images as $index => $image): ?>
-                    <div class="thumbnail <?php echo $index === 0 ? 'active' : ''; ?>">
+                    <div class="thumbnail <?php echo $index === 0 ? 'active' : ''; ?>" data-index="<?php echo $index; ?>">
                         <img src="<?php echo esc_url($image['url']); ?>"
                             alt="<?php echo esc_attr($image['alt']); ?>"
                             data-index="<?php echo $index; ?>"
                             onclick="changeImage('<?php echo esc_js($gallery_id); ?>', <?php echo $index; ?>)"
-                            class="thumbnail-image">
+                            class="thumbnail-image"
+                            loading="lazy"
+                            decoding="async">
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -82,7 +87,7 @@ function custom_gallery_block_render($block_content, $block)
 
     <div class="gallery-modal" id="modal-<?php echo esc_attr($gallery_id); ?>">
         <span class="close" onclick="closeModal('<?php echo esc_js($gallery_id); ?>')">×</span>
-        <img class="modal-content-img" src="" alt="Full Screen Image">
+        <img class="modal-content-img" src="" alt="Full Screen Image" loading="lazy" decoding="async">
     </div>
 
     <script>

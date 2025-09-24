@@ -292,3 +292,18 @@ add_filter('get_avatar_url', function ($url, $id_or_email, $args) {
 
 	return $url;
 }, 10, 3);
+
+// Include Avatar Helper để tối ưu hóa avatar
+require_once get_template_directory() . '/inc/avatar-helper.php';
+
+// Enqueue Avatar Optimization CSS
+function blogarise_avatar_optimization_styles() {
+    wp_enqueue_style(
+        'blogarise-avatar-optimization',
+        get_template_directory_uri() . '/css/avatar-optimization.css',
+        array(),
+        '1.0'
+    );
+    wp_style_add_data('blogarise-avatar-optimization', 'defer', true);
+}
+add_action('wp_enqueue_scripts', 'blogarise_avatar_optimization_styles');
