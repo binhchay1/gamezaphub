@@ -41,7 +41,7 @@ $container_classes = 'lasso-container';
 				<img src="<?php echo $lasso_url->background_image ?>" alt="Game Image" class="game-image">
 				<div class="game-info">
 					<div class="game-title-area">
-						<a href="<?php echo $lasso_url->target_url ?>"><span class="game-title"><?php echo $lasso_url->name ?></span></a>
+						<a aria-label="Đọc bài" href="<?php echo $lasso_url->target_url ?>"><span class="game-title"><?php echo $lasso_url->name ?></span></a>
 						<div class="rating-title">GR ★ <?php echo $lasso_url->rating ?>/5</div>
 					</div>
 
@@ -211,7 +211,7 @@ $container_classes = 'lasso-container';
 								if (isset($storeMapping[$recordStore['store_id']])) {
 									$store = $storeMapping[$recordStore['store_id']];
 						?>
-									<a href="<?php echo $recordStore['url'] ?>" target="_blank" class="store-link">
+									<a href="<?php echo $recordStore['url'] ?>" target="_blank" aria-label="Cửa hàng" class="store-link">
 										<div class="store-icon" data-store="<?php echo $store['slug'] ?>">
 											<?php
 											$store_svg = getStoreSVG($store['slug']);

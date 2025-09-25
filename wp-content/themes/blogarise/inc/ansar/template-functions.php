@@ -343,7 +343,7 @@ $url = blogarise_get_freatured_image_url($post->ID, 'blogarise-medium');
     if($url) { 
         if ( blogarise_get_option('post_image_type') == 'post_fix_height' ) { ?>
             <div class="bs-blog-thumb lg back-img" style="background-image: url('<?php echo esc_url($url); ?>');">
-                <a href="<?php the_permalink(); ?>" class="link-div"></a>
+                <a aria-label="Đọc bài" href="<?php the_permalink(); ?>" class="link-div"></a>
             </div> 
         <?php }  else { ?>
             <div class="bs-post-thumb lg">
@@ -374,7 +374,7 @@ function blogarise_header_color() {
     ?>
         .site-title a,
         .site-description {
-            color: #<?php echo esc_attr( $blogarise_logo_text_color ); ?>;
+            color: #<?php echo esc_attr( $blogarise_logo_text_color ) ?>;
         }
 
         .site-branding-text .site-title a {

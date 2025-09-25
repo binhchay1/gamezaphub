@@ -70,7 +70,7 @@ if (!function_exists('blogarise_single_content')) :
               <div class="bs-blog-meta mb-0">
                 <?php
                 if ($blogarise_single_post_admin_details == true) { ?>
-                  <span class="bs-author"><a class="auth" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"> <?php echo blogarise_optimized_avatar(get_the_author_meta('ID'), 'small'); ?></a> <?php esc_html_e('By', 'blogarise'); ?>
+                  <span class="bs-author"><a class="auth" aria-label="Tác giả" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"> <?php echo blogarise_optimized_avatar(get_the_author_meta('ID'), 'small'); ?></a> <?php esc_html_e('By', 'blogarise'); ?>
                     <a class="ms-1" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"><?php the_author(); ?></a></span>
                 <?php } ?>
 
@@ -83,7 +83,7 @@ if (!function_exists('blogarise_single_content')) :
                   $tag_list = get_the_tag_list();
                   if ($tag_list) { ?>
                     <span class="tag-links">
-                      <a href="<?php the_permalink(); ?>"><?php the_tags("#", ", #", ' ', ''); ?></a>
+                      <a aria-label="Tags" href="<?php the_permalink(); ?>"><?php the_tags("#", ", #", ' ', ''); ?></a>
                     </span>
 
                 <?php }
@@ -147,9 +147,9 @@ if (!function_exists('blogarise_single_author_box')) :
     $blogarise_enable_single_admin_details = esc_attr(get_theme_mod('blogarise_enable_single_admin_details', true));
     if ($blogarise_enable_single_admin_details == true) { ?>
       <div class="bs-info-author-block py-4 px-3 mb-4 flex-column justify-content-center text-center">
-        <a class="bs-author-pic mb-3" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"><?php echo blogarise_optimized_avatar(get_the_author_meta('ID'), 'large'); ?></a>
+        <a class="bs-author-pic mb-3" aria-label="Tác giả" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"><?php echo blogarise_optimized_avatar(get_the_author_meta('ID'), 'large'); ?></a>
         <div class="flex-grow-1">
-          <h4 class="title"><?php esc_html_e('By', 'blogarise'); ?> <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"><?php the_author(); ?></a></h4>
+          <h4 class="title"><?php esc_html_e('By', 'blogarise'); ?> <a aria-label="Tác giả" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"><?php the_author(); ?></a></h4>
           <p><?php the_author_meta('description'); ?></p>
         </div>
       </div>
@@ -198,14 +198,14 @@ if (!function_exists('blogarise_single_related_box')) :
                 <!-- blog -->
                 <div class="col-md-4">
                   <div class="bs-blog-post three md back-img bshre mb-md-0" <?php if (has_post_thumbnail()) { ?> style="background-image: url('<?php echo esc_url($url); ?>');" <?php } ?>>
-                    <a class="link-div" href="<?php the_permalink(); ?>"></a>
+                    <a class="link-div" aria-label="Đọc bài" href="<?php the_permalink(); ?>"></a>
                     <div class="inner">
                       <?php if ($blogarise_enable_single_post_category == true) {
                         blogarise_post_categories();
                       }
                       $blogarise_enable_single_post_admin_details = esc_attr(get_theme_mod('blogarise_enable_single_post_admin_details', 'true')); ?>
                       <h4 class="title sm mb-0">
-                        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(array('before' => 'Permalink to: ', 'after'  => '')); ?>">
+                        <a aria-label="Đọc bài" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(array('before' => 'Permalink to: ', 'after'  => '')); ?>">
                           <?php the_title(); ?>
                         </a>
                       </h4>

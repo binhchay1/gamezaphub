@@ -26,7 +26,7 @@ if($you_missed_enable == 'true')
             while ( $blogarise_you_missed_loop->have_posts() ) : $blogarise_you_missed_loop->the_post(); 
             $url = blogarise_get_freatured_image_url($blogarise_you_missed_loop->ID, 'blogarise-featured'); ?> 
             <div class="bs-blog-post three md back-img bshre mb-0" <?php if(has_post_thumbnail()) { ?> style="background-image: url('<?php echo esc_url($url); ?>'); <?php } ?>">
-              <a class="link-div" href="<?php the_permalink(); ?>"></a>
+              <a class="link-div" aria-label="Đọc bài" href="<?php the_permalink(); ?>"></a>
               <div class="inner">
               <?php blogarise_post_categories(); ?>
                 <h4 class="title sm mb-0"> <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array('before' => 'Permalink to: ','after'  => '') ); ?>"> <?php the_title(); ?></a> </h4> 

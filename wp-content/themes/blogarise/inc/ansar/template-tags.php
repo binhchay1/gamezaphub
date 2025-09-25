@@ -68,7 +68,7 @@ if (! function_exists('blogarise_author_content')) :
     function blogarise_author_content()
     { ?>
         <span class="bs-author">
-            <a class="auth" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>">
+            <a class="auth" aria-label="Tác giả" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>">
                 <?php echo blogarise_optimized_avatar(get_the_author_meta('ID'), 'small'); ?><?php the_author(); ?>
             </a>
         </span>
@@ -211,7 +211,7 @@ if (!function_exists('blogarise_archive_page_title')) :
             {
                 $blogarise_menu_search  = get_theme_mod('blogarise_menu_search', 'true');
                 if ($blogarise_menu_search == true) { ?>
-                    <a class="msearch ml-auto" data-bs-target="#exampleModal" href="#" data-bs-toggle="modal">
+                    <a class="msearch ml-auto" data-bs-target="#exampleModal" href="#" aria-label="Tìm kiếm" data-bs-toggle="modal">
                         <i class="fa fa-search"></i>
                     </a>
                 <?php }
