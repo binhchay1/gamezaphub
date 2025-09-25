@@ -5,8 +5,7 @@
 use Lasso\Classes\Helper as Lasso_Helper;
 use Lasso\Classes\Html_Helper as Lasso_Html_Helper;
 
-// Ensure CSS is loaded
-if (is_admin() && !wp_style_is('lasso-layout-6-box', 'enqueued')) {
+if (is_admin()) {
 	wp_enqueue_style('lasso-layout-6-box', LASSO_PLUGIN_URL . '/admin/assets/css/layout-6-box.css', array(), '1.0');
 }
 
