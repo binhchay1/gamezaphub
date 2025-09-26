@@ -1,4 +1,32 @@
 /**
+ * Custom JavaScript for Bloggers Theme
+ * Combined functionality for Owl Carousel and Custom Gallery
+ */
+
+// ==========================================================================
+// Owl Carousel Configuration
+// ==========================================================================
+jQuery('.owl-carousel').owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    responsive: {
+        0: {
+            items: 1
+        },
+        600: {
+            items: 3
+        },
+        1000: {
+            items: 5
+        }
+    }
+});
+
+// ==========================================================================
+// Custom Gallery - Performance Enhanced Version
+// ==========================================================================
+/**
  * Optimized Custom Gallery - Performance Enhanced Version
  * 
  * Key Performance Improvements:
@@ -315,7 +343,6 @@
             if (galleryData.itemsPerView !== itemsPerView) {
                 galleryData.itemsPerView = itemsPerView;
 
-                // Clear caches for this gallery
                 delete cache.elements[galleryId];
                 delete cache.geometry[galleryId];
 
@@ -328,9 +355,6 @@
 
     window.addEventListener('resize', handleResizeOptimized);
 
-    /**
-     * Initialize gallery data
-     */
     function initializeGalleryData() {
         const galleries = document.querySelectorAll('.custom-gallery-container[data-gallery-images]');
         window.galleryData = window.galleryData || {};
@@ -356,9 +380,6 @@
         });
     }
 
-    /**
-     * DOM ready initialization
-     */
     document.addEventListener('DOMContentLoaded', function () {
         initializeGalleryData();
 
@@ -375,20 +396,100 @@
         });
     });
 
-    /**
-     * Public API: Reinitialize gallery data
-     */
     window.reinitializeGalleryData = function () {
         initializeGalleryData();
     };
 
-    /**
-     * Cleanup on page unload
-     */
     window.addEventListener('beforeunload', function () {
         cache.elements = {};
         cache.geometry = {};
         cache.pendingWrites.clear();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const videoPlayers = document.querySelectorAll('.video-player');
+
+        videoPlayers.forEach(player => {
+            const video = player.querySelector('.video');
+            const playPauseBtn = player.querySelector('.play-pause');
+            const volumeBtn = player.querySelector('.volume-btn');
+            const volumeBar = player.querySelector('.volume-bar');
+            const progressBar = player.querySelector('.progress-bar');
+            const currentTime = player.querySelector('.current-time');
+            const duration = player.querySelector('.duration');
+            const nowPlaying = player.querySelector('.now-playing');
+
+            video.addEventListener('loadedmetadata', () => {
+                duration.textContent = formatTime(video.duration);
+                progressBar.max = parseInt(video.duration);
+            });
+
+            playPauseBtn.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                    playPauseBtn.textContent = '⏸';
+                    nowPlaying.style.display = 'block';
+                    setTimeout(() => {
+                        nowPlaying.style.display = 'none';
+                    }, 1000);
+                } else {
+                    video.pause();
+                    playPauseBtn.textContent = '▶';
+                }
+            });
+
+            volumeBtn.addEventListener('click', () => {
+                if (video.muted) {
+                    video.muted = false;
+                    video.volume = volumeBar.value;
+                    updateVolumeIcon(video.volume);
+                } else {
+                    video.muted = true;
+                    volumeBtn.textContent = '🔇';
+                }
+            });
+
+            volumeBar.addEventListener('input', () => {
+                video.volume = volumeBar.value;
+                video.muted = false;
+                updateVolumeIcon(video.volume);
+            });
+
+            function updateProgress() {
+                if (!video.paused && !video.ended) {
+                    progressBar.value = video.currentTime;
+                    currentTime.textContent = formatTime(video.currentTime);
+                }
+                requestAnimationFrame(updateProgress);
+            }
+            requestAnimationFrame(updateProgress);
+
+            video.addEventListener('ended', () => {
+                progressBar.value = progressBar.max;
+                currentTime.textContent = formatTime(video.duration);
+                playPauseBtn.textContent = '⟲';
+            });
+
+            progressBar.addEventListener('input', () => {
+                video.currentTime = progressBar.value;
+            });
+
+            function updateVolumeIcon(volume) {
+                if (volume == 0 || video.muted) {
+                    volumeBtn.textContent = '🔇';
+                } else if (volume < 0.5) {
+                    volumeBtn.textContent = '🔉';
+                } else {
+                    volumeBtn.textContent = '🔊';
+                }
+            }
+
+            function formatTime(time) {
+                const minutes = Math.floor(time / 60);
+                const seconds = Math.floor(time % 60);
+                return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            }
+        });
     });
 
 })();

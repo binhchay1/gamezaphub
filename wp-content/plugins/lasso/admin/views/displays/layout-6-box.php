@@ -1,17 +1,8 @@
 <?php
 
-/** @var bool $is_show_description */
-
-use Lasso\Classes\Helper as Lasso_Helper;
-use Lasso\Classes\Html_Helper as Lasso_Html_Helper;
-
 if (is_admin()) {
 	wp_enqueue_style('lasso-layout-6-box', LASSO_PLUGIN_URL . '/admin/assets/css/layout-6-box.css', array(), '1.0');
 }
-
-/** @var bool $is_show_disclosure */
-/** @var bool $is_show_fields */
-/** @var string $type */
 
 
 $isPC = false;
@@ -197,7 +188,7 @@ $container_classes = 'lasso-container';
 				</div>
 
 				<div class="stores-section">
-					<h4 class="stores-title">Cửa hàng</h4>
+					<p class="stores-title">Cửa hàng</p>
 					<div class="stores-grid">
 						<?php
 						$storeMapping = [
@@ -232,7 +223,7 @@ $container_classes = 'lasso-container';
 
 			<?php if (is_array($lasso_url->ratings)) { ?>
 				<div class="community-ratings">
-					<h4 class="ratings-title">Đánh giá cộng đồng</h4>
+					<p class="ratings-title">Đánh giá cộng đồng</p>
 					<div class="ratings-chart">
 						<?php if (array_key_exists(0, $lasso_url->ratings) && array_key_exists('percent', $lasso_url->ratings[0])) { ?>
 							<div class="rating-segment recommended" style="width: <?php echo $lasso_url->ratings[0]['percent'] ?>%">

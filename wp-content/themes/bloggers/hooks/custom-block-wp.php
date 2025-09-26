@@ -1,12 +1,5 @@
 <?php
 
-function custom_table_block_styles()
-{
-    wp_enqueue_style('custom-table-styles', get_stylesheet_directory_uri() . '/css/custom-table.css', array(), '1.0');
-    wp_style_add_data('custom-table-styles', 'defer', true);
-}
-add_action('wp_enqueue_scripts', 'custom_table_block_styles');
-
 function custom_table_block_render($block_content, $block)
 {
     if ($block['blockName'] === 'core/table') {
@@ -95,40 +88,15 @@ function custom_gallery_block_render($block_content, $block)
 }
 add_filter('render_block', 'custom_gallery_block_render', 10, 2);
 
-function custom_gallery_styles()
+function custom_scripts()
 {
-    $css_file = get_stylesheet_directory() . '/css/custom-gallery.css';
-    if (file_exists($css_file)) {
-        wp_enqueue_style('custom-gallery-styles', get_stylesheet_directory_uri() . '/css/custom-gallery.css', array(), '1.0');
-        wp_style_add_data('custom-gallery-styles', 'defer', true);
-    }
-}
-add_action('wp_enqueue_scripts', 'custom_gallery_styles');
-
-function custom_gallery_minimal_scripts()
-{
-    $js_file = get_stylesheet_directory() . '/js/custom-gallery.js';
+    $js_file = get_stylesheet_directory() . '/js/custom.js';
     if (file_exists($js_file)) {
-        wp_enqueue_script('custom-gallery-minimal', get_stylesheet_directory_uri() . '/js/custom-gallery.js', array(), '1.0', true);
-        wp_script_add_data('custom-gallery-minimal', 'defer', true);
-    }
-
-    $csp_js_file = get_stylesheet_directory() . '/js/csp-safe-gallery.js';
-    if (file_exists($csp_js_file)) {
-        wp_enqueue_script('csp-safe-gallery', get_stylesheet_directory_uri() . '/js/csp-safe-gallery.js', array('custom-gallery-minimal'), '1.0', true);
-        wp_script_add_data('csp-safe-gallery', 'defer', true);
+        wp_enqueue_script('custom-scripts', get_stylesheet_directory_uri() . '/js/custom.js', array('jquery'), '1.0', true);
+        wp_script_add_data('custom-scripts', 'defer', true);
     }
 }
-add_action('wp_enqueue_scripts', 'custom_gallery_minimal_scripts');
-
-function custom_video_player_scripts()
-{
-    wp_enqueue_style('custom-video-player-styles', get_stylesheet_directory_uri() . '/css/custom-video.css', array(), '1.0');
-    wp_enqueue_script('custom-video-player-script', get_stylesheet_directory_uri() . '/js/video-player.js', array(), null, true);
-    wp_style_add_data('custom-video-player-styles', 'defer', true);
-    wp_script_add_data('custom-video-player-script', 'defer', true);
-}
-add_action('wp_enqueue_scripts', 'custom_video_player_scripts');
+add_action('wp_enqueue_scripts', 'custom_scripts');
 
 add_filter('render_block', function ($block_content, $block) {
     if ($block['blockName'] !== 'core/video') {
@@ -177,59 +145,3 @@ function custom_render_block_quote($block_content, $block)
     return $block_content;
 }
 add_filter('render_block', 'custom_render_block_quote', 10, 2);
-
-function add_owl_css_to_all_editors()
-{
-    $owl_js = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js';
-    $owl_css = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css';
-
-    wp_enqueue_script('custom-owl-js', get_stylesheet_directory_uri() . '/js/owl-custom.js', array('jquery', 'owl-frontend-js'), '1.0', true);
-    wp_enqueue_style('owl-editor-css', $owl_css, array(), '2.3.4');
-    wp_enqueue_script('owl-editor-css', $owl_js, array('jquery'), '2.3.4');
-}
-add_action('enqueue_block_editor_assets', 'add_owl_css_to_all_editors');
-
-function add_owl_assets_to_frontend()
-{
-    $owl_js = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js';
-    $owl_css = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css';
-
-    wp_enqueue_script('custom-owl-js', get_stylesheet_directory_uri() . '/js/owl-custom.js', array('jquery', 'owl-frontend-js'), '1.0', true);
-    wp_enqueue_style('owl-frontend-css', $owl_css, array(), '2.3.4');
-    wp_enqueue_script('owl-frontend-js', $owl_js, array('jquery'), '2.3.4', true);
-}
-add_action('wp_enqueue_scripts', 'add_owl_assets_to_frontend');
-
-/**
- * Fix admin strip_tags issue without modifying WordPress core
- * This filter ensures proper title handling in admin area
- */
-function fix_admin_title_strip_tags($title) {
-    // Only apply this fix in admin area and when title is not empty
-    if (is_admin() && !empty($title)) {
-        // Ensure title is a string and strip tags properly
-        $title = strip_tags((string) $title);
-        // Remove any remaining HTML entities and normalize whitespace
-        $title = trim(html_entity_decode($title, ENT_QUOTES, 'UTF-8'));
-    }
-    return $title;
-}
-
-// Apply the filter to various title contexts in admin
-add_filter('admin_title', 'fix_admin_title_strip_tags', 10, 1);
-add_filter('wp_title', 'fix_admin_title_strip_tags', 10, 1);
-add_filter('the_title', 'fix_admin_title_strip_tags', 10, 1);
-
-/**
- * Additional fix for widget titles in admin
- */
-function fix_widget_title_strip_tags($title, $instance = null) {
-    if (is_admin() && !empty($title)) {
-        $title = strip_tags((string) $title);
-        $title = trim(html_entity_decode($title, ENT_QUOTES, 'UTF-8'));
-    }
-    return $title;
-}
-
-// Apply to widget titles
-add_filter('widget_title', 'fix_widget_title_strip_tags', 10, 2);
