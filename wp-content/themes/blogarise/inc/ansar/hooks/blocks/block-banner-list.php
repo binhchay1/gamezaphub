@@ -7,25 +7,29 @@ $blogarise_count = 1;
 if ($blogarise_all_posts_main->have_posts()) :
     while ($blogarise_all_posts_main->have_posts()) : $blogarise_all_posts_main->the_post();
 
-    global $post;
-    $blogarise_url = blogarise_get_freatured_image_url($post->ID, 'blogarise-slider-full');
-        
-$blogarise_url = blogarise_get_freatured_image_url($post->ID, 'blogarise-slider-full');
-$slider_meta_enable = get_theme_mod('slider_meta_enable','true');
-$slider_overlay_enable = get_theme_mod('slider_overlay_enable','true');
+        global $post;
+        $blogarise_url = blogarise_get_freatured_image_url($post->ID, 'blogarise-slider-full');
 
-  ?>
-  <div class="swiper-slide">
-            <div class="bs-slide back-img one <?php if ($slider_overlay_enable != false){ ?>overlay<?php } ?>" style="background-image: url('<?php echo esc_url($blogarise_url); ?>');">
+        $blogarise_url = blogarise_get_freatured_image_url($post->ID, 'blogarise-slider-full');
+        $slider_meta_enable = get_theme_mod('slider_meta_enable', 'true');
+        $slider_overlay_enable = get_theme_mod('slider_overlay_enable', 'true');
+
+?>
+        <div class="swiper-slide">
+            <div class="bs-slide back-img one <?php if ($slider_overlay_enable != false) { ?>overlay<?php } ?>" style="background-image: url('<?php echo esc_url($blogarise_url); ?>');">
                 <a class="link-div" aria-label="Đọc bài" href="<?php the_permalink(); ?>"> </a>
                 <div class="inner">
-                        <?php if($slider_meta_enable == true) { blogarise_post_categories(); } ?>
-                        <h4 class="title"> <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                        <?php if($slider_meta_enable == true) { blogarise_post_meta(); } ?>
+                    <?php if ($slider_meta_enable == true) {
+                        blogarise_post_categories();
+                    } ?>
+                    <h4 class="title"> <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                    <?php if ($slider_meta_enable == true) {
+                        blogarise_post_meta();
+                    } ?>
                 </div>
             </div>
         </div>
-         <?php 
+<?php
     endwhile;
 endif;
 wp_reset_postdata();

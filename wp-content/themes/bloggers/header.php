@@ -13,6 +13,8 @@
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="https://gmpg.org/xfn/11">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?> >
@@ -55,7 +57,7 @@
                     $blogarise_menu_subscriber  = get_theme_mod('blogarise_menu_subscriber','true');
                     $blogarise_subsc_open_in_new  = get_theme_mod('blogarise_subsc_open_in_new', true);
                   if($blogarise_menu_search == true) { ?>
-                <a class="msearch ml-auto" data-bs-target="#exampleModal" href="#" data-bs-toggle="modal">
+                <a class="msearch ml-auto" aria-label="Tìm kiếm" data-bs-target="#exampleModal" href="#" data-bs-toggle="modal">
                   <i class="fa fa-search"></i>
                 </a> 
               <?php } if($blogarise_menu_subscriber == true) { ?>
@@ -103,7 +105,7 @@
               <div class="right-nav"> 
                 <?php $blogarise_menu_search  = get_theme_mod('blogarise_menu_search','true'); 
                   if($blogarise_menu_search == true) { ?>
-                    <a class="msearch ml-auto" data-bs-target="#exampleModal" href="#" data-bs-toggle="modal"> <i class="fa fa-search"></i> </a>
+                    <a class="msearch ml-auto" aria-label="Tìm kiếm" data-bs-target="#exampleModal" href="#" data-bs-toggle="modal"> <i class="fa fa-search"></i> </a>
                 <?php } ?>
               </div>
             </div>
