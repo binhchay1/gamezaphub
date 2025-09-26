@@ -1,0 +1,325 @@
+Plugin Name: WP Smush Pro
+Author: WPMU DEV
+Tested up to: 6.0
+
+Change Log:
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+= 3.19.0 ( 2025-05-12 ) =
+- New: Preload critical images to improve page load speed and resolve LCP (Largest Contentful Paint) warnings
+- Fix: Filenames with Chinese characters were automatically converted to Unicode, causing display issues
+- Fix: Lazyload module removes the background size attribute from inline CSS
+- Fix: Picture tags are lazy loaded even in excluded areas
+
+= 3.18.1 ( 2025-04-24 ) =
+- Improvement: WP 6.8 compatibility
+
+= 3.18.0 ( 2025-03-11 ) =
+- New: Reduced image filesize at better visual quality with new AVIF conversion!
+- Improvement: White label improvements
+- Improvement: Better stats for WebP conversion
+- Improvement: Compatibility check and minor fixes for PHP 8.4
+- Fix: Some images listed as not optimized after Local WebP conversion
+- Fix: CDN forcing browsers to load full-sized images for smaller container size
+
+= 3.17.1 ( 2025-02-06 ) =
+- Improvement: Security hardening
+- Improvement: Minor code improvements
+
+= 3.17.0 ( 2025-01-29 ) =
+- Improvement: Use streams to send full image to the Smush API
+- Fix: Number of optimized images inaccurate
+- Fix: When Local WebP Direct Method and Lazy Load are enabled, images inside picture tags not being served as WebP
+- Fix: Error "Server configurations haven't been applied yet" shown unnecessarily sometimes
+- Fix: CDN slowing down page load due to unnecessary DB queries
+- Fix: Divi breaking Smush CDN image resizing
+- Fix: Auto-resize feature not adding new sizes when srcset is already present in img tag
+
+= 3.16.12 ( 2025-01-08 ) =
+- Fix: Conflict with Formidable Forms
+- Fix: Avoid image fetch errors
+
+= 3.16.11 ( 2024-12-10 ) =
+- Fix: CDN exclusions conflict with auto resizing
+
+= 3.16.10 ( 2024-12-04 ) =
+- New: Added a UI option to exclude specific images from Smush CDN.
+- Improvement: Disabled Noscript tags by default to prevent broken images and potential performance regressions.
+- Improvement: Enhanced the Bulk Smush process for a smoother user experience.
+- Improvement: Improved WPML compatibility for seamless multilingual support.
+- Fix: Excluded lazy loading placeholders from the CDN to resolve conflicts and prevent broken images.
+- Fix: Added WP 6.7 compatibility fixes.
+
+= 3.16.9 ( 2024-11-13 ) =
+- Improvement: Smush API upgrades and improvements for better memory management
+- Fix: Prevent broken images on Smush CDN when using relative links
+- Fix: Hummingbird Performance Test conflicts
+- Fix: Missing thumbnails when using PNG to JPG conversions
+
+= 3.16.8 ( 2024-09-19 ) =
+- Fix: Smush API handing improvements
+
+= 3.16.7 ( 2024-09-11 ) =
+- Improvement: Reduced memory consumption during the Smush process
+- Improvement: Better directory Smush compatibility with Flywheel
+- Fix: Unicode characters in image URLs causing issues
+- Fix: Improved compatibility with native lazy loading
+- Fix: PHP errors and warnings
+
+= 3.16.6 ( 2024-07-30 ) =
+- Fix: PHP warnings
+- Improvement: Compatibility with WP 6.6
+
+= 3.16.5 ( 2024-06-20 ) =
+- Improvement: Security improvements
+- Fix: Compatibility issue with Divi
+
+= 3.16.4 ( 2024-05-22 ) =
+- Fix: Loopback error shown unnecessarily for some sites
+- Improvement: Better UI for the loopback error
+
+= 3.16.3 ( 2024-05-15 ) =
+- Improvement: Better handling of rotated images
+- Improvement: Better pre-flight checks before bulk Smush is started
+- Fix: Performance issues in CDN and webp link replacement functionality
+- Fix: Bulk Smush performance issues
+- Fix: Compatibility issue with wp.com
+
+= 3.16.2 ( 2024-04-09 ) =
+- Fix: LazyLoad module not working correctly for picture elements in certain situations
+- Fix: LazyLoad module not working correctly for some CSS variables
+- Fix: Better handling of !important CSS rules by the LazyLoad module
+- Fix: Performance issues on some WooCommerce pages
+
+= 3.16.1 ( 2024-03-27 ) =
+- Improvement: Better compatibility with page builders
+- Improvement: General code improvements
+- Fix: WP Offload integration preventing some formats from getting offloaded
+
+= 3.16.0 ( 2024-03-06 ) =
+- New: Directly serve Local Webp images, no rewrite rules required!
+- New: Support for inline style tags in CDN and Local WebP modules
+- New: Support for multiple background images in CDN and Local WebP modules
+- New: Better support for relative links in CDN and Local WebP modules
+- New: Better REST API support in CDN and Local WebP modules
+- New: CDN and Local WebP images served in WooCommerce REST API responses
+- New: Local WebP compatibility with Windows IIS servers
+- New: Local WebP compatibility with bedrock
+- New: Local WebP compatibility with Litespeed
+- New: Local WebP compatibility with Cloudways
+- New: Lazy loading of background images
+- Fix: Local WebP redirection doesn't work for images with special characters
+- Fix: Free version of Smush creating smush-webp folder when activated
+- Fix: Extra slash added to image URLs during optimization
+- Fix: WP 6.3 compatibility - Skip lazyload for high priority images
+
+= 3.15.5 ( 2024-02-06 ) =
+- Improvement: Update the number of CDN locations
+- Improvement: Minor copy and UI adjustments
+
+= 3.15.4 ( 2024-01-23 ) =
+- Fix: Media library scan gets stuck on some websites
+- Improvement: Minor copy and UI changes
+
+= 3.15.3 ( 2023-12-20 ) =
+- Improvement: Code stability improvements
+
+= 3.15.2 ( 2023-12-06 ) =
+- Fix: Compatibility issues with WP Offload Media integration
+- Fix: Resize module deletes thumbnail when there is a naming conflict
+
+= 3.15.1 ( 2023-11-15 ) =
+- Improvement: Code stability improvements
+
+= 3.15.0 ( 2023-10-11 ) =
+- Improvement: Image size limit increased for pro version
+- Fix: Query running frequently and causing performance issues on some sites
+
+= 3.14.2 ( 2023-08-23 ) =
+- Fix: Media library scanner not identifying some MariaDB versions correctly
+- Improvement: Code improvements
+
+= 3.14.1 ( 2023-07-24 ) =
+- Improvement: Minor code improvements and fixes
+
+= 3.14.0 ( 2023-07-17 ) =
+- New: Ultra Smush - Level up your image compression, while preserving remarkable image quality
+- Fix: Resolved issue with image resize in WP versions < 6.0
+- Fix: Resolved PHP 8.x error on GoDaddy Managed WP Hosting
+- Fix: Other minor bug fixes and UI improvements
+
+= 3.13.2 ( 2023-07-05 ) =
+- Improvement: Small code and text improvements
+
+= 3.13.1 ( 2023-06-13 ) =
+- Improvement: Better memory management during scans
+- Fix: Dot added to file path when year and month directories disabled
+- Fix: Compatibility issue with WP.com
+- Fix: Rename config functionality not working
+- Fix: Compatibility issue with WP Offload Media
+- Fix: PHP warnings
+- Fix: Duplicate query
+
+= 3.13.0 ( 2023-05-30 ) =
+- New: Scan for detecting changes in the media library
+- Improvement: Performance improvements on large sites
+- Improvement: Code refactoring
+- Fix: PHP warnings and notices
+- Fix: Missing comments for translation strings that have placeholders in them
+- Fix: Compatibility issues with WP Offload Media
+- Fix: Timeout on Smush pages when there are more than 200k images
+- Fix: Images incorrectly marked as requiring resmush
+- Fix: Ignore link stuck in Grid Layout mode in the media library
+
+= 3.12.6 ( 2023-03-09 ) =
+- Enhance: Compatibility with WordPress 6.2.
+- Fix: Upgrade modal reappears after closing
+
+= 3.12.5 ( 2023-01-18 ) =
+- Fix: CDN notice issue
+- Fix: PHP 8.2 compatibility warnings
+- Fix: Smush acting as free on staging
+
+= 3.12.4 ( 2022-11-17 ) =
+- Improvement: Code and compatibility improvements
+
+= 3.12.3 ( 2022-10-24 ) =
+- Fix: Free to pro upgrade issue
+
+= 3.12.2 ( 2022-10-19 ) =
+- Improvement: Security hardening
+- Fix: Issues on older PHP versions
+
+= 3.12.1 ( 2022-10-11 ) =
+- Fix: PHP error on non-English language sites
+
+= 3.12.0 ( 2022-10-11 ) =
+- New: Bulk smush images in the background!
+- New: Revised limits on bulk image optimization
+- New: Better GDPR compliance by replacing Google fonts with Bunny fonts
+- New: Filter on media library page to view media items with errors
+- New: Option to receive an email once bulk smush is complete
+- Fix: Some images incorrectly selected for resmush
+- Fix: Database error while converting PNG to JPG on WordPress 6.1 Beta
+
+= 3.11.1 ( 2022-08-19 ) =
+- Fix: Fallback to sequential processing when parallel processing not possible
+
+= 3.11.0 ( 2022-08-11 ) =
+- New: Smush all image sizes in parallel for improved performance
+- Improvement: Code improvements
+
+= 3.10.3 ( 2022-07-14 ) =
+
+- Enhance: CDN activation process
+- Enhance: Improve media library image filters
+- Enhance: CDN compatibility with Avada theme
+- Enhance: Add notice about disabled folders in directory Smush module
+- Fix: Errors table UI on bulk smush page
+- Fix: Bulk smush UI when images have been removed when page was already loaded
+- Fix: Cron job of logger library not running properly
+- Fix: Remove tools meta box from dashboard page
+- Fix: Recover image from NextGen Gallery button does not reset Smush data
+- Fix: Image dimensions meta does not reset after restoring a resized image in NextGen Gallery
+- Fix: Incorrect percent of total savings on Dashboard page
+- Fix: Pro feature enable/disable toggles are clickable in free version
+
+= 3.10.2 ( 2022-06-16 ) =
+
+- Enhance: Data processing
+- Enhance: Database calls
+- Fix: Loading images from remote location
+
+= 3.10.1 ( 2022-06-09 ) =
+
+- Fix: PHP error on dash page
+
+= 3.10.0 ( 2022-06-09 ) =
+
+- New: Lossy compression is now free for all users
+- New: Summary meta box
+- Enhance: Move out image restore to bulk smush module
+- Enhance: Move out image resize detection to settings module
+- Enhance: Update opt-in notice design
+- Fix: Upsell notice logic
+- Fix: Skip image sizes not in WordPress format
+- Fix: Skip onboarding wizard if a config has been applied
+- Fix: Image sizes selector
+- Fix: Rename "Basic" config to "Default"
+- Fix: Do not show WebP notice in case of error
+- Fix: Auto compression does not work for NextGen Gallery
+- Fix: Settings link on Plugins page
+- Fix: Welcome modal does not close when we go to the Bulk Smush page
+
+= 3.9.11 ( 2022-05-23 ) =
+
+- Enhance: Code quality
+- Fix: Minor code quality issues
+- Fix: Update internal libraries
+
+= 3.9.10 ( 2022-05-17 ) =
+
+- New: Gravity Forms integration
+- New: `smush_background_images_regex` and `smush_images_from_content_regex` filters to adjust regex rules for finding images on the page
+- New: `smush_cdn_before_process_background_src` filter to adjust background image src
+- New: Add additional parameters to `smush_skip_adding_srcset` filter to allow disabling auto-resize for selected images
+- Enhance: Compatibility with WPBakery page builder
+- Enhance: Compatibility with Offload Media plugin
+- Enhance: Handling images via REST API endpoints
+- Fix: Directory Smush savings cached and not updated
+- Fix: "What's new" modal not hiding if white label is enabled
+- Fix: Missing primary key on smush_dir_images table
+- Fix: Scaled images not being resized on resize settings change
+- Fix: Bulk Smush will now show all errors, instead of just the first 5
+- Fix: Animated GIF images not being excluded from bulk Smush
+- Fix: Only allow network wide activation of Smush
+
+= 3.9.9 ( 2022-05-03 ) =
+
+- Enhance: Code quality
+- Enhance: Handling user input
+- Enhance: Update React modules to latest versions
+- Fix: XSS vulnerability when uploading modified configs
+
+= 3.9.8 ( 2022-03-22 ) =
+
+- New: Add expiry header to Nginx template for WebP
+- New: Add `wp_smush_webp_dir` filter to customize WebP directory
+- Fix: XSS vulnerability
+- Fix: Disable submit button on Integrations page when no integrations available
+- Fix: CDN bandwidth limit status message
+- Fix: Text alignment issue on Bulk Smush page
+- Fix: Highlighting selected lazy load spinner with color accessibility
+- Fix: Compatibility issue with WP Offload Media 2.6.0
+- Fix: Undefined offset notice with certain WooCommerce themes
+
+= 3.9.7 ( 2022-03-01 ) =
+
+- Fix: Local WebP is not activated on applying config after reset settings
+- Fix: Missing WebP file for WP scaled images
+- Fix: Fatal error on PHP 5.6
+- Fix: Compatibility issue with WP Offload Media
+
+= 3.9.6 ( 2022-02-09 ) =
+
+- Enhance: Do not close the Directory Smush modal in case of error
+- Enhance: Tooltips in CDN module
+- Fix: Compatibility issue with PHP 8.1
+- Fix: "Choose Directory" button loading state in case of error
+- Fix: PNG to JPG conversion leaves behind some thumbnails after deleting the image
+- Fix: PNG images that need resizing don't get converted to JPG
+- Fix: Issue creating the WebP test files
+- Fix: Incorrect unique file names during PNG to JPG conversion
+- Fix: Duplicate thumbnails while converting PNG to JPG
+- Fix: Auto refresh API status when updating to Pro version
+
+= 3.9.5 ( 2022-01-25 ) =
+
+- Fix: Translation strings
+- Fix: Remove upsells
+- Enhance: Update admin menu icon
+
+
+
+943064-1747717848

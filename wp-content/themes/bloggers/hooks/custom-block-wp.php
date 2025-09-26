@@ -199,3 +199,37 @@ function add_owl_assets_to_frontend()
     wp_enqueue_script('owl-frontend-js', $owl_js, array('jquery'), '2.3.4', true);
 }
 add_action('wp_enqueue_scripts', 'add_owl_assets_to_frontend');
+
+/**
+ * Fix admin strip_tags issue without modifying WordPress core
+ * This filter ensures proper title handling in admin area
+ */
+function fix_admin_title_strip_tags($title) {
+    // Only apply this fix in admin area and when title is not empty
+    if (is_admin() && !empty($title)) {
+        // Ensure title is a string and strip tags properly
+        $title = strip_tags((string) $title);
+        // Remove any remaining HTML entities and normalize whitespace
+        $title = trim(html_entity_decode($title, ENT_QUOTES, 'UTF-8'));
+    }
+    return $title;
+}
+
+// Apply the filter to various title contexts in admin
+add_filter('admin_title', 'fix_admin_title_strip_tags', 10, 1);
+add_filter('wp_title', 'fix_admin_title_strip_tags', 10, 1);
+add_filter('the_title', 'fix_admin_title_strip_tags', 10, 1);
+
+/**
+ * Additional fix for widget titles in admin
+ */
+function fix_widget_title_strip_tags($title, $instance = null) {
+    if (is_admin() && !empty($title)) {
+        $title = strip_tags((string) $title);
+        $title = trim(html_entity_decode($title, ENT_QUOTES, 'UTF-8'));
+    }
+    return $title;
+}
+
+// Apply to widget titles
+add_filter('widget_title', 'fix_widget_title_strip_tags', 10, 2);

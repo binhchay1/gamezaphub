@@ -274,7 +274,7 @@ add_filter('get_avatar_url', function ($url, $id_or_email, $args) {
 // Include Avatar Helper để tối ưu hóa avatar
 $avatar_helper_file = get_template_directory() . '/inc/avatar-helper.php';
 if (file_exists($avatar_helper_file)) {
-	require_once $avatar_helper_file;
+    require_once $avatar_helper_file;
 }
 
 // Enqueue Avatar Optimization CSS

@@ -1,0 +1,277 @@
+/* Tối ưu hóa CSS cho gallery - Tránh forced reflow */
+.custom-gallery-container {
+    contain: layout style paint;
+    will-change: transform;
+    position: relative;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.main-image {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.main-gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform;
+    transform: translateZ(0);
+    /* Kích hoạt hardware acceleration */
+    backface-visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.zoom-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.2s ease;
+}
+
+.zoom-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.nav-buttons {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    pointer-events: none;
+}
+
+.prev-btn,
+.next-btn {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.2s ease;
+    pointer-events: auto;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.thumbnail-wrapper {
+    margin-top: 15px;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.thumbnail-container {
+    display: flex;
+    gap: 8px;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.thumbnail {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    will-change: transform;
+    transform: translateZ(0);
+    transition: all 0.2s ease;
+}
+
+.thumbnail:hover {
+    border-color: #007cba;
+    transform: scale(1.05);
+}
+
+.thumbnail.active {
+    border-color: #007cba;
+    box-shadow: 0 2px 8px rgba(0, 124, 186, 0.3);
+}
+
+.thumbnail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.2s ease;
+}
+
+.thumbnail:hover .thumbnail-image {
+    opacity: 0.8;
+}
+
+/* Modal Styles */
+.gallery-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.gallery-modal .close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.gallery-modal .close:hover {
+    opacity: 0.7;
+}
+
+.modal-content-img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Loading state tối ưu */
+.custom-gallery-container.loading .main-gallery-image {
+    opacity: 0.7;
+    filter: blur(1px);
+}
+
+.custom-gallery-container:not(.loading) .main-gallery-image {
+    opacity: 1;
+    filter: none;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .custom-gallery-container {
+        contain: layout style;
+    }
+
+    .main-image {
+        height: 300px;
+    }
+
+    .thumbnail-container {
+        transition: transform 0.2s ease;
+    }
+
+    .thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+
+    .nav-buttons {
+        padding: 0 10px;
+    }
+
+    .prev-btn,
+    .next-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .zoom-btn {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-image {
+        height: 250px;
+    }
+
+    .thumbnail {
+        width: 50px;
+        height: 50px;
+    }
+
+    .thumbnail-container {
+        gap: 6px;
+    }
+}
+
+/* Tối ưu hóa cho touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .thumbnail:hover {
+        transform: none;
+        border-color: transparent;
+    }
+
+    .thumbnail.active {
+        border-color: #007cba;
+        transform: none;
+    }
+
+    .zoom-btn:hover,
+    .prev-btn:hover,
+    .next-btn:hover {
+        background: rgba(0, 0, 0, 0.7);
+    }
+}
+
+/* Accessibility */
+.zoom-btn:focus,
+.prev-btn:focus,
+.next-btn:focus,
+.thumbnail:focus {
+    outline: 2px solid #007cba;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+
+    .gallery-modal,
+    .nav-buttons,
+    .zoom-btn,
+    .thumbnail-wrapper {
+        display: none !important;
+    }
+
+    .main-gallery-image {
+        max-height: 300px;
+    }
+}

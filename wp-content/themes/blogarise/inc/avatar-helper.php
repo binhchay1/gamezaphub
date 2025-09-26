@@ -42,6 +42,7 @@ if (!class_exists('Blogarise_Avatar_Helper')) {
             // Hook để tối ưu hóa srcset - chỉ tạo srcset khi thực sự cần thiết
             add_filter('get_avatar', array($this, 'optimize_avatar_srcset'), 10, 6);
 
+            // Hook để tối ưu hóa avatar URL
             add_filter('get_avatar_url', array($this, 'optimize_avatar_url'), 10, 3);
         }
 
@@ -50,7 +51,9 @@ if (!class_exists('Blogarise_Avatar_Helper')) {
          */
         public function optimize_avatar_srcset($avatar, $id_or_email, $size, $default, $alt, $args)
         {
+            // Chỉ áp dụng cho avatar có kích thước nhỏ hơn 96px
             if ($size < 96) {
+                // Loại bỏ srcset cho avatar nhỏ để tránh tải ảnh lớn không cần thiết
                 $avatar = preg_replace('/\ssrcset="[^"]*"/', '', $avatar);
             }
 
@@ -62,8 +65,10 @@ if (!class_exists('Blogarise_Avatar_Helper')) {
          */
         public function optimize_avatar_url($url, $id_or_email, $args)
         {
+            // Nếu size quá lớn so với nhu cầu, giảm xuống
             if (isset($args['size']) && $args['size'] > 96) {
                 $args['size'] = 96;
+                // Tạo lại URL với kích thước tối ưu
                 $url = get_avatar_url($id_or_email, $args);
             }
 
@@ -80,17 +85,20 @@ if (!class_exists('Blogarise_Avatar_Helper')) {
          */
         public function get_avatar($user_id, $context = 'small', $alt = '')
         {
+            // Định nghĩa kích thước theo context
             $sizes = array(
-                'small' => 36,
-                'large' => 96,
-                'comment' => 32,
-                'widget' => 48
+                'small' => 36,    // Cho .bs-author .auth img (25px -> 36px để đảm bảo chất lượng)
+                'large' => 96,    // Cho .bs-author-pic img (80px -> 96px)
+                'comment' => 32,  // Cho comment avatar
+                'widget' => 48    // Cho widget avatar
             );
 
             $size = isset($sizes[$context]) ? $sizes[$context] : $sizes['small'];
 
+            // Sử dụng get_avatar với kích thước tối ưu
             $args = array();
             
+            // Chỉ thêm loading optimization cho context phù hợp
             if ($context === 'large') {
                 $args['fetchpriority'] = 'high';
             } else {

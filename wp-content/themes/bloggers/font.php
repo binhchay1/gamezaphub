@@ -3,25 +3,15 @@
 /*     Register Google Fonts
 /*--------------------------------------------------------------------*/
 
+// Google Fonts are now loaded directly in header.php for better performance
+// This function is disabled to prevent duplicate font loading
 function bloggers_fonts_url() {
-    $fonts_url = '';
-
-    $font_families = array(
-        'Playfair Display:300,400,500,600,700,800,900',
-        'Quattrocento Sans:400,500,700',
-    );
-
-    $query_args = array(
-        'family' => urlencode( implode( '|', $font_families ) ),
-        'subset' => urlencode( 'latin,latin-ext' ),
-    );
-
-    $fonts_url = add_query_arg( $query_args, '//fonts.googleapis.com/css' );
-
-    return $fonts_url;
+    return '';
 }
 
 function bloggers_scripts_styles() {
-    wp_enqueue_style( 'bloggers-fonts', bloggers_fonts_url(), array(), null );
+    // Fonts are loaded directly in header.php with preconnect and preload optimization
+    // No need to enqueue fonts here to avoid duplicate loading
 }
-add_action( 'wp_enqueue_scripts', 'bloggers_scripts_styles' );
+// Commented out to prevent duplicate font loading
+// add_action( 'wp_enqueue_scripts', 'bloggers_scripts_styles' );
