@@ -115,19 +115,6 @@ if (!function_exists('blogarise_single_content')) :
             <?php blogarise_edit_link(); ?>
             <?php blogarise_social_share_post(get_post()); ?>
             <div class="clearfix mb-3"></div>
-            <?php
-            $prev =  (is_rtl()) ? " fa-angle-double-right" : " fa-angle-double-left";
-            $next =  (is_rtl()) ? " fa-angle-double-left" : " fa-angle-double-right";
-            the_post_navigation(array(
-              'prev_text' => '<div class="fa' . $prev . '"></div><span></span> %title ',
-              'next_text' => ' %title <div class="fa' . $next . '"></div><span></span>',
-              'in_same_term' => true,
-            ));
-            wp_link_pages(array(
-              'before' => '<div class="single-nav-links">',
-              'after' => '</div>',
-            ));
-            ?>
           </article>
         </div>
       <?php }
@@ -149,7 +136,7 @@ if (!function_exists('blogarise_single_author_box')) :
       <div class="bs-info-author-block py-4 px-3 mb-4 flex-column justify-content-center text-center">
         <a class="bs-author-pic mb-3" aria-label="Tác giả" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"><?php echo blogarise_optimized_avatar(get_the_author_meta('ID'), 'large'); ?></a>
         <div class="flex-grow-1">
-          <h4 class="title"><?php esc_html_e('By', 'blogarise'); ?> <a aria-label="Tác giả" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"><?php the_author(); ?></a></h4>
+          <h4 class="title"><a class="title" aria-label="Tác giả" href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"><?php the_author(); ?></a></h4>
           <p><?php the_author_meta('description'); ?></p>
         </div>
       </div>
@@ -204,11 +191,11 @@ if (!function_exists('blogarise_single_related_box')) :
                         blogarise_post_categories();
                       }
                       $blogarise_enable_single_post_admin_details = esc_attr(get_theme_mod('blogarise_enable_single_post_admin_details', 'true')); ?>
-                      <h4 class="title sm mb-0">
-                        <a aria-label="Đọc bài" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(array('before' => 'Permalink to: ', 'after'  => '')); ?>">
+                      <p class="title sm mb-0">
+                        <a class="title sm mb-0" aria-label="Đọc bài" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(array('before' => 'Permalink to: ', 'after'  => '')); ?>">
                           <?php the_title(); ?>
                         </a>
-                      </h4>
+                      </p>
                       <div class="bs-blog-meta">
                         <?php if ($blogarise_enable_single_post_admin_details == true) {
                           blogarise_author_content();

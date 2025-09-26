@@ -29,7 +29,7 @@ if($you_missed_enable == 'true')
               <a class="link-div" aria-label="Đọc bài" href="<?php the_permalink(); ?>"></a>
               <div class="inner">
               <?php blogarise_post_categories(); ?>
-                <h4 class="title sm mb-0"> <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array('before' => 'Permalink to: ','after'  => '') ); ?>"> <?php the_title(); ?></a> </h4> 
+                <p class="title sm mb-0"> <a class="title sm mb-0" href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array('before' => 'Permalink to: ','after'  => '') ); ?>"> <?php the_title(); ?></a> </p> 
               </div>
             </div>
           <?php endwhile; endif; wp_reset_postdata(); ?>
