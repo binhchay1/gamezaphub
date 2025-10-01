@@ -67,7 +67,6 @@ function bloggers_customizer_rid_values($wp_customize)
 if (! function_exists('bloggers_admin_scripts')) :
 	function bloggers_admin_scripts()
 	{
-
 		wp_enqueue_style('bloggers-admin-style-css', get_stylesheet_directory_uri() . '/css/customizer-controls.css');
 	}
 endif;
@@ -150,7 +149,7 @@ add_filter('get_avatar_url', function ($url, $id_or_email, $args) {
 	if (preg_match('/avatar\/([a-f0-9]{32})/i', $url, $matches)) {
 		$hash = $matches[1];
 		$size = isset($args['size']) ? intval($args['size']) : 72;
-		return home_url(get_stylesheet_directory_uri() . "/hooks/avatar-proxy.php?hash={$hash}&s={$size}");
+		return get_stylesheet_directory_uri() . "/hooks/avatar-proxy.php?hash={$hash}&s={$size}";
 	}
 	return $url;
 }, 10, 3);

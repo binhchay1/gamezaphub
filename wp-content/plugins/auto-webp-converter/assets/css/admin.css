@@ -1,0 +1,372 @@
+/* Auto WebP Converter Admin Styles */
+
+.awc-admin-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.awc-main-content {
+    flex: 2;
+}
+
+.awc-sidebar {
+    flex: 1;
+    max-width: 300px;
+}
+
+.awc-section {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.awc-section h2,
+.awc-section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #23282d;
+}
+
+.awc-batch-controls {
+    margin-bottom: 20px;
+}
+
+.awc-batch-controls .button {
+    margin-right: 10px;
+}
+
+.awc-progress-container {
+    margin-bottom: 20px;
+}
+
+.awc-progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.awc-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00a0d2, #0073aa);
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+.awc-progress-text {
+    text-align: center;
+    font-weight: 600;
+    color: #23282d;
+}
+
+.awc-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.awc-stat-item {
+    text-align: center;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #e1e1e1;
+}
+
+.awc-stat-label {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.awc-stat-value {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #23282d;
+}
+
+.awc-stat-success {
+    color: #46b450;
+}
+
+.awc-stat-warning {
+    color: #ffb900;
+}
+
+.awc-stat-error {
+    color: #dc3232;
+}
+
+.awc-current-file {
+    padding: 10px;
+    background: #f0f8ff;
+    border: 1px solid #b3d9ff;
+    border-radius: 4px;
+    color: #0073aa;
+    font-family: monospace;
+    word-break: break-all;
+}
+
+.awc-log-container {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fafafa;
+}
+
+.awc-log-entries {
+    padding: 10px;
+}
+
+.awc-log-entry {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+    font-family: monospace;
+    font-size: 12px;
+    color: #333;
+}
+
+.awc-log-entry:last-child {
+    border-bottom: none;
+}
+
+.awc-system-info {
+    margin-bottom: 15px;
+}
+
+.awc-info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.awc-info-item:last-child {
+    border-bottom: none;
+}
+
+.awc-info-label {
+    font-weight: 600;
+    color: #23282d;
+}
+
+.awc-info-value {
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.awc-success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.awc-error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.awc-warning {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.awc-info {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.awc-cache-info {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.awc-cache-info ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.awc-cache-info li {
+    margin-bottom: 5px;
+}
+
+.awc-help {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.awc-help ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.awc-help li {
+    margin-bottom: 5px;
+}
+
+/* Loading states */
+.awc-loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.awc-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #0073aa;
+    border-radius: 50%;
+    animation: awc-spin 1s linear infinite;
+}
+
+@keyframes awc-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .awc-admin-container {
+        flex-direction: column;
+    }
+    
+    .awc-sidebar {
+        max-width: none;
+    }
+    
+    .awc-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Form styles */
+.awc-section .form-table th {
+    width: 200px;
+    padding: 15px 10px 15px 0;
+}
+
+.awc-section .form-table td {
+    padding: 15px 10px;
+}
+
+.awc-section .description {
+    margin-top: 5px;
+    font-style: italic;
+    color: #666;
+}
+
+/* Button styles */
+.awc-section .button-primary {
+    background: #0073aa;
+    border-color: #0073aa;
+}
+
+.awc-section .button-primary:hover {
+    background: #005a87;
+    border-color: #005a87;
+}
+
+.awc-section .button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Status indicators */
+.awc-status-idle {
+    color: #666;
+}
+
+.awc-status-processing {
+    color: #0073aa;
+    font-weight: bold;
+}
+
+.awc-status-completed {
+    color: #46b450;
+    font-weight: bold;
+}
+
+.awc-status-error {
+    color: #dc3232;
+    font-weight: bold;
+}
+
+/* Animation for progress updates */
+.awc-progress-fill {
+    transition: width 0.5s ease-in-out;
+}
+
+.awc-stat-value {
+    transition: color 0.3s ease;
+}
+
+/* Tooltip styles */
+.awc-tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.awc-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 1000;
+}
+
+.awc-tooltip:hover::after {
+    opacity: 1;
+}
+
+/* Notification styles */
+.awc-notice {
+    padding: 12px;
+    margin: 15px 0;
+    border-left: 4px solid #0073aa;
+    background: #f0f8ff;
+    border-radius: 0 4px 4px 0;
+}
+
+.awc-notice-success {
+    border-left-color: #46b450;
+    background: #f0f8f0;
+}
+
+.awc-notice-warning {
+    border-left-color: #ffb900;
+    background: #fffbf0;
+}
+
+.awc-notice-error {
+    border-left-color: #dc3232;
+    background: #fff0f0;
+}

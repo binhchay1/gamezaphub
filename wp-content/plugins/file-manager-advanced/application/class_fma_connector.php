@@ -27,7 +27,9 @@ class class_fma_connector {
             $url = '';
         }
 
-        require 'library/php/autoload.php';
+        if ( !function_exists( 'elFinderAutoloader' ) ) {
+            require 'library/php/autoload.php';
+        }
 
         if ( isset( $settings['enable_trash'] ) && ($settings['enable_trash'] == '1' ) ) {
             $trash   = array(

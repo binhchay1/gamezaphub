@@ -7,6 +7,6 @@ if ( !defined('fma_file') ) {
   define('fma_file',__FILE__);
 }
 class class_fma_shortcode {
-  
+
 }
 ?>

@@ -37,7 +37,7 @@ msgctxt "default GMT offset or timezone string"
 msgid "0"
 msgstr "0"
 
-#: wp-admin/about.php:118
+#: wp-admin/about.php:138
 msgid "Speculative loading speeds up navigation by preloading links before users navigate to them, bcrypt hashing strengthens password security automatically, and database optimizations improve performance."
 msgstr "Việc tải trước các liên kết giúp tăng tốc độ menu bằng cách tải trước các liên kết trước khi người dùng truy cập vào chúng, mã hóa bcrypt tự động tăng cường bảo mật mật khẩu, và tối ưu hóa cơ sở dữ liệu cải thiện hiệu suất."
 
@@ -220,68 +220,68 @@ msgstr "Trưởng nhóm Bản phát hành Nhỏ"
 msgid "Release Coordination"
 msgstr "Điều phối Bản phát hành"
 
-#: wp-admin/about.php:219
+#: wp-admin/about.php:239
 msgid "WordPress 6.8 packs a wide range of performance fixes and enhancements to speed up everything from editing to browsing. Beyond speculative loading, WordPress 6.8 pays special attention to the block editor, block type registration, and query caching. Plus, imagine never waiting longer than 50 milliseconds—for any interaction. In WordPress 6.8, the Interactivity API takes a first step toward that goal."
 msgstr "WordPress 6.8 gói gọn một loạt các bản sửa lỗi và cải tiến hiệu suất để tăng tốc mọi thứ, từ chỉnh sửa đến duyệt web. Ngoài việc tải trước, WordPress 6.8 đặc biệt chú trọng đến trình chỉnh sửa khối, đăng ký loại khối và bộ nhớ đệm truy vấn. Thêm vào đó, hãy tưởng tượng bạn không bao giờ phải chờ đợi lâu hơn 50 mili giây — cho bất kỳ tương tác nào. Trong WordPress 6.8, API Tương tác thực hiện bước đầu tiên hướng tới mục tiêu đó."
 
-#: wp-admin/about.php:206
+#: wp-admin/about.php:226
 msgid "Work continues on optimizing cache key generation in the <code>WP_Query</code> class. The goal is, as ever, to boost your site&#8217;s performance, in this case by taking some more of the load off your database. This is especially good if you get a lot of traffic."
 msgstr "Công việc vẫn tiếp tục tối ưu hóa việc tạo khóa cache trong lớp <code>WP_Query</code>. Mục tiêu, như mọi khi, là nâng cao hiệu suất của Web của bạn, trong trường hợp này bằng cách giảm bớt một phần tải cho cơ sở dữ liệu của bạn. Điều này đặc biệt tốt nếu bạn nhận được nhiều lưu lượng truy cập."
 
-#: wp-admin/about.php:205
+#: wp-admin/about.php:225
 msgid "Take a load off the database"
 msgstr "Giảm tải cho cơ sở dữ liệu"
 
-#: wp-admin/about.php:197
+#: wp-admin/about.php:217
 msgid "100+ accessibility fixes and enhancements touch a broad spectrum of the WordPress experience. This release includes fixes to every bundled theme, improvements to the navigation menu management, the customizer, and simplified labeling. The Block Editor has over 70 improvements to blocks, DataViews, and to its overall user experience."
 msgstr "Hơn 100 bản sửa lỗi và cải tiến về khả năng truy cập ảnh hưởng đến nhiều khía cạnh trải nghiệm WordPress. Bản phát hành này bao gồm các bản sửa lỗi cho mọi theme tích hợp sẵn, cải tiến quản lý menu điều hướng, trình tùy chỉnh và nhãn hiệu đơn giản hơn. Trình chỉnh sửa khối có hơn 70 cải tiến cho các khối, DataViews và trải nghiệm người dùng tổng thể."
 
-#: wp-admin/about.php:183
+#: wp-admin/about.php:203
 msgid "Now passwords are harder to crack with bcrypt hashing, which takes a lot more computing power to break. This strengthens overall security, as do other encryption improvements across WordPress. You don&#8217;t need to do anything—everything updates automatically."
 msgstr "Bây giờ, mật khẩu khó bị bẻ khóa hơn với việc mã hóa bcrypt, điều này đòi hỏi nhiều sức mạnh tính toán hơn để phá vỡ. Điều này củng cố an ninh tổng thể, cũng như các cải tiến mã hóa khác trên WordPress. Bạn không cần phải làm gì—mọi thứ sẽ tự động cập nhật."
 
-#: wp-admin/about.php:182
+#: wp-admin/about.php:202
 msgid "Stronger password security with bcrypt"
 msgstr "Tăng cường bảo mật mật khẩu với bcrypt"
 
-#: wp-admin/about.php:166
+#: wp-admin/about.php:186
 msgid "In WordPress 6.8, pages load faster than ever. When you or your user hovers over or clicks a link, WordPress may preload the next page, for a smoother, near-instant experience. The system balances speed and efficiency, and you can control how it works, with a plugin or your own code. This feature only works in modern browsers—older ones will simply ignore it without any impact."
 msgstr "Trong WordPress 6.8, trang web tải nhanh hơn bao giờ hết. Khi bạn hoặc người dùng di chuột qua hoặc nhấp vào một liên kết, WordPress có thể tải trước trang tiếp theo, mang lại trải nghiệm mượt mà, gần như tức thời. Hệ thống cân bằng tốc độ và hiệu quả, và bạn có thể kiểm soát cách thức hoạt động của nó, bằng plugin hoặc mã của riêng bạn. Tính năng này chỉ hoạt động trên các trình duyệt hiện đại - các trình duyệt cũ hơn sẽ đơn giản bỏ qua nó mà không ảnh hưởng gì."
 
-#: wp-admin/about.php:165
+#: wp-admin/about.php:185
 msgid "Near-instant page loads, thanks to Speculative Loading"
 msgstr "Tải trang gần như tức thời, nhờ Tải trước dự đoán"
 
-#: wp-admin/about.php:159
+#: wp-admin/about.php:179
 msgid "Easier ways to see your options in Data Views, and you can exclude sticky posts from the Query Loop. Plus, you&#8217;ll find lots of little improvements in the editor that smooth your way through everything you build."
 msgstr "Các cách dễ dàng hơn để xem tuỳ chọn của bạn trong Data Views, và bạn có thể loại trừ các bài viết cố định khỏi Query Loop. Thêm vào đó, bạn sẽ tìm thấy nhiều cải tiến nhỏ trong công cụ soạn thảo giúp bạn dễ dàng hơn trong mọi thứ bạn xây dựng."
 
-#: wp-admin/about.php:138
+#: wp-admin/about.php:158
 msgid "Plus, now you can see it in Classic themes that have editor-styles or a theme.json file. Find the Style Book under Appearance > Design and use it to preview your theme&#8217;s evolution, as you edit CSS or make changes in the Customizer."
 msgstr "Thêm vào đó, bây giờ bạn có thể xem nó trong các giao diện Classic có editor-styles hoặc file theme.json. Tìm Sổ tay Kiểu dưới Giao diện > Thiết kế và sử dụng nó để xem trước sự phát triển của giao diện của bạn, khi bạn sửa CSS hoặc thực hiện các thay đổi trong Công cụ tùy chỉnh."
 
 #. translators: %s is a direct link to the Style Book.
-#: wp-admin/about.php:134
+#: wp-admin/about.php:154
 msgid "Plus, now you can see it in Classic themes that have editor-styles or a theme.json file. Find <a href=\"%s\">the Style Book</a> under Appearance > Design and use it to preview your theme&#8217;s evolution, as you edit CSS or make changes in the Customizer."
 msgstr "Thêm vào đó, bây giờ bạn có thể xem nó trong các giao diện Classic có styles của công cụ soạn thảo hoặc file theme.json. Tìm <a href=\"%s\">Sổ tay phong cách</a> dưới Giao diện > Thiết kế và sử dụng nó để xem trước sự phát triển của giao diện của bạn, khi bạn sửa CSS hoặc thực hiện các thay đổi trong Công cụ tùy chỉnh."
 
-#: wp-admin/about.php:126
+#: wp-admin/about.php:146
 msgid "The Style Book has a new, structured layout and clearer labels, to make it even easier to edit colors, typography—almost all your site styles—in one place."
 msgstr "Sổ tay Kiểu dáng có bố cục mới, có cấu trúc và nhãn hiệu rõ ràng hơn, giúp dễ dàng hơn khi chỉnh sửa màu sắc, kiểu chữ - hầu hết tất cả các kiểu trang web của bạn - ở một nơi."
 
-#: wp-admin/about.php:124
+#: wp-admin/about.php:144
 msgid "The Style Book gets a cleaner look—and a few new tricks"
 msgstr "Sổ tay Kiểu dáng có giao diện sạch sẽ hơn - và một vài thủ thuật mới"
 
-#: wp-admin/about.php:117
+#: wp-admin/about.php:137
 msgid "The Style Book now has a structured layout and works with Classic themes, giving you more control over global styles."
 msgstr "Sổ tay Kiểu dáng giờ đây có bố cục có cấu trúc và hoạt động với các theme Classic, mang lại cho bạn nhiều quyền kiểm soát hơn đối với kiểu dáng toàn cầu."
 
-#: wp-admin/about.php:116
+#: wp-admin/about.php:136
 msgid "WordPress 6.8 polishes and refines the tools you use every day, making your site faster, more secure, and easier to manage."
 msgstr "WordPress 6.8 đánh bóng và tinh chỉnh các công cụ bạn sử dụng hàng ngày, giúp trang web của bạn nhanh hơn, an toàn hơn và dễ quản lý hơn."
 
-#: wp-admin/about.php:115
+#: wp-admin/about.php:135
 msgid "A release polished to a high sheen."
 msgstr "Một bản phát hành được đánh bóng đến độ hoàn hảo."
 
@@ -384,12 +384,12 @@ msgid "Skip to Editor"
 msgstr "Bỏ qua để biên tập"
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:314
+#: wp-admin/about.php:334
 msgid "WordPress %s Field Guide"
 msgstr "Hướng dẫn thực tế về WordPress %s"
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:287
+#: wp-admin/about.php:307
 msgid "WordPress %s Release Notes"
 msgstr "Ghi chú phát hành WordPress %s"
 
@@ -548,20 +548,20 @@ msgstr "Nếu bạn là tác giả plugin, bạn có thể tìm hiểu thêm v�
 msgid "If you are a plugin author, you can learn more about <a href=\"https://developer.wordpress.org/plugins/privacy/adding-the-personal-data-eraser-to-your-plugin/\">how to add the Personal Data Eraser to a plugin</a>."
 msgstr "Nếu bạn là tác giả plugin, bạn có thể tìm hiểu thêm về <a href=\"https://developer.wordpress.org/plugins/privacy/adding-the-personal-data-eraser-to-your-plugin/\">cách thực hiện để thêm Công cụ xóa dữ liệu cá nhân vào plugin</a>."
 
-#: wp-admin/about.php:240
+#: wp-admin/about.php:260
 msgid "See everything new"
 msgstr "Xem mọi thứ mới"
 
-#: wp-admin/about.php:240
+#: wp-admin/about.php:260
 msgid "https://wordpress.org/download/releases/6-8/"
 msgstr "https://wordpress.org/download/releases/6-8/"
 
 #. translators: %s: Version number.
-#: wp-admin/about.php:232
+#: wp-admin/about.php:252
 msgid "For a comprehensive overview of all the new features and enhancements in WordPress %s, please visit the feature-showcase website."
 msgstr "Để có cái nhìn tổng quan về tất cả các tính năng và cải tiến mới trong WordPress %s, vui lòng truy cập trang web feature-showcase."
 
-#: wp-admin/about.php:226
+#: wp-admin/about.php:246
 msgid "And much more"
 msgstr "Và nhiều hơn nữa"
 
@@ -703,11 +703,11 @@ msgstr "Cài đặt ngay"
 msgid "Created by a worldwide team of passionate individuals"
 msgstr "Tạo ra bởi một đội ngũ toàn cầu các cá nhân đam mê."
 
-#: wp-admin/about.php:196
+#: wp-admin/about.php:216
 msgid "Accessibility improvements"
 msgstr "Cải thiện khả năng tiếp cận"
 
-#: wp-admin/about.php:218
+#: wp-admin/about.php:238
 msgid "Performance updates"
 msgstr "Cập nhật hiệu suất"
 
@@ -771,12 +771,12 @@ msgid "When using Bulk Edit, you can change the metadata (categories, author, et
 msgstr "Khi sử dụng chỉnh sửa hàng loạt, bạn có thể thay đổi siêu dữ liệu (danh mục, tác giả, v.v.) cho tất cả các bài viết được chọn cùng một lúc. Để loại bỏ một bài viết khỏi nhóm, chỉ cần nhấp vào nút %s<span class=\"screen-reader-text\">remove</span> bên cạnh tên của nó trong khu vực chỉnh sửa hàng loạt xuất hiện."
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:297
+#: wp-admin/about.php:317
 msgid "Read the WordPress %s Release Notes for information on installation, enhancements, fixed issues, release contributors, learning resources, and the list of file changes."
 msgstr "Đọc Ghi chú phát hành WordPress %s để biết thông tin về cài đặt, cải tiến, sự cố đã khắc phục, người đóng góp bản phát hành, tài nguyên học tập và danh sách các thay đổi tệp."
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:324
+#: wp-admin/about.php:344
 msgid "Explore the WordPress %s Field Guide. Learn about the changes in this release with detailed developer notes to help you build with WordPress."
 msgstr "Khám phá WordPress %s Field Guide. Tìm hiểu về những thay đổi trong bản phát hành này với các ghi chú chi tiết dành cho nhà phát triển để giúp bạn xây dựng bằng WordPress."
 
@@ -797,7 +797,7 @@ msgid "Your WordPress version is %1$s, however the new plugin version requires %
 msgstr "Phiên bản WordPress của bạn là %1$s, tuy nhiên phiên bản mới của plugin yêu cầu %2$s."
 
 #. translators: %s: WordPress version.
-#: wp-admin/about.php:79 wp-admin/about.php:104
+#: wp-admin/about.php:74 wp-admin/about.php:99 wp-admin/about.php:124
 msgid "https://wordpress.org/support/wordpress-version/version-%s/"
 msgstr "https://wordpress.org/support/wordpress-version/version-%s/"
 
@@ -1264,7 +1264,7 @@ msgid "Be the future of WordPress"
 msgstr "Hãy là tương lai của WordPress"
 
 #. translators: 1: Learn WordPress link, 2: Workshops link.
-#: wp-admin/about.php:265
+#: wp-admin/about.php:285
 msgid "<a href=\"%1$s\">Learn WordPress</a> is a free resource for new and experienced WordPress users. Learn is stocked with how-to videos on using various features in WordPress, <a href=\"%2$s\">interactive workshops</a> for exploring topics in-depth, and lesson plans for diving deep into specific areas of WordPress."
 msgstr "<a href=\"%1$s\">Học WordPress</a> là một nguồn tài nguyên miễn phí dành cho người dùng WordPress mới và có kinh nghiệm. Learn cung cấp các video hướng dẫn về cách sử dụng các tính năng khác nhau trong WordPress, <a href=\"%2$s\">các workshop tương tác</a> để khám phá các giao diện chi tiết, và kế hoạch học tập để tìm hiểu sâu vào các lĩnh vực cụ thể của WordPress."
 
@@ -1410,12 +1410,12 @@ msgid "<a href=\"https://wordpress.org/documentation/article/customizer/\">Docum
 msgstr "<a href=\"https://wordpress.org/documentation/article/customizer/\">Tài liệu về Công cụ tùy chỉnh</a>"
 
 #. translators: The localized WordPress download URL.
-#: wp-admin/about.php:405
+#: wp-admin/about.php:425
 msgid "https://wordpress.org/download/"
 msgstr "https://wordpress.org/download"
 
 #. translators: %s: The major version of WordPress for this branch.
-#: wp-admin/about.php:402
+#: wp-admin/about.php:422
 msgid "This is the final release of WordPress %s"
 msgstr "Đây là bản phát hành cuối cùng của WordPress %s"
 
@@ -1737,12 +1737,12 @@ msgid "Reach out to WordPress Core developers to ensure you'll never have this p
 msgstr "Liên hệ với các nhà phát triển WordPress Core để đảm bảo bạn sẽ không bao giờ gặp lại vấn đề này nữa."
 
 #. translators: 1: WordPress version number, 2: Link to update WordPress
-#: wp-admin/about.php:399
+#: wp-admin/about.php:419
 msgid "Important! Your version of WordPress (%1$s) will stop receiving security updates in the near future. To keep your site secure, please <a href=\"%2$s\">update to the latest version of WordPress</a>."
 msgstr "Quan trọng! Phiên bản WordPress của bạn (%1$s) sẽ sớm ngừng nhận các bản cập nhật bảo mật. Để bảo vệ trang web của bạn, vui lòng <a href=\"%2$s\">cập nhật lên phiên bản mới nhất của WordPress</a>."
 
 #. translators: 1: WordPress version number, 2: Link to update WordPress
-#: wp-admin/about.php:396
+#: wp-admin/about.php:416
 msgid "Important! Your version of WordPress (%1$s) is no longer supported, you will not receive any security updates for your website. To keep your site secure, please <a href=\"%2$s\">update to the latest version of WordPress</a>."
 msgstr "Quan trọng! Phiên bản WordPress của bạn (%1$s) không còn được hỗ trợ nữa, bạn sẽ không nhận được bất kỳ bản cập nhật bảo mật nào cho trang web của mình. Để bảo vệ trang web của bạn, vui lòng <a href=\"%2$s\">cập nhật lên phiên bản mới nhất của WordPress</a>."
 
@@ -1752,7 +1752,7 @@ msgid "https://make.wordpress.org/core/wordpress-%s-field-guide/"
 msgstr "https://make.wordpress.org/core/wordpress-%s-field-guide/"
 
 #. translators: %s: Version number.
-#: wp-admin/about.php:256
+#: wp-admin/about.php:276
 msgid "Learn more about WordPress %s"
 msgstr "Tìm hiểu thêm về WordPress %s"
 
@@ -2652,7 +2652,7 @@ msgstr "Thêm mật khẩu ứng dụng"
 msgid "Required to create an Application Password, but not to update the user."
 msgstr "Bắt buộc phải tạo Mật khẩu ứng dụng, nhưng không được cập nhật người dùng."
 
-#: wp-admin/about.php:340
+#: wp-admin/about.php:360
 msgid "Go to Updates"
 msgstr "Tới Cập nhật"
 
@@ -7634,7 +7634,7 @@ msgstr "Phó phát hành"
 msgid "Release Design Lead"
 msgstr "Chỉ huy phát hành thiết kế"
 
-#: wp-admin/about.php:158
+#: wp-admin/about.php:178
 msgid "Editor improvements"
 msgstr "Cải tiến công cụ soạn thảo"
 
@@ -8071,7 +8071,7 @@ msgid "(Currently set to: %s)"
 msgstr "(Hiện tại: %s)"
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:370
+#: wp-admin/about.php:390
 msgid "<strong>Version %s</strong> addressed one security issue."
 msgstr "<strong>Phiên bản %s</strong> đã giải quyết vấn đề bảo mật."
 
@@ -8084,15 +8084,15 @@ msgstr "https://gravatar.com/"
 msgid "Profile Picture"
 msgstr "Ảnh đại diện"
 
-#: wp-admin/about.php:59 wp-admin/about.php:367
+#: wp-admin/about.php:59 wp-admin/about.php:387
 msgid "Maintenance and Security Releases"
 msgstr "Các phiên bản bảo trì và bảo mật"
 
-#: wp-admin/about.php:364
+#: wp-admin/about.php:384
 msgid "Security Releases"
 msgstr "Các phiên bản bảo mật"
 
-#: wp-admin/about.php:361
+#: wp-admin/about.php:381
 msgid "Maintenance Releases"
 msgstr "Các phiên bản bảo trì"
 
@@ -11359,44 +11359,46 @@ msgstr "Hiển thị thanh quản trị khi xem trang"
 
 #. translators: %s: HelpHub URL.
 #. translators: %s: Documentation URL.
-#: wp-admin/about.php:76 wp-admin/about.php:101 wp-admin/about.php:393
+#: wp-admin/about.php:71 wp-admin/about.php:96 wp-admin/about.php:121
+#: wp-admin/about.php:413
 msgid "For more information, see <a href=\"%s\">the release notes</a>."
 msgstr "Để biết thêm thông tin, xem <a href=\"%s\">thông báo phát hành</a>."
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs. More
 #. than one security issue.
-#: wp-admin/about.php:387
+#: wp-admin/about.php:407
 msgid "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs."
 msgstr[0] "<strong>Phiên bản %1$s</strong> đã giải quyết một số vấn đề về bảo mật và sửa %2$s lỗi."
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs. Singular
 #. security issue.
-#: wp-admin/about.php:381
+#: wp-admin/about.php:401
 msgid "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bugs."
 msgstr[0] "<strong>Phiên bản %1$s</strong> đã giải quyết một vấn đề về bảo mật và sửa %2$s lỗi."
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs.
-#: wp-admin/about.php:64 wp-admin/about.php:89 wp-admin/about.php:375
+#: wp-admin/about.php:84 wp-admin/about.php:109 wp-admin/about.php:395
 msgid "<strong>Version %1$s</strong> addressed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed %2$s bugs."
 msgstr[0] "<strong>Phiên bản %1$s</strong> đã giải quyết %2$s lỗi."
 
+#. translators: %s: WordPress version.
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:372
+#: wp-admin/about.php:64 wp-admin/about.php:392
 msgid "<strong>Version %s</strong> addressed some security issues."
 msgstr "<strong>Phiên bản %1$s</strong> đã giải quyết một số vấn đề về bảo mật."
 
-#: wp-admin/about.php:366
+#: wp-admin/about.php:386
 msgid "Maintenance and Security Release"
 msgstr "Các bản Bảo Mật và Bảo Trì"
 
-#: wp-admin/about.php:363
+#: wp-admin/about.php:383
 msgid "Security Release"
 msgstr "Các bản Bảo Mật"
 
-#: wp-admin/about.php:360
+#: wp-admin/about.php:380
 msgid "Maintenance Release"
 msgstr "Các bản Bảo Trì"
 
@@ -11669,11 +11671,11 @@ msgstr "<strong>Chỉnh sửa</strong> đưa bạn tới màn hình soạn thả
 msgid "Because this is a multisite installation, you may add accounts that already exist on the Network by specifying a username or email, and defining a role. For more options, such as specifying a password, you have to be a Network Administrator and use the hover link under an existing user&#8217;s name to Edit the user profile under Network Admin > All Users."
 msgstr "Do đây là một bản cài đặt đa mạng, bạn có thể thêm tài khoản đã tồn tại trong Mạng Lưới bằng cách chỉ định tên truy cập hoặc địa chỉ thư điện tử, và lựa chọn một vai trò người dùng. Để có thêm lựa chọn, như chỉ định mật khẩu, bạn phải là Quản Trị Viên Mạng Lưới và sử dụng liên kết hiển thị phía dưới tên người dùng khi di chuột lên để Biên Tập hồ sơ người dùng tại Quản Trị Mạng Lưới > Tất Cả Người Dùng."
 
-#: wp-admin/about.php:347
+#: wp-admin/about.php:367
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Đến Trang quản trị &rarr; Trang chủ"
 
-#: wp-admin/about.php:340
+#: wp-admin/about.php:360
 msgid "Go to Dashboard &rarr; Updates"
 msgstr "Tới Trang quản trị &rarr; Cập nhật"
 
@@ -12444,10 +12446,6 @@ msgstr "Thực hiện lọc"
 #: wp-admin/includes/theme.php:338
 msgid "Editor Style"
 msgstr "Kiểu trình chỉnh sửa"
-
-#: wp-admin/users.php:235
-msgid "Sorry, you are not allowed to edit users."
-msgstr "Xin lỗi, bạn không được phép sửa tài khoản thành viên."
 
 #: wp-admin/includes/file.php:2560
 msgid "To perform the requested action, WordPress needs to access your web server."
@@ -13369,7 +13367,7 @@ msgstr "Cập nhật WordPress"
 msgid "Edit menu item"
 msgstr "Sửa mục trong menu"
 
-#: wp-admin/about.php:347
+#: wp-admin/about.php:367
 msgid "Go to Dashboard"
 msgstr "Chuyển đến trang quản trị"
 

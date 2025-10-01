@@ -31,8 +31,8 @@ class class_fma_main {
 		add_action( 'admin_enqueue_scripts', array( &$this, 'fma_scripts' ) );
 		add_action( 'wp_ajax_fma_load_fma_ui', array( &$this, 'fma_load_fma_ui' ) );
 		add_action( 'wp_ajax_fma_review_ajax', array( $this, 'fma_review_ajax' ) );
-		add_action( 'wp_ajax_fma_validate_php', array( $this, 'fma_validate_php' ) );
 		add_action( 'wp_ajax_fma_save_php_file', array( $this, 'fma_save_php_file' ) );
+		add_action( 'wp_ajax_fma_debug_php', array( $this, 'fma_debug_php' ) );
 		$this->settings = get_option( 'fmaoptions' );
 
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
@@ -57,7 +57,7 @@ class class_fma_main {
 		if ( isset( $_POST['cmd'] ) && $_POST['cmd'] === 'put' && isset( $_POST['content'] ) ) {
 			$_POST['content'] = wp_unslash( $_POST['content'] );
 		}
-
+        
 		include 'class_fma_connector.php';
 		$fma_connector = new class_fma_connector();
 		if ( wp_verify_nonce( $_REQUEST['_fmakey'], 'fmaskey' ) ) {
@@ -122,6 +122,7 @@ class class_fma_main {
 						'cm_theme'  => $cm_theme,
 						'hide_path' => $hide_path,
 						'plugin_url' => FMA_PLUGIN_URL,
+						'debug_enabled' => isset($this->settings['fma_debug_enabled']) ? $this->settings['fma_debug_enabled'] : '0',
 					)
 				);
 			}
@@ -211,10 +212,15 @@ class class_fma_main {
 			require_once FMAFILEPATH . 'application/logs/class-filelogs.php';
 		}
 	}
+
+
+
+
+
 	/**
-	 * PHP Validation Ajax
+	 * PHP Debug Analysis Ajax
 	 */
-	public function fma_validate_php() {
+	public function fma_debug_php() {
 		// Check nonce for security
 		if ( ! wp_verify_nonce( $_POST['nonce'], 'fmaskey' ) ) {
 			wp_die( __( 'Security check failed', 'file-manager-advanced' ) );
@@ -224,463 +230,14 @@ class class_fma_main {
 		$php_code = wp_unslash( $_POST['php_code'] );
 		$filename = sanitize_text_field( $_POST['filename'] );
 
-		// Validate PHP syntax
-		$validation_result = $this->validate_php_syntax( $php_code, $filename );
+		// Load the debug analyzer
+		require_once FMAFILEPATH . 'application/library/php-parser/src/FMA_PhpDebugAnalyzer.php';
+
+		// Analyze PHP code for debug information
+		$debug_result = FMA_PhpDebugAnalyzer::analyze( $php_code, $filename );
 
 		// Return JSON response
-		wp_send_json( $validation_result );
-	}
-
-	/**
-	 * Validate PHP syntax using php -l
-	 *
-	 * @param string $php_code The PHP code to validate
-	 * @param string $filename The filename for context
-	 * @return array Validation result
-	 */
-	private function validate_php_syntax( $php_code, $filename = 'temp.php' ) {
-		$result = array(
-			'valid' => true,
-			'errors' => array(),
-			'message' => ''
-		);
-
-		// Create a temporary file to validate
-		$temp_file = wp_tempnam( $filename );
-		if ( ! $temp_file ) {
-			$result['valid'] = false;
-			$result['message'] = __( 'Could not create temporary file for validation', 'file-manager-advanced' );
-			return $result;
-		}
-
-		file_put_contents( $temp_file, $php_code );
-
-		// Only use shell_exec/php -l for validation
-		if ( function_exists( 'shell_exec' ) ) {
-			$command = 'php -l ' . escapeshellarg( $temp_file ) . ' 2>&1';
-			$output = shell_exec( $command );
-			// Fallback immediately if php CLI is not found (before unlink and error handling)
-			if ( stripos( $output, 'not found' ) !== false || stripos( $output, 'command not found' ) !== false ) {
-				unlink( $temp_file );
-				$alt_result = $this->validate_php_syntax_alternative( $php_code, $filename );
-				$alt_result['message'] = __( 'PHP CLI not found on server. Fallback validation used.', 'file-manager-advanced' ) . ' ' . $alt_result['message'];
-				return $alt_result;
-			}
-			unlink( $temp_file );
-			if ( strpos( $output, 'No syntax errors detected' ) !== false ) {
-				$result['valid'] = true;
-				$result['message'] = __( 'PHP syntax is valid', 'file-manager-advanced' );
-			} else {
-				$result['valid'] = false;
-				$result['errors'][] = array(
-					'line' => 0,
-					'message' => str_replace( $temp_file, $filename, trim( $output ) ),
-					'type' => 'error'
-				);
-				$result['message'] = __( 'PHP syntax errors found', 'file-manager-advanced' );
-			}
-			return $result;
-		} else {
-			unlink( $temp_file );
-			// Fallback to alternative validation instead of returning error
-			return $this->validate_php_syntax_alternative( $php_code, $filename );
-		}
-	}
-
-	/**
-	 * Alternative PHP syntax validation using token_get_all()
-	 *
-	 * @param string $php_code The PHP code to validate
-	 * @param string $filename The filename for context
-	 * @return array Validation result
-	 */
-	private function validate_php_syntax_alternative( $php_code, $filename = 'temp.php' ) {
-		$result = array(
-			'valid' => true,
-			'errors' => array(),
-			'message' => ''
-		);
-
-		// First, try using eval() to check syntax (safer approach)
-		$syntax_check = $this->check_php_syntax_with_eval( $php_code );
-		if ( ! $syntax_check['valid'] ) {
-			return $syntax_check;
-		}
-
-		// Use output buffering to catch any errors
-		ob_start();
-		$error_reporting = error_reporting( E_ALL );
-		
-		// Try to tokenize the PHP code
-		$tokens = @token_get_all( $php_code );
-		
-		if ( $tokens === false ) {
-			$result['valid'] = false;
-			$result['message'] = __( 'PHP syntax error detected', 'file-manager-advanced' );
-			$result['errors'][] = array(
-				'line' => 0,
-				'message' => __( 'Invalid PHP syntax', 'file-manager-advanced' ),
-				'type' => 'error'
-			);
-		} else {
-			// Enhanced validation: check for common syntax issues
-			$validation_errors = $this->validate_php_tokens( $tokens );
-			
-			if ( ! empty( $validation_errors ) ) {
-				$result['valid'] = false;
-				$result['message'] = __( 'PHP syntax errors detected', 'file-manager-advanced' );
-				$result['errors'] = $validation_errors;
-			} else {
-				$result['message'] = __( 'PHP syntax appears to be valid (basic validation)', 'file-manager-advanced' );
-			}
-		}
-		
-		// Restore error reporting
-		error_reporting( $error_reporting );
-		ob_end_clean();
-		
-		return $result;
-	}
-
-	/**
-	 * Check PHP syntax using eval() in a safer way
-	 *
-	 * @param string $php_code The PHP code to validate
-	 * @return array Validation result
-	 */
-	private function check_php_syntax_with_eval( $php_code ) {
-		$result = array(
-			'valid' => true,
-			'errors' => array(),
-			'message' => ''
-		);
-
-		// Remove opening PHP tag if present
-		$code_to_check = $php_code;
-		if ( strpos( $code_to_check, '<?php' ) === 0 ) {
-			$code_to_check = substr( $code_to_check, 5 );
-		}
-
-		// Set up error handler to catch parse errors
-		set_error_handler( function( $severity, $message, $file, $line ) {
-			throw new ErrorException( $message, 0, $severity, $file, $line );
-		} );
-
-		try {
-			// Use eval() to check syntax without executing
-			$wrapped_code = "if(false) { $code_to_check }";
-			eval( $wrapped_code );
-		} catch ( ParseError $e ) {
-			$result['valid'] = false;
-			$result['message'] = __( 'PHP parse error detected', 'file-manager-advanced' );
-			$result['errors'][] = array(
-				'line' => $e->getLine(),
-				'message' => $e->getMessage(),
-				'type' => 'error'
-			);
-		} catch ( ErrorException $e ) {
-			$result['valid'] = false;
-			$result['message'] = __( 'PHP syntax error detected', 'file-manager-advanced' );
-			$result['errors'][] = array(
-				'line' => $e->getLine(),
-				'message' => $e->getMessage(),
-				'type' => 'error'
-			);
-		} catch ( Exception $e ) {
-			// Other exceptions might indicate syntax issues
-			$result['valid'] = false;
-			$result['message'] = __( 'PHP error detected', 'file-manager-advanced' );
-			$result['errors'][] = array(
-				'line' => 0,
-				'message' => $e->getMessage(),
-				'type' => 'error'
-			);
-		}
-
-		// Restore error handler
-		restore_error_handler();
-
-		return $result;
-	}
-
-	/**
-	 * Validate PHP tokens for common syntax issues
-	 *
-	 * @param array $tokens PHP tokens from token_get_all()
-	 * @return array Array of validation errors
-	 */
-	private function validate_php_tokens( $tokens ) {
-		$errors = array();
-		$bracket_stack = array();
-		$brace_stack = array();
-		$paren_stack = array();
-		$string_stack = array();
-		$heredoc_stack = array();
-		$comment_open = false;
-		$line_number = 1;
-		$expect_semicolon = false;
-		$last_significant_token = null;
-
-		foreach ( $tokens as $token ) {
-			if ( is_array( $token ) ) {
-				$token_type = $token[0];
-				$token_value = $token[1];
-				$line_number = $token[2];
-
-				// Detect unclosed multi-line comment
-				if ( $token_type === T_COMMENT || $token_type === T_DOC_COMMENT ) {
-					if ( strpos( $token_value, '/*' ) !== false && strpos( $token_value, '*/' ) === false ) {
-						$comment_open = $line_number;
-					}
-					if ( strpos( $token_value, '*/' ) !== false ) {
-						$comment_open = false;
-					}
-					continue;
-				}
-
-				// Detect unclosed strings
-				if ( $token_type === T_CONSTANT_ENCAPSED_STRING ) {
-					$quote = $token_value[0];
-					if ( substr_count( $token_value, $quote ) % 2 !== 0 ) {
-						$string_stack[] = array('line' => $line_number, 'quote' => $quote);
-					}
-					continue;
-				}
-
-				// Detect unclosed HEREDOC/NOWDOC
-				if ( $token_type === T_START_HEREDOC ) {
-					$heredoc_stack[] = $line_number;
-					continue;
-				}
-				if ( $token_type === T_END_HEREDOC ) {
-					array_pop( $heredoc_stack );
-					continue;
-				}
-
-				// Check for invalid variable/function/class names
-				if ( $token_type === T_VARIABLE ) {
-					if ( !preg_match('/^\$[a-zA-Z_][a-zA-Z0-9_]*$/', $token_value ) ) {
-						$errors[] = array(
-							'line' => $line_number,
-							'message' => sprintf( __( 'Invalid variable name: %s', 'file-manager-advanced' ), $token_value ),
-							'type' => 'error'
-						);
-					}
-				}
-				if ( $token_type === T_FUNCTION || $token_type === T_CLASS ) {
-					// Next non-whitespace token should be the name
-					$next = next($tokens);
-					while ( is_array($next) && ($next[0] === T_WHITESPACE || $next[0] === T_COMMENT || $next[0] === T_DOC_COMMENT) ) {
-						$next = next($tokens);
-					}
-					if ( is_array($next) && isset($next[1]) && !preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $next[1]) ) {
-						$errors[] = array(
-							'line' => $line_number,
-							'message' => sprintf( __( 'Invalid function/class name: %s', 'file-manager-advanced' ), $next[1] ),
-							'type' => 'error'
-						);
-					}
-					// Move pointer back for main foreach
-					prev($tokens);
-				}
-
-				// Skip whitespace and encapsulated strings
-				if ( $token_type === T_WHITESPACE || $token_type === T_ENCAPSED_AND_WHITESPACE ) {
-					continue;
-				}
-
-				// Check for statements that should end with semicolon
-				if ( in_array( $token_type, array( T_REQUIRE_ONCE, T_REQUIRE, T_INCLUDE_ONCE, T_INCLUDE, T_ECHO, T_PRINT, T_RETURN ) ) ) {
-					$expect_semicolon = true;
-				}
-
-				// Check for function calls, variable assignments, etc.
-				if ( $token_type === T_STRING && $last_significant_token &&
-					 ! in_array( $last_significant_token, array( T_FUNCTION, T_CLASS, T_CONST, T_NEW ) ) ) {
-					$expect_semicolon = true;
-				}
-
-				$last_significant_token = $token_type;
-			} else {
-				$token_value = $token;
-
-				// Count brackets, braces, and parentheses with line tracking
-				switch ( $token_value ) {
-					case '[':
-						$bracket_stack[] = $line_number;
-						break;
-					case ']':
-						if ( empty( $bracket_stack ) ) {
-							$errors[] = array(
-								'line' => $line_number,
-								'message' => __( "Unmatched ']' found here. Check for missing opening '[' or misplaced closing ']' above this line.", 'file-manager-advanced' ),
-								'type' => 'error'
-							);
-						} else {
-							array_pop( $bracket_stack );
-						}
-						break;
-					case '{':
-						$brace_stack[] = $line_number;
-						$expect_semicolon = false;
-						break;
-					case '}':
-						if ( empty( $brace_stack ) ) {
-							$errors[] = array(
-								'line' => $line_number,
-								'message' => __( "Unmatched '}' found here. Check for missing opening '{' or misplaced closing '}' above this line.", 'file-manager-advanced' ),
-								'type' => 'error'
-							);
-						} else {
-							array_pop( $brace_stack );
-						}
-						$expect_semicolon = false;
-						break;
-					case '(': 
-						$paren_stack[] = $line_number;
-						break;
-					case ')':
-						if ( empty( $paren_stack ) ) {
-							$errors[] = array(
-								'line' => $line_number,
-								'message' => __( "Unmatched ')' found here. Check for missing opening '(' or misplaced closing ')' above this line.", 'file-manager-advanced' ),
-								'type' => 'error'
-							);
-						} else {
-							array_pop( $paren_stack );
-						}
-						break;
-					case ';':
-						$expect_semicolon = false;
-						break;
-				}
-
-				// Check for missing semicolon before certain tokens
-				if ( $expect_semicolon && in_array( $token_value, array( '{', '}' ) ) ) {
-					$errors[] = array(
-						'line' => $line_number,
-						'message' => __( 'Missing semicolon before', 'file-manager-advanced' ) . ' ' . $token_value,
-						'type' => 'error'
-					);
-					$expect_semicolon = false;
-				}
-			}
-		}
-
-		// Check for unclosed brackets, braces, or parentheses with line info
-		foreach ( $bracket_stack as $ln ) {
-			$errors[] = array(
-				'line' => $ln,
-				'message' => __( 'Unclosed square bracket opened here', 'file-manager-advanced' ),
-				'type' => 'error'
-			);
-		}
-		foreach ( $brace_stack as $ln ) {
-			$errors[] = array(
-				'line' => $ln,
-				'message' => __( 'Unclosed curly brace opened here', 'file-manager-advanced' ),
-				'type' => 'error'
-			);
-		}
-		foreach ( $paren_stack as $ln ) {
-			$errors[] = array(
-				'line' => $ln,
-				'message' => __( 'Unclosed parenthesis opened here', 'file-manager-advanced' ),
-				'type' => 'error'
-			);
-		}
-		// Check for unclosed HEREDOC/NOWDOC
-		foreach ( $heredoc_stack as $ln ) {
-			$errors[] = array(
-				'line' => $ln,
-				'message' => __( 'Unclosed HEREDOC/NOWDOC block opened here', 'file-manager-advanced' ),
-				'type' => 'error'
-			);
-		}
-		// Check for unclosed strings
-		foreach ( $string_stack as $str ) {
-			$errors[] = array(
-				'line' => $str['line'],
-				'message' => sprintf( __( 'Unclosed string (started with %s)', 'file-manager-advanced' ), $str['quote'] ),
-				'type' => 'error'
-			);
-		}
-		// Check for unclosed multi-line comment
-		if ( $comment_open ) {
-			$errors[] = array(
-				'line' => $comment_open,
-				'message' => __( 'Unclosed multi-line comment opened here', 'file-manager-advanced' ),
-				'type' => 'error'
-			);
-		}
-		// Check for missing semicolon at the end
-		if ( $expect_semicolon ) {
-			$errors[] = array(
-				'line' => $line_number,
-				'message' => __( 'Missing semicolon at end of statement', 'file-manager-advanced' ),
-				'type' => 'error'
-			);
-		}
-		return $errors;
-	}
-
-	/**
-	 * Check if PHP CLI is available
-	 *
-	 * @return bool
-	 */
-	private function is_php_cli_available() {
-		// Check if exec function is available
-		if ( ! function_exists( 'exec' ) ) {
-			return false;
-		}
-		
-		$output = array();
-		$return_code = 0;
-		exec( 'php --version 2>&1', $output, $return_code );
-
-		// Fallback immediately if php CLI is not found (before unlink and error handling)
-		if ( stripos( $output, 'not found' ) !== false || stripos( $output, 'command not found' ) !== false ) {
-			unlink( $temp_file );
-			$alt_result = $this->validate_php_syntax_alternative( $php_code, $filename );
-			$alt_result['message'] = __( 'PHP CLI not found on server. Fallback validation used.', 'file-manager-advanced' ) . ' ' . $alt_result['message'];
-			return $alt_result;
-		}
-		return $return_code === 0;
-	}
-
-	/**
-	 * Parse PHP error output
-	 *
-	 * @param array $output Error output from php -l
-	 * @param string $temp_file Temporary file path
-	 * @param string $actual_filename Actual filename
-	 * @return array Parsed errors
-	 */
-	private function parse_php_errors( $output, $temp_file, $actual_filename ) {
-		$errors = array();
-		
-		foreach ( $output as $line ) {
-			// Replace temp file path with actual filename
-			$line = str_replace( $temp_file, $actual_filename, $line );
-			
-			// Parse error line to extract line number and error message
-			if ( preg_match( '/.*in\s+(.+)\s+on\s+line\s+(\d+)/', $line, $matches ) ) {
-				$errors[] = array(
-					'line' => intval( $matches[2] ),
-					'message' => trim( $line ),
-					'type' => 'error'
-				);
-			} else if ( !empty( trim( $line ) ) && strpos( $line, 'Errors parsing' ) === false ) {
-				$errors[] = array(
-					'line' => 0,
-					'message' => trim( $line ),
-					'type' => 'error'
-				);
-			}
-		}
-		
-		return $errors;
+		wp_send_json( $debug_result );
 	}
 
 	/**
@@ -754,8 +311,7 @@ class class_fma_main {
 					
 					wp_send_json_error( array( 
 						'message' => $error_message,
-						'elfinder_response' => $elfinder_response,
-						'debug_info' => $response_data
+						'elfinder_response' => $elfinder_response
 					) );
 				}
 			} else {
@@ -804,5 +360,3 @@ class class_fma_main {
 	   return $has_pro;
 	}
 }
-
-

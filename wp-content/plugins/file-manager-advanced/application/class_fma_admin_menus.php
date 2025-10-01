@@ -1048,7 +1048,8 @@ HTML;
 		   $save['enable_trash'] = isset($_POST['enable_trash']) ? sanitize_text_field($_POST['enable_trash']) : 0;
 		   $save['enable_htaccess'] = isset($_POST['enable_htaccess']) ? sanitize_text_field($_POST['enable_htaccess']) : 0;
 		   $save['fma_upload_allow'] = isset($_POST['fma_upload_allow']) ? sanitize_text_field($_POST['fma_upload_allow']) : 'all';
-		   $save['fma_cm_theme'] = isset($_POST['fma_cm_theme']) ? sanitize_text_field($_POST['fma_cm_theme']) : 'default';	   
+		   $save['fma_cm_theme'] = isset($_POST['fma_cm_theme']) ? sanitize_text_field($_POST['fma_cm_theme']) : 'default';
+		   $save['fma_debug_enabled'] = isset($_POST['fma_debug_enabled']) ? sanitize_text_field($_POST['fma_debug_enabled']) : 0;	   
 		  $u = update_option('fmaoptions',$save);
 		  if($u) {
 			  $this->f('?page=file_manager_advanced_controls&status=1');

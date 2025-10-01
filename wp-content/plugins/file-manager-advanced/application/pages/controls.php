@@ -27,13 +27,15 @@ $cm_themes = class_fma_main::cm_themes();
                 'slug'  => 'notifications',
                 'icon'  => '<i class="dashicons dashicons-megaphone"></i>',
             ),
-            'ai' => array(
-                'title' => __( 'AI Integration', 'afm-pro' ),
-                'slug'  => 'ai',
-                'icon'  => '<img src="' . plugins_url( '../assets/images/codepilot.png', __FILE__ ) . '" style="height:16px;vertical-align:middle;border-radius:50%;" alt="Code Pilot" />',
-            ),
         )
     );
+    if ( ! class_exists( 'AFMP\Modules\AFMP_AI_Integration' ) ) {
+        $settings_tabs['ai'] = array(
+            'title' => __( 'AI Integration', 'file-manager-advanced' ),
+            'slug'  => 'ai',
+            'icon'  => '<img src="' . plugins_url( '../assets/images/codepilot.png', __FILE__ ) . '" style="height:16px;vertical-align:middle;border-radius:50%;" alt="Code Pilot" />',
+        );
+    }
 
     $active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'general';
     if ( ! empty( $settings_tabs ) ) {
@@ -306,6 +308,18 @@ $cm_themes = class_fma_main::cm_themes();
                                 <?php endforeach; ?>
                             </select>
                             <p class="description"><?php _e('Select code editor theme. Default: default','file-manager-advanced')?></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="fma_debug_enabled">
+                                <?php _e('PHP Debug Feature <sup style="color:red;">New</sup>','file-manager-advanced')?>
+                            </label>
+                        </th>
+                        <td>
+                            <input name="fma_debug_enabled" type="checkbox" id="fma_debug_enabled" value="1" <?php echo isset($settings['fma_debug_enabled']) && ($settings['fma_debug_enabled'] == '1') ? 'checked="checked"' : '';?>>
+                            <p class="description"><?php _e('Enable real-time PHP syntax error detection, highlighting, and debugging features in the code editor.','file-manager-advanced')?></p>
+                            <p>Default: <code><?php _e('Disabled','file-manager-advanced')?></code></p>
                         </td>
                     </tr>
 

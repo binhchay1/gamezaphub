@@ -1,4 +1,84 @@
 jQuery( document ).ready( function() {
+    // Check if debug feature is enabled
+    var debugEnabled = afm_object && afm_object.debug_enabled === '1';
+    
+    // Global variables for error tracking
+    var hasErrors = false;
+    var currentEditor = null;
+    var currentErrors = [];
+    var lastButtonState = null;
+    var tooltipTimeout = null;
+    var lastTooltipLine = null;
+    var isSaveButtonClicked = false;
+    
+    // CSS styles for error highlighting
+    var errorStyles = `
+        <style>
+        .fma-error-line {
+            background-color: #fed7d7 !important;
+            border-left: 3px solid #c53030 !important;
+        }
+        .fma-error-underline {
+            text-decoration: underline wavy #c53030 !important;
+            text-decoration-thickness: 2px !important;
+        }
+        .fma-error-marker {
+            color: #c53030 !important;
+            font-size: 14px !important;
+            font-weight: bold !important;
+            text-align: center !important;
+            line-height: 1 !important;
+        }
+        .fma-error-gutter {
+            background-color: #fed7d7 !important;
+            border-right: 2px solid #c53030 !important;
+        }
+        .fma-save-close-disabled {
+            opacity: 0.5 !important;
+            cursor: not-allowed !important;
+            pointer-events: none !important;
+        }
+        .fma-error-tooltip {
+            position: absolute;
+            background: #2d3748;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+            z-index: 10000;
+            pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            max-width: 300px;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+        .fma-error-tooltip::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid #2d3748;
+        }
+        .fma-error-tooltip .error-title {
+            font-weight: bold;
+            color: #feb2b2;
+            margin-bottom: 4px;
+        }
+        .fma-error-tooltip .error-message {
+            color: #e2e8f0;
+        }
+        .fma-error-tooltip .error-line {
+            color: #a0aec0;
+            font-size: 11px;
+            margin-top: 4px;
+        }
+        </style>
+    `;
+    jQuery('head').append(errorStyles);
 
     if ( 1 == afm_object.hide_path ) {
         var custom_css = `<style id="hide-path" type="text/css">.elfinder-info-path { display:none; } .elfinder-info-tb tr:nth-child(2) { display:none; }</style>`;
@@ -14,28 +94,18 @@ jQuery( document ).ready( function() {
     var fma_locale   = afm_object.locale;
     var fma_cm_theme = afm_object.cm_theme;
 
-    // Helper function to check if file is PHP
-    function isPHPFile(mimeType, filename) {
-        return mimeType === 'text/x-php' || 
-               mimeType === 'application/x-php' || 
-               filename.toLowerCase().endsWith('.php');
-    }
-
-    // PHP Validation function
-    function validatePHPSyntax( code, filename, callback ) {
+    // PHP Debug Analysis function
+    function analyzePHPDebug( code, filename, callback ) {
         jQuery.ajax({
             url: afm_object.ajaxurl,
             type: 'POST',
             data: {
-                action: 'fma_validate_php',
+                action: 'fma_debug_php',
                 nonce: fmakey,
                 php_code: code,
                 filename: filename
             },
             success: function( response ) {
-                // Cache the last validated code and result
-                window.fma_last_validated_code = code;
-                window.fma_last_validation_result = response;
                 if ( callback && typeof callback === 'function' ) {
                     callback( response );
                 }
@@ -44,10 +114,354 @@ jQuery( document ).ready( function() {
                 if ( callback && typeof callback === 'function' ) {
                     callback({
                         valid: false,
-                        errors: [],
-                        message: 'Failed to validate PHP syntax'
+                        debug_info: {},
+                        message: 'Failed to analyze PHP code'
                     });
                 }
+            }
+        });
+    }
+
+
+    // Highlight error lines in CodeMirror
+    function highlightErrorLines(editor, errors) {
+        if (!editor || !errors || errors.length === 0) {
+            // No errors, clear highlights and enable save button
+            clearErrorHighlights(editor);
+            return;
+        }
+
+        currentErrors = errors;
+
+        // Clear existing error highlights first
+        for (var i = 0; i < editor.lineCount(); i++) {
+            editor.removeLineClass(i, 'background', 'fma-error-line');
+            editor.removeLineClass(i, 'text', 'fma-error-underline');
+            editor.setGutterMarker(i, 'fma-error-gutter', null);
+        }
+
+        errors.forEach(function(error) {
+            if (error.line && error.line > 0) {
+                var lineNumber = error.line - 1;
+                
+                editor.addLineClass(lineNumber, 'background', 'fma-error-line');
+                editor.addLineClass(lineNumber, 'text', 'fma-error-underline');
+                
+                var marker = document.createElement('div');
+                marker.className = 'fma-error-marker';
+                marker.innerHTML = '⚠️';
+                marker.title = error.message;
+                editor.setGutterMarker(lineNumber, 'fma-error-gutter', marker);
+                setTimeout(function() {
+                    try {
+                        var lineElement = editor.getLineHandle(lineNumber);
+                        var lineEl = null;
+                        
+                        if (lineElement && lineElement.element) {
+                            lineEl = lineElement.element;
+                        } else {
+                            lineEl = jQuery('.CodeMirror-line:eq(' + lineNumber + ')')[0];
+                            if (!lineEl) {
+                                lineEl = jQuery('.CodeMirror-line').eq(lineNumber)[0];
+                            }
+                        }
+                        
+                        if (lineEl) {
+                            jQuery(lineEl).off('mouseenter.fma-tooltip mouseleave.fma-tooltip');
+                            jQuery(lineEl).on('mouseenter.fma-tooltip', function(e) {
+                                showErrorTooltip(e, error);
+                            });
+                            jQuery(lineEl).on('mouseleave.fma-tooltip', function(e) {
+                                hideErrorTooltip();
+                            });
+                        } else {
+                            var cmContainer = editor.getWrapperElement();
+                            if (cmContainer) {
+                                jQuery(cmContainer).off('mouseenter.fma-tooltip-' + lineNumber + ' mouseleave.fma-tooltip-' + lineNumber);
+                                jQuery(cmContainer).on('mouseenter.fma-tooltip-' + lineNumber, function(e) {
+                                    var coords = editor.coordsChar({top: e.pageY, left: e.pageX}, 'page');
+                                    if (coords.line === lineNumber) {
+                                        showErrorTooltip(e, error);
+                                    }
+                                });
+                                jQuery(cmContainer).on('mouseleave.fma-tooltip-' + lineNumber, function(e) {
+                                    hideErrorTooltip();
+                                });
+                            }
+                        }
+                    } catch (err) {
+                        // Ignore tooltip event errors
+                    }
+                }, 200);
+            }
+        });
+        
+        hasErrors = true;
+        updateSaveCloseButton();
+    }
+
+    // Clear error highlights
+    function clearErrorHighlights(editor) {
+        if (!editor) return;
+        
+        for (var i = 0; i < editor.lineCount(); i++) {
+            editor.removeLineClass(i, 'background', 'fma-error-line');
+            editor.removeLineClass(i, 'text', 'fma-error-underline');
+            editor.setGutterMarker(i, 'fma-error-gutter', null);
+            
+            try {
+                var lineElement = editor.getLineHandle(i);
+                if (lineElement && lineElement.element) {
+                    var lineEl = lineElement.element;
+                    jQuery(lineEl).off('mouseenter.fma-tooltip mouseleave.fma-tooltip');
+                }
+                
+                var cmContainer = editor.getWrapperElement();
+                if (cmContainer) {
+                    jQuery(cmContainer).off('mouseenter.fma-tooltip-' + i + ' mouseleave.fma-tooltip-' + i);
+                }
+            } catch (err) {
+                // Ignore tooltip event errors
+            }
+        }
+        
+        hideErrorTooltip();
+        currentErrors = [];
+        hasErrors = false;
+        updateSaveCloseButton();
+    }
+
+
+    // Show error tooltip on hover
+    function showErrorTooltip(event, error) {
+        // Clear existing timeout
+        if (tooltipTimeout) {
+            clearTimeout(tooltipTimeout);
+        }
+        
+        // Check if we're already showing tooltip for this line
+        if (lastTooltipLine === error.line) {
+            return;
+        }
+        
+        // Debounce tooltip showing
+        tooltipTimeout = setTimeout(function() {
+            // Remove existing tooltip
+            jQuery('.fma-error-tooltip').remove();
+            
+            var tooltipHtml = `
+                <div class="fma-error-tooltip">
+                    <div class="error-title">⚠️ PHP Error</div>
+                    <div class="error-message">${error.message}</div>
+                    <div class="error-line">Line ${error.line}</div>
+                </div>
+            `;
+            
+            var tooltip = jQuery(tooltipHtml).appendTo('body');
+            
+            // Position tooltip
+            var x = event.pageX;
+            var y = event.pageY - 10;
+            
+            // Adjust position if tooltip goes off screen
+            var tooltipWidth = tooltip.outerWidth();
+            var tooltipHeight = tooltip.outerHeight();
+            var windowWidth = jQuery(window).width();
+            var windowHeight = jQuery(window).height();
+            
+            if (x + tooltipWidth > windowWidth) {
+                x = windowWidth - tooltipWidth - 10;
+            }
+            if (y - tooltipHeight < 0) {
+                y = event.pageY + 20;
+            }
+            
+            tooltip.css({
+                left: x + 'px',
+                top: y + 'px'
+            });
+            
+            lastTooltipLine = error.line;
+        }, 200); // 200ms debounce
+    }
+
+    // Hide error tooltip
+    function hideErrorTooltip() {
+        // Clear timeout
+        if (tooltipTimeout) {
+            clearTimeout(tooltipTimeout);
+        }
+        
+        // Remove tooltip
+        jQuery('.fma-error-tooltip').remove();
+        
+        // Reset tracking
+        lastTooltipLine = null;
+    }
+
+    // Get error for specific line number
+    function getErrorForLine(lineNumber) {
+        for (var i = 0; i < currentErrors.length; i++) {
+            if (currentErrors[i].line === lineNumber + 1) { // Convert to 1-based
+                return currentErrors[i];
+            }
+        }
+        return null;
+    }
+
+    // Update Save & Close button state based on error status
+    function updateSaveCloseButton() {
+        // Check if state has changed to avoid unnecessary updates
+        var currentState = hasErrors ? 'disabled' : 'enabled';
+        if (lastButtonState === currentState) {
+            return; // No change needed
+        }
+        lastButtonState = currentState;
+        
+        // Find the Save & Close button with multiple selectors
+        var selectors = [
+            '.elfinder-button-save-close',
+            '.elfinder-button-save', 
+            '[title*="Save"]',
+            '[title*="save"]',
+            '.ui-button[title*="Save"]',
+            '.ui-button[title*="save"]',
+            'button[title*="Save"]',
+            'button[title*="save"]',
+            '.elfinder-toolbar button[title*="Save"]',
+            '.elfinder-toolbar button[title*="save"]',
+            '.elfinder-toolbar .ui-button[title*="Save"]',
+            '.elfinder-toolbar .ui-button[title*="save"]',
+            '.elfinder .ui-button[title*="Save"]',
+            '.elfinder .ui-button[title*="save"]',
+            '.elfinder button[title*="Save"]',
+            '.elfinder button[title*="save"]'
+        ];
+        
+        var saveCloseBtn = jQuery(selectors.join(', ')).filter(':visible');
+        
+        // Also try to find buttons by text content
+        if (saveCloseBtn.length === 0) {
+            var textSelectors = [
+                'button:contains("Save")',
+                'button:contains("save")',
+                '.ui-button:contains("Save")',
+                '.ui-button:contains("save")',
+                '.elfinder button:contains("Save")',
+                '.elfinder button:contains("save")',
+                '.elfinder .ui-button:contains("Save")',
+                '.elfinder .ui-button:contains("save")'
+            ];
+            saveCloseBtn = jQuery(textSelectors.join(', ')).filter(':visible');
+        }
+        
+        if (saveCloseBtn.length > 0) {
+            if (hasErrors) {
+                // Disable button when errors exist
+                saveCloseBtn.addClass('fma-save-close-disabled');
+                saveCloseBtn.attr('disabled', 'disabled');
+                saveCloseBtn.attr('title', 'Please fix PHP errors before saving');
+                saveCloseBtn.css('opacity', '0.5');
+                saveCloseBtn.css('cursor', 'not-allowed');
+                saveCloseBtn.prop('disabled', true);
+                saveCloseBtn.off('click.fma-disable'); // Remove existing handlers
+                saveCloseBtn.on('click.fma-disable', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                });
+                
+                // Track when save button is actually clicked
+                saveCloseBtn.on('click.fma-save-track', function(e) {
+                    isSaveButtonClicked = true;
+                    setTimeout(function() {
+                        isSaveButtonClicked = false;
+                    }, 1000);
+                });
+            } else {
+                // Enable button when no errors
+                saveCloseBtn.removeClass('fma-save-close-disabled');
+                saveCloseBtn.removeAttr('disabled');
+                saveCloseBtn.attr('title', 'Save & Close');
+                saveCloseBtn.css('opacity', '1');
+                saveCloseBtn.css('cursor', 'pointer');
+                saveCloseBtn.prop('disabled', false);
+                saveCloseBtn.off('click.fma-disable'); // Remove disable handlers
+                
+                // Track when save button is actually clicked
+                saveCloseBtn.off('click.fma-save-track'); // Remove existing handlers
+                saveCloseBtn.on('click.fma-save-track', function(e) {
+                    isSaveButtonClicked = true;
+                    setTimeout(function() {
+                        isSaveButtonClicked = false;
+                    }, 1000);
+                });
+            }
+        }
+    }
+
+    // Periodic button check (since elFinder buttons load dynamically)
+    setInterval(function() {
+        if (currentEditor && hasErrors) {
+            // Only check when there are errors to avoid unnecessary updates
+            updateSaveCloseButton();
+        }
+    }, 10000); // Reduced frequency to every 10 seconds and only when errors exist
+
+    // Show error popup on save attempt
+    function showErrorSavePopup(errors, callback) {
+        var errorList = errors.map(function(error) {
+            return `Line ${error.line}: ${error.message}`;
+        }).join('<br>');
+
+        var popupHtml = `
+            <div class="fma-modal-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; justify-content: center; align-items: center;">
+                <div class="fma-error-popup" style="background: white; border-radius: 8px; padding: 20px; max-width: 500px; width: 90%; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <div style="font-size: 24px; margin-right: 10px;">⚠️</div>
+                        <h3 style="margin: 0; color: #c53030; font-size: 18px;">PHP Syntax Errors Found</h3>
+                    </div>
+                    <div style="margin-bottom: 20px; color: #4a5568; line-height: 1.5;">
+                        <p style="margin: 0 0 10px 0;">Please fix the following errors before saving:</p>
+                        <div style="background: #fed7d7; padding: 10px; border-radius: 4px; border-left: 3px solid #c53030; font-family: monospace; font-size: 12px;">
+                            ${errorList}
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                        <button class="fma-error-okay" style="background: #4299e1; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px;">
+                            Okay
+                        </button>
+                        <button class="fma-error-save-anyway" style="background: #c53030; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px;">
+                            Save Anyway
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Remove existing popup
+        jQuery('.fma-modal-overlay').remove();
+        
+        // Add new popup
+        var popup = jQuery(popupHtml).appendTo('body');
+        
+        // Okay button - close popup and return to editor
+        popup.find('.fma-error-okay').on('click', function() {
+            popup.remove();
+            if (callback) callback(false); // Don't save
+        });
+        
+        // Save Anyway button - close popup and save file
+        popup.find('.fma-error-save-anyway').on('click', function() {
+            popup.remove();
+            if (callback) callback(true); // Save anyway
+        });
+        
+        // Close on overlay click
+        popup.find('.fma-modal-overlay').on('click', function(e) {
+            if (e.target === this) {
+                popup.remove();
+                if (callback) callback(false); // Don't save
             }
         });
     }
@@ -85,238 +499,10 @@ jQuery( document ).ready( function() {
         }, 3000);
     }
 
-    // Replace error rendering in showPHPErrorPopupWithSaveOption:
-    function flattenErrors(errors) { 
-        var flat = [];
-        (function recur(errs) {
-            if (Array.isArray(errs)) {
-                errs.forEach(recur);
-            } else if (errs && typeof errs === 'object') {
-                if (errs.message) {
-                    flat.push({ line: errs.line, message: errs.message });
-                }
-                // Recursively flatten any nested 'errors' property
-                Object.keys(errs).forEach(function(key) {
-                    if (Array.isArray(errs[key]) && key === 'errors') {
-                        recur(errs[key]);
-                    }
-                });
-            }
-        })(errors);
-        return flat;
-    }
 
-    function escapeHtml(text) {
-        if (!text) return '';
-        return text
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;');
-    }
 
-    function showPHPErrorPopupWithSaveOption(errors, filename, onSaveAnyway) {
-        // Debug: log the error structure
-        var flatErrors = flattenErrors(errors);
-        // Prevent duplicate error popups
-        if (jQuery('.fma-modal-overlay').length > 0) {
-            return;
-        }
-        var errorCount = flatErrors.length;
-        var errorListHtml = '';
-        // Only render flat errors, never nested errors
-        flatErrors.forEach(function(error, index) { 
-            errorListHtml += `
-                <div style="background: #fff2f2; border-left: 4px solid #d63638; padding: 15px; margin-bottom: 10px; border-radius: 4px;">
-                    <div style="font-weight: bold; color: #d63638; margin-bottom: 5px;">
-                        Error ${index + 1}${error.line > 0 ? ` (Line ${error.line})` : ''}
-                    </div>
-                    <div style="color: #b30000; font-size: 14px; white-space: pre-line;">${escapeHtml(error.message)}</div>
-                </div>
-            `;
-        });
-        var modalHtml = `
-            <div class="fma-modal-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10001; display: flex; align-items: center; justify-content: center;">
-                <div class="fma-modal" style="background: white; border-radius: 8px; padding: 30px; max-width: 500px; width: 95%; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: Arial, sans-serif; position: relative;">
-                    <div style="color: #d63638; font-size: 38px; margin-bottom: 10px; text-align: center;">&#9888;</div>
-                    <h2 style="margin: 0 0 10px 0; color: #d63638; font-size: 20px; text-align: center;">PHP Syntax Errors Found</h2>
-                    <div style="color: #d63638; font-size: 15px; text-align: center; margin-bottom: 10px;">${errorCount} error${errorCount !== 1 ? 's' : ''} found in \"${filename}\"</div>
-                    <div style="color: #b30000; font-size: 14px; text-align: center; margin-bottom: 15px;">Please fix the errors before saving and closing the file.</div>
-                    <div style="max-height: 300px; overflow-y: auto; padding-bottom: 70px;">${errorListHtml}</div>
-                    <div style="position: absolute; left: 0; right: 0; bottom: 0; background: white; border-top: 1px solid #eee; padding: 16px 0 12px 0; text-align: center; border-radius: 0 0 8px 8px; box-shadow: 0 -2px 8px rgba(0,0,0,0.03);">
-                        <button class="fma-modal-close" style="padding: 10px 20px; background: #d63638; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; margin-right: 10px;">OK</button>
-                        <button class="fma-modal-save-anyway" style="padding: 10px 20px; background: #666; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; transition: background 0.3s;">Save Anyway</button>
-                    </div>
-                </div>
-            </div>
-        `;
-        var modal = jQuery(modalHtml).appendTo('body');
-        modal.find('.fma-modal-close, .fma-modal-overlay').on('click', function(e) {
-            if (e.target === this) {
-                modal.remove();
-            }
-        });
-        modal.find('.fma-modal-save-anyway').on('click', function() {
-            if (onSaveAnyway && typeof onSaveAnyway === 'function') {
-                onSaveAnyway();
-            }
-            modal.remove();
-        });
-    }
 
-    // SIMPLE APPROACH: Disable Save & Close button when PHP errors exist
-    var currentPHPEditor = null;
-    var saveCloseButton = null;
-    
-    // Function to disable/enable Save & Close button
-    function updateSaveCloseButtonState(hasErrors) {
-        if (!saveCloseButton) return;
-        
-        if (hasErrors) {
-            saveCloseButton.prop('disabled', true)
-                .css({
-                    'opacity': '0.5',
-                    'cursor': 'not-allowed',
-                    'background-color': '#cccccc !important',
-                    'border-color': '#cccccc !important',
-                    'color': '#666666 !important'
-                })
-                .attr('title', 'Cannot save & close - PHP syntax errors found. Please fix errors first.');
-        } else {
-            saveCloseButton.prop('disabled', false)
-                .css({
-                    'opacity': '1',
-                    'cursor': 'pointer',
-                    'background-color': '',
-                    'border-color': '',
-                    'color': ''
-                })
-                .attr('title', 'Save and close file');
-        }
-    }
-    
-    // Function to find and store reference to Save & Close button
-    function findSaveCloseButton() {
-        var selectors = [
-            '.elfinder-btncnt-1:visible',
-            '.ui-dialog-buttonpane button',
-            '.ui-dialog-buttonpane .ui-button',
-            '.ui-dialog button'
-        ];
-        
-        for (var i = 0; i < selectors.length; i++) {
-            var buttons = jQuery(selectors[i]);
-            
-            if (i === 1 || i === 3) { // Filter by text for these selectors
-                buttons = buttons.filter(function() {
-                    var text = jQuery(this).text().toLowerCase();
-                    return text.indexOf('save') > -1 && (text.indexOf('close') > -1 || i === 3);
-                });
-            }
-            
-            if (buttons.length) {
-                saveCloseButton = i === 0 ? buttons.last() : buttons.last();
-                return true;
-            }
-        }
-        
-        return false;
-    }
 
-    // Remove any previous .elfinder-btncnt-1 and .ui-dialog-buttonpane .ui-button click handlers
-    jQuery(document).off('click', '.elfinder-btncnt-1');
-    jQuery(document).off('click', '.ui-dialog-buttonpane .ui-button');
-
-    // Clean, robust handler for dialog buttons
-    jQuery(document).on('click', '.ui-dialog-buttonpane .ui-button', function(e) {
-        var btnText = jQuery(this).text().trim().toLowerCase();
-        // 1. Cancel button: do nothing, just close
-        if (btnText === 'cancel') {
-            return;
-        }
-        // 2. Only run validation for Save/Save & Close
-        if (btnText === 'save' || btnText === 'save & close') {
-            if (currentPHPEditor && currentPHPEditor.fma_file_info) {
-                var fileInfo = currentPHPEditor.fma_file_info;
-                var mimeType = fileInfo.mime;
-                var filename = fileInfo.filename;
-                if (isPHPFile(mimeType, filename)) {
-                    var code = currentPHPEditor.getValue();
-                    var hasValidationErrors = false;
-                    var validationErrors = [];
-                    // Synchronous validation for Save & Close
-                    jQuery.ajax({
-                        url: afm_object.ajaxurl,
-                        type: 'POST',
-                        async: false,
-                        data: {
-                            action: 'fma_validate_php',
-                            nonce: fmakey,
-                            php_code: code,
-                            filename: filename
-                        },
-                        success: function(result) {
-                            if (!result || !result.valid) {
-                                hasValidationErrors = true;
-                                validationErrors = result ? result.errors : [];
-                            }
-                        },
-                        error: function() {
-                            hasValidationErrors = true;
-                            validationErrors = [{ line: 0, message: 'Failed to validate PHP syntax' }];
-                        }
-                    });
-                    // If errors found, prevent save & close and show popup
-                    if (hasValidationErrors) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        e.stopImmediatePropagation();
-                        showPHPErrorPopupWithSaveOption(validationErrors, filename, function() {
-                            // Force save the file
-                            var textarea = jQuery('.elfinder .elfinder-dialog-edit textarea')[0];
-                            if (textarea) {
-                                jQuery(textarea).val(code);
-                            }
-                            // Try elFinder API save
-                            var fm = elfinder_object.elfinder('instance');
-                            if (fm && fileInfo.hash) {
-                                fm.request({
-                                    data: {
-                                        cmd: 'put',
-                                        target: fileInfo.hash,
-                                        content: code
-                                    },
-                                    notify: { type: 'save', cnt: 1 }
-                                }).done(function(data) {
-                                    showSuccessModal('File saved and closed successfully (with errors)!');
-                                    setTimeout(function() {
-                                        jQuery('.ui-dialog-titlebar-close').click();
-                                    }, 1000);
-                                }).fail(function(error) {
-                                    showSuccessModal('File saved and closed successfully (with errors)!');
-                                    setTimeout(function() {
-                                        jQuery('.ui-dialog-titlebar-close').click();
-                                    }, 1000);
-                                });
-                            } else {
-                                showSuccessModal('File saved and closed successfully (with errors)!');
-                                setTimeout(function() {
-                                    jQuery('.ui-dialog-titlebar-close').click();
-                                }, 1000);
-                            }
-                        });
-                        return false;
-                    }
-                }
-            }
-        }
-        // 3. Any other button: do nothing
-    });
-
-    jQuery(document).ajaxSend(function(event, jqXHR, settings) {
-        // console.log('AJAX SENT:', settings.data); // Removed console logs
-    });
 
 
     var elfinder_object = jQuery( '#file_manager_advanced' ).elfinder(
@@ -361,220 +547,156 @@ jQuery( document ).ready( function() {
                                 editor.fma_file_info = {
                                     filename: filename,
                                     mime: mimeType,
-                                    hash: self.file.hash // Add file hash for elFinder API calls
+                                    hash: self.file.hash
                                 };
 
-                                // Add real-time PHP validation for PHP files
-                                if (isPHPFile(mimeType, filename)) {
-                                    // Store reference to this editor for button control
-                                    currentPHPEditor = editor;
+                                // Add debug feature for PHP files (only if enabled)
+                                if (debugEnabled && (mimeType === 'text/x-php' || mimeType === 'application/x-php' || filename.toLowerCase().endsWith('.php'))) {
+                                    var debugTimeout;
                                     
-                                    // Try to find Save & Close button after a short delay
-                                    setTimeout(function() {
-                                        findSaveCloseButton();
-                                    }, 1000);
-                                    
-                                    var validationTimeout;
-                                    var errorMarks = []; // Track error marks for cleanup
-                                    var errorLines = []; // Track error line numbers for cleanup
-                                    
-                                    // Function to clear all error highlights
-                                    function clearAllErrorHighlights() {
-                                        editor.clearGutter("CodeMirror-lint-markers");
-                                        
-                                        errorMarks.forEach(function(mark) {
-                                            if (mark && mark.clear) mark.clear();
-                                        });
-                                        errorMarks = [];
-                                        
-                                        errorLines.forEach(function(lineNum) {
-                                            editor.removeLineClass(lineNum, 'wrap', 'fma-php-error-line-wrap');
-                                        });
-                                        errorLines = [];
-                                        
-                                        jQuery('.CodeMirror-line').css({
-                                            'text-decoration': '',
-                                            'text-decoration-thickness': '',
-                                            'text-underline-offset': ''
-                                        });
-                                    }
-                                    
-                                    // Function to add error highlight to a line
-                                    function addErrorHighlight(lineNumber, errorMessage) {
-                                        var marker = document.createElement("div");
-                                        marker.className = "CodeMirror-lint-marker-error";
-                                        marker.innerHTML = "●";
-                                        marker.title = errorMessage;
-                                        marker.style.color = "#d63638";
-                                        marker.style.fontSize = "16px";
-                                        editor.setGutterMarker(lineNumber, "CodeMirror-lint-markers", marker);
-                                        
-                                        editor.addLineClass(lineNumber, 'wrap', 'fma-php-error-line-wrap');
-                                        errorLines.push(lineNumber);
-                                        editor.refresh();
-                                        
-                                        setTimeout(function() {
-                                            var lineElement = jQuery('.CodeMirror-line').eq(lineNumber);
-                                            if (lineElement.length) {
-                                                lineElement.css({
-                                                    'text-decoration': 'underline wavy #d63638',
-                                                    'text-decoration-thickness': '1px',
-                                                    'text-underline-offset': '3px'
-                                                });
-                                            }
-                                        }, 50);
-                                    }
-                                    
-                                    // Function to validate current code and update button state
-                                    function validateCurrentCode() {
+                                    // Function to analyze code for debug info
+                                    function analyzeCode() {
                                         var code = editor.getValue();
                                         
                                         if (!code.trim()) {
-                                            clearAllErrorHighlights();
-                                            updateSaveCloseButtonState(false);
                                             return;
                                         }
                                         
-                                        validatePHPSyntax(code, filename, function(result) {
-                                            clearAllErrorHighlights();
-                                            
-                                            var hasErrors = !result.valid && result.errors.length > 0;
-                                            if (hasErrors) {
-                                                result.errors.forEach(function(error) {
-                                                    if (error.line > 0) {
-                                                        addErrorHighlight(error.line - 1, error.message);
-                                                    }
-                                                });
+                                        analyzePHPDebug(code, filename, function(result) {
+                                            if (!result.valid && result.errors) {
+                                                // Only highlight error lines, no panels
+                                                highlightErrorLines(editor, result.errors);
                                             }
-                                            
-                                            updateSaveCloseButtonState(hasErrors);
                                         });
                                     }
                                     
-                                    // Initial validation and event listeners
-                                    setTimeout(validateCurrentCode, 1500);
+                                    // Add keyboard shortcut for debug analysis (Ctrl+Shift+D)
+                                    editor.on('keydown', function(cm, event) {
+                                        if (event.ctrlKey && event.shiftKey && event.keyCode === 68) { // Ctrl+Shift+D
+                                            event.preventDefault();
+                                            analyzeCode();
+                                        }
+                                    });
                                     
+                                    // Auto-analyze after 3 seconds of inactivity
                                     editor.on('change', function() {
-                                        clearTimeout(validationTimeout);
-                                        validationTimeout = setTimeout(validateCurrentCode, 800);
+                                        clearTimeout(debugTimeout);
+                                        debugTimeout = setTimeout(analyzeCode, 3000);
+                                        
+                                        // Also do immediate analysis for real-time feedback
+                                        setTimeout(function() {
+                                            var code = editor.getValue();
+                                            if (code.trim()) {
+                                                analyzePHPDebug(code, filename, function(result) {
+                                                    if (result.valid) {
+                                                        // No errors, clear highlights and enable button
+                                                        clearErrorHighlights(editor);
+                                                        hasErrors = false;
+                                                        updateSaveCloseButton();
+                                                    } else if (!result.valid && result.errors) {
+                                                        // Still has errors, update highlights
+                                                        highlightErrorLines(editor, result.errors);
+                                                    }
+                                                });
+                                            }
+                                        }, 1000); // Quick analysis after 1 second
                                     });
                                     
-                                    editor.on('focus', function() {
-                                        setTimeout(function() {
-                                            if (!saveCloseButton) findSaveCloseButton();
-                                            validateCurrentCode();
-                                        }, 200);
-                                    });
+                                    // Initial analysis
+                                    setTimeout(analyzeCode, 2000);
                                 }
+
+                                // Store current editor reference
+                                currentEditor = editor;
+                                
+                                // Add global mouse move listener for tooltip
+                                jQuery(document).off('mousemove.fma-tooltip');
+                                jQuery(document).on('mousemove.fma-tooltip', function(e) {
+                                    if (hasErrors && currentEditor) {
+                                        try {
+                                            var coords = currentEditor.coordsChar({top: e.pageY, left: e.pageX}, 'page');
+                                            var lineNumber = coords.line;
+                                            
+                                            // Check if this line has an error
+                                            var error = getErrorForLine(lineNumber);
+                                            if (error) {
+                                                // Check if mouse is over CodeMirror
+                                                var cmElement = currentEditor.getWrapperElement();
+                                                if (cmElement && jQuery(cmElement).is(':hover')) {
+                                                    showErrorTooltip(e, error);
+                                                } else {
+                                                    hideErrorTooltip();
+                                                }
+                                            } else {
+                                                hideErrorTooltip();
+                                            }
+                                        } catch (err) {
+                                            // Ignore errors in mouse move handler
+                                        }
+                                    }
+                                });
+                                
+                                // Initial button state check
+                                setTimeout(function() {
+                                    updateSaveCloseButton();
+                                }, 500);
 
                                 return editor;
                             },
 
                             close: function(textarea, instance) {
-                                if (instance) instance.fma_file_info = null;
-                                currentPHPEditor = null;
-                                saveCloseButton = null;
+                                // Clear error highlights before closing
+                                if (instance) {
+                                    clearErrorHighlights(instance);
+                                    instance.fma_file_info = null;
+                                }
+                                // Clear current editor reference
+                                currentEditor = null;
                                 this.myCodeMirror = null;
                             },
 
                             save: function(textarea, editor) {
                                 var code = editor.getValue();
                                 var filename = editor.fma_file_info ? editor.fma_file_info.filename : 'unknown.php';
-                                var mimeType = editor.fma_file_info ? editor.fma_file_info.mime : '';
-
-                                // Prevent duplicate validation if already validated from Save & Close
-                                if (window.fma_already_validated) {
-                                    window.fma_already_validated = false;
-                                    jQuery(textarea).val(code);
-                                    return true;
-                                }
-
-                                // For non-PHP files, save normally
-                                if (!isPHPFile(mimeType, filename)) {
-                                    jQuery(textarea).val(code);
-                                    // Don't show success modal - let elFinder handle it
-                                    return true;
-                                }
-
-                                // For PHP files, validate first
-                                var hasErrors = false;
-                                var validationErrors = [];
                                 
-                                jQuery.ajax({
-                                    url: afm_object.ajaxurl,
-                                    type: 'POST',
-                                    async: false,
-                                    data: {
-                                        action: 'fma_validate_php',
-                                        nonce: fmakey,
-                                        php_code: code,
-                                        filename: filename
-                                    },
-                                    success: function(result) {
-                                        if (result && result.valid) {
-                                            // Code is valid, allow saving
-                                            hasErrors = false;
-                                        } else {
-                                            hasErrors = true;
-                                            validationErrors = result ? result.errors : [];
-                                        }
-                                    },
-                                    error: function() {
-                                        hasErrors = true;
-                                        validationErrors = [{ line: 0, message: 'Failed to validate PHP syntax' }];
-                                    }
-                                });
-                                
-                                if (hasErrors) {
-                                    // Show error popup with option to save anyway
-                                    showPHPErrorPopupWithSaveOption(validationErrors, filename, function() {
-                                        // Use custom save action for PHP files to handle unescaping properly
-                                        window.fma_already_validated = true;
-                                        jQuery.ajax({
-                                            url: afm_object.ajaxurl,
-                                            type: 'POST',
-                                            data: {
-                                                action: 'fma_save_php_file',
-                                                nonce: fmakey,
-                                                php_code: code,
-                                                file_hash: editor.fma_file_info.hash,
-                                                filename: filename
-                                            },
-                                            success: function(response) {
-                                                if (response.success) {
-                                                    showSuccessModal('File saved successfully (with errors)!');
-                                                    updateSaveCloseButtonState(false);
-                                                    // Update textarea to sync with elFinder
-                                                    jQuery(textarea).val(code);
-                                                } else {
-                                                    var errorMsg = 'Error saving file';
-                                                    if (response.data && response.data.message) {
-                                                        errorMsg += ': ' + response.data.message;
-                                                    } else if (response.data && response.data.elfinder_response) {
-                                                        errorMsg += ': elFinder error - ' + response.data.elfinder_response;
-                                                    } else {
-                                                        errorMsg += ': Unknown error';
+                                // Check if it's a PHP file
+                                if (filename.toLowerCase().endsWith('.php') || 
+                                    editor.getMode().name === 'php' || 
+                                    editor.getMode().name === 'application/x-httpd-php') {
+                                    
+                                    // Only check for errors if this is actually a save operation
+                                    // Check if the save button was actually clicked
+                                    var isSaveOperation = isSaveButtonClicked;
+                                    
+                                    // If errors exist and this is a save operation, prevent save and show popup
+                                    if (hasErrors && isSaveOperation) {
+                                        // Get current errors for popup
+                                        analyzePHPDebug(code, filename, function(result) {
+                                            if (!result.valid && result.errors) {
+                                                showErrorSavePopup(result.errors, function(saveAnyway) {
+                                                    if (saveAnyway) {
+                                                        // User chose to save anyway
+                                                        jQuery(textarea).val(code);
+                                                        // Trigger the actual save
+                                                        if (typeof editor.save === 'function') {
+                                                            editor.save();
+                                                        }
                                                     }
-                                                    
-                                                    // Show detailed error in console for debugging
-                                                    console.error('Save PHP file error:', response);
-                                                    
-                                                }
-                                            },
-                                            error: function(xhr, status, error) {
-                                                console.error('AJAX error saving PHP file:', xhr, status, error);
-                                                alert('Failed to save file. Network error: ' + error);
+                                                    // If saveAnyway is false, do nothing (don't save)
+                                                });
                                             }
                                         });
-                                    });
+                                        return false; // Prevent save
+                                    }
                                     
-                                    // Prevent automatic saving when errors exist
-                                    return false;
+                                    // No errors or cancel operation, proceed with save
+                                    jQuery(textarea).val(code);
+                                    return true;
+                                } else {
+                                    // Not a PHP file, save normally
+                                    jQuery(textarea).val(code);
+                                    return true;
                                 }
-                                
-                                // No errors, save normally
-                                jQuery(textarea).val(code);
-                                return true;
                             },
                         },
                     ],
@@ -586,7 +708,5 @@ jQuery( document ).ready( function() {
 
 } );
 
-window.fma_last_validated_code = '';
-window.fma_last_validation_result = null;
 
 
