@@ -73,7 +73,7 @@ if( ! function_exists( 'blogarise_footer_copyright' ) ) :
             wp_nav_menu( array(
               'theme_location' => 'footer',
               'container'  => 'nav-collapse collapse navbar-inverse-collapse',
-              'menu_class' => 'info-right',
+              'menu_class' => 'info-right justify-content-center justify-content-md-end',
               'fallback_cb' => 'blogarise_fallback_page_menu',
               'walker' => new blogarise_nav_walker()
             ) ); 

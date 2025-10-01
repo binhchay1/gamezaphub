@@ -17,7 +17,7 @@ $slider_overlay_enable = get_theme_mod('slider_overlay_enable','true');
   ?>
   <div class="swiper-slide">
             <div class="bs-slide back-img one <?php if ($slider_overlay_enable != false){ ?>overlay<?php } ?>" style="background-image: url('<?php echo esc_url($blogarise_url); ?>');">
-                <a class="link-div" aria-label="Đọc bài" href="<?php the_permalink(); ?>"> </a>
+                <a class="link-div" href="<?php the_permalink(); ?>"> </a>
                 <div class="inner">
                         <?php if($slider_meta_enable == true) { blogarise_post_categories(); } ?>
                         <h4 class="title"> <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
