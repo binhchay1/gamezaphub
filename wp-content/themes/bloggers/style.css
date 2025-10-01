@@ -33,6 +33,53 @@ a:focus {
     outline: 1px solid;
 }
 
+/* Performance optimization - Force GPU acceleration for animated elements */
+.thumbnail,
+.store-link,
+.detail-card,
+.rating-segment,
+.bs-blog-thumb,
+.bs-widget,
+.square,
+.circle,
+.triangle {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Reduce reflows by containing layout changes */
+.bs-blog-post,
+.bs-widget,
+.custom-gallery-container,
+.video-player,
+.thumbnail-container {
+    contain: layout style paint;
+}
+
+/* Optimize transforms and opacity (composite properties) */
+.thumbnail,
+.store-link,
+.detail-card,
+.rating-segment {
+    will-change: transform, opacity;
+}
+
+/* Remove will-change after interaction to save memory */
+@media (hover: hover) {
+
+    .thumbnail:not(:hover),
+    .store-link:not(:hover),
+    .detail-card:not(:hover),
+    .rating-segment:not(:hover) {
+        will-change: auto;
+    }
+}
+
 /* Skip The Content */
 .screen-reader-text:focus {
     background-color: #f1f1f1;
@@ -137,45 +184,6 @@ a:focus {
     border-radius: 0;
 }
 
-/* Single Page *
-.bs-blog-post.single{
-    border-radius: 0;
-    box-shadow: none;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-}
-.bs-blog-post.single .bs-header .title{
-    font-size: 46px;
-    width: 100%;
-    max-width: 90%;
-    margin-right: auto;
-    margin-left: auto;
-}
-.bs-blog-post.single .bs-header{
-    order: 0;
-    text-align: center;
-}
-.bs-blog-post.single .bs-blog-thumb{
-    order: -1;
-}
-.bs-blog-post.single:has(.bs-blog-thumb) .bs-header{
-    padding-top: 30px;
-}
-.bs-blog-post.single .bs-header .bs-blog-category{
-    justify-content: center !important;
-}
-.bs-info-author-block, .bs-single-related{
-    margin-bottom: 50px !important;
-}
-.bs-blog-post.single .bs-info-author-block{
-    margin-bottom: unset !important;
-    justify-content: center;
-}
-input[type="submit"], button{
-    border-width: 2px;
-}
 /* Pages */
 .bs-card-box.padding-20 {
     border: none;
@@ -1191,6 +1199,12 @@ Custom Video Player Styles
 .progress-bar {
     padding: 0px !important;
     border: none !important;
+}
+
+.game-image img {
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
 }
 
 /* Responsive Design */

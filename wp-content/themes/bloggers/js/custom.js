@@ -4,26 +4,6 @@
  */
 
 // ==========================================================================
-// Owl Carousel Configuration
-// ==========================================================================
-jQuery('.owl-carousel').owlCarousel({
-    loop: true,
-    margin: 10,
-    nav: true,
-    responsive: {
-        0: {
-            items: 1
-        },
-        600: {
-            items: 3
-        },
-        1000: {
-            items: 5
-        }
-    }
-});
-
-// ==========================================================================
 // Custom Gallery - Performance Enhanced Version
 // ==========================================================================
 /**
@@ -321,15 +301,16 @@ jQuery('.owl-carousel').owlCarousel({
 
     /**
      * Optimized resize handler with geometry cache invalidation
+     * Uses global optimizedResize event from performance-optimizer.js
      */
-    const handleResizeOptimized = debounce(function () {
+    const handleResizeOptimized = function (event) {
         const galleryIds = Object.keys(window.galleryData || {});
+        const screenWidth = event?.detail?.width || window.innerWidth;
 
         galleryIds.forEach(galleryId => {
             const galleryData = window.galleryData[galleryId];
             if (!galleryData) return;
 
-            const screenWidth = window.innerWidth;
             let itemsPerView;
 
             if (screenWidth <= 480) {
@@ -351,9 +332,14 @@ jQuery('.owl-carousel').owlCarousel({
                 });
             }
         });
-    }, 150);
+    };
 
-    window.addEventListener('resize', handleResizeOptimized);
+    // Use optimizedResize event if available, fallback to regular resize
+    if (window.PerformanceOptimizer) {
+        window.addEventListener('optimizedResize', handleResizeOptimized);
+    } else {
+        window.addEventListener('resize', debounce(handleResizeOptimized, 150));
+    }
 
     function initializeGalleryData() {
         const galleries = document.querySelectorAll('.custom-gallery-container[data-gallery-images]');
@@ -457,8 +443,16 @@ jQuery('.owl-carousel').owlCarousel({
 
             function updateProgress() {
                 if (!video.paused && !video.ended) {
-                    progressBar.value = video.currentTime;
-                    currentTime.textContent = formatTime(video.currentTime);
+                    // Use scheduler if available to batch DOM writes
+                    if (window.performanceScheduler) {
+                        window.performanceScheduler.mutate(() => {
+                            progressBar.value = video.currentTime;
+                            currentTime.textContent = formatTime(video.currentTime);
+                        });
+                    } else {
+                        progressBar.value = video.currentTime;
+                        currentTime.textContent = formatTime(video.currentTime);
+                    }
                 }
                 requestAnimationFrame(updateProgress);
             }

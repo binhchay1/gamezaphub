@@ -15,12 +15,15 @@ if (! function_exists('bloggers_enqueue_styles')) :
 			wp_dequeue_style('wp-block-library');
 		}
 
-		wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css');
+		// Critical CSS - Load normally
 		wp_enqueue_style('blogarise-style-parent', get_template_directory_uri() . '/style.css');
 		wp_enqueue_style('bloggers-style', get_stylesheet_directory_uri() . '/style.css', array('blogarise-style-parent'), '1.0');
 		wp_dequeue_style('blogarise-default', get_template_directory_uri() . '/css/colors/default.css');
 		wp_enqueue_style('bloggers-default-css', get_stylesheet_directory_uri() . "/css/colors/default.css");
-		wp_enqueue_style('bloggers-owl', get_stylesheet_directory_uri() . "/css/owl.carousel.css");
+
+		// Non-critical CSS - Defer loading
+		wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null, 'all');
+		wp_enqueue_style('bloggers-owl', get_stylesheet_directory_uri() . "/css/owl.carousel.css", array(), null, 'all');
 
 		if (is_rtl()) {
 			wp_enqueue_style('blogarise_style_rtl', trailingslashit(get_template_directory_uri()) . 'style-rtl.css');
@@ -29,6 +32,25 @@ if (! function_exists('bloggers_enqueue_styles')) :
 
 endif;
 add_action('wp_enqueue_scripts', 'bloggers_enqueue_styles', 9999);
+
+/**
+ * Defer non-critical CSS
+ */
+if (!function_exists('bloggers_defer_css')) :
+	function bloggers_defer_css($html, $handle, $href, $media)
+	{
+		// List of CSS handles to defer
+		$defer_styles = array('bootstrap', 'bloggers-owl');
+
+		if (in_array($handle, $defer_styles)) {
+			$html = '<link rel="preload" href="' . $href . '" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">';
+			$html .= '<noscript><link rel="stylesheet" href="' . $href . '"></noscript>';
+		}
+
+		return $html;
+	}
+endif;
+add_filter('style_loader_tag', 'bloggers_defer_css', 10, 4);
 
 function bloggers_theme_setup()
 {
@@ -59,7 +81,6 @@ include_once('hooks/custom-block-wp.php');
 add_action('customize_register', 'bloggers_customizer_rid_values', 1000);
 function bloggers_customizer_rid_values($wp_customize)
 {
-
 	$wp_customize->remove_control('blogarise_content_layout');
 	$wp_customize->remove_control('blogarise_title_font_size');
 }
@@ -89,11 +110,9 @@ if (!function_exists('bloggers_get_block')) :
 	 */
 	function bloggers_get_block($block = 'grid', $section = 'post')
 	{
-
 		get_template_part('hooks/blocks/block-' . $section, $block);
 	}
 endif;
-
 
 function bloggers_limit_content_chr($content, $limit = 100)
 {
@@ -153,3 +172,42 @@ add_filter('get_avatar_url', function ($url, $id_or_email, $args) {
 	}
 	return $url;
 }, 10, 3);
+
+/**
+ * Enqueue Performance Optimizer Script
+ * Prevent forced reflows and optimize layout performance
+ * MUST load before other scripts to wrap operations
+ */
+if (!function_exists('bloggers_enqueue_performance_optimizer')) :
+	function bloggers_enqueue_performance_optimizer()
+	{
+		wp_enqueue_script(
+			'bloggers-performance-optimizer',
+			get_stylesheet_directory_uri() . '/js/performance-optimizer.js',
+			array(),
+			'1.0.0',
+			false
+		);
+
+		wp_script_add_data('bloggers-performance-optimizer', 'defer', true);
+	}
+endif;
+add_action('wp_enqueue_scripts', 'bloggers_enqueue_performance_optimizer', 1);
+
+/**
+ * Enqueue Accessibility Improvements Script
+ * Tự động thêm aria-label cho các thẻ <a> thiếu attribute
+ */
+if (!function_exists('bloggers_enqueue_accessibility_script')) :
+	function bloggers_enqueue_accessibility_script()
+	{
+		wp_enqueue_script(
+			'bloggers-accessibility',
+			get_stylesheet_directory_uri() . '/js/accessibility-improvements.js',
+			array(),
+			'1.0.0',
+			true
+		);
+	}
+endif;
+add_action('wp_enqueue_scripts', 'bloggers_enqueue_accessibility_script', 999);
