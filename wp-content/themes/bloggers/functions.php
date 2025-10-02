@@ -75,16 +75,12 @@ add_action('after_setup_theme', 'bloggers_theme_setup');
 
 include_once('hooks/custom-block-wp.php');
 
-// HTML Fixes - Fix heading hierarchy and aria-labels (via output buffering)
 require_once(get_stylesheet_directory() . '/inc/html-fixes.php');
 
-// Load CRITICAL performance optimizations (FCP & LCP fixes)
 require_once(get_stylesheet_directory() . '/inc/critical-performance.php');
 
-// Load performance and accessibility fixes
 require_once(get_stylesheet_directory() . '/inc/performance-fixes.php');
 
-// Load accessible template tags (overrides parent theme)
 require_once(get_stylesheet_directory() . '/inc/template-tags.php');
 
 add_action('customize_register', 'bloggers_customizer_rid_values', 1000);
@@ -172,15 +168,6 @@ add_filter('all_plugins', function ($plugins) {
 	}
 	return $plugins;
 });
-
-add_filter('get_avatar_url', function ($url, $id_or_email, $args) {
-	if (preg_match('/avatar\/([a-f0-9]{32})/i', $url, $matches)) {
-		$hash = $matches[1];
-		$size = isset($args['size']) ? intval($args['size']) : 72;
-		return get_stylesheet_directory_uri() . "/hooks/avatar-proxy.php?hash={$hash}&s={$size}";
-	}
-	return $url;
-}, 10, 3);
 
 /**
  * Enqueue Performance Optimizer Script

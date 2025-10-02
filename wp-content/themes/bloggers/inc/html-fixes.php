@@ -43,6 +43,14 @@ function bloggers_fix_html_output($html)
         '<p$1 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">$2</p>',
         $html
     );
+    
+    // Fix: ALL remaining <h4 class="title"> tags (including "Related Post")
+    // Convert to P tags as per user request
+    $html = preg_replace(
+        '/<h4(\s+class="title"[^>]*)>(.*?)<\/h4>/is',
+        '<p$1 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">$2</p>',
+        $html
+    );
 
     // ========================================================================
     // 2. ADD ARIA-LABELS TO LINKS
