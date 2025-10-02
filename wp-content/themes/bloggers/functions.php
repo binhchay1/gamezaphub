@@ -15,13 +15,11 @@ if (! function_exists('bloggers_enqueue_styles')) :
 			wp_dequeue_style('wp-block-library');
 		}
 
-		// Critical CSS - Load normally
 		wp_enqueue_style('blogarise-style-parent', get_template_directory_uri() . '/style.css');
 		wp_enqueue_style('bloggers-style', get_stylesheet_directory_uri() . '/style.css', array('blogarise-style-parent'), '1.0');
 		wp_dequeue_style('blogarise-default', get_template_directory_uri() . '/css/colors/default.css');
 		wp_enqueue_style('bloggers-default-css', get_stylesheet_directory_uri() . "/css/colors/default.css");
 
-		// Non-critical CSS - Defer loading
 		wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null, 'all');
 		wp_enqueue_style('bloggers-owl', get_stylesheet_directory_uri() . "/css/owl.carousel.css", array(), null, 'all');
 
@@ -39,7 +37,6 @@ add_action('wp_enqueue_scripts', 'bloggers_enqueue_styles', 9999);
 if (!function_exists('bloggers_defer_css')) :
 	function bloggers_defer_css($html, $handle, $href, $media)
 	{
-		// List of CSS handles to defer
 		$defer_styles = array('bootstrap', 'bloggers-owl');
 
 		if (in_array($handle, $defer_styles)) {
@@ -77,6 +74,12 @@ function bloggers_theme_setup()
 add_action('after_setup_theme', 'bloggers_theme_setup');
 
 include_once('hooks/custom-block-wp.php');
+
+// Load performance and accessibility fixes
+require_once(get_stylesheet_directory() . '/inc/performance-fixes.php');
+
+// Load accessible template tags (overrides parent theme)
+require_once(get_stylesheet_directory() . '/inc/template-tags.php');
 
 add_action('customize_register', 'bloggers_customizer_rid_values', 1000);
 function bloggers_customizer_rid_values($wp_customize)
@@ -195,19 +198,7 @@ endif;
 add_action('wp_enqueue_scripts', 'bloggers_enqueue_performance_optimizer', 1);
 
 /**
- * Enqueue Accessibility Improvements Script
- * Tự động thêm aria-label cho các thẻ <a> thiếu attribute
+ * NOTE: accessibility-improvements.js is NO LONGER NEEDED
+ * All accessibility fixes are now handled server-side in /inc/performance-fixes.php
+ * and /inc/template-tags.php for better PageSpeed Insights scores
  */
-if (!function_exists('bloggers_enqueue_accessibility_script')) :
-	function bloggers_enqueue_accessibility_script()
-	{
-		wp_enqueue_script(
-			'bloggers-accessibility',
-			get_stylesheet_directory_uri() . '/js/accessibility-improvements.js',
-			array(),
-			'1.0.0',
-			true
-		);
-	}
-endif;
-add_action('wp_enqueue_scripts', 'bloggers_enqueue_accessibility_script', 999);
