@@ -75,6 +75,12 @@ add_action('after_setup_theme', 'bloggers_theme_setup');
 
 include_once('hooks/custom-block-wp.php');
 
+// HTML Fixes - Fix heading hierarchy and aria-labels (via output buffering)
+require_once(get_stylesheet_directory() . '/inc/html-fixes.php');
+
+// Load CRITICAL performance optimizations (FCP & LCP fixes)
+require_once(get_stylesheet_directory() . '/inc/critical-performance.php');
+
 // Load performance and accessibility fixes
 require_once(get_stylesheet_directory() . '/inc/performance-fixes.php');
 
