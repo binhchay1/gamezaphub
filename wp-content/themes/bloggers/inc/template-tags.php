@@ -1,20 +1,160 @@
 <?php
 /**
  * Custom template tags for Bloggers Theme
- * Overrides parent theme functions with accessibility improvements
+ * Uses filters and wrappers instead of overriding parent functions
  *
  * @package Bloggers
  */
 
 // ============================================================================
-// OVERRIDE PARENT THEME AUTHOR FUNCTION WITH ACCESSIBLE VERSION
+// ADD ARIA-LABELS TO EXISTING OUTPUT VIA FILTERS
 // ============================================================================
 
-if (!function_exists('blogarise_author_content')) :
-    /**
-     * Accessible author content with proper aria-label
-     */
-    function blogarise_author_content() { 
+/**
+ * Add aria-label to author links via filter
+ */
+add_filter('the_author_posts_link', 'bloggers_add_aria_to_author_link', 10, 1);
+function bloggers_add_aria_to_author_link($link) {
+    $author_name = get_the_author();
+    
+    // Add aria-label to auth class links
+    $link = str_replace(
+        'class="auth"',
+        'class="auth" aria-label="' . esc_attr(sprintf(__('View %s profile', 'bloggers'), $author_name)) . '"',
+        $link
+    );
+    
+    return $link;
+}
+
+/**
+ * Add proper alt text and loading attributes to post thumbnails
+ */
+add_filter('post_thumbnail_html', 'bloggers_optimize_post_thumbnail', 10, 5);
+function bloggers_optimize_post_thumbnail($html, $post_id, $post_thumbnail_id, $size, $attr) {
+    if (empty($html)) {
+        return $html;
+    }
+    
+    $post_title = get_the_title($post_id);
+    
+    // Add loading=lazy if not present
+    if (strpos($html, 'loading=') === false) {
+        $html = str_replace('<img ', '<img loading="lazy" ', $html);
+    }
+    
+    // Add decoding=async if not present
+    if (strpos($html, 'decoding=') === false) {
+        $html = str_replace('<img ', '<img decoding="async" ', $html);
+    }
+    
+    // Improve alt text if empty or generic
+    if (strpos($html, 'alt=""') !== false || strpos($html, 'alt=" "') !== false) {
+        $html = str_replace(
+            array('alt=""', 'alt=" "'),
+            'alt="' . esc_attr($post_title) . '"',
+            $html
+        );
+    }
+    
+    return $html;
+}
+
+/**
+ * Add aria-labels to links in post content
+ */
+add_filter('the_content', 'bloggers_add_aria_to_content_links', 20);
+function bloggers_add_aria_to_content_links($content) {
+    // Use DOMDocument to safely parse and modify HTML
+    if (empty($content) || !class_exists('DOMDocument')) {
+        return $content;
+    }
+    
+    // Suppress warnings for malformed HTML
+    libxml_use_internal_errors(true);
+    
+    $dom = new DOMDocument();
+    $dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    
+    $links = $dom->getElementsByTagName('a');
+    
+    foreach ($links as $link) {
+        // Skip if already has aria-label
+        if ($link->hasAttribute('aria-label')) {
+            continue;
+        }
+        
+        $classes = $link->getAttribute('class');
+        $text = trim($link->textContent);
+        $href = $link->getAttribute('href');
+        
+        $aria_label = '';
+        
+        // Link div overlays
+        if (strpos($classes, 'link-div') !== false) {
+            // Get post title from context
+            $aria_label = 'Read full article';
+        }
+        // Category/tag links
+        elseif (strpos($classes, 'blogarise-categories') !== false && $text) {
+            $aria_label = sprintf(__('View all posts in %s', 'bloggers'), $text);
+        }
+        elseif ($text) {
+            // Use link text as aria-label if descriptive enough
+            if (strlen($text) > 3 && !in_array(strtolower($text), array('here', 'click', 'link', 'more'))) {
+                $aria_label = $text;
+            }
+        }
+        
+        if ($aria_label) {
+            $link->setAttribute('aria-label', $aria_label);
+        }
+    }
+    
+    $content = $dom->saveHTML();
+    
+    libxml_clear_errors();
+    
+    return $content;
+}
+
+/**
+ * Fix image links to have proper aria-labels
+ */
+add_filter('wp_get_attachment_link', 'bloggers_add_aria_to_image_links', 10, 6);
+function bloggers_add_aria_to_image_links($link_html, $id, $size, $permalink, $icon, $text) {
+    if (empty($link_html)) {
+        return $link_html;
+    }
+    
+    // Get image alt or title
+    $attachment = get_post($id);
+    $alt_text = get_post_meta($id, '_wp_attachment_image_alt', true);
+    $title = $attachment ? $attachment->post_title : '';
+    
+    $aria_label = $alt_text ? $alt_text : $title;
+    
+    if ($aria_label && strpos($link_html, 'aria-label') === false) {
+        $link_html = str_replace(
+            '<a ',
+            '<a aria-label="' . esc_attr($aria_label) . '" ',
+            $link_html
+        );
+    }
+    
+    return $link_html;
+}
+
+// ============================================================================
+// WRAPPER FUNCTIONS FOR ACCESSIBLE OUTPUT
+// ============================================================================
+
+/**
+ * New wrapper function for accessible author content
+ * Can be used in child theme templates
+ */
+if (!function_exists('bloggers_author_content_accessible')) :
+    function bloggers_author_content_accessible() { 
         $author_name = get_the_author();
         $author_url = get_author_posts_url(get_the_author_meta('ID'));
         ?>
@@ -30,15 +170,12 @@ if (!function_exists('blogarise_author_content')) :
     }
 endif;
 
-// ============================================================================
-// OVERRIDE PARENT THEME IMAGE DISPLAY WITH ACCESSIBLE VERSION
-// ============================================================================
-
-if (!function_exists('blogarise_post_image_display_type')) :
-    /**
-     * Accessible post image display with proper aria-labels and optimized images
-     */
-    function blogarise_post_image_display_type($post) {
+/**
+ * New wrapper for accessible post image
+ * Can be used in child theme templates
+ */
+if (!function_exists('bloggers_post_image_accessible')) :
+    function bloggers_post_image_accessible($post) {
         $url = blogarise_get_freatured_image_url($post->ID, 'blogarise-medium');
         $post_title = get_the_title($post);
         
@@ -73,123 +210,11 @@ if (!function_exists('blogarise_post_image_display_type')) :
     }
 endif;
 
-// ============================================================================
-// ADD ACCESSIBLE AUTHOR BOX FOR SINGLE POSTS
-// ============================================================================
-
 /**
- * Enhanced author info display with proper aria-labels
+ * Accessible date output
  */
-if (!function_exists('bloggers_author_info_box')) :
-    function bloggers_author_info_box() {
-        $author_id = get_the_author_meta('ID');
-        $author_name = get_the_author();
-        $author_url = get_author_posts_url($author_id);
-        $author_desc = get_the_author_meta('description');
-        
-        if (!$author_desc) {
-            return;
-        }
-        ?>
-        <div class="author-info-box">
-            <div class="author-avatar">
-                <a href="<?php echo esc_url($author_url); ?>" 
-                   class="bs-author-pic" 
-                   aria-label="<?php echo esc_attr(sprintf(__('View %s profile and posts', 'bloggers'), $author_name)); ?>">
-                    <?php echo get_avatar($author_id, 150, '', $author_name, array('loading' => 'lazy')); ?>
-                </a>
-            </div>
-            <div class="author-details">
-                <h4 class="author-name">
-                    <a href="<?php echo esc_url($author_url); ?>"
-                       aria-label="<?php echo esc_attr(sprintf(__('View all posts by %s', 'bloggers'), $author_name)); ?>">
-                        <?php echo esc_html($author_name); ?>
-                    </a>
-                </h4>
-                <p class="author-description"><?php echo esc_html($author_desc); ?></p>
-            </div>
-        </div>
-        <?php
-    }
-endif;
-
-// ============================================================================
-// ACCESSIBLE CATEGORY LINKS
-// ============================================================================
-
-if (!function_exists('bloggers_post_categories_accessible')) :
-    /**
-     * Output post categories with proper aria-labels
-     */
-    function bloggers_post_categories_accessible() {
-        $categories = get_the_category();
-        
-        if (!$categories || !is_array($categories)) {
-            return;
-        }
-        
-        echo '<div class="bs-blog-category">';
-        
-        foreach ($categories as $category) {
-            $category_name = esc_html($category->name);
-            $category_url = esc_url(get_category_link($category->term_id));
-            $color_class = blogarise_get_category_color_class($category->term_id);
-            
-            printf(
-                '<a class="blogarise-categories %s" href="%s" aria-label="%s">%s</a>',
-                esc_attr($color_class),
-                $category_url,
-                esc_attr(sprintf(__('View all posts in %s', 'bloggers'), $category_name)),
-                $category_name
-            );
-        }
-        
-        echo '</div>';
-    }
-endif;
-
-// ============================================================================
-// ACCESSIBLE TAG LINKS
-// ============================================================================
-
-if (!function_exists('bloggers_post_tags_accessible')) :
-    /**
-     * Output post tags with proper aria-labels
-     */
-    function bloggers_post_tags_accessible() {
-        $tags = get_the_tags();
-        
-        if (!$tags || !is_array($tags)) {
-            return;
-        }
-        
-        echo '<div class="tag-links">';
-        
-        foreach ($tags as $tag) {
-            $tag_name = esc_html($tag->name);
-            $tag_url = esc_url(get_tag_link($tag->term_id));
-            
-            printf(
-                '<a href="%s" rel="tag" aria-label="%s">%s</a>',
-                $tag_url,
-                esc_attr(sprintf(__('View posts tagged with %s', 'bloggers'), $tag_name)),
-                $tag_name
-            );
-        }
-        
-        echo '</div>';
-    }
-endif;
-
-// ============================================================================
-// ACCESSIBLE DATE LINKS
-// ============================================================================
-
-if (!function_exists('blogarise_date_content')) :
-    /**
-     * Output post date with accessible link
-     */
-    function blogarise_date_content() { 
+if (!function_exists('bloggers_date_content_accessible')) :
+    function bloggers_date_content_accessible() { 
         $month = get_post_time('F Y');
         ?>
         <span class="bs-blog-date">
@@ -204,53 +229,52 @@ if (!function_exists('blogarise_date_content')) :
     }
 endif;
 
-// ============================================================================
-// ACCESSIBLE READ MORE BUTTON
-// ============================================================================
-
-if (!function_exists('bloggers_read_more_link')) :
-    /**
-     * Generate accessible read more link
-     */
-    function bloggers_read_more_link() {
-        $post_title = get_the_title();
-        return sprintf(
-            '<a href="%s" class="more-link" aria-label="%s">%s <span class="screen-reader-text">%s</span></a>',
-            esc_url(get_permalink()),
-            esc_attr(sprintf(__('Continue reading %s', 'bloggers'), $post_title)),
-            __('Read More', 'bloggers'),
-            esc_html($post_title)
-        );
+/**
+ * Add aria-label to category links output
+ */
+add_filter('get_the_category_list', 'bloggers_add_aria_to_categories', 10, 3);
+function bloggers_add_aria_to_categories($thelist, $separator, $parents) {
+    if (empty($thelist)) {
+        return $thelist;
     }
-endif;
+    
+    // Add aria-label to links if not present
+    $thelist = preg_replace_callback(
+        '/<a([^>]*?)href="([^"]*)"([^>]*?)>([^<]*)<\/a>/i',
+        function($matches) {
+            if (strpos($matches[0], 'aria-label') === false) {
+                $category_name = strip_tags($matches[4]);
+                return '<a' . $matches[1] . 'href="' . $matches[2] . '" aria-label="' . esc_attr(sprintf(__('View all posts in %s', 'bloggers'), $category_name)) . '"' . $matches[3] . '>' . $matches[4] . '</a>';
+            }
+            return $matches[0];
+        },
+        $thelist
+    );
+    
+    return $thelist;
+}
 
-// ============================================================================
-// HELPER FUNCTION: Get optimized image attributes
-// ============================================================================
-
-if (!function_exists('bloggers_get_optimized_image_attrs')) :
-    /**
-     * Get optimized image attributes with lazy loading and proper dimensions
-     */
-    function bloggers_get_optimized_image_attrs($attachment_id, $size = 'full', $alt_text = '') {
-        $attrs = array(
-            'loading' => 'lazy',
-            'decoding' => 'async',
-            'class' => 'img-fluid'
-        );
-        
-        if ($alt_text) {
-            $attrs['alt'] = $alt_text;
-        }
-        
-        $image_meta = wp_get_attachment_metadata($attachment_id);
-        if (!empty($image_meta['width']) && !empty($image_meta['height'])) {
-            $attrs['width'] = $image_meta['width'];
-            $attrs['height'] = $image_meta['height'];
-        }
-        
-        return $attrs;
+/**
+ * Add aria-label to tag links output
+ */
+add_filter('the_tags', 'bloggers_add_aria_to_tags', 10, 5);
+function bloggers_add_aria_to_tags($tag_list, $before, $sep, $after, $post_id) {
+    if (empty($tag_list)) {
+        return $tag_list;
     }
-endif;
-
-
+    
+    // Add aria-label to tag links
+    $tag_list = preg_replace_callback(
+        '/<a([^>]*?)>([^<]*)<\/a>/i',
+        function($matches) {
+            if (strpos($matches[0], 'aria-label') === false) {
+                $tag_name = strip_tags($matches[2]);
+                return '<a' . $matches[1] . ' aria-label="' . esc_attr(sprintf(__('View posts tagged with %s', 'bloggers'), $tag_name)) . '">' . $matches[2] . '</a>';
+            }
+            return $matches[0];
+        },
+        $tag_list
+    );
+    
+    return $tag_list;
+}
