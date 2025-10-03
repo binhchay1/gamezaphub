@@ -33,6 +33,11 @@ add_filter('wp_resource_hints', 'bloggers_add_resource_hints', 10, 2);
 
 if (!function_exists('bloggers_add_image_optimization')) :
     function bloggers_add_image_optimization($attr, $attachment, $size) {
+        // Skip in admin area
+        if (is_admin()) {
+            return $attr;
+        }
+        
         // Add lazy loading
         if (!isset($attr['loading'])) {
             $attr['loading'] = 'lazy';
@@ -155,13 +160,19 @@ endif;
 
 if (!function_exists('bloggers_defer_non_critical_scripts')) :
     function bloggers_defer_non_critical_scripts($tag, $handle, $src) {
+        // Skip in admin area
+        if (is_admin()) {
+            return $tag;
+        }
+        
         // List of scripts to defer (not critical for initial render)
         $defer_scripts = array(
             'jquery',
             'blogarise_main-js',
             'smartmenus-js',
             'bootstrap-smartmenus-js',
-            'blogarise-marquee-js'
+            'blogarise-marquee-js',
+            'bloggers-owl-js' // Owl Carousel should defer, not async
         );
         
         // Don't defer our performance optimizer - it needs to load early

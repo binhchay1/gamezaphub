@@ -209,9 +209,13 @@ function bloggers_inline_critical_css()
 add_filter('style_loader_tag', 'bloggers_defer_non_critical_css', 10, 4);
 function bloggers_defer_non_critical_css($html, $handle, $href, $media)
 {
+    // Skip in admin area
+    if (is_admin()) {
+        return $html;
+    }
+    
     $defer_styles = array(
         'bootstrap',
-        'bloggers-owl',
         'all-css',
         'animate',
         'smartmenus',
@@ -254,6 +258,10 @@ function bloggers_defer_non_critical_css($html, $handle, $href, $media)
 add_filter('wp_get_attachment_image_attributes', 'bloggers_prioritize_lcp_image', 10, 3);
 function bloggers_prioritize_lcp_image($attr, $attachment, $size)
 {
+    if (is_admin()) {
+        return $attr;
+    }
+    
     static $first_image = true;
 
     if ($first_image && in_array($size, array('large', 'full', 'blogarise-slider-full', 'blogarise-medium'))) {
@@ -274,6 +282,11 @@ function bloggers_prioritize_lcp_image($attr, $attachment, $size)
 add_filter('post_thumbnail_html', 'bloggers_add_image_dimensions', 10, 5);
 function bloggers_add_image_dimensions($html, $post_id, $post_thumbnail_id, $size, $attr)
 {
+    // Skip in admin area
+    if (is_admin()) {
+        return $html;
+    }
+    
     if (empty($html)) {
         return $html;
     }
@@ -299,9 +312,15 @@ function bloggers_add_image_dimensions($html, $post_id, $post_thumbnail_id, $siz
 add_filter('script_loader_tag', 'bloggers_defer_scripts', 10, 3);
 function bloggers_defer_scripts($tag, $handle, $src)
 {
+    // Skip in admin area
+    if (is_admin()) {
+        return $tag;
+    }
+    
     $no_defer = array(
         'jquery-core',
-        'bloggers-performance-optimizer'
+        'bloggers-performance-optimizer',
+        'bloggers-owl-js' // Owl Carousel needs to execute in order
     );
 
     if (in_array($handle, $no_defer)) {

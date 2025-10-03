@@ -49,6 +49,11 @@ function bloggers_optimize_post_thumbnail($html, $post_id, $post_thumbnail_id, $
 add_filter('the_content', 'bloggers_add_aria_to_content_links', 20);
 function bloggers_add_aria_to_content_links($content)
 {
+    // Skip in admin area to avoid conflicts with post editor
+    if (is_admin()) {
+        return $content;
+    }
+    
     if (empty($content) || !class_exists('DOMDocument')) {
         return $content;
     }
@@ -99,6 +104,11 @@ function bloggers_add_aria_to_content_links($content)
 add_filter('wp_get_attachment_link', 'bloggers_add_aria_to_image_links', 10, 6);
 function bloggers_add_aria_to_image_links($link_html, $id, $size, $permalink, $icon, $text)
 {
+    // Skip in admin area
+    if (is_admin()) {
+        return $link_html;
+    }
+    
     if (empty($link_html)) {
         return $link_html;
     }
@@ -213,6 +223,11 @@ endif;
 add_filter('get_the_category_list', 'bloggers_add_aria_to_categories', 10, 3);
 function bloggers_add_aria_to_categories($thelist, $separator, $parents)
 {
+    // Skip in admin area
+    if (is_admin()) {
+        return $thelist;
+    }
+    
     if (empty($thelist)) {
         return $thelist;
     }
@@ -238,6 +253,11 @@ function bloggers_add_aria_to_categories($thelist, $separator, $parents)
 add_filter('the_tags', 'bloggers_add_aria_to_tags', 10, 5);
 function bloggers_add_aria_to_tags($tag_list, $before, $sep, $after, $post_id)
 {
+    // Skip in admin area
+    if (is_admin()) {
+        return $tag_list;
+    }
+    
     if (empty($tag_list)) {
         return $tag_list;
     }

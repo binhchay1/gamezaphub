@@ -21,7 +21,12 @@ if (! function_exists('bloggers_enqueue_styles')) :
 		wp_enqueue_style('bloggers-default-css', get_stylesheet_directory_uri() . "/css/colors/default.css");
 
 		wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null, 'all');
-		wp_enqueue_style('bloggers-owl', get_stylesheet_directory_uri() . "/css/owl.carousel.css", array(), null, 'all');
+		
+		// Owl Carousel CSS - must load immediately (not deferred)
+		wp_enqueue_style('bloggers-owl', get_stylesheet_directory_uri() . "/css/owl.carousel.css", array(), '2.3.4', 'all');
+		
+		// Owl Carousel JS - depends on jQuery
+		wp_enqueue_script('bloggers-owl-js', get_stylesheet_directory_uri() . '/js/owl.carousel.min.js', array('jquery'), '2.3.4', true);
 
 		if (is_rtl()) {
 			wp_enqueue_style('blogarise_style_rtl', trailingslashit(get_template_directory_uri()) . 'style-rtl.css');
@@ -33,11 +38,18 @@ add_action('wp_enqueue_scripts', 'bloggers_enqueue_styles', 9999);
 
 /**
  * Defer non-critical CSS
+ * NOTE: Owl Carousel CSS removed from defer list - needs to load immediately for carousel to work
  */
 if (!function_exists('bloggers_defer_css')) :
 	function bloggers_defer_css($html, $handle, $href, $media)
 	{
-		$defer_styles = array('bootstrap', 'bloggers-owl');
+		// Skip in admin area
+		if (is_admin()) {
+			return $html;
+		}
+		
+		// Only defer bootstrap, NOT owl carousel (owl needs to load immediately)
+		$defer_styles = array('bootstrap');
 
 		if (in_array($handle, $defer_styles)) {
 			$html = '<link rel="preload" href="' . $href . '" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">';

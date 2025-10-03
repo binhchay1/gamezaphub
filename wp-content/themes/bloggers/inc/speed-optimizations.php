@@ -13,6 +13,11 @@
 add_action('wp_head', 'bloggers_aggressive_lcp_preload', 1);
 function bloggers_aggressive_lcp_preload()
 {
+    // Skip in admin area
+    if (is_admin()) {
+        return;
+    }
+    
     // Only on single posts and homepage
     if (!is_singular() && !is_front_page()) {
         return;
@@ -67,10 +72,16 @@ function bloggers_remove_blocking_css()
 add_filter('script_loader_tag', 'bloggers_async_scripts', 10, 3);
 function bloggers_async_scripts($tag, $handle, $src)
 {
+    // Skip in admin area
+    if (is_admin()) {
+        return $tag;
+    }
+    
     // Critical scripts that need defer (not async)
     $defer_scripts = array(
         'jquery',
-        'bloggers-performance-optimizer'
+        'bloggers-performance-optimizer',
+        'bloggers-owl-js' // Owl Carousel needs to load with defer, not async
     );
     
     // Non-critical scripts that can be async
