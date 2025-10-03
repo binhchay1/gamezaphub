@@ -7,15 +7,13 @@
  */
 
 /**
- * Start output buffering to fix HTML before sending to browser
+ * NOTE: Output buffering DISABLED for better Speed Index
+ * H4 tags and aria-labels should be fixed in template files directly
+ * This file kept for reference only
  */
-add_action('template_redirect', 'bloggers_start_html_fixes', 1);
-function bloggers_start_html_fixes()
-{
-    if (!is_admin()) {
-        ob_start('bloggers_fix_html_output');
-    }
-}
+
+// Output buffering removed - it delays first paint and increases Speed Index
+// Alternative: Fix templates directly in override-parent-functions.php
 
 /**
  * Fix HTML output - Replace H4 with P and add aria-labels

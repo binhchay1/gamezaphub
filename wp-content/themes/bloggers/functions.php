@@ -75,7 +75,7 @@ add_action('after_setup_theme', 'bloggers_theme_setup');
 
 include_once('hooks/custom-block-wp.php');
 
-require_once(get_stylesheet_directory() . '/inc/html-fixes.php');
+require_once(get_stylesheet_directory() . '/inc/speed-optimizations.php');
 
 require_once(get_stylesheet_directory() . '/inc/critical-performance.php');
 
