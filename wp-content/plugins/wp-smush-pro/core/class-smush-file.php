@@ -13,6 +13,8 @@ class Smush_File {
 		'image/gif',
 		'image/png',
 		'image/x-png',
+		'image/webp',
+		'image/avif',
 	);
 
 	public function get_supported_mime_types() {

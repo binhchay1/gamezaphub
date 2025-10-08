@@ -62,6 +62,11 @@ if ( ! defined( 'WPINC' ) ) {
 				<?php esc_html_e( 'webp', 'wp-smushit' ); ?>
 			</span>
 		<?php endif; ?>
+		<?php if ( isset( $settings['avif'] ) && $settings['avif'] ) : ?>
+			<span class="smush-filename-extension smush-extension-avif">
+				<?php esc_html_e( 'avif', 'wp-smushit' ); ?>
+			</span>
+		<?php endif; ?>
 
 		<span class="sui-description">
 			<?php

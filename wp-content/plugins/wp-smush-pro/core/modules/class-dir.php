@@ -991,7 +991,19 @@ class Dir extends Abstract_Module {
 
 		$image_type = $a[2];
 
-		if ( in_array( $image_type, array( IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG ) ) ) {
+		$supported_types = array( IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG );
+		
+		// Add webp support (PHP 7.1+)
+		if ( defined( 'IMAGETYPE_WEBP' ) ) {
+			$supported_types[] = IMAGETYPE_WEBP;
+		}
+		
+		// Add avif support (PHP 8.1+)
+		if ( defined( 'IMAGETYPE_AVIF' ) ) {
+			$supported_types[] = IMAGETYPE_AVIF;
+		}
+
+		if ( in_array( $image_type, $supported_types ) ) {
 			return true;
 		}
 
@@ -1022,7 +1034,7 @@ class Dir extends Abstract_Module {
 	 * @return bool Whether an image or not
 	 */
 	private function is_image_from_extension( $path ) {
-		$supported_image = array( 'gif', 'jpg', 'jpeg', 'png' );
+		$supported_image = array( 'gif', 'jpg', 'jpeg', 'png', 'webp', 'avif' );
 		$ext             = strtolower( pathinfo( $path, PATHINFO_EXTENSION ) ); // Using strtolower to overcome case sensitive.
 
 		if ( in_array( $ext, $supported_image, true ) ) {

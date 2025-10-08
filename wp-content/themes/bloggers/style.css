@@ -33,6 +33,10 @@ a:focus {
     outline: 1px solid;
 }
 
+body {
+    background-color: #fff6e6 !important;
+}
+
 /* Performance optimization - Force GPU acceleration for animated elements */
 .thumbnail,
 .store-link,
@@ -128,6 +132,7 @@ a:focus {
 
 .bs_upscr {
     border-width: 1px;
+    display: flex !important;
 }
 
 .bs_upscr:hover,

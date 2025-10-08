@@ -61,6 +61,8 @@ class Core extends Stats {
 		'image/gif',
 		'image/png',
 		'image/x-png',
+		'image/webp',
+		'image/avif',
 	);
 
 	/**

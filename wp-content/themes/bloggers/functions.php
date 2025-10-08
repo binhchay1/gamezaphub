@@ -22,11 +22,26 @@ if (! function_exists('bloggers_enqueue_styles')) :
 
 		wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null, 'all');
 		
-		// Owl Carousel CSS - must load immediately (not deferred)
-		wp_enqueue_style('bloggers-owl', get_stylesheet_directory_uri() . "/css/owl.carousel.css", array(), '2.3.4', 'all');
+		// Only load Owl Carousel if needed (check for Lasso displays)
+		if (!is_admin() && (is_front_page() || is_single() || is_page() || is_home())) {
+			// Check if page has Lasso displays with owl carousel
+			$content = '';
+			if (is_front_page() || is_single() || is_page()) {
+				global $post;
+				if ($post) {
+					$content = $post->post_content;
+				}
+			}
+			
+			// Load Owl Carousel only if page contains lasso-container or owl-carousel
+			if (strpos($content, 'lasso-container') !== false || strpos($content, 'owl-carousel') !== false) {
+				wp_enqueue_style('bloggers-owl', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css', array(), '2.3.4', 'all');
+				wp_enqueue_style('bloggers-owl-theme', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css', array(), '2.3.4', 'all');
+				wp_enqueue_script('bloggers-owl-js', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js', array('jquery'), '2.3.4', true);
+				wp_enqueue_script('lasso-owl-production', get_stylesheet_directory_uri() . '/js/lasso-owl-production.js', array('jquery', 'bloggers-owl-js'), '1.0.0', true);
+			}
+		}
 		
-		// Owl Carousel JS - depends on jQuery
-		wp_enqueue_script('bloggers-owl-js', get_stylesheet_directory_uri() . '/js/owl.carousel.min.js', array('jquery'), '2.3.4', true);
 
 		if (is_rtl()) {
 			wp_enqueue_style('blogarise_style_rtl', trailingslashit(get_template_directory_uri()) . 'style-rtl.css');
@@ -94,6 +109,10 @@ require_once(get_stylesheet_directory() . '/inc/critical-performance.php');
 require_once(get_stylesheet_directory() . '/inc/performance-fixes.php');
 
 require_once(get_stylesheet_directory() . '/inc/template-tags.php');
+
+require_once(get_stylesheet_directory() . '/inc/post-navigation-fix.php');
+
+require_once(get_stylesheet_directory() . '/inc/lasso-owl-fix.php');
 
 add_action('customize_register', 'bloggers_customizer_rid_values', 1000);
 function bloggers_customizer_rid_values($wp_customize)
@@ -207,3 +226,21 @@ add_action('wp_enqueue_scripts', 'bloggers_enqueue_performance_optimizer', 1);
  * All accessibility fixes are now handled server-side in /inc/performance-fixes.php
  * and /inc/template-tags.php for better PageSpeed Insights scores
  */
+
+/**
+ * Override parent theme scroll-up button to use SVG instead of FontAwesome
+ */
+if (!function_exists('blogarise_scrolltoup')) :
+	function blogarise_scrolltoup()
+	{
+		$blogarise_scrollup_enable = get_theme_mod('blogarise_scrollup_enable', true);
+		if ($blogarise_scrollup_enable == true) { ?>
+			<a href="#" class="bs_upscr bounceInup animated" aria-label="Scroll to top">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="display: block; margin: auto;">
+					<path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708l6-6z"/>
+					<path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+				</svg>
+			</a>
+<?php }
+	}
+endif;

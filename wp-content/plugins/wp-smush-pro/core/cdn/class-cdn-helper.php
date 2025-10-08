@@ -62,6 +62,7 @@ class CDN_Helper {
 		'jpeg',
 		'png',
 		'webp',
+		'avif',
 	);
 
 	public function __construct() {

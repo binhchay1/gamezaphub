@@ -44,6 +44,33 @@ function bloggers_optimize_post_thumbnail($html, $post_id, $post_thumbnail_id, $
 }
 
 /**
+ * Helper function to properly encode content for DOMDocument without deprecated mb_convert_encoding
+ */
+function bloggers_prepare_html_for_dom($content) {
+    // Use a proper HTML5 doctype with UTF-8 meta tag
+    // This avoids the need for mb_convert_encoding
+    $content = '<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>' . $content . '</body></html>';
+    return $content;
+}
+
+/**
+ * Helper function to extract body content from DOMDocument
+ */
+function bloggers_extract_body_from_dom($dom) {
+    $body = $dom->getElementsByTagName('body')->item(0);
+    if (!$body) {
+        return '';
+    }
+    
+    $html = '';
+    foreach ($body->childNodes as $node) {
+        $html .= $dom->saveHTML($node);
+    }
+    
+    return $html;
+}
+
+/**
  * Add aria-labels to links in post content
  */
 add_filter('the_content', 'bloggers_add_aria_to_content_links', 20);
@@ -61,7 +88,10 @@ function bloggers_add_aria_to_content_links($content)
     libxml_use_internal_errors(true);
 
     $dom = new DOMDocument();
-    $dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    $dom->encoding = 'UTF-8';
+    
+    // Load HTML with proper UTF-8 wrapper
+    @$dom->loadHTML(bloggers_prepare_html_for_dom($content));
 
     $links = $dom->getElementsByTagName('a');
 
@@ -91,7 +121,8 @@ function bloggers_add_aria_to_content_links($content)
         }
     }
 
-    $content = $dom->saveHTML();
+    // Extract body content without wrapper tags
+    $content = bloggers_extract_body_from_dom($dom);
 
     libxml_clear_errors();
 
