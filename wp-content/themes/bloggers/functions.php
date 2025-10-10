@@ -21,27 +21,6 @@ if (! function_exists('bloggers_enqueue_styles')) :
 		wp_enqueue_style('bloggers-default-css', get_stylesheet_directory_uri() . "/css/colors/default.css");
 
 		wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null, 'all');
-		
-		// Only load Owl Carousel if needed (check for Lasso displays)
-		if (!is_admin() && (is_front_page() || is_single() || is_page() || is_home())) {
-			// Check if page has Lasso displays with owl carousel
-			$content = '';
-			if (is_front_page() || is_single() || is_page()) {
-				global $post;
-				if ($post) {
-					$content = $post->post_content;
-				}
-			}
-			
-			// Load Owl Carousel only if page contains lasso-container or owl-carousel
-			if (strpos($content, 'lasso-container') !== false || strpos($content, 'owl-carousel') !== false) {
-				wp_enqueue_style('bloggers-owl', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css', array(), '2.3.4', 'all');
-				wp_enqueue_style('bloggers-owl-theme', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css', array(), '2.3.4', 'all');
-				wp_enqueue_script('bloggers-owl-js', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js', array('jquery'), '2.3.4', true);
-				wp_enqueue_script('lasso-owl-production', get_stylesheet_directory_uri() . '/js/lasso-owl-production.js', array('jquery', 'bloggers-owl-js'), '1.0.0', true);
-			}
-		}
-		
 
 		if (is_rtl()) {
 			wp_enqueue_style('blogarise_style_rtl', trailingslashit(get_template_directory_uri()) . 'style-rtl.css');
@@ -50,31 +29,6 @@ if (! function_exists('bloggers_enqueue_styles')) :
 
 endif;
 add_action('wp_enqueue_scripts', 'bloggers_enqueue_styles', 9999);
-
-/**
- * Defer non-critical CSS
- * NOTE: Owl Carousel CSS removed from defer list - needs to load immediately for carousel to work
- */
-if (!function_exists('bloggers_defer_css')) :
-	function bloggers_defer_css($html, $handle, $href, $media)
-	{
-		// Skip in admin area
-		if (is_admin()) {
-			return $html;
-		}
-		
-		// Only defer bootstrap, NOT owl carousel (owl needs to load immediately)
-		$defer_styles = array('bootstrap');
-
-		if (in_array($handle, $defer_styles)) {
-			$html = '<link rel="preload" href="' . $href . '" as="style" onload="this.onload=null;this.rel=\'stylesheet\'">';
-			$html .= '<noscript><link rel="stylesheet" href="' . $href . '"></noscript>';
-		}
-
-		return $html;
-	}
-endif;
-add_filter('style_loader_tag', 'bloggers_defer_css', 10, 4);
 
 function bloggers_theme_setup()
 {
@@ -111,8 +65,6 @@ require_once(get_stylesheet_directory() . '/inc/performance-fixes.php');
 require_once(get_stylesheet_directory() . '/inc/template-tags.php');
 
 require_once(get_stylesheet_directory() . '/inc/post-navigation-fix.php');
-
-require_once(get_stylesheet_directory() . '/inc/lasso-owl-fix.php');
 
 add_action('customize_register', 'bloggers_customizer_rid_values', 1000);
 function bloggers_customizer_rid_values($wp_customize)
@@ -187,7 +139,7 @@ function bloggers_bg_image_wrapper()
 			<span class="triangle"></span>
 		</div>
 	</div>
-<?php
+	<?php
 }
 add_action('wp_footer', 'bloggers_bg_image_wrapper');
 
@@ -237,8 +189,8 @@ if (!function_exists('blogarise_scrolltoup')) :
 		if ($blogarise_scrollup_enable == true) { ?>
 			<a href="#" class="bs_upscr bounceInup animated" aria-label="Scroll to top">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="display: block; margin: auto;">
-					<path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708l6-6z"/>
-					<path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+					<path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708l6-6z" />
+					<path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
 				</svg>
 			</a>
 <?php }
