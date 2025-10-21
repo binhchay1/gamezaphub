@@ -60,7 +60,7 @@ function custom_gallery_block_render($block_content, $block)
             <button class="zoom-btn" onclick="openModal('<?php echo esc_js($gallery_id); ?>', 0)">Phóng to</button>
             <div class="nav-buttons">
                 <button class="prev-btn" onclick="changeImage('<?php echo esc_js($gallery_id); ?>', -1)">←</button>
-                <button class="next-btn" onclick="changeImage('<?php echo esc_js($gallery_id); ?>', 1)">→</button>
+                <button class="next-btn" onclick="changeImage('<?php echo esc_js($gallery_id); ?>', 9999)">→</button>
             </div>
         </div>
         <div class="thumbnail-wrapper">

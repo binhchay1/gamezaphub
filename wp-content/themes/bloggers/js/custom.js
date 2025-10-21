@@ -184,7 +184,7 @@
         if (typeof index === 'number') {
             if (index === -1) {
                 newIndex = Math.max(0, galleryData.currentIndex - 1);
-            } else if (index === 1) {
+            } else if (index === 9999) {
                 newIndex = Math.min(galleryData.images.length - 1, galleryData.currentIndex + 1);
             } else {
                 newIndex = Math.max(0, Math.min(index, galleryData.images.length - 1));
