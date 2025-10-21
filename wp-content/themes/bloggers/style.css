@@ -1214,6 +1214,10 @@ Custom Video Player Styles
     border-radius: 5px;
 }
 
+.thumbnail-container {
+    contain: inherit !important;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .ratings-chart {

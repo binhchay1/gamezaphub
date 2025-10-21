@@ -23,6 +23,7 @@
     <noscript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Rubik:wght@400;500;600;700&display=swap">
     </noscript>
+
     <script>
         ! function(e) {
             "use strict";

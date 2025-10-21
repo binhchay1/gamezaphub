@@ -156,32 +156,6 @@ function bloggers_add_aria_to_image_links($link_html, $id, $size, $permalink, $i
     return $link_html;
 }
 
-// ============================================================================
-// WRAPPER FUNCTIONS FOR ACCESSIBLE OUTPUT
-// ============================================================================
-
-/**
- * New wrapper function for accessible author content
- * Can be used in child theme templates
- */
-if (!function_exists('bloggers_author_content_accessible')) :
-    function bloggers_author_content_accessible()
-    {
-        $author_name = get_the_author();
-        $author_url = get_author_posts_url(get_the_author_meta('ID'));
-?>
-        <span class="bs-author">
-            <a class="auth"
-                href="<?php echo esc_url($author_url); ?>"
-                aria-label="<?php echo esc_attr(sprintf(__('View %s profile', 'bloggers'), $author_name)); ?>">
-                <?php echo get_avatar(get_the_author_meta('ID'), 150, '', $author_name, array('loading' => 'lazy')); ?>
-                <?php echo esc_html($author_name); ?>
-            </a>
-        </span>
-        <?php
-    }
-endif;
-
 /**
  * New wrapper for accessible post image
  * Can be used in child theme templates
@@ -279,7 +253,6 @@ function bloggers_add_aria_to_categories($thelist, $separator, $parents)
 add_filter('the_tags', 'bloggers_add_aria_to_tags', 10, 5);
 function bloggers_add_aria_to_tags($tag_list, $before, $sep, $after, $post_id)
 {
-    // Skip in admin area
     if (is_admin()) {
         return $tag_list;
     }

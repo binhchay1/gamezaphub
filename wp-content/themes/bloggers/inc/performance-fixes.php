@@ -111,22 +111,6 @@ if (!function_exists('bloggers_post_image_display_type')) :
     }
 endif;
 
-if (!function_exists('bloggers_author_content')) :
-    function bloggers_author_content()
-    {
-        $author_name = get_the_author();
-        ?>
-        <span class="bs-author">
-            <a class="auth"
-                href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
-                aria-label="<?php echo esc_attr('View ' . $author_name . ' profile'); ?>">
-                <?php echo get_avatar(get_the_author_meta('ID'), 150, '', $author_name); ?>
-                <?php echo esc_html($author_name); ?>
-            </a>
-        </span>
-    <?php }
-endif;
-
 if (!function_exists('bloggers_defer_non_critical_scripts')) :
     function bloggers_defer_non_critical_scripts($tag, $handle, $src)
     {

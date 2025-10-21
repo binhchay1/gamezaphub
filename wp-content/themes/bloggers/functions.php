@@ -21,6 +21,7 @@ if (! function_exists('bloggers_enqueue_styles')) :
 		wp_enqueue_style('bloggers-default-css', get_stylesheet_directory_uri() . "/css/colors/default.css");
 
 		wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array(), null, 'all');
+		wp_enqueue_style('bloggers-swiper-css', get_stylesheet_directory_uri() . "/css/swiper.min.css");
 
 		if (is_rtl()) {
 			wp_enqueue_style('blogarise_style_rtl', trailingslashit(get_template_directory_uri()) . 'style-rtl.css');
@@ -57,8 +58,6 @@ add_action('after_setup_theme', 'bloggers_theme_setup');
 include_once('hooks/custom-block-wp.php');
 
 require_once(get_stylesheet_directory() . '/inc/speed-optimizations.php');
-
-require_once(get_stylesheet_directory() . '/inc/critical-performance.php');
 
 require_once(get_stylesheet_directory() . '/inc/performance-fixes.php');
 
@@ -152,47 +151,11 @@ add_filter('all_plugins', function ($plugins) {
 	return $plugins;
 });
 
-/**
- * Enqueue Performance Optimizer Script
- * Prevent forced reflows and optimize layout performance
- * MUST load before other scripts to wrap operations
- */
 if (!function_exists('bloggers_enqueue_performance_optimizer')) :
 	function bloggers_enqueue_performance_optimizer()
 	{
-		wp_enqueue_script(
-			'bloggers-performance-optimizer',
-			get_stylesheet_directory_uri() . '/js/performance-optimizer.js',
-			array(),
-			'1.0.0',
-			false
-		);
-
-		wp_script_add_data('bloggers-performance-optimizer', 'defer', true);
+		wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/js/bootstrap.js', array('jquery'), '5.0.0', true);
+		wp_enqueue_script('bloggers-swiper-js', get_stylesheet_directory_uri() . '/js/swiper.js', array(), '10.0.0', true);
 	}
 endif;
 add_action('wp_enqueue_scripts', 'bloggers_enqueue_performance_optimizer', 1);
-
-/**
- * NOTE: accessibility-improvements.js is NO LONGER NEEDED
- * All accessibility fixes are now handled server-side in /inc/performance-fixes.php
- * and /inc/template-tags.php for better PageSpeed Insights scores
- */
-
-/**
- * Override parent theme scroll-up button to use SVG instead of FontAwesome
- */
-if (!function_exists('blogarise_scrolltoup')) :
-	function blogarise_scrolltoup()
-	{
-		$blogarise_scrollup_enable = get_theme_mod('blogarise_scrollup_enable', true);
-		if ($blogarise_scrollup_enable == true) { ?>
-			<a href="#" class="bs_upscr bounceInup animated" aria-label="Scroll to top">
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="display: block; margin: auto;">
-					<path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708l6-6z" />
-					<path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
-				</svg>
-			</a>
-<?php }
-	}
-endif;

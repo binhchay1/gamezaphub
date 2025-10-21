@@ -20,7 +20,6 @@
 (function () {
     'use strict';
 
-    // Performance optimization: Cache for DOM elements and geometry data
     const cache = {
         elements: {},
         geometry: {},
@@ -62,7 +61,6 @@
 
         cache.pendingWrites.get(galleryId).push(...writeOperations);
 
-        // Process all pending writes in the next frame
         requestAnimationFrameOptimized(() => {
             const writes = cache.pendingWrites.get(galleryId) || [];
             writes.forEach(operation => operation());
@@ -98,7 +96,6 @@
 
         const { wrapper, thumbnailContainer, thumbnails } = elements;
 
-        // Batch all DOM reads together to prevent forced reflows
         const geometry = {
             wrapperWidth: wrapper.clientWidth,
             contentWidth: thumbnailContainer.scrollWidth,
@@ -126,7 +123,6 @@
         const { thumbnailContainer } = elements;
         if (!thumbnailContainer) return;
 
-        // Get cached geometry or calculate if not available
         let geometry = cache.geometry[galleryId];
         if (!geometry) {
             geometry = cacheGeometryValues(galleryId);
@@ -142,7 +138,6 @@
         const { offsetLeft: thumbLeft, offsetWidth } = activeThumb;
         const thumbRight = thumbLeft + offsetWidth;
 
-        // Get current transform without triggering reflow
         const computed = getComputedStyle(thumbnailContainer).transform;
         let currentOffsetPx = 0;
 
@@ -165,7 +160,6 @@
             newOffsetPx = Math.min(maxOffsetPx, thumbRight - wrapperWidth + padding);
         }
 
-        // Only apply transform if position actually changed
         if (newOffsetPx !== currentOffsetPx) {
             batchDOMWrites(galleryId, [
                 () => {
@@ -202,7 +196,6 @@
         galleryData.currentIndex = newIndex;
         const currentImage = galleryData.images[newIndex];
 
-        // Batch all DOM writes together
         const writeOperations = [
             () => {
                 mainImg.src = currentImage.url;
@@ -210,7 +203,6 @@
                 mainImg.setAttribute('data-index', newIndex);
             },
             () => {
-                // Update thumbnail active states
                 thumbnails.forEach((thumb, i) => {
                     if (i === newIndex) {
                         thumb.classList.add('active');
@@ -223,10 +215,8 @@
 
         batchDOMWrites(galleryId, writeOperations);
 
-        // Clear geometry cache and recalculate after DOM updates
         delete cache.geometry[galleryId];
 
-        // Adjust thumbnail position after a short delay to ensure DOM is updated
         requestAnimationFrameOptimized(() => {
             adjustThumbnailPositionOptimized(galleryId, newIndex);
         });
@@ -247,7 +237,6 @@
         const imageIndex = typeof index === 'number' ? index : galleryData.currentIndex;
         const currentImage = galleryData.images[imageIndex];
 
-        // Batch modal operations
         const writeOperations = [
             () => {
                 modalImg.src = currentImage.url;
@@ -334,7 +323,6 @@
         });
     };
 
-    // Use optimizedResize event if available, fallback to regular resize
     if (window.PerformanceOptimizer) {
         window.addEventListener('optimizedResize', handleResizeOptimized);
     } else {
@@ -443,7 +431,6 @@
 
             function updateProgress() {
                 if (!video.paused && !video.ended) {
-                    // Use scheduler if available to batch DOM writes
                     if (window.performanceScheduler) {
                         window.performanceScheduler.mutate(() => {
                             progressBar.value = video.currentTime;

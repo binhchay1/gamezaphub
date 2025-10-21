@@ -19,42 +19,6 @@ function bloggers_remove_parent_hooks()
 }
 
 // ============================================================================
-// 1. OVERRIDE AUTHOR BOX - Change H4 to P
-// ============================================================================
-
-if (!function_exists('blogarise_single_author_box')) :
-    /**
-     * Override: Changed <h4> to <p> for author name
-     */
-    function blogarise_single_author_box() 
-    {
-        $blogarise_enable_single_admin_details = esc_attr(get_theme_mod('blogarise_enable_single_admin_details', true));
-        
-        if ($blogarise_enable_single_admin_details == true) { ?>
-            <div class="bs-info-author-block py-4 px-3 mb-4 flex-column justify-content-center text-center">
-                <a class="bs-author-pic mb-3" 
-                   href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
-                   aria-label="<?php echo esc_attr(sprintf(__('View %s profile', 'bloggers'), get_the_author())); ?>">
-                    <?php echo get_avatar(get_the_author_meta('ID'), 150); ?>
-                </a>
-                <div class="flex-grow-1">
-                    <!-- Changed from H4 to P -->
-                    <p class="title" style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">
-                        <?php esc_html_e('By', 'blogarise'); ?> 
-                        <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>"
-                           aria-label="<?php echo esc_attr(sprintf(__('View all posts by %s', 'bloggers'), get_the_author())); ?>">
-                            <?php the_author(); ?>
-                        </a>
-                    </p>
-                    <p><?php the_author_meta('description'); ?></p>
-                </div>
-            </div>
-        <?php }
-    }
-endif;
-add_action('blogarise_action_single_author_box', 'blogarise_single_author_box', 40);
-
-// ============================================================================
 // 2. OVERRIDE RELATED POSTS BOX - Change H4 to P
 // ============================================================================
 
