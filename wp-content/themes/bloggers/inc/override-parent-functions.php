@@ -124,19 +124,3 @@ if (!function_exists('blogarise_single_related_box')) :
     }
 endif;
 add_action('blogarise_action_single_related_box', 'blogarise_single_related_box', 40);
-
-/**
- * NOTES:
- * 
- * 1. Both functions are PLUGGABLE in parent theme (wrapped with if (!function_exists()))
- * 2. Child theme loads BEFORE parent theme, so these overrides will work
- * 3. Changed H4 to P for better heading hierarchy
- * 4. Added inline styles to maintain visual appearance
- * 5. Added proper aria-labels for accessibility
- * 
- * CHANGES:
- * - Line 146 (Author Box): <h4 class="title"> → <p class="title" style="...">
- * - Line 198 (Related Posts): <h4 class="title sm mb-0"> → <p class="title sm mb-0" style="...">
- */
-
-
