@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Functions which enhance the theme by hooking into WordPress
  *
@@ -36,7 +37,7 @@ function blogarise_body_classes($classes)
 
     global $post;
 
-    
+
 
 
     $global_alignment = blogarise_get_option('blogarise_content_layout');
@@ -58,14 +59,13 @@ function blogarise_body_classes($classes)
     }
 
 
-    if ( isset( $_COOKIE["blogarise-site-mode-cookie"] ) ) {
+    if (isset($_COOKIE["blogarise-site-mode-cookie"])) {
         $classes[] = $_COOKIE["blogarise-site-mode-cookie"];
     } else {
-    	$classes[] = get_theme_mod( 'blogarise_skin_mode', 'defaultcolor' );
+        $classes[] = get_theme_mod('blogarise_skin_mode', 'defaultcolor');
     }
 
     return $classes;
-
 }
 
 add_filter('body_class', 'blogarise_body_classes');
@@ -130,7 +130,6 @@ if (!function_exists('blogarise_get_block')) :
     {
 
         get_template_part('inc/ansar/hooks/blocks/block-' . $section, $block);
-
     }
 endif;
 
@@ -146,7 +145,6 @@ function blogarise_get_freatured_image_url($post_id, $size = 'blogarise-featured
     if (has_post_thumbnail($post_id)) {
         $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), $size);
         $url = $thumb !== false ? '' . $thumb[0] . '' : '""';
-
     } else {
         $url = '';
     }
@@ -161,283 +159,298 @@ if (!function_exists('blogarise_edit_link')) :
     function blogarise_edit_link($view = 'default')
     {
         global $post;
-            edit_post_link(
-                sprintf(
-                    wp_kses(
+        edit_post_link(
+            sprintf(
+                wp_kses(
                     /* translators: %s: Name of current post. Only visible to screen readers */
-                        __('Edit <span class="screen-reader-text">%s</span>', 'blogarise'),
-                        array(
-                            'span' => array(
-                                'class' => array(),
-                            ),
-                        )
-                    ),
-                    get_the_title()
+                    __('Edit <span class="screen-reader-text">%s</span>', 'blogarise'),
+                    array(
+                        'span' => array(
+                            'class' => array(),
+                        ),
+                    )
                 ),
-                '<span class="edit-link"><i class="fas fa-edit"></i>',
-                '</span>'
-            );
-
-    } 
+                get_the_title()
+            ),
+            '<span class="edit-link"><i class="fas fa-edit"></i>',
+            '</span>'
+        );
+    }
 endif;
 
-add_filter( 'woocommerce_show_page_title', 'blogarise_hide_shop_page_title' );
+add_filter('woocommerce_show_page_title', 'blogarise_hide_shop_page_title');
 
-function blogarise_hide_shop_page_title( $title ) {
-    if ( is_shop() ) $title = false;
+function blogarise_hide_shop_page_title($title)
+{
+    if (is_shop()) $title = false;
     return $title;
 }
 
 
 function blogarise_footer_logo_size()
 {
-    $blogarise_footer_logo_width = get_theme_mod('blogarise_footer_logo_width','210');
-    $blogarise_footer_logo_height = get_theme_mod('blogarise_footer_logo_height','70');
-    ?>
-<style>
-    footer .footer-logo img{
-        width: <?php echo esc_attr($blogarise_footer_logo_width); ?>px;
-        height: <?php echo esc_attr($blogarise_footer_logo_height); ?>px;
-    } 
-</style>
-<?php } 
-add_action('wp_footer','blogarise_footer_logo_size');
+    $blogarise_footer_logo_width = get_theme_mod('blogarise_footer_logo_width', '210');
+    $blogarise_footer_logo_height = get_theme_mod('blogarise_footer_logo_height', '70');
+?>
+    <style>
+        footer .footer-logo img {
+            width: <?php echo esc_attr($blogarise_footer_logo_width); ?>px;
+            height: <?php echo esc_attr($blogarise_footer_logo_height); ?>px;
+        }
+    </style>
+    <?php }
+add_action('wp_footer', 'blogarise_footer_logo_size');
 
-function blogarise_social_share_post($post) {
+function blogarise_social_share_post($post)
+{
 
-    $single_show_share_icon = esc_attr(get_theme_mod('single_show_share_icon','true'));
-        if($single_show_share_icon == true) {
-        $post_link  = esc_url( get_the_permalink() );
+    $single_show_share_icon = esc_attr(get_theme_mod('single_show_share_icon', 'true'));
+    if ($single_show_share_icon == true) {
+        $post_link  = esc_url(get_the_permalink());
         $post_title = get_the_title();
 
         $facebook_url = add_query_arg(
-        array(
-        'u' => $post_link,
-        ),
-        'https://www.facebook.com/sharer.php'
+            array(
+                'u' => $post_link,
+            ),
+            'https://www.facebook.com/sharer.php'
         );
 
         $twitter_url = add_query_arg(
-        array(
-        'url'  => $post_link,
-        'text' => rawurlencode( html_entity_decode( wp_strip_all_tags( $post_title ), ENT_COMPAT, 'UTF-8' ) ),
+            array(
+                'url'  => $post_link,
+                'text' => rawurlencode(html_entity_decode(wp_strip_all_tags($post_title), ENT_COMPAT, 'UTF-8')),
             ),
             'http://twitter.com/share'
         );
 
-        $email_title = str_replace( '&', '%26', $post_title );
+        $email_title = str_replace('&', '%26', $post_title);
 
         $email_url = add_query_arg(
-        array(
-        'subject' => wp_strip_all_tags( $email_title ),
-        'body'    => $post_link,
+            array(
+                'subject' => wp_strip_all_tags($email_title),
+                'body'    => $post_link,
             ),
-        'mailto:'
-        ); 
+            'mailto:'
+        );
 
         $linkedin_url = add_query_arg(
-            array('url'  => $post_link,
-        'title' => rawurlencode( html_entity_decode( wp_strip_all_tags( $post_title ), ENT_COMPAT, 'UTF-8' ) )
+            array(
+                'url'  => $post_link,
+                'title' => rawurlencode(html_entity_decode(wp_strip_all_tags($post_title), ENT_COMPAT, 'UTF-8'))
             ),
-        'https://www.linkedin.com/sharing/share-offsite/?url'
+            'https://www.linkedin.com/sharing/share-offsite/?url'
         );
 
         $pinterest_url = add_query_arg(
-            array('url'  => $post_link,
-            'title' => rawurlencode( html_entity_decode( wp_strip_all_tags( $post_title ), ENT_COMPAT, 'UTF-8' ) )
+            array(
+                'url'  => $post_link,
+                'title' => rawurlencode(html_entity_decode(wp_strip_all_tags($post_title), ENT_COMPAT, 'UTF-8'))
             ),
-        'http://pinterest.com/pin/create/link/?url='
+            'http://pinterest.com/pin/create/link/?url='
         );
 
         $reddit_url = add_query_arg(
-        array('url' => $post_link,
-        'title' => rawurlencode( html_entity_decode( wp_strip_all_tags( $post_title ), ENT_COMPAT, 'UTF-8' ) )
-        ),
-        'https://www.reddit.com/submit'
+            array(
+                'url' => $post_link,
+                'title' => rawurlencode(html_entity_decode(wp_strip_all_tags($post_title), ENT_COMPAT, 'UTF-8'))
+            ),
+            'https://www.reddit.com/submit'
         );
 
         $telegram_url = add_query_arg(
-        array('url' => $post_link,
-        'title' => rawurlencode( html_entity_decode( wp_strip_all_tags( $post_title ), ENT_COMPAT, 'UTF-8' ) )
-        ),
-        'https://t.me/share/url?url='
+            array(
+                'url' => $post_link,
+                'title' => rawurlencode(html_entity_decode(wp_strip_all_tags($post_title), ENT_COMPAT, 'UTF-8'))
+            ),
+            'https://t.me/share/url?url='
         );
 
         $whatsapp_url = add_query_arg(
-        array('text' => $post_link,
-        'title' => rawurlencode( html_entity_decode( wp_strip_all_tags( $post_title ), ENT_COMPAT, 'UTF-8' ) )
-        ),
-        'https://api.whatsapp.com/send?text='
+            array(
+                'text' => $post_link,
+                'title' => rawurlencode(html_entity_decode(wp_strip_all_tags($post_title), ENT_COMPAT, 'UTF-8'))
+            ),
+            'https://api.whatsapp.com/send?text='
         );
-        ?>
+    ?>
         <script>
-    function pinIt()
-    {
-      var e = document.createElement('script');
-      e.setAttribute('type','text/javascript');
-      e.setAttribute('charset','UTF-8');
-      e.setAttribute('src','https://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);
-      document.body.appendChild(e);
-    }
-    </script>
+            function pinIt() {
+                var e = document.createElement('script');
+                e.setAttribute('type', 'text/javascript');
+                e.setAttribute('charset', 'UTF-8');
+                e.setAttribute('src', 'https://assets.pinterest.com/js/pinmarklet.js?r=' + Math.random() * 99999999);
+                document.body.appendChild(e);
+            }
+        </script>
 
-    <div class="post-share">
-        <div class="post-share-icons cf"> 
-            <?php $blogarise_blog_share_facebook_enable = get_theme_mod('blogarise_blog_share_facebook_enable','true');
-            if($blogarise_blog_share_facebook_enable == true) { ?>
-                <a class="facebook" href="<?php echo esc_url("$facebook_url"); ?>" class="link " target="_blank" >
-                    <i class="fab fa-facebook"></i>
+        <div class="post-share">
+            <div class="post-share-icons cf">
+                <?php $blogarise_blog_share_facebook_enable = get_theme_mod('blogarise_blog_share_facebook_enable', 'true');
+                if ($blogarise_blog_share_facebook_enable == true) { ?>
+                    <a class="facebook" href="<?php echo esc_url("$facebook_url"); ?>" class="link " target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                <?php }
+                $blogarise_blog_share_twitter_enable = get_theme_mod('blogarise_blog_share_twitter_enable', 'true');
+                if ($blogarise_blog_share_twitter_enable == true) { ?>
+                    <a class="x-twitter" href="<?php echo esc_url("$twitter_url"); ?>" class="link " target="_blank">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                <?php }
+                $blogarise_blog_share_email_enable = get_theme_mod('blogarise_blog_share_email_enable', 'true');
+                if ($blogarise_blog_share_email_enable == true) { ?>
+                    <a class="envelope" href="<?php echo esc_url("$email_url"); ?>" class="link " target="_blank">
+                        <i class="fas fa-envelope-open"></i>
+                    </a>
+                <?php }
+                $blogarise_blog_share_linkdin_enable = get_theme_mod('blogarise_blog_share_linkdin_enable', 'true');
+                if ($blogarise_blog_share_linkdin_enable == true) { ?>
+                    <a class="linkedin" href="<?php echo esc_url("$linkedin_url"); ?>" class="link " target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                <?php  }
+                $blogarise_blog_share_pintrest_enable = get_theme_mod('blogarise_blog_share_pintrest_enable', 'true');
+                if ($blogarise_blog_share_pintrest_enable == true) { ?>
+                    <a href="javascript:pinIt();" class="pinterest">
+                        <i class="fab fa-pinterest"></i>
+                    </a>
+                <?php }
+                $blogarise_blog_share_telegram_enable = get_theme_mod('blogarise_blog_share_telegram_enable', 'true');
+                if ($blogarise_blog_share_telegram_enable == true) { ?>
+                    <a class="telegram" href="<?php echo esc_url("$telegram_url"); ?>" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                <?php }
+                $blogarise_blog_share_whatsapp_enable = get_theme_mod('blogarise_blog_share_whatsapp_enable', 'true');
+                if ($blogarise_blog_share_whatsapp_enable == true) { ?>
+                    <a class="whatsapp" href="<?php echo esc_url("$whatsapp_url"); ?>" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                <?php }
+                $blogarise_blog_share_reddit_enable = get_theme_mod('blogarise_blog_share_reddit_enable', 'true');
+                if ($blogarise_blog_share_reddit_enable == true) { ?>
+                    <a class="reddit" href="<?php echo esc_url("$reddit_url"); ?>" target="_blank">
+                        <i class="fab fa-reddit"></i>
+                    </a>
+                <?php } ?>
+                <a class="print-r" href="javascript:window.print()">
+                    <i class="fas fa-print"></i>
                 </a>
-            <?php } 
-            $blogarise_blog_share_twitter_enable = get_theme_mod('blogarise_blog_share_twitter_enable','true');
-            if($blogarise_blog_share_twitter_enable == true) { ?>
-                <a class="x-twitter" href="<?php echo esc_url("$twitter_url"); ?>" class="link " target="_blank">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </a>
-            <?php } 
-            $blogarise_blog_share_email_enable = get_theme_mod('blogarise_blog_share_email_enable','true');
-            if($blogarise_blog_share_email_enable == true) { ?>
-                <a class="envelope" href="<?php echo esc_url("$email_url"); ?>" class="link " target="_blank" >
-                    <i class="fas fa-envelope-open"></i>
-                </a>
-            <?php } 
-            $blogarise_blog_share_linkdin_enable = get_theme_mod('blogarise_blog_share_linkdin_enable','true');
-            if($blogarise_blog_share_linkdin_enable == true) { ?>
-                <a class="linkedin" href="<?php echo esc_url("$linkedin_url"); ?>" class="link " target="_blank" >
-                    <i class="fab fa-linkedin"></i>
-                </a>
-            <?php  } 
-            $blogarise_blog_share_pintrest_enable = get_theme_mod('blogarise_blog_share_pintrest_enable','true');
-            if($blogarise_blog_share_pintrest_enable == true) { ?>
-                <a href="javascript:pinIt();" class="pinterest">
-                    <i class="fab fa-pinterest"></i>
-                </a>
-            <?php } 
-            $blogarise_blog_share_telegram_enable = get_theme_mod('blogarise_blog_share_telegram_enable','true');
-            if($blogarise_blog_share_telegram_enable == true) {?>
-                <a class="telegram" href="<?php echo esc_url("$telegram_url"); ?>" target="_blank" >
-                    <i class="fab fa-telegram"></i>
-                </a>
-            <?php } 
-            $blogarise_blog_share_whatsapp_enable = get_theme_mod('blogarise_blog_share_whatsapp_enable','true');
-            if($blogarise_blog_share_whatsapp_enable == true) { ?>
-                <a class="whatsapp" href="<?php echo esc_url("$whatsapp_url"); ?>" target="_blank" >
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-            <?php } 
-            $blogarise_blog_share_reddit_enable = get_theme_mod('blogarise_blog_share_reddit_enable','true');
-            if($blogarise_blog_share_reddit_enable == true) { ?>
-                <a class="reddit" href="<?php echo esc_url("$reddit_url"); ?>" target="_blank" >
-                    <i class="fab fa-reddit"></i>
-                </a>
-            <?php } ?>
-            <a class="print-r" href="javascript:window.print()"> 
-                <i class="fas fa-print"></i>
-            </a>
+            </div>
         </div>
-    </div>
-<?php } } 
-
-function blogarise_post_image_display_type($post) {
-$url = blogarise_get_freatured_image_url($post->ID, 'blogarise-medium');
-    if($url) { 
-        if ( blogarise_get_option('post_image_type') == 'post_fix_height' ) { ?>
-            <div class="bs-blog-thumb lg back-img" style="background-image: url('<?php echo esc_url($url); ?>');">
-                <a href="<?php the_permalink(); ?>" class="link-div"></a>
-            </div> 
-        <?php }  else { ?>
-            <div class="bs-post-thumb lg">
-                <?php echo '<a href="'.esc_url(get_the_permalink()).'">'; the_post_thumbnail( '', array( 'class'=>'img-responsive img-fluid' ) ); echo '</a>'; ?>
-            </div> 
         <?php }
-    } 
 }
 
-if ( ! function_exists( 'blogarise_header_color' ) ) :
-
-function blogarise_header_color() {
-    $blogarise_logo_text_color = get_header_textcolor();
-    $blogarise_title_font_size = blogarise_get_option('blogarise_title_font_size',60);
-
-    ?>
-    <style type="text/css">
-    <?php
-        if ( ! display_header_text() ) :
-    ?>
-        .site-title,
-        .site-description {
-            position: absolute;
-            clip: rect(1px, 1px, 1px, 1px);
-        }
-    <?php
-        else :
-    ?>
-        .site-title a,
-        .site-description {
-            color: #<?php echo esc_attr( $blogarise_logo_text_color ); ?>;
-        }
-
-        .site-branding-text .site-title a {
-            font-size: <?php echo esc_attr( $blogarise_title_font_size,60 ); ?>px;
-        }
-
-        @media only screen and (max-width: 640px) {
-            .site-branding-text .site-title a {
-                font-size: 26px;
-            }
-        }
-
-        @media only screen and (max-width: 375px) {
-            .site-branding-text .site-title a {
-                font-size: 26px;
-            }
-        }
-
-    <?php endif; ?>
-    </style>
-    <?php
+function blogarise_post_image_display_type($post)
+{
+    $url = blogarise_get_freatured_image_url($post->ID, 'blogarise-medium');
+    if ($url) {
+        if (blogarise_get_option('post_image_type') == 'post_fix_height') { ?>
+            <div class="bs-blog-thumb lg back-img" style="background-image: url('<?php echo esc_url($url); ?>');">
+                <?php do_action('after_thumbnail_toc'); ?>
+                <a href="<?php the_permalink(); ?>" class="link-div"></a>
+            </div>
+        <?php } else { ?>
+            <div class="bs-post-thumb lg">
+                <?php echo '<a href="' . esc_url(get_the_permalink()) . '">';
+                the_post_thumbnail('', array('class' => 'img-responsive img-fluid'));
+                echo '</a>'; ?>
+            </div>
+        <?php }
+    }
 }
+
+if (! function_exists('blogarise_header_color')) :
+
+    function blogarise_header_color()
+    {
+        $blogarise_logo_text_color = get_header_textcolor();
+        $blogarise_title_font_size = blogarise_get_option('blogarise_title_font_size', 60);
+
+        ?>
+        <style type="text/css">
+            <?php
+            if (! display_header_text()) :
+            ?>.site-title,
+            .site-description {
+                position: absolute;
+                clip: rect(1px, 1px, 1px, 1px);
+            }
+
+            <?php
+            else :
+            ?>.site-title a,
+            .site-description {
+                color: #<?php echo esc_attr($blogarise_logo_text_color); ?>;
+            }
+
+            .site-branding-text .site-title a {
+                font-size: <?php echo esc_attr($blogarise_title_font_size, 60); ?>px;
+            }
+
+            @media only screen and (max-width: 640px) {
+                .site-branding-text .site-title a {
+                    font-size: 26px;
+                }
+            }
+
+            @media only screen and (max-width: 375px) {
+                .site-branding-text .site-title a {
+                    font-size: 26px;
+                }
+            }
+
+            <?php endif; ?>
+        </style>
+        <?php
+    }
 endif;
 
 //SCROLL TO TOP //
-if ( ! function_exists( 'blogarise_scrolltoup' ) ) :
+if (! function_exists('blogarise_scrolltoup')) :
 
-function blogarise_scrolltoup() {
-    $scrollup_layout = get_theme_mod('scrollup_layout','fas fa-angle-up');
-    $blogarise_scrollup_enable = get_theme_mod('blogarise_scrollup_enable',true);
-    if($blogarise_scrollup_enable == true){ ?>
-        <a href="#" class="bs_upscr bounceInup animated"><i class="<?php echo esc_attr($scrollup_layout);?>"></i></a> 
-    <?php } 
-} 
-endif; 
-
-function blogarise_dropcap() {
-$blogarise_drop_caps_enable = get_theme_mod('blogarise_drop_caps_enable','false');
-if($blogarise_drop_caps_enable == 'true') { ?>
-<style>
-  .bs-blog-post p:nth-of-type(1)::first-letter {
-    font-size: 60px;
-    font-weight: 800;
-    margin-right: 10px;
-    font-family: 'Vollkorn', serif;
-    line-height: 1; 
-    float: left;
-}
-</style>
-<?php } else { ?>
-<style>
-  .bs-blog-post p:nth-of-type(1)::first-letter {
-    display: none;
-}
-</style>
-<?php } } add_action('wp_head','blogarise_dropcap'); 
-
-function blogarise_custom_header_background() { 
-$color = get_theme_mod( 'background_color', get_theme_support( 'custom-background', 'default-color' ) ); ?>
-<style type="text/css" id="custom-background-css">
-    :root {
-        --wrap-color: <?php echo esc_attr($color); ?>
+    function blogarise_scrolltoup()
+    {
+        $scrollup_layout = get_theme_mod('scrollup_layout', 'fas fa-angle-up');
+        $blogarise_scrollup_enable = get_theme_mod('blogarise_scrollup_enable', true);
+        if ($blogarise_scrollup_enable == true) { ?>
+            <a href="#" class="bs_upscr bounceInup animated"><i class="<?php echo esc_attr($scrollup_layout); ?>"></i></a>
+        <?php }
     }
-</style>
+endif;
+
+function blogarise_dropcap()
+{
+    $blogarise_drop_caps_enable = get_theme_mod('blogarise_drop_caps_enable', 'false');
+    if ($blogarise_drop_caps_enable == 'true') { ?>
+        <style>
+            .bs-blog-post p:nth-of-type(1)::first-letter {
+                font-size: 60px;
+                font-weight: 800;
+                margin-right: 10px;
+                font-family: 'Vollkorn', serif;
+                line-height: 1;
+                float: left;
+            }
+        </style>
+    <?php } else { ?>
+        <style>
+            .bs-blog-post p:nth-of-type(1)::first-letter {
+                display: none;
+            }
+        </style>
+    <?php }
+}
+add_action('wp_head', 'blogarise_dropcap');
+
+function blogarise_custom_header_background()
+{
+    $color = get_theme_mod('background_color', get_theme_support('custom-background', 'default-color')); ?>
+    <style type="text/css" id="custom-background-css">
+        :root {
+            --wrap-color: <?php echo esc_attr($color); ?>
+        }
+    </style>
 <?php }
-add_action('wp_head','blogarise_custom_header_background');
+add_action('wp_head', 'blogarise_custom_header_background');

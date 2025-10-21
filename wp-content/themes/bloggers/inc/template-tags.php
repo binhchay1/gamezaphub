@@ -46,9 +46,8 @@ function bloggers_optimize_post_thumbnail($html, $post_id, $post_thumbnail_id, $
 /**
  * Helper function to properly encode content for DOMDocument without deprecated mb_convert_encoding
  */
-function bloggers_prepare_html_for_dom($content) {
-    // Use a proper HTML5 doctype with UTF-8 meta tag
-    // This avoids the need for mb_convert_encoding
+function bloggers_prepare_html_for_dom($content)
+{
     $content = '<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>' . $content . '</body></html>';
     return $content;
 }
@@ -56,17 +55,18 @@ function bloggers_prepare_html_for_dom($content) {
 /**
  * Helper function to extract body content from DOMDocument
  */
-function bloggers_extract_body_from_dom($dom) {
+function bloggers_extract_body_from_dom($dom)
+{
     $body = $dom->getElementsByTagName('body')->item(0);
     if (!$body) {
         return '';
     }
-    
+
     $html = '';
     foreach ($body->childNodes as $node) {
         $html .= $dom->saveHTML($node);
     }
-    
+
     return $html;
 }
 
@@ -76,11 +76,10 @@ function bloggers_extract_body_from_dom($dom) {
 add_filter('the_content', 'bloggers_add_aria_to_content_links', 20);
 function bloggers_add_aria_to_content_links($content)
 {
-    // Skip in admin area to avoid conflicts with post editor
     if (is_admin()) {
         return $content;
     }
-    
+
     if (empty($content) || !class_exists('DOMDocument')) {
         return $content;
     }
@@ -89,8 +88,7 @@ function bloggers_add_aria_to_content_links($content)
 
     $dom = new DOMDocument();
     $dom->encoding = 'UTF-8';
-    
-    // Load HTML with proper UTF-8 wrapper
+
     @$dom->loadHTML(bloggers_prepare_html_for_dom($content));
 
     $links = $dom->getElementsByTagName('a');
@@ -102,7 +100,6 @@ function bloggers_add_aria_to_content_links($content)
 
         $classes = $link->getAttribute('class');
         $text = trim($link->textContent);
-        $href = $link->getAttribute('href');
 
         $aria_label = '';
 
@@ -121,7 +118,6 @@ function bloggers_add_aria_to_content_links($content)
         }
     }
 
-    // Extract body content without wrapper tags
     $content = bloggers_extract_body_from_dom($dom);
 
     libxml_clear_errors();
@@ -135,11 +131,10 @@ function bloggers_add_aria_to_content_links($content)
 add_filter('wp_get_attachment_link', 'bloggers_add_aria_to_image_links', 10, 6);
 function bloggers_add_aria_to_image_links($link_html, $id, $size, $permalink, $icon, $text)
 {
-    // Skip in admin area
     if (is_admin()) {
         return $link_html;
     }
-    
+
     if (empty($link_html)) {
         return $link_html;
     }
@@ -258,7 +253,7 @@ function bloggers_add_aria_to_categories($thelist, $separator, $parents)
     if (is_admin()) {
         return $thelist;
     }
-    
+
     if (empty($thelist)) {
         return $thelist;
     }
@@ -288,7 +283,7 @@ function bloggers_add_aria_to_tags($tag_list, $before, $sep, $after, $post_id)
     if (is_admin()) {
         return $tag_list;
     }
-    
+
     if (empty($tag_list)) {
         return $tag_list;
     }
