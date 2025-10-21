@@ -1,0 +1,207 @@
+<?php
+
+/**
+ * Disable Plugin Update Notifications
+ * Khóa phiên bản plugin hiện tại, không hiển thị thông báo update
+ * 
+ * Must-Use Plugin (tự động load)
+ * @package Custom
+ */
+
+// Danh sách plugins cần disable update notification
+// Format: 'plugin-folder/plugin-file.php'
+$disabled_updates = array(
+    'wp-smush-pro/wp-smush.php',
+    // Thêm các plugin khác nếu cần:
+    // 'another-plugin/another-plugin.php',
+);
+
+/**
+ * 1. Remove plugin từ update check transient
+ */
+add_filter('site_transient_update_plugins', 'disable_plugin_update_notifications');
+add_filter('pre_site_transient_update_plugins', 'disable_plugin_update_notifications');
+
+function disable_plugin_update_notifications($transient)
+{
+    global $disabled_updates;
+
+    if (!is_object($transient)) {
+        return $transient;
+    }
+
+    foreach ($disabled_updates as $plugin) {
+        if (isset($transient->response[$plugin])) {
+            unset($transient->response[$plugin]);
+        }
+    }
+
+    return $transient;
+}
+
+/**
+ * 2. Prevent automatic background updates
+ */
+add_filter('auto_update_plugin', 'disable_plugin_auto_updates', 10, 2);
+
+function disable_plugin_auto_updates($update, $item)
+{
+    global $disabled_updates;
+
+    if (isset($item->plugin) && in_array($item->plugin, $disabled_updates)) {
+        return false; // Không tự động update
+    }
+
+    return $update;
+}
+
+/**
+ * 3. Hide update notice trong plugin list
+ */
+add_filter('plugin_row_meta', 'hide_plugin_update_row', 10, 2);
+
+function hide_plugin_update_row($plugin_meta, $plugin_file)
+{
+    global $disabled_updates;
+
+    if (in_array($plugin_file, $disabled_updates)) {
+        $plugin_meta[] = '<span style="color: #888;">Updates locked</span>';
+    }
+
+    return $plugin_meta;
+}
+
+/**
+ * 4. Remove update notice hoàn toàn
+ */
+add_action('admin_head', 'hide_plugin_update_notice_css');
+
+function hide_plugin_update_notice_css()
+{
+    global $disabled_updates;
+
+    if (empty($disabled_updates)) {
+        return;
+    }
+
+    echo '<style>';
+    foreach ($disabled_updates as $plugin) {
+        $plugin_slug = dirname($plugin);
+        echo '#' . esc_attr($plugin_slug) . '-update { display: none !important; }';
+        echo 'tr[data-plugin="' . esc_attr($plugin) . '"] .update-message { display: none !important; }';
+    }
+    echo '</style>';
+}
+
+/**
+ * 5. Remove update notification từ admin bar
+ */
+add_action('wp_before_admin_bar_render', 'remove_plugin_update_from_admin_bar');
+
+function remove_plugin_update_from_admin_bar()
+{
+    global $wp_admin_bar, $disabled_updates;
+
+    if (!is_admin() || !is_object($wp_admin_bar)) {
+        return;
+    }
+
+    $update_data = wp_get_update_data();
+
+    if (!empty($disabled_updates) && isset($update_data['counts']['plugins'])) {
+        $updates = get_site_transient('update_plugins');
+
+        if (is_object($updates) && !empty($updates->response)) {
+            $locked_count = 0;
+
+            foreach ($disabled_updates as $plugin) {
+                if (isset($updates->response[$plugin])) {
+                    $locked_count++;
+                }
+            }
+
+            if ($locked_count > 0) {
+                $new_count = max(0, $update_data['counts']['total'] - $locked_count);
+
+                if ($new_count == 0) {
+                    $wp_admin_bar->remove_node('updates');
+                }
+            }
+        }
+    }
+}
+
+/**
+ * 6. Disable update checks for specific plugins
+ */
+add_filter('http_request_args', 'disable_plugin_update_checks', 10, 2);
+
+function disable_plugin_update_checks($args, $url)
+{
+    global $disabled_updates;
+
+    if (strpos($url, 'api.wordpress.org/plugins/update-check') !== false) {
+        if (isset($args['body']['plugins'])) {
+            $plugins = json_decode($args['body']['plugins'], true);
+
+            if (is_array($plugins) && isset($plugins['plugins'])) {
+                foreach ($disabled_updates as $plugin) {
+                    if (isset($plugins['plugins'][$plugin])) {
+                        unset($plugins['plugins'][$plugin]);
+                    }
+                }
+
+                $args['body']['plugins'] = json_encode($plugins);
+            }
+        }
+    }
+
+    return $args;
+}
+
+/**
+ * 7. Add admin notice to confirm updates are locked
+ */
+add_action('admin_notices', 'plugin_updates_locked_notice');
+
+function plugin_updates_locked_notice()
+{
+    global $disabled_updates;
+
+    $screen = get_current_screen();
+    if ($screen && $screen->id !== 'plugins') {
+        return;
+    }
+
+    if (!empty($disabled_updates)) {
+        $plugin_names = array();
+
+        foreach ($disabled_updates as $plugin) {
+            $plugin_data = get_plugin_data(WP_PLUGIN_DIR . '/' . $plugin, false, false);
+            if (!empty($plugin_data['Name'])) {
+                $plugin_names[] = $plugin_data['Name'];
+            }
+        }
+
+        if (!empty($plugin_names)) {
+            echo '<div class="notice notice-info is-dismissible" style="border-left-color: #46b450;">';
+            echo '<p><strong>🔒 Update Notifications Locked:</strong> ';
+            echo esc_html(implode(', ', $plugin_names));
+            echo '</p>';
+            echo '<p style="font-size: 12px; color: #666;">Updates are disabled for these plugins. To enable, edit <code>wp-content/mu-plugins/disable-plugin-updates.php</code></p>';
+            echo '</div>';
+        }
+    }
+}
+
+/**
+ * HOW TO USE:
+ * 
+ * 1. Thêm plugin vào danh sách $disabled_updates ở đầu file
+ * 2. Format: 'folder-name/file-name.php'
+ * 3. Ví dụ: 'wp-smush-pro/wp-smush.php'
+ * 
+ * TO ENABLE UPDATES AGAIN:
+ * - Xóa plugin khỏi array $disabled_updates
+ * - Hoặc xóa file này
+ */

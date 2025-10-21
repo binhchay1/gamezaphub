@@ -99,9 +99,21 @@ add_action( 'customize_controls_print_footer_scripts', 'blogarise_customizer_scr
 
 if ( ! function_exists( 'blogarise_admin_scripts' ) ) :
 function blogarise_admin_scripts() {
-    wp_enqueue_script( 'blogarise-admin-script', get_template_directory_uri() . '/inc/ansar/customizer-admin/js/blogarise-admin-script.js', array( 'jquery' ), '', true );
-    wp_localize_script( 'blogarise-admin-script', 'blogarise_ajax_object',
-        array( 'ajax_url' => admin_url( 'admin-ajax.php' ) )
+   	wp_enqueue_script(
+        'blogarise-admin-script',
+        get_template_directory_uri() . '/inc/ansar/customizer-admin/js/blogarise-admin-script.js',
+        array( 'jquery' ),
+        '',
+        true
+    );
+    wp_localize_script(
+        'blogarise-admin-script',
+        'blogarise_ajax_object',
+        array(
+            'ajax_url'      => admin_url( 'admin-ajax.php' ),
+            'install_nonce' => wp_create_nonce( 'blogarise_install_plugin_nonce' ),
+            'can_install'   => current_user_can( 'install_plugins' ),
+        )
     );
     wp_enqueue_style('blogarise-admin-style-css', get_template_directory_uri() . '/css/customizer-controls.css');
 }

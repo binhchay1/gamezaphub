@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'rankmath/seo-by-rank-math',
-        'pretty_version' => 'v1.0.254',
-        'version' => '1.0.254.0',
-        'reference' => 'b0922088645f02a7907a4c7f65e53240f32cbc5e',
+        'pretty_version' => 'v1.0.255',
+        'version' => '1.0.255.0',
+        'reference' => 'b92e47f1fadb00a269c4840666d47766e2932afd',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -47,9 +47,9 @@
             'dev_requirement' => false,
         ),
         'rankmath/seo-by-rank-math' => array(
-            'pretty_version' => 'v1.0.254',
-            'version' => '1.0.254.0',
-            'reference' => 'b0922088645f02a7907a4c7f65e53240f32cbc5e',
+            'pretty_version' => 'v1.0.255',
+            'version' => '1.0.255.0',
+            'reference' => 'b92e47f1fadb00a269c4840666d47766e2932afd',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -65,9 +65,9 @@
             'dev_requirement' => false,
         ),
         'wp-media/wp-mixpanel' => array(
-            'pretty_version' => 'v1.2.0',
-            'version' => '1.2.0.0',
-            'reference' => 'b73de3558313642298a0ffaf32afbe8b555622ac',
+            'pretty_version' => 'v1.3.0',
+            'version' => '1.3.0.0',
+            'reference' => '402d47230c2118c0cd40e64b0aa8d936b30d4e4f',
             'type' => 'library',
             'install_path' => __DIR__ . '/../wp-media/wp-mixpanel',
             'aliases' => array(),

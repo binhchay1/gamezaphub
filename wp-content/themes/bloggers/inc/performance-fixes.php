@@ -111,9 +111,6 @@ if (!function_exists('bloggers_post_image_display_type')) :
     }
 endif;
 
-/**
- * Accessible version of author content
- */
 if (!function_exists('bloggers_author_content')) :
     function bloggers_author_content()
     {

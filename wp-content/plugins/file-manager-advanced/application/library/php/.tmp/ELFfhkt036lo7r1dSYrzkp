@@ -1,0 +1,318 @@
+<?php
+/**
+ * Critical Performance Optimizations
+ * Fix FCP (First Contentful Paint) and LCP (Largest Contentful Paint)
+ * 
+ * TARGET: FCP < 1.8s, LCP < 2.5s
+ * 
+ * @package Bloggers
+ */
+
+// ============================================================================
+// 1. OPTIMIZE GOOGLE FONTS - Biggest FCP blocker (63.5KB)
+// ============================================================================
+
+/**
+ * Remove default Google Fonts enqueue and replace with optimized version
+ */
+add_action('wp_enqueue_scripts', 'bloggers_remove_slow_fonts', 999);
+function bloggers_remove_slow_fonts()
+{
+    // Remove parent theme fonts
+    wp_dequeue_style('blogarise-fonts');
+    wp_deregister_style('blogarise-fonts');
+    
+    // Remove any Google Fonts loaded by parent
+    global $wp_styles;
+    if (isset($wp_styles->registered)) {
+        foreach ($wp_styles->registered as $handle => $data) {
+            if (strpos($data->src, 'fonts.googleapis.com') !== false) {
+                wp_dequeue_style($handle);
+                wp_deregister_style($handle);
+            }
+        }
+    }
+}
+
+/**
+ * Add optimized Google Fonts with preconnect + font-display: swap
+ */
+add_action('wp_head', 'bloggers_optimized_google_fonts', 1);
+function bloggers_optimized_google_fonts()
+{
+    ?>
+    <!-- Preconnect to Google Fonts (Reduce DNS lookup time) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Load Google Fonts with font-display: swap (Non-blocking) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'; this.onload=null;">
+    
+    <!-- Fallback for no-JS -->
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    </noscript>
+    
+    <!-- System font fallback -->
+    <style>
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+    </style>
+    <?php
+}
+
+// ============================================================================
+// 2. CRITICAL CSS - Inline above-the-fold CSS
+// ============================================================================
+
+add_action('wp_head', 'bloggers_inline_critical_css', 2);
+function bloggers_inline_critical_css()
+{
+    ?>
+    <style id="critical-css">
+    /* Critical CSS - Above the fold only - Minified */
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.6;color:#333;background:#fff}
+    img{max-width:100%;height:auto;display:block}
+    a{color:#0073aa;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1200px;margin:0 auto;padding:0 15px}
+    header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:999}
+    .bs-blog-post{margin-bottom:2rem;background:#fff}
+    .bs-blog-thumb{position:relative;overflow:hidden;aspect-ratio:16/9}
+    .bs-blog-thumb img{width:100%;height:100%;object-fit:cover}
+    .title{font-size:1.5rem;font-weight:600;margin:0.5rem 0;line-height:1.3}
+    .title a{color:inherit}
+    h1,h2,h3,h4,h5,h6{font-weight:600;line-height:1.3;margin-bottom:0.5rem}
+    h1{font-size:2rem}h2{font-size:1.75rem}h3{font-size:1.5rem}h4{font-size:1.25rem}
+    .bs-blog-category{margin-bottom:0.5rem}
+    .bs-blog-category a{display:inline-block;padding:0.25rem 0.75rem;font-size:0.875rem;border-radius:3px;background:#0073aa;color:#fff}
+    @media(min-width:768px){.container{padding:0 30px}.title{font-size:1.75rem}h1{font-size:2.5rem}}
+    </style>
+    <?php
+}
+
+// ============================================================================
+// 3. DEFER NON-CRITICAL CSS
+// ============================================================================
+
+add_filter('style_loader_tag', 'bloggers_defer_non_critical_css', 10, 4);
+function bloggers_defer_non_critical_css($html, $handle, $href, $media)
+{
+    // List of non-critical CSS to defer
+    $defer_styles = array(
+        'bootstrap',
+        'bloggers-owl',
+        'all-css',
+        'animate',
+        'smartmenus',
+        'swiper-bundle-css',
+        'blogarise-default',
+        'bloggers-default-css',
+        'dark'
+    );
+    
+    // Critical styles - load normally
+    $critical_styles = array(
+        'blogarise-style-parent',
+        'bloggers-style',
+        'critical-css'
+    );
+    
+    if (in_array($handle, $critical_styles)) {
+        return $html;
+    }
+    
+    if (in_array($handle, $defer_styles) || strpos($href, 'fonts.googleapis.com') !== false) {
+        // Preload then load async
+        return sprintf(
+            '<link rel="preload" href="%s" as="style" id="%s-css" onload="this.onload=null;this.rel='stylesheet'" media="%s"><noscript>%s</noscript>',
+            $href,
+            $handle,
+            $media,
+            $html
+        );
+    }
+    
+    return $html;
+}
+
+// ============================================================================
+// 4. OPTIMIZE IMAGES FOR LCP
+// ============================================================================
+
+/**
+ * Add fetchpriority="high" to LCP image (first large image)
+ */
+add_filter('wp_get_attachment_image_attributes', 'bloggers_prioritize_lcp_image', 10, 3);
+function bloggers_prioritize_lcp_image($attr, $attachment, $size)
+{
+    static $first_image = true;
+    
+    // First large image gets priority
+    if ($first_image && in_array($size, array('large', 'full', 'blogarise-slider-full', 'blogarise-medium'))) {
+        $attr['fetchpriority'] = 'high';
+        $attr['loading'] = 'eager'; // Don't lazy load LCP image
+        $first_image = false;
+    } else {
+        $attr['loading'] = 'lazy';
+        $attr['decoding'] = 'async';
+    }
+    
+    return $attr;
+}
+
+/**
+ * Add width/height to prevent layout shift
+ */
+add_filter('post_thumbnail_html', 'bloggers_add_image_dimensions', 10, 5);
+function bloggers_add_image_dimensions($html, $post_id, $post_thumbnail_id, $size, $attr)
+{
+    if (empty($html)) {
+        return $html;
+    }
+    
+    // Get image metadata
+    $metadata = wp_get_attachment_metadata($post_thumbnail_id);
+    
+    if (!empty($metadata['width']) && !empty($metadata['height'])) {
+        // Add width/height if not present
+        if (strpos($html, 'width=') === false) {
+            $html = str_replace('<img ', sprintf('<img width="%d" height="%d" ', $metadata['width'], $metadata['height']), $html);
+        }
+    }
+    
+    return $html;
+}
+
+// ============================================================================
+// 5. REMOVE RENDER-BLOCKING RESOURCES
+// ============================================================================
+
+/**
+ * Defer JavaScript (except critical)
+ */
+add_filter('script_loader_tag', 'bloggers_defer_scripts', 10, 3);
+function bloggers_defer_scripts($tag, $handle, $src)
+{
+    // Don't defer these critical scripts
+    $no_defer = array(
+        'jquery-core',
+        'bloggers-performance-optimizer'
+    );
+    
+    if (in_array($handle, $no_defer)) {
+        return $tag;
+    }
+    
+    // Defer all other scripts
+    if (!preg_match('/defer|async/', $tag)) {
+        return str_replace(' src=', ' defer src=', $tag);
+    }
+    
+    return $tag;
+}
+
+/**
+ * Remove jQuery Migrate (not needed, saves ~10KB)
+ */
+add_action('wp_default_scripts', 'bloggers_remove_jquery_migrate');
+function bloggers_remove_jquery_migrate($scripts)
+{
+    if (!is_admin() && isset($scripts->registered['jquery'])) {
+        $script = $scripts->registered['jquery'];
+        
+        if ($script->deps) {
+            $script->deps = array_diff($script->deps, array('jquery-migrate'));
+        }
+    }
+}
+
+// ============================================================================
+// 6. PRELOAD KEY RESOURCES
+// ============================================================================
+
+add_action('wp_head', 'bloggers_preload_key_resources', 1);
+function bloggers_preload_key_resources()
+{
+    // Preload main stylesheet
+    $style_url = get_stylesheet_directory_uri() . '/style.css';
+    echo '<link rel="preload" href="' . esc_url($style_url) . '" as="style">' . "n";
+    
+    // Preload main JavaScript
+    $js_url = get_stylesheet_directory_uri() . '/js/custom.js';
+    echo '<link rel="preload" href="' . esc_url($js_url) . '" as="script">' . "n";
+    
+    // Preload LCP image if on homepage
+    if (is_front_page()) {
+        // Get first post's featured image
+        $latest_post = get_posts(array('numberposts' => 1));
+        if (!empty($latest_post)) {
+            $image_url = get_the_post_thumbnail_url($latest_post[0]->ID, 'large');
+            if ($image_url) {
+                echo '<link rel="preload" href="' . esc_url($image_url) . '" as="image" fetchpriority="high">' . "n";
+            }
+        }
+    }
+}
+
+// ============================================================================
+// 7. REMOVE QUERY STRINGS FROM STATIC RESOURCES
+// ============================================================================
+
+add_filter('style_loader_src', 'bloggers_remove_query_strings', 10, 2);
+add_filter('script_loader_src', 'bloggers_remove_query_strings', 10, 2);
+function bloggers_remove_query_strings($src, $handle)
+{
+    // Remove version query strings for better caching
+    if (strpos($src, '?ver=') !== false) {
+        $src = remove_query_arg('ver', $src);
+    }
+    
+    return $src;
+}
+
+// ============================================================================
+// 8. ADD CACHING HEADERS
+// ============================================================================
+
+add_action('send_headers', 'bloggers_add_cache_headers');
+function bloggers_add_cache_headers()
+{
+    if (!is_admin()) {
+        // Cache static resources for 1 year
+        header('Cache-Control: public, max-age=31536000, immutable', false);
+    }
+}
+
+// ============================================================================
+// 9. DISABLE WORDPRESS EMBEDS (Saves HTTP requests)
+// ============================================================================
+
+add_action('init', 'bloggers_disable_embeds', 9999);
+function bloggers_disable_embeds()
+{
+    // Remove embed script
+    remove_action('wp_head', 'wp_oembed_add_discovery_links');
+    remove_action('wp_head', 'wp_oembed_add_host_js');
+    
+    // Remove REST API links
+    remove_action('wp_head', 'rest_output_link_wp_head');
+    remove_action('wp_head', 'wp_oembed_add_discovery_links');
+    remove_action('template_redirect', 'rest_output_link_header', 11);
+}
+
+// ============================================================================
+// 10. REDUCE DOM SIZE
+// ============================================================================
+
+/**
+ * Remove unnecessary WordPress features
+ */
+remove_action('wp_head', 'wlwmanifest_link');
+remove_action('wp_head', 'rsd_link');
+remove_action('wp_head', 'wp_generator');
+remove_action('wp_head', 'wp_shortlink_wp_head');
+remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);
