@@ -55,15 +55,9 @@ function bloggers_theme_setup()
 }
 add_action('after_setup_theme', 'bloggers_theme_setup');
 
-include_once('hooks/custom-block-wp.php');
-
-require_once(get_stylesheet_directory() . '/inc/speed-optimizations.php');
-
-require_once(get_stylesheet_directory() . '/inc/performance-fixes.php');
+require_once(get_stylesheet_directory() . '/hooks/custom-block-wp.php');
 
 require_once(get_stylesheet_directory() . '/inc/template-tags.php');
-
-require_once(get_stylesheet_directory() . '/inc/post-navigation-fix.php');
 
 add_action('customize_register', 'bloggers_customizer_rid_values', 1000);
 function bloggers_customizer_rid_values($wp_customize)
@@ -138,7 +132,7 @@ function bloggers_bg_image_wrapper()
 			<span class="triangle"></span>
 		</div>
 	</div>
-	<?php
+<?php
 }
 add_action('wp_footer', 'bloggers_bg_image_wrapper');
 
