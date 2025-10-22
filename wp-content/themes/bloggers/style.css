@@ -41,7 +41,6 @@ body {
 
 iframe {
     width: 100%;
-    height: 100vh;
 }
 
 /* Performance optimization - Force GPU acceleration for animated elements */
@@ -901,16 +900,13 @@ Custom Gallery Styles
 .custom-gallery-container {
     --gallery-spacing: 8px;
     --thumb-height: 80px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
     overflow: hidden;
-    background: #fdfdfd;
 }
 
 .main-image {
     position: relative;
     background: #f0f0f0;
-    line-height: 0; /* Loại bỏ khoảng trắng dưới ảnh */
+    line-height: 0;
 }
 
 .main-gallery-image {
@@ -984,14 +980,6 @@ Custom Gallery Styles
     background: rgba(0, 0, 0, 0.7);
 }
 
-/* Dải Thumbnail */
-.thumbnail-wrapper {
-    overflow: hidden;
-    padding: var(--gallery-spacing);
-    background: #fff;
-    border-top: 1px solid #e0e0e0;
-}
-
 .thumbnail-container {
     display: flex;
     gap: var(--gallery-spacing);
@@ -999,7 +987,8 @@ Custom Gallery Styles
 }
 
 .thumbnail {
-    flex: 0 0 calc((100% / 5) - var(--gallery-spacing)); /* 5 ảnh 1 hàng */
+    flex: 0 0 calc((100% / 5) - var(--gallery-spacing));
+    /* 5 ảnh 1 hàng */
     height: var(--thumb-height);
     border-radius: 4px;
     overflow: hidden;
@@ -1010,7 +999,8 @@ Custom Gallery Styles
 }
 
 .thumbnail.active {
-    border-color: #0073aa; /* Màu xanh WordPress */
+    border-color: #0073aa;
+    /* Màu xanh WordPress */
     opacity: 1;
 }
 
@@ -1028,13 +1018,16 @@ Custom Gallery Styles
 /* Responsive cho Gallery */
 @media (max-width: 768px) {
     .thumbnail {
-        flex: 0 0 calc((100% / 4) - var(--gallery-spacing)); /* 4 ảnh */
+        flex: 0 0 calc((100% / 4) - var(--gallery-spacing));
+        /* 4 ảnh */
         --thumb-height: 70px;
     }
 }
+
 @media (max-width: 480px) {
     .thumbnail {
-        flex: 0 0 calc((100% / 3) - var(--gallery-spacing)); /* 3 ảnh */
+        flex: 0 0 calc((100% / 3) - var(--gallery-spacing));
+        /* 3 ảnh */
         --thumb-height: 60px;
     }
 }
@@ -1046,14 +1039,21 @@ Custom Gallery Styles
 
 /* Keyframes cho animation */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
+
 @keyframes zoomIn {
     from {
         opacity: 0;
         transform: scale(0.9);
     }
+
     to {
         opacity: 1;
         transform: scale(1);
@@ -1061,13 +1061,15 @@ Custom Gallery Styles
 }
 
 .gallery-modal {
-    display: none; /* Ẩn ban đầu */
+    display: none;
+    /* Ẩn ban đầu */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9); /* Nền mờ đậm */
+    background: rgba(0, 0, 0, 0.9);
+    /* Nền mờ đậm */
     justify-content: center;
     align-items: center;
     z-index: 99999;
@@ -1102,7 +1104,7 @@ Custom Gallery Styles
     line-height: 1;
     opacity: 0.8;
     transition: opacity 0.2s ease, transform 0.2s ease;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     z-index: 100001;
 }
 
@@ -1131,11 +1133,14 @@ Custom Gallery Styles
     justify-content: center;
     transition: background 0.2s ease;
     z-index: 100000;
-    user-select: none; /* Chống bôi đen */
+    user-select: none;
+    /* Chống bôi đen */
 }
+
 .modal-nav:hover {
     background: rgba(255, 255, 255, 0.2);
 }
+
 .modal-nav:disabled {
     opacity: 0.2;
     cursor: not-allowed;
@@ -1145,6 +1150,7 @@ Custom Gallery Styles
 .modal-prev {
     left: 20px;
 }
+
 .modal-next {
     right: 20px;
 }
@@ -1161,15 +1167,17 @@ Custom Gallery Styles
     border-radius: 8px;
     background: #000;
 }
+
 .video-player .video {
     width: 100%;
     display: block;
 }
+
 .now-playing {
     position: absolute;
     top: 10px;
     left: 10px;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     color: white;
     padding: 5px 10px;
     border-radius: 4px;
@@ -1177,12 +1185,13 @@ Custom Gallery Styles
     display: none;
     z-index: 5;
 }
+
 .video-controls {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
     padding: 10px;
     display: flex;
     align-items: center;
@@ -1190,9 +1199,11 @@ Custom Gallery Styles
     opacity: 0;
     transition: opacity 0.3s ease;
 }
+
 .video-player:hover .video-controls {
     opacity: 1;
 }
+
 .video-controls .control-btn {
     background: none;
     border: none;
@@ -1201,13 +1212,16 @@ Custom Gallery Styles
     cursor: pointer;
     padding: 0 5px;
 }
+
 .video-controls .volume-bar {
     width: 80px;
 }
+
 .video-controls .progress-bar {
     flex: 1;
     cursor: pointer;
 }
+
 .video-controls .current-time,
 .video-controls .duration {
     color: white;
@@ -1225,9 +1239,11 @@ Custom Gallery Styles
     font-style: italic;
     color: #333;
 }
+
 .custom-blockquote-tip p {
     margin: 0;
 }
+
 .custom-blockquote-tip cite {
     display: block;
     margin-top: 1em;
@@ -1241,16 +1257,19 @@ Custom Gallery Styles
     overflow-x: auto;
     margin: 2em 0;
 }
+
 .custom-table {
     width: 100%;
     border-collapse: collapse;
 }
+
 .custom-table th,
 .custom-table td {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: left;
 }
+
 .custom-table th {
     background-color: #f9f9f9;
 }

@@ -149,7 +149,6 @@ if (!function_exists('bloggers_enqueue_performance_optimizer')) :
 	function bloggers_enqueue_performance_optimizer()
 	{
 		wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/js/bootstrap.js', array('jquery'), '5.0.0', true);
-		wp_enqueue_script('bloggers-swiper-js', get_stylesheet_directory_uri() . '/js/swiper.js', array(), '10.0.0', true);
 	}
 endif;
 add_action('wp_enqueue_scripts', 'bloggers_enqueue_performance_optimizer', 1);
