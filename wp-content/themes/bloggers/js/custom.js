@@ -1,22 +1,16 @@
 /**
  * Custom JavaScript for Bloggers Theme
- * Combined functionality for Owl Carousel and Custom Gallery
+ *
+ * PHẦN 1: Logic Gallery trên trang (Code gốc của bro, đã xóa open/close modal cũ)
+ * PHẦN 2: Logic Video Player (Code gốc của bro)
+ * PHẦN 3: Logic Modal DUY NHẤT (Code mới)
  */
 
 // ==========================================================================
-// Custom Gallery - Performance Enhanced Version
+// PHẦN 1: Custom Gallery - Performance Enhanced Version
+// (Đây là code gốc của bro, giữ nguyên phần performance tối ưu)
+// ** ĐÃ XÓA window.openModal và window.closeModal KHỎI ĐÂY **
 // ==========================================================================
-/**
- * Optimized Custom Gallery - Performance Enhanced Version
- * 
- * Key Performance Improvements:
- * 1. Separated DOM reads and writes using requestAnimationFrame batching
- * 2. Cached geometry values to minimize repeated calculations
- * 3. Eliminated forced reflows by batching style changes
- * 4. Fixed image click and slide navigation functionality
- * 5. Maintained clean ES6 module-style structure
- */
-
 (function () {
     'use strict';
 
@@ -26,9 +20,6 @@
         pendingWrites: new Map()
     };
 
-    /**
-     * Debounce utility for resize events
-     */
     function debounce(func, wait) {
         let timeout;
         return function (...args) {
@@ -42,18 +33,12 @@
         };
     }
 
-    /**
-     * Double RAF for optimal timing - ensures DOM updates are complete
-     */
     function requestAnimationFrameOptimized(callback) {
         return requestAnimationFrame(() => {
             requestAnimationFrame(callback);
         });
     }
 
-    /**
-     * Batch DOM writes to prevent forced reflows
-     */
     function batchDOMWrites(galleryId, writeOperations) {
         if (!cache.pendingWrites.has(galleryId)) {
             cache.pendingWrites.set(galleryId, []);
@@ -68,9 +53,6 @@
         });
     }
 
-    /**
-     * Get cached DOM elements for a gallery
-     */
     function getCachedElements(galleryId) {
         if (!cache.elements[galleryId]) {
             const container = document.getElementById(galleryId);
@@ -87,9 +69,6 @@
         return cache.elements[galleryId];
     }
 
-    /**
-     * Cache geometry values to avoid repeated DOM reads
-     */
     function cacheGeometryValues(galleryId) {
         const elements = getCachedElements(galleryId);
         if (!elements) return null;
@@ -110,9 +89,6 @@
         return geometry;
     }
 
-    /**
-     * Optimized thumbnail position adjustment - eliminates forced reflows
-     */
     function adjustThumbnailPositionOptimized(galleryId, currentIndex) {
         const galleryData = window.galleryData?.[galleryId];
         if (!galleryData) return;
@@ -131,13 +107,11 @@
 
         const { wrapperWidth, contentWidth, thumbnails } = geometry;
         const maxOffsetPx = Math.max(0, contentWidth - wrapperWidth);
-
         const activeThumb = thumbnails[currentIndex];
         if (!activeThumb) return;
 
         const { offsetLeft: thumbLeft, offsetWidth } = activeThumb;
         const thumbRight = thumbLeft + offsetWidth;
-
         const computed = getComputedStyle(thumbnailContainer).transform;
         let currentOffsetPx = 0;
 
@@ -180,17 +154,24 @@
         if (!mainImg || !thumbnails.length) return;
 
         let newIndex;
+        let currentIndex = galleryData.currentIndex;
 
         if (typeof index === 'number') {
-            if (index === -1) {
-                newIndex = Math.max(0, galleryData.currentIndex - 1);
-            } else if (index === 9999) {
-                newIndex = Math.min(galleryData.images.length - 1, galleryData.currentIndex + 1);
-            } else {
+            if (index === -1) { // Nút Previous
+                newIndex = Math.max(0, currentIndex - 1);
+            } else { // Click thumbnail
                 newIndex = Math.max(0, Math.min(index, galleryData.images.length - 1));
             }
+        } else if (index === 'next') { // Nút Next
+            newIndex = Math.min(galleryData.images.length - 1, currentIndex + 1);
         } else {
-            newIndex = galleryData.currentIndex;
+            newIndex = currentIndex;
+        }
+
+        // Cập nhật lại data-gallery-current trên DOM
+        const container = document.getElementById(galleryId);
+        if (container) {
+            container.setAttribute('data-gallery-current', newIndex);
         }
 
         galleryData.currentIndex = newIndex;
@@ -222,76 +203,9 @@
         });
     };
 
-    /**
-     * Public API: Open modal with optimized performance
-     */
-    window.openModal = function (galleryId, index) {
-        const galleryData = window.galleryData?.[galleryId];
-        if (!galleryData) return;
+    // ** window.openModal VÀ window.closeModal đã bị xóa khỏi đây **
+    // ** Các event listener cho modal cũ cũng đã bị xóa **
 
-        const modal = document.getElementById(`modal-${galleryId}`);
-        const modalImg = modal?.querySelector('.modal-content-img');
-
-        if (!modal || !modalImg) return;
-
-        const imageIndex = typeof index === 'number' ? index : galleryData.currentIndex;
-        const currentImage = galleryData.images[imageIndex];
-
-        const writeOperations = [
-            () => {
-                modalImg.src = currentImage.url;
-                modalImg.alt = currentImage.alt;
-            },
-            () => {
-                modal.classList.add('show');
-                document.body.style.overflow = 'hidden';
-            }
-        ];
-
-        batchDOMWrites(galleryId, writeOperations);
-    };
-
-    /**
-     * Public API: Close modal with optimized performance
-     */
-    window.closeModal = function (galleryId) {
-        const modal = document.getElementById(`modal-${galleryId}`);
-        if (!modal) return;
-
-        const writeOperations = [
-            () => {
-                modal.classList.remove('show');
-                document.body.style.overflow = '';
-            }
-        ];
-
-        batchDOMWrites(galleryId, writeOperations);
-    };
-
-    /**
-     * Event listeners for modal interactions
-     */
-    document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('gallery-modal')) {
-            const galleryId = e.target.id.replace('modal-', '');
-            window.closeModal(galleryId);
-        }
-    });
-
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            const openModals = document.querySelectorAll('.gallery-modal.show');
-            openModals.forEach(modal => {
-                const galleryId = modal.id.replace('modal-', '');
-                window.closeModal(galleryId);
-            });
-        }
-    });
-
-    /**
-     * Optimized resize handler with geometry cache invalidation
-     * Uses global optimizedResize event from performance-optimizer.js
-     */
     const handleResizeOptimized = function (event) {
         const galleryIds = Object.keys(window.galleryData || {});
         const screenWidth = event?.detail?.width || window.innerWidth;
@@ -299,9 +213,7 @@
         galleryIds.forEach(galleryId => {
             const galleryData = window.galleryData[galleryId];
             if (!galleryData) return;
-
             let itemsPerView;
-
             if (screenWidth <= 480) {
                 itemsPerView = 3;
             } else if (screenWidth <= 768) {
@@ -309,13 +221,10 @@
             } else {
                 itemsPerView = 5;
             }
-
             if (galleryData.itemsPerView !== itemsPerView) {
                 galleryData.itemsPerView = itemsPerView;
-
                 delete cache.elements[galleryId];
                 delete cache.geometry[galleryId];
-
                 requestAnimationFrameOptimized(() => {
                     adjustThumbnailPositionOptimized(galleryId, galleryData.currentIndex);
                 });
@@ -335,7 +244,6 @@
 
         galleries.forEach(container => {
             const galleryId = container.getAttribute('data-gallery-id');
-
             if (galleryId && !window.galleryData[galleryId]) {
                 try {
                     const images = JSON.parse(container.getAttribute('data-gallery-images'));
@@ -356,10 +264,8 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         initializeGalleryData();
-
         requestAnimationFrameOptimized(() => {
             handleResizeOptimized();
-
             const galleryIds = Object.keys(window.galleryData || {});
             galleryIds.forEach(galleryId => {
                 const container = document.getElementById(galleryId);
@@ -380,97 +286,235 @@
         cache.pendingWrites.clear();
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const videoPlayers = document.querySelectorAll('.video-player');
+})();
 
-        videoPlayers.forEach(player => {
-            const video = player.querySelector('.video');
-            const playPauseBtn = player.querySelector('.play-pause');
-            const volumeBtn = player.querySelector('.volume-btn');
-            const volumeBar = player.querySelector('.volume-bar');
-            const progressBar = player.querySelector('.progress-bar');
-            const currentTime = player.querySelector('.current-time');
-            const duration = player.querySelector('.duration');
-            const nowPlaying = player.querySelector('.now-playing');
+// ==========================================================================
+// PHẦN 2: Video Player (Code gốc của bro)
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const videoPlayers = document.querySelectorAll('.video-player');
 
-            video.addEventListener('loadedmetadata', () => {
-                duration.textContent = formatTime(video.duration);
-                progressBar.max = parseInt(video.duration);
-            });
+    videoPlayers.forEach(player => {
+        const video = player.querySelector('.video');
+        const playPauseBtn = player.querySelector('.play-pause');
+        const volumeBtn = player.querySelector('.volume-btn');
+        const volumeBar = player.querySelector('.volume-bar');
+        const progressBar = player.querySelector('.progress-bar');
+        const currentTime = player.querySelector('.current-time');
+        const duration = player.querySelector('.duration');
+        const nowPlaying = player.querySelector('.now-playing');
 
-            playPauseBtn.addEventListener('click', () => {
-                if (video.paused) {
-                    video.play();
-                    playPauseBtn.textContent = '⏸';
-                    nowPlaying.style.display = 'block';
-                    setTimeout(() => {
-                        nowPlaying.style.display = 'none';
-                    }, 1000);
-                } else {
-                    video.pause();
-                    playPauseBtn.textContent = '▶';
-                }
-            });
+        if (!video) return; // Bảo vệ code
 
-            volumeBtn.addEventListener('click', () => {
-                if (video.muted) {
-                    video.muted = false;
-                    video.volume = volumeBar.value;
-                    updateVolumeIcon(video.volume);
-                } else {
-                    video.muted = true;
-                    volumeBtn.textContent = '🔇';
-                }
-            });
+        video.addEventListener('loadedmetadata', () => {
+            duration.textContent = formatTime(video.duration);
+            progressBar.max = parseInt(video.duration, 10);
+        });
 
-            volumeBar.addEventListener('input', () => {
-                video.volume = volumeBar.value;
+        playPauseBtn.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                playPauseBtn.textContent = '⏸';
+                nowPlaying.style.display = 'block';
+                setTimeout(() => {
+                    nowPlaying.style.display = 'none';
+                }, 1000);
+            } else {
+                video.pause();
+                playPauseBtn.textContent = '▶';
+            }
+        });
+
+        volumeBtn.addEventListener('click', () => {
+            if (video.muted) {
                 video.muted = false;
+                video.volume = volumeBar.value;
                 updateVolumeIcon(video.volume);
-            });
-
-            function updateProgress() {
-                if (!video.paused && !video.ended) {
-                    if (window.performanceScheduler) {
-                        window.performanceScheduler.mutate(() => {
-                            progressBar.value = video.currentTime;
-                            currentTime.textContent = formatTime(video.currentTime);
-                        });
-                    } else {
-                        progressBar.value = video.currentTime;
-                        currentTime.textContent = formatTime(video.currentTime);
-                    }
-                }
-                requestAnimationFrame(updateProgress);
+            } else {
+                video.muted = true;
+                volumeBtn.textContent = '🔇';
             }
+        });
+
+        volumeBar.addEventListener('input', () => {
+            video.volume = volumeBar.value;
+            video.muted = false;
+            updateVolumeIcon(video.volume);
+        });
+
+        function updateProgress() {
+            if (video.seeking) return; // Không cập nhật nếu đang tua
+            progressBar.value = video.currentTime;
+            currentTime.textContent = formatTime(video.currentTime);
             requestAnimationFrame(updateProgress);
+        }
 
-            video.addEventListener('ended', () => {
-                progressBar.value = progressBar.max;
-                currentTime.textContent = formatTime(video.duration);
-                playPauseBtn.textContent = '⟲';
-            });
+        video.addEventListener('play', () => {
+            requestAnimationFrame(updateProgress);
+        });
 
-            progressBar.addEventListener('input', () => {
-                video.currentTime = progressBar.value;
-            });
+        video.addEventListener('ended', () => {
+            progressBar.value = progressBar.max;
+            currentTime.textContent = formatTime(video.duration);
+            playPauseBtn.textContent = '⟲';
+        });
 
-            function updateVolumeIcon(volume) {
-                if (volume == 0 || video.muted) {
-                    volumeBtn.textContent = '🔇';
-                } else if (volume < 0.5) {
-                    volumeBtn.textContent = '🔉';
-                } else {
-                    volumeBtn.textContent = '🔊';
+        progressBar.addEventListener('input', () => {
+            video.currentTime = progressBar.value;
+        });
+
+        function updateVolumeIcon(volume) {
+            if (volume == 0 || video.muted) {
+                volumeBtn.textContent = '🔇';
+            } else if (volume < 0.5) {
+                volumeBtn.textContent = '🔉';
+            } else {
+                volumeBtn.textContent = '🔊';
+            }
+        }
+
+        function formatTime(time) {
+            const minutes = Math.floor(time / 60);
+            const seconds = Math.floor(time % 60);
+            return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+    });
+});
+
+
+// ==========================================================================
+// PHẦN 3: Logic Modal DUY NHẤT (Code mới)
+// ==========================================================================
+(function () {
+    'use strict';
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const modal = document.getElementById('site-wide-gallery-modal');
+        if (!modal) return; // Không làm gì nếu không có modal
+
+        const modalImg = modal.querySelector('.modal-content-img');
+        const closeBtn = modal.querySelector('#site-wide-modal-close');
+        const prevBtn = modal.querySelector('.modal-nav.modal-prev');
+        const nextBtn = modal.querySelector('.modal-nav.modal-next');
+
+        let currentGalleryId = null;
+        let currentIndex = 0;
+
+        /**
+         * Mở modal và hiển thị ảnh
+         */
+        function openSiteModal(galleryId, index) {
+            const galleryData = window.galleryData?.[galleryId];
+            if (!galleryData) return;
+
+            currentGalleryId = galleryId;
+            currentIndex = index;
+
+            const image = galleryData.images[currentIndex];
+            if (!image) return;
+
+            // Tải ảnh trước khi hiển thị
+            modalImg.src = image.url;
+            modalImg.alt = image.alt;
+
+            modalImg.onload = () => {
+                // Cập nhật trạng thái nút
+                prevBtn.disabled = (currentIndex === 0);
+                nextBtn.disabled = (currentIndex === galleryData.images.length - 1);
+
+                // Hiển thị modal
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                requestAnimationFrame(() => {
+                    modal.classList.add('show');
+                });
+            };
+            modalImg.onerror = () => {
+                console.error("Không thể tải ảnh: ", image.url);
+                closeSiteModal(); // Đóng modal nếu ảnh lỗi
+            }
+        }
+
+        /**
+         * Đóng modal
+         */
+        function closeSiteModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+
+            // Chờ animation chạy xong mới display: none
+            modal.addEventListener('transitionend', () => {
+                if (!modal.classList.contains('show')) {
+                    modal.style.display = 'none';
+                    modalImg.src = ''; // Xóa src để dừng tải (nếu có)
+                }
+            }, { once: true });
+
+            // Fallback nếu transition không chạy
+            setTimeout(() => {
+                if (!modal.classList.contains('show')) {
+                    modal.style.display = 'none';
+                    modalImg.src = '';
+                }
+            }, 350);
+        }
+
+        /**
+         * Chuyển ảnh (prev/next) trong modal
+         */
+        function changeModalImage(direction) {
+            const galleryData = window.galleryData?.[currentGalleryId];
+            if (!galleryData) return;
+
+            let newIndex = currentIndex + direction;
+
+            // Đảm bảo index nằm trong giới hạn
+            if (newIndex >= 0 && newIndex < galleryData.images.length) {
+                openSiteModal(currentGalleryId, newIndex); // Gọi lại openModal để cập nhật
+            }
+        }
+
+        // DÙNG EVENT DELEGATION ĐỂ XỬ LÝ CLICK
+        document.addEventListener('click', function (e) {
+
+            // 1. Click nút "Phóng to"
+            // dùng .closest() để bắt cả icon svg bên trong
+            const zoomBtn = e.target.closest('.zoom-btn');
+            if (zoomBtn) {
+                e.preventDefault();
+                const galleryId = zoomBtn.dataset.galleryId;
+                const galleryData = window.galleryData?.[galleryId];
+                if (galleryData) {
+                    // SỬA LỖI: Lấy currentIndex (ảnh đang xem) thay vì 0
+                    openSiteModal(galleryId, galleryData.currentIndex);
                 }
             }
 
-            function formatTime(time) {
-                const minutes = Math.floor(time / 60);
-                const seconds = Math.floor(time % 60);
-                return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            // 2. Click nút Close (X)
+            if (e.target === closeBtn) {
+                e.preventDefault();
+                closeSiteModal();
+            }
+
+            // 3. Click vào nền mờ (bên ngoài ảnh)
+            if (e.target === modal) {
+                closeSiteModal();
+            }
+
+            // 4. Click nút Prev/Next trong modal
+            if (e.target === prevBtn) {
+                changeModalImage(-1); // Lùi
+            }
+            if (e.target === nextBtn) {
+                changeModalImage(1); // Tới
+            }
+        });
+
+        // 5. Đóng modal bằng nút Escape
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && modal.classList.contains('show')) {
+                closeSiteModal();
             }
         });
     });
-
 })();

@@ -35,8 +35,13 @@ a:focus {
 
 body {
     background-color: #fff6e6 !important;
-    font-family: ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
     font-size: 20px;
+}
+
+iframe {
+    width: 100%;
+    height: 100vh;
 }
 
 /* Performance optimization - Force GPU acceleration for animated elements */
@@ -893,30 +898,361 @@ Custom Gallery Styles
     background: rgba(0, 0, 0, 0.9);
 }
 
+.custom-gallery-container {
+    --gallery-spacing: 8px;
+    --thumb-height: 80px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fdfdfd;
+}
+
+.main-image {
+    position: relative;
+    background: #f0f0f0;
+    line-height: 0; /* Loại bỏ khoảng trắng dưới ảnh */
+}
+
+.main-gallery-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    display: block;
+}
+
+/* Nút Phóng to */
+.zoom-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+}
+
+.zoom-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.zoom-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: white;
+}
+
+/* Nút Nav Prev/Next trên ảnh chính */
+.nav-buttons {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    z-index: 9;
+}
+
+.nav-buttons .prev-btn,
+.nav-buttons .next-btn {
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.nav-buttons .prev-btn:hover,
+.nav-buttons .next-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Dải Thumbnail */
+.thumbnail-wrapper {
+    overflow: hidden;
+    padding: var(--gallery-spacing);
+    background: #fff;
+    border-top: 1px solid #e0e0e0;
+}
+
+.thumbnail-container {
+    display: flex;
+    gap: var(--gallery-spacing);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.thumbnail {
+    flex: 0 0 calc((100% / 5) - var(--gallery-spacing)); /* 5 ảnh 1 hàng */
+    height: var(--thumb-height);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s ease, opacity 0.2s ease;
+    opacity: 0.7;
+}
+
+.thumbnail.active {
+    border-color: #0073aa; /* Màu xanh WordPress */
+    opacity: 1;
+}
+
+.thumbnail:hover {
+    opacity: 1;
+}
+
+.thumbnail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Responsive cho Gallery */
+@media (max-width: 768px) {
+    .thumbnail {
+        flex: 0 0 calc((100% / 4) - var(--gallery-spacing)); /* 4 ảnh */
+        --thumb-height: 70px;
+    }
+}
+@media (max-width: 480px) {
+    .thumbnail {
+        flex: 0 0 calc((100% / 3) - var(--gallery-spacing)); /* 3 ảnh */
+        --thumb-height: 60px;
+    }
+}
+
+
+/* ==========================================================================
+   CSS CHO MODAL DUY NHẤT (Bootstrap-style)
+   ========================================================================== */
+
+/* Keyframes cho animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 .gallery-modal {
-    display: none;
+    display: none; /* Ẩn ban đầu */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(0, 0, 0, 0.9); /* Nền mờ đậm */
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-    animation: fadeIn 0.3s ease;
+    z-index: 99999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .gallery-modal.show {
     display: flex;
+    opacity: 1;
 }
 
 .modal-content-img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 90vw;
+    max-height: 90vh;
     object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.3s ease;
+}
+
+/* Nút Close (X) */
+.gallery-modal .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: #fff;
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.8;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    z-index: 100001;
+}
+
+.gallery-modal .close-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Nút Prev/Next trong Modal */
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+    z-index: 100000;
+    user-select: none; /* Chống bôi đen */
+}
+.modal-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+.modal-nav:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+    background: transparent;
+}
+
+.modal-prev {
+    left: 20px;
+}
+.modal-next {
+    right: 20px;
+}
+
+/* ==========================================================================
+   CSS CHO CÁC BLOCK KHÁC (Video, Quote)
+   ========================================================================== */
+
+/* --- Custom Video Player --- */
+.video-player {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
     border-radius: 8px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    background: #000;
+}
+.video-player .video {
+    width: 100%;
+    display: block;
+}
+.now-playing {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+    z-index: 5;
+}
+.video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.video-player:hover .video-controls {
+    opacity: 1;
+}
+.video-controls .control-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 5px;
+}
+.video-controls .volume-bar {
+    width: 80px;
+}
+.video-controls .progress-bar {
+    flex: 1;
+    cursor: pointer;
+}
+.video-controls .current-time,
+.video-controls .duration {
+    color: white;
+    font-size: 14px;
+    min-width: 40px;
+    text-align: center;
+}
+
+/* --- Custom Blockquote --- */
+.custom-blockquote-tip {
+    background: #f0f7fd;
+    border-left: 5px solid #0073aa;
+    padding: 1.5em 2em;
+    margin: 2em 0;
+    font-style: italic;
+    color: #333;
+}
+.custom-blockquote-tip p {
+    margin: 0;
+}
+.custom-blockquote-tip cite {
+    display: block;
+    margin-top: 1em;
+    font-style: normal;
+    font-weight: bold;
+    color: #0073aa;
+}
+
+/* --- Custom Table Wrapper --- */
+.custom-table-wrapper {
+    overflow-x: auto;
+    margin: 2em 0;
+}
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.custom-table th,
+.custom-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+.custom-table th {
+    background-color: #f9f9f9;
 }
 
 .close {
